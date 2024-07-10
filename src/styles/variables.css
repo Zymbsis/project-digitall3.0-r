@@ -1,0 +1,11 @@
+:root {
+  --primary-black-color: #2F2F2F;
+  --primary-dark-grey-color: #323F47;
+  --primary-green-color: #9BE1A0;
+  --primary-light-grey-color: #F0EFF4;
+  --primary-white-color: #FFFFFF;
+  --hover-green-color: #87D28D;
+  --error-red-color: #EF5050;
+  --transition-duration: 0.3s;
+  --transition-timing-function: ease-in-out;
+}
