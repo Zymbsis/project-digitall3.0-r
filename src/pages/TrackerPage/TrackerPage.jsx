@@ -1,7 +1,12 @@
+import { Container, Section } from 'shared';
 // import css from './TrackerPage.module.css';
 
 const TrackerPage = () => {
-  return <div></div>;
+  return (
+    <Section>
+      <Container></Container>
+    </Section>
+  );
 };
 
 export default TrackerPage;
