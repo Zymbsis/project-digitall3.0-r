@@ -1,7 +1,7 @@
 // import css from './Title.module.css'
 
-const Title = () => {
-  return <div></div>;
+const Title = ({ children }) => {
+  return <h2>{children}</h2>;
 };
 
 export default Title;
