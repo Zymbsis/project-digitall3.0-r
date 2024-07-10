@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AquaTrack/static/css/main.7acaea2f.css",
+    "main.js": "/AquaTrack/static/js/main.07d3183d.js",
+    "index.html": "/AquaTrack/index.html",
+    "main.7acaea2f.css.map": "/AquaTrack/static/css/main.7acaea2f.css.map",
+    "main.07d3183d.js.map": "/AquaTrack/static/js/main.07d3183d.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.07d3183d.js"
+  ]
+}
