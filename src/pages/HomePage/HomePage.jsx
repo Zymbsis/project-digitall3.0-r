@@ -1,7 +1,13 @@
 // import css from './HomePage.module.css';
 
+import { WelcomeSection } from 'components';
+
 const HomePage = () => {
-  return <div></div>;
+  return (
+    <div>
+      <WelcomeSection></WelcomeSection>
+    </div>
+  );
 };
 
 export default HomePage;
