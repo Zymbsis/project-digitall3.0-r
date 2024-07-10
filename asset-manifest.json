@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/AquaTrack/static/css/main.ff3ad723.css",
-    "main.js": "/AquaTrack/static/js/main.f5600b11.js",
+    "main.js": "/AquaTrack/static/js/main.75fa40c9.js",
     "static/media/Poppins-Regular.ttf": "/AquaTrack/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/AquaTrack/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "index.html": "/AquaTrack/index.html",
     "main.ff3ad723.css.map": "/AquaTrack/static/css/main.ff3ad723.css.map",
-    "main.f5600b11.js.map": "/AquaTrack/static/js/main.f5600b11.js.map"
+    "main.75fa40c9.js.map": "/AquaTrack/static/js/main.75fa40c9.js.map"
   },
   "entrypoints": [
     "static/css/main.ff3ad723.css",
-    "static/js/main.f5600b11.js"
+    "static/js/main.75fa40c9.js"
   ]
 }
