@@ -11,6 +11,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  opacity: 0;
+  transition: opacity var(--transition-timing-function) var(--transition-duration);
 
   @media(min-width:768px) {
     padding-top: 64px;
