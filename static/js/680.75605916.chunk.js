@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject_digitall3_0_r=self.webpackChunkproject_digitall3_0_r||[]).push([[680],{680:function(e,t,l){l.r(t);var n=l(366),i=l(695),c=l(184);t.default=function(){var e=(0,i.d)().setModalContent;return(0,c.jsxs)(n.$0,{children:[(0,c.jsx)(n.W2,{children:"Welcome to HomePage"}),(0,c.jsx)(n.W2,{children:(0,c.jsx)(n.zx,{onClick:function(){e((0,c.jsx)("p",{children:"Hello Little Kitten"}))},children:"TestModal"})})]})}}}]);
-//# sourceMappingURL=680.75605916.chunk.js.map
