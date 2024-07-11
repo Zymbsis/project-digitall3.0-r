@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_digitall3_0_r=self.webpackChunkproject_digitall3_0_r||[]).push([[794],{794:function(e,t,r){r.r(t);var c=r(192),l=r(184);t.default=function(){return(0,l.jsx)(c.$0,{children:(0,l.jsx)(c.W2,{children:"Welcome to NotFoundPage"})})}}}]);
+//# sourceMappingURL=794.5dc2b256.chunk.js.map
