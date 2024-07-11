@@ -1,23 +1,14 @@
-import { Section, Container, Icon, Button } from 'shared';
-import Modal from './components/modal/Modal/Modal';
-import { useModal } from 'context';
+import { HomePage } from 'pages';
+import { Section, Container } from 'shared';
 
 const App = () => {
-  const { modalContent, setModalContent } = useModal();
   return (
     <>
       <Section>
         <Container>
-          <Button
-            onClick={() => {
-              setModalContent(<p>Hello Dolly</p>);
-            }}
-          >
-            Hello
-          </Button>
+          <HomePage />
         </Container>
       </Section>
-      {modalContent && <Modal>{modalContent}</Modal>}
     </>
   );
 };

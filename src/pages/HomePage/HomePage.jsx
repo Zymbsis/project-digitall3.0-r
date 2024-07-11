@@ -1,5 +1,5 @@
 import { AdvantagesSection, WelcomeSection } from 'components';
-import { Section, Container } from 'shared';
+import { Section } from 'shared';
 // import css from './HomePage.module.css';
 
 const HomePage = () => {
