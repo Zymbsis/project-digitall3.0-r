@@ -12,6 +12,7 @@ const Modal = ({ children }) => {
     e => {
       if (e.target === e.currentTarget || e.code === 'Escape') {
         backdropRef.current.style.opacity = 0;
+        document.body.style.overflow = 'visible';
         setTimeout(() => {
           setModalContent(null);
         }, 1000);
