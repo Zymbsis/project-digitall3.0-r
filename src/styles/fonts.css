@@ -11,3 +11,10 @@
   font-weight: bold;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url(../../assets/fonts/Gilroy-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
+}
