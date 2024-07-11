@@ -1,15 +1,15 @@
-import css from './Modal.module.css';
-
 import { useCallback, useEffect } from 'react';
-import { useModal } from 'context';
 import { createPortal } from 'react-dom';
+import { useModal } from 'context';
 import { Container, Icon } from 'shared';
+import css from './Modal.module.css';
 
 const Modal = ({ children }) => {
   const { setModalContent } = useModal();
+
   const closeModal = useCallback(
     e => {
-      if (e.target === e.currentTarget || e.code === 'ESCAPE') {
+      if (e.target === e.currentTarget || e.code === 'Escape') {
         setModalContent(null);
       }
     },
@@ -26,7 +26,7 @@ const Modal = ({ children }) => {
       <Container className={css.test}>
         <div className={css.modalContainer}>
           <button className={css.modalButtonClose} onClick={closeModal}>
-            <Icon iconId="icon-x" />
+            <Icon iconId="icon-x" className={css.iconClose} />
           </button>
           {children}
         </div>
