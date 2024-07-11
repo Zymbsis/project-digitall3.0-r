@@ -1,4 +1,4 @@
-import { Section, Container } from 'shared';
+import { Section, Container, Icon, Button } from 'shared';
 import Modal from './components/modal/Modal/Modal';
 import { useModal } from 'context';
 
@@ -8,14 +8,13 @@ const App = () => {
     <>
       <Section>
         <Container>
-          <button
-            type="button"
+          <Button
             onClick={() => {
               setModalContent(<p>Hello Dolly</p>);
             }}
           >
             Hello
-          </button>
+          </Button>
         </Container>
       </Section>
       {modalContent && <Modal>{modalContent}</Modal>}
