@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_digitall3_0_r=self.webpackChunkproject_digitall3_0_r||[]).push([[75],{75:function(e,n,r){r.r(n);var t=r(366),c=r(184);n.default=function(){return(0,c.jsx)(t.$0,{children:(0,c.jsx)(t.W2,{children:"Welcome to SignInPage"})})}}}]);
+//# sourceMappingURL=75.3e1413d4.chunk.js.map

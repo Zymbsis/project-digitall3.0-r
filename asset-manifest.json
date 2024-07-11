@@ -1,17 +1,27 @@
 {
   "files": {
-    "main.css": "/project-digitall3.0-r/static/css/main.b2376a4c.css",
-    "main.js": "/project-digitall3.0-r/static/js/main.63a81490.js",
+    "main.css": "/project-digitall3.0-r/static/css/main.d14043d8.css",
+    "main.js": "/project-digitall3.0-r/static/js/main.794c5c32.js",
+    "static/js/680.75605916.chunk.js": "/project-digitall3.0-r/static/js/680.75605916.chunk.js",
+    "static/js/622.362abcf5.chunk.js": "/project-digitall3.0-r/static/js/622.362abcf5.chunk.js",
+    "static/js/75.3e1413d4.chunk.js": "/project-digitall3.0-r/static/js/75.3e1413d4.chunk.js",
+    "static/js/746.dd9d2ad2.chunk.js": "/project-digitall3.0-r/static/js/746.dd9d2ad2.chunk.js",
+    "static/js/794.3b698cc6.chunk.js": "/project-digitall3.0-r/static/js/794.3b698cc6.chunk.js",
     "static/media/Poppins-Regular.ttf": "/project-digitall3.0-r/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/project-digitall3.0-r/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/Gilroy-Regular.ttf": "/project-digitall3.0-r/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
-    "static/media/sprite.svg": "/project-digitall3.0-r/static/media/sprite.b96c4b4f5f6a7e5c12abf683d05c3033.svg",
+    "static/media/sprite.svg": "/project-digitall3.0-r/static/media/sprite.c509aa38de464a4eed4664d309107fc4.svg",
     "index.html": "/project-digitall3.0-r/index.html",
-    "main.b2376a4c.css.map": "/project-digitall3.0-r/static/css/main.b2376a4c.css.map",
-    "main.63a81490.js.map": "/project-digitall3.0-r/static/js/main.63a81490.js.map"
+    "main.d14043d8.css.map": "/project-digitall3.0-r/static/css/main.d14043d8.css.map",
+    "main.794c5c32.js.map": "/project-digitall3.0-r/static/js/main.794c5c32.js.map",
+    "680.75605916.chunk.js.map": "/project-digitall3.0-r/static/js/680.75605916.chunk.js.map",
+    "622.362abcf5.chunk.js.map": "/project-digitall3.0-r/static/js/622.362abcf5.chunk.js.map",
+    "75.3e1413d4.chunk.js.map": "/project-digitall3.0-r/static/js/75.3e1413d4.chunk.js.map",
+    "746.dd9d2ad2.chunk.js.map": "/project-digitall3.0-r/static/js/746.dd9d2ad2.chunk.js.map",
+    "794.3b698cc6.chunk.js.map": "/project-digitall3.0-r/static/js/794.3b698cc6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2376a4c.css",
-    "static/js/main.63a81490.js"
+    "static/css/main.d14043d8.css",
+    "static/js/main.794c5c32.js"
   ]
 }
