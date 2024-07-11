@@ -1,9 +1,12 @@
+import { HomePage } from 'pages';
 import { Section, Container } from 'shared';
 
 const App = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>
+        <HomePage />
+      </Container>
     </Section>
   );
 };

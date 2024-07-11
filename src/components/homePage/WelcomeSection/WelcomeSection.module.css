@@ -1,0 +1,116 @@
+.wrapper {
+  width: 343px;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 74px;
+  background-color: var(--primary-light-grey-color);
+  padding: 24px 16px 67px 16px;
+}
+
+.logo {
+  width: 114px;
+  height: 20px;
+}
+
+.description {
+  margin-bottom: 32px;
+}
+
+.descriptionParagraph {
+  margin-bottom: 16px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 38px;
+  color: var(--primary-dark-grey-color);
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.buttonTryTracker {
+  background-color: var(--primary-green-color);
+  color: var(--primary-dark-grey-color);
+  padding: 14px 19px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.buttonTryTracker:hover {
+  background-color: var(--hover-green-color);
+}
+
+.buttonTryTracker:disabled {
+  background-color: transparent;
+  color: #bcbcbc;
+}
+
+.buttonSignIn {
+  background-color: transparent;
+  border: 1px solid var(--primary-dark-grey-color);
+  color: var(--primary-dark-grey-color);
+  border-radius: 30px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+}
+
+.buttonSignIn:hover {
+  border: 1px solid var(--hover-green-color);
+  color: var(--hover-green-color);
+}
+
+.buttonSignIn:disabled {
+  border: 1px solid #bcbcbc;
+  color: #bcbcbc;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    width: 704px;
+    padding: 32px 93px 50px 32px;
+    gap: 50px;
+  }
+
+  .logo {
+    width: 155px;
+    height: 24px;
+  }
+
+  .title {
+    font-size: 64px;
+  }
+
+  .buttons {
+    gap: 16px;
+  }
+
+  .buttonTryTracker {
+    padding: 18px 40px;
+  }
+
+  .buttonSignIn {
+    padding: 18px 40px;
+  }
+
+  .content {
+    padding-left: 32px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .wrapper {
+    gap: 132px;
+    padding-right: 61px;
+    padding-bottom: 188px;
+  }
+
+  .title {
+    font-size: 80px;
+  }
+}
