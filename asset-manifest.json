@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/AquaTrack/static/css/main.b8a01ceb.css",
-    "main.js": "/AquaTrack/static/js/main.5586a530.js",
-    "static/media/Poppins-Regular.ttf": "/AquaTrack/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
-    "static/media/Poppins-Bold.ttf": "/AquaTrack/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
-    "static/media/Gilroy-Regular.ttf": "/AquaTrack/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
-    "index.html": "/AquaTrack/index.html",
-    "main.b8a01ceb.css.map": "/AquaTrack/static/css/main.b8a01ceb.css.map",
-    "main.5586a530.js.map": "/AquaTrack/static/js/main.5586a530.js.map"
+    "main.css": "/project-digitall3.0-r/static/css/main.d3f338e1.css",
+    "main.js": "/project-digitall3.0-r/static/js/main.e364a842.js",
+    "static/media/Poppins-Regular.ttf": "/project-digitall3.0-r/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
+    "static/media/Poppins-Bold.ttf": "/project-digitall3.0-r/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
+    "static/media/Gilroy-Regular.ttf": "/project-digitall3.0-r/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
+    "index.html": "/project-digitall3.0-r/index.html",
+    "main.d3f338e1.css.map": "/project-digitall3.0-r/static/css/main.d3f338e1.css.map",
+    "main.e364a842.js.map": "/project-digitall3.0-r/static/js/main.e364a842.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8a01ceb.css",
-    "static/js/main.5586a530.js"
+    "static/css/main.d3f338e1.css",
+    "static/js/main.e364a842.js"
   ]
 }
