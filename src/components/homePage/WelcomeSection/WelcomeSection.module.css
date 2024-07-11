@@ -39,6 +39,7 @@
   padding: 14px 19px;
   border-radius: 30px;
   font-weight: 700;
+  transition: all 0.2s ease;
 }
 
 .buttonTryTracker:hover {
@@ -58,6 +59,7 @@
   padding: 14px 28px;
   border-radius: 30px;
   font-weight: 700;
+  transition: all 0.2s ease;
 }
 
 .buttonSignIn:hover {
