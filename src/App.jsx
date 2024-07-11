@@ -1,10 +1,12 @@
-import { Section, Container } from 'shared';
+import UserSettingsForm from 'components/modal/UserSettingsForm/UserSettingsForm.jsx';
+// import { Section, Container } from 'shared';
 
 const App = () => {
   return (
-    <Section>
-      <Container></Container>
-    </Section>
+    <UserSettingsForm />
+    // <Section>
+    //   <Container></Container>
+    // </Section>
   );
 };
 export default App;

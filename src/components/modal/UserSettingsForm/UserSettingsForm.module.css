@@ -1,0 +1,29 @@
+.modalSettingContent {
+  display: flex;
+  flex-direction: column;
+  width: 303px;
+  height: 1302px;
+
+  @media (min-width: 768px) {
+    width: 568;
+    height: 1286;
+  }
+
+  @media (min-width: 1440px) {
+    width: 916;
+    height: 996px;
+  }
+}
+
+.avatarArea {
+  width: 303px;
+  height: 103px;
+}
+
+.settingTitle {
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: -1%;
+  color: var(--primary-dark-grey-color);
+  margin-bottom: 20px;
+}
