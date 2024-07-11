@@ -1,12 +1,14 @@
 import { Section, Container, Button } from 'shared';
 import { useModal } from '../../context';
 import Logo from '../../shared/components/Logo/Logo';
+import UserSettingsForm from '../../components/modal/UserSettingsForm/UserSettingsForm';
 // import css from './HomePage.module.css';
 
 const HomePage = () => {
   const { setModalContent } = useModal();
   const handleClick = () => {
-    setModalContent(<p>Hello Little Kitten</p>);
+    setModalContent(<UserSettingsForm />);
+    // setModalContent(<Logo />);
   };
 
   return (
