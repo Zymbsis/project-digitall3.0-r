@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <BrowserRouter basename="/AquaTrack">
+      <BrowserRouter basename="/project-digitall3.0-r">
         <App />
       </BrowserRouter>
     </Provider>
