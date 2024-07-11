@@ -3,7 +3,9 @@ import { Section, Container } from 'shared';
 const App = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>
+        <p>Hello</p>
+      </Container>
     </Section>
   );
 };
