@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/project-digitall3.0-r/static/css/main.d3f338e1.css",
-    "main.js": "/project-digitall3.0-r/static/js/main.e364a842.js",
+    "main.css": "/project-digitall3.0-r/static/css/main.b2376a4c.css",
+    "main.js": "/project-digitall3.0-r/static/js/main.fef22250.js",
     "static/media/Poppins-Regular.ttf": "/project-digitall3.0-r/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/project-digitall3.0-r/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
     "static/media/Gilroy-Regular.ttf": "/project-digitall3.0-r/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "index.html": "/project-digitall3.0-r/index.html",
-    "main.d3f338e1.css.map": "/project-digitall3.0-r/static/css/main.d3f338e1.css.map",
-    "main.e364a842.js.map": "/project-digitall3.0-r/static/js/main.e364a842.js.map"
+    "main.b2376a4c.css.map": "/project-digitall3.0-r/static/css/main.b2376a4c.css.map",
+    "main.fef22250.js.map": "/project-digitall3.0-r/static/js/main.fef22250.js.map"
   },
   "entrypoints": [
-    "static/css/main.d3f338e1.css",
-    "static/js/main.e364a842.js"
+    "static/css/main.b2376a4c.css",
+    "static/js/main.fef22250.js"
   ]
 }
