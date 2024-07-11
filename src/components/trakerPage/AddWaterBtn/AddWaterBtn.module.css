@@ -1,0 +1,15 @@
+.container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-water-btn {
+  width: 124px;
+  height: 30px;
+  border: none;
+  color: black;
+  cursor: pointer;
+  position: absolute;
+}
