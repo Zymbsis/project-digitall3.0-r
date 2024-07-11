@@ -1,30 +1,17 @@
-// import css from './WaterItem.module.css'
+import React from 'react';
+import css from './WaterItem.module.css';
 
-import React, { useState } from "react";
-
-
-const WaterItem = ({ item, deleteWater }) => {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
-
-  const toggleEditModal = () => {
-    setIsEditModalOpen(!isEditModalOpen);
-  };
-
-  const toggleDeleteModal = () => {
-    setIsDeleteModalOpen(!isDeleteModalOpen);
-  };
-
+const WaterItem = ({ water }) => {
   return (
-    <div>
-      <p>{item.amount} ml at {item.time}</p>
-      <button type="button" onClick={toggleEditModal}>
-        ✏️
+    <div className={css.waterItem}>
+      <span>{water.amount} ml</span>
+      <span>{water.time}</span>
+      <button type="button" className={css.editBtn}>
+        <i className="fas fa-pencil-alt"></i>
       </button>
-      <button type="button" onClick={toggleDeleteModal}>
-        🗑️
+      <button type="button" className={css.deleteBtn}>
+        <i className="fas fa-trash"></i>
       </button>
-
     </div>
   );
 };

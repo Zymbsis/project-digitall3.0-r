@@ -1,4 +1,4 @@
-// import css from './ChooseDate.module.css'
+import css from './ChooseDate.module.css'
 
 import React, { useEffect } from "react";
 
@@ -12,8 +12,8 @@ const ChooseDate = ({ selectedDate, setSelectedDate }) => {
   };
 
   return (
-    <div>
-      <label>
+    <div className={css.container}>
+      <label className={css.label}>
         Today:
         <input
           type="date"
