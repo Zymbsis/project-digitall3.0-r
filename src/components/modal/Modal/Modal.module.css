@@ -20,16 +20,16 @@
   }
 }
 
-.test {}
-
 .modalContainer {
   position: relative;
   background-color: var(--primary-white-color);
   border-radius: 15px;
   padding: 40px 14px;
+  margin: 0 auto;
 
   @media(min-width:768px) {
     padding: 40px;
+    width: 518px;
   }
 }
 
