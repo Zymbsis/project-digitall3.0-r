@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/AquaTrack/static/css/main.ff3ad723.css",
-    "main.js": "/AquaTrack/static/js/main.75fa40c9.js",
+    "main.css": "/AquaTrack/static/css/main.b8a01ceb.css",
+    "main.js": "/AquaTrack/static/js/main.5586a530.js",
     "static/media/Poppins-Regular.ttf": "/AquaTrack/static/media/Poppins-Regular.35d26b781dc5fda684cc.ttf",
     "static/media/Poppins-Bold.ttf": "/AquaTrack/static/media/Poppins-Bold.cdb29a5d7ccf57ff05a3.ttf",
+    "static/media/Gilroy-Regular.ttf": "/AquaTrack/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "index.html": "/AquaTrack/index.html",
-    "main.ff3ad723.css.map": "/AquaTrack/static/css/main.ff3ad723.css.map",
-    "main.75fa40c9.js.map": "/AquaTrack/static/js/main.75fa40c9.js.map"
+    "main.b8a01ceb.css.map": "/AquaTrack/static/css/main.b8a01ceb.css.map",
+    "main.5586a530.js.map": "/AquaTrack/static/js/main.5586a530.js.map"
   },
   "entrypoints": [
-    "static/css/main.ff3ad723.css",
-    "static/js/main.75fa40c9.js"
+    "static/css/main.b8a01ceb.css",
+    "static/js/main.5586a530.js"
   ]
 }
