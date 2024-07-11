@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       components: '/src/components',
       constants: '/src/constants',
+      icons: '/src/icons',
       pages: '/src/pages',
       '@redux': '/src/redux',
       services: '/src/services',
