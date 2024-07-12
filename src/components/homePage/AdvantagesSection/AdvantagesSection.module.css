@@ -19,21 +19,80 @@
 }
 
 .customers {
-  background: #ffffff;
-  border-radius: 30px;
   width: 160px;
   height: 48px;
+  border-radius: 30px;
   padding: 10px 14px;
-  margin-right: auto;
+  background: rgb(255, 255, 255);
   margin-bottom: 8px;
+  background-image: url(../../../../public/img/HomePage/Group\ 5@2x.png);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 84%;
 }
 
 .advantages {
-  background: #ffffff;
-  border-radius: 30px;
-  width: 168px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  width: 170px;
   height: 56px;
   margin-left: auto;
+}
+
+.habit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border-radius: 30px;
+  padding: 9px 12px;
+  background-color: var(--primary-dark-grey-color);
+}
+
+.habitText {
+  color: #ffffff;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: -1%;
+  text-align: center;
+}
+
+.statistics {
+  border-radius: 30px;
+  padding: 9px 12px;
+  background-color: var(--primary-green-color);
+}
+
+.statisticsText {
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: -1%;
+  text-align: center;
+}
+
+.rate {
+  border-radius: 30px;
+  padding: 9px 12px;
+  background-color: #ffffff;
+}
+
+.rateText {
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 8px;
+  letter-spacing: -1%;
+  text-align: center;
+}
+
+.dot {
+  position: static;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-green-color);
 }
 
 @media (min-width: 768px) {
@@ -63,6 +122,39 @@
     margin-top: 64px;
     width: 242px;
     height: 78px;
+  }
+
+  .habit {
+    width: 112px;
+    height: 34px;
+    padding: 11px 16px;
+  }
+
+  .habitText {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .statistics {
+    width: 122px;
+    height: 34px;
+    padding: 11px 16px;
+  }
+
+  .statisticsText {
+    font-size: 12px;
+    line-height: 12px;
+  }
+
+  .rate {
+    width: 161px;
+    height: 34px;
+    padding: 11px 16px;
+  }
+
+  .rateText {
+    font-size: 12px;
+    line-height: 12px;
   }
 }
 
