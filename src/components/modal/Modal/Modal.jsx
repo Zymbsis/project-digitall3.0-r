@@ -43,8 +43,8 @@ const Modal = ({ children }) => {
   }, [closeModal, children]);
 
   return createPortal(
-    <div className={css.modalBackdrop} onClick={closeModal} ref={backdropRef}>
-      <div className={css.modalWrapper}>
+    <div className={css.modalBackdrop} ref={backdropRef}>
+      <div className={css.modalWrapper} onClick={closeModal}>
         <div className={css.modalContainer}>
           <button className={css.modalButtonClose} onClick={closeModal}>
             <Icon iconId="icon-x" className={css.iconClose} />
