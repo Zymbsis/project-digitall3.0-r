@@ -12,6 +12,7 @@ const Modal = ({ children }) => {
     e => {
       if (e.target === e.currentTarget || e.code === 'Escape') {
         backdropRef.current.style.opacity = 0;
+        document.body.style.overflow = 'visible';
         setTimeout(() => {
           setModalContent(null);
         }, 1000);
@@ -28,14 +29,6 @@ const Modal = ({ children }) => {
       document.body.style.overflow = 'hidden';
     }, 0);
 
-    Children.map(children, child => {
-      if (
-        child.type.name === 'UserSettingsForm' &&
-        backdropRef.current !== null
-      ) {
-        backdropRef.current.classList.add(css.optionClass);
-      }
-    });
     return () => {
       window.removeEventListener('keydown', closeModal);
       clearTimeout(timer);
@@ -46,7 +39,11 @@ const Modal = ({ children }) => {
     <div className={css.modalBackdrop} ref={backdropRef}>
       <div className={css.modalWrapper} onClick={closeModal}>
         <div className={css.modalContainer}>
-          <button className={css.modalButtonClose} onClick={closeModal}>
+          <button
+            className={css.modalButtonClose}
+            onClick={closeModal}
+            aria-label="close-modal-window-button"
+          >
             <Icon iconId="icon-x" className={css.iconClose} />
           </button>
           {children}
