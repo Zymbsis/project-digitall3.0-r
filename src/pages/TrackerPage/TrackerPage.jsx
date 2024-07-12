@@ -4,7 +4,7 @@ import { Container, Section } from 'shared';
 const TrackerPage = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>Welcome to TrackerPage</Container>
     </Section>
   );
 };
