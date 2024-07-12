@@ -17,7 +17,7 @@ const UserPanel = ({ userName, avatarUrl }) => {
 
   return (
     <div className={css.userPanel}>
-      <h1><span className={css.helloTitle}>Hello,</span> <span className={css.userNameHello}>{userName}!</span></h1>
+      <h2> className={css.helloTitle} Hello,<span className={css.userNameHello}>{userName}!</span></h2>
       <UserBar userName={userName} avatarUrl={avatarUrl} openUserBarPopover={openUserBarPopover} />
       {isPopoverOpen && <UserBarPopover closeUserBarPopover={closeUserBarPopover} />}
     </div>
