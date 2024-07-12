@@ -1,3 +1,4 @@
+import WaterMainInfo from 'components/trakerPage/WaterMainInfo/WaterMainInfo';
 import { Section, Container } from 'shared';
 
 const App = () => {
