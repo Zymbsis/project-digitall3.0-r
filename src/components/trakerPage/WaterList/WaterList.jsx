@@ -1,16 +1,19 @@
-import css from './WaterList.module.css'
+import css from './WaterList.module.css';
 
-import React from "react";
-import WaterItem from "../WaterItem/WaterItem";
+import WaterItem from '../WaterItem/WaterItem';
 
-const WaterList = ({ waterData }) => {
+const waterList = [];
+
+const WaterList = () => {
   return (
-    <div className={css["water-list-container"]}>
-      <div className={css["water-list"]}>
-        {waterData.map((waterItem, index) => (
-          <WaterItem key={index} waterItem={waterItem} />
+    <div className={css.waterListContainer}>
+      <ul className={css.waterList}>
+        {waterList.map(waterItem => (
+          <li key={waterItem.id}>
+            <WaterItem waterItem={waterItem} />
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

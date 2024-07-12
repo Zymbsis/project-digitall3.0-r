@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import css from "./AddWaterBtn.module.css";
 
 const AddWaterBtn = ({ addWater }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
+  const handleClick = () => {
+    addWater();
   };
 
   return (
     <div className={css.container}>
       <button
         type="button"
-        className={css["add-water-btn"]}
-        onClick={toggleModal}
+        className={css.addWaterBtn}
+        onClick={handleClick}
+
       >
         Add water
       </button>

@@ -7,13 +7,15 @@ const WaterItem = ({ water }) => {
       <span>{water.amount} ml</span>
       <span>{water.time}</span>
       <button type="button" className={css.editBtn}>
-        <i className="fas fa-pencil-alt"></i>
+        <i className=""></i>
       </button>
       <button type="button" className={css.deleteBtn}>
-        <i className="fas fa-trash"></i>
+        <i className=""></i>
       </button>
     </div>
   );
 };
 
 export default WaterItem;
+
+
