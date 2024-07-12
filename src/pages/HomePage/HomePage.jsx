@@ -8,7 +8,7 @@ const HomePage = () => {
   const { setModalContent } = useModal();
   const handleClick = () => {
     setModalContent(<UserSettingsForm />);
-    // setModalContent(<Logo />);
+    setModalContent(<Logo />);
   };
 
   return (
