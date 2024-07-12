@@ -1,27 +1,33 @@
-.userBarPopover {
-    /*position: absolute;*/
-    top: 40px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+.userBar {
+  display: flex;
+  padding: 6px 12px;
+  margin-bottom: 8px;
+  margin-top: 20px;
+  align-items: center;
+  justify-content: space-around;
+  gap: 8px;
+  border-radius: 30px;
+  background-color: #323f47;
 }
 
-.settingsButton,
-.logoutButton {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  font-size: 14px;
-  text-align: left;
+.userName {
+  color: #fff;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.16px;
 }
 
- .settingsButton:hover,
-.logoutButton:hover {
-  background-color: #f9f9f9;
+.avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 44px;
+  object-fit: cover;
+}
+
+.chevronDown {
+  padding: 6px 12px;
+  align-items: center;
+  gap: 10px;
 }

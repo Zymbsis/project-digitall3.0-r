@@ -1,14 +1,16 @@
 .userBarPopover {
-    /*position: absolute;*/
-    top: 40px;
-    right: 0;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
+  /*position: absolute;*/
+  top: 40px;
+  right: 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  display: flex;
+  padding: 14px 57px 14px 20px;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 8px;
 }
 
 .settingsButton {
@@ -16,20 +18,31 @@
   border: none;
   cursor: pointer;
   padding: 5px;
-  font-size: 14px;
   text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #323F47;
 }
+
 
 .logoutButton {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 5px;
-    font-size: 14px;
-    text-align: left;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #323F4766;
 }
 
-.settingsButton:hover,
-.logoutButton:hover {
+.settingsButton:hover {
   background-color: #f9f9f9;
+}
+
+.logoutButton:hover {
+  color: #323F47;
+  
 }

@@ -1,6 +1,6 @@
 // import css from './UserBarPopover.module.css'
-import UserSettingsModal from "components/modal/UserSettingsModal/UserSettingsModal";
-import LogOutModal from "components/modal/LogOutModal/LogOutModal";
+import UserSettingsModal from "./components/modal/UserSettingsModal/UserSettingsModal";
+import LogOutModal from "./components/modal/LogOutModal/LogOutModal";
 
 const UserBarPopover = ({ openUserSettingsModal, openLogOutModal }) => {
   return (
