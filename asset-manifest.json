@@ -1,9 +1,9 @@
 {
   "files": {
-    "main.css": "/project-digitall3.0-r/static/css/main.1b27d1a2.css",
-    "main.js": "/project-digitall3.0-r/static/js/main.d7ce542f.js",
+    "main.css": "/project-digitall3.0-r/static/css/main.5ad38ba3.css",
+    "main.js": "/project-digitall3.0-r/static/js/main.76e2c232.js",
     "static/css/593.9e5af0a7.chunk.css": "/project-digitall3.0-r/static/css/593.9e5af0a7.chunk.css",
-    "static/js/593.be43bdc6.chunk.js": "/project-digitall3.0-r/static/js/593.be43bdc6.chunk.js",
+    "static/js/593.695f3156.chunk.js": "/project-digitall3.0-r/static/js/593.695f3156.chunk.js",
     "static/js/622.b95992f8.chunk.js": "/project-digitall3.0-r/static/js/622.b95992f8.chunk.js",
     "static/js/75.d8b46218.chunk.js": "/project-digitall3.0-r/static/js/75.d8b46218.chunk.js",
     "static/js/746.82dbc2e4.chunk.js": "/project-digitall3.0-r/static/js/746.82dbc2e4.chunk.js",
@@ -13,17 +13,17 @@
     "static/media/Gilroy-Regular.ttf": "/project-digitall3.0-r/static/media/Gilroy-Regular.5b89a8df3b17dccdb73f.ttf",
     "static/media/sprite.svg": "/project-digitall3.0-r/static/media/sprite.c509aa38de464a4eed4664d309107fc4.svg",
     "index.html": "/project-digitall3.0-r/index.html",
-    "main.1b27d1a2.css.map": "/project-digitall3.0-r/static/css/main.1b27d1a2.css.map",
-    "main.d7ce542f.js.map": "/project-digitall3.0-r/static/js/main.d7ce542f.js.map",
+    "main.5ad38ba3.css.map": "/project-digitall3.0-r/static/css/main.5ad38ba3.css.map",
+    "main.76e2c232.js.map": "/project-digitall3.0-r/static/js/main.76e2c232.js.map",
     "593.9e5af0a7.chunk.css.map": "/project-digitall3.0-r/static/css/593.9e5af0a7.chunk.css.map",
-    "593.be43bdc6.chunk.js.map": "/project-digitall3.0-r/static/js/593.be43bdc6.chunk.js.map",
+    "593.695f3156.chunk.js.map": "/project-digitall3.0-r/static/js/593.695f3156.chunk.js.map",
     "622.b95992f8.chunk.js.map": "/project-digitall3.0-r/static/js/622.b95992f8.chunk.js.map",
     "75.d8b46218.chunk.js.map": "/project-digitall3.0-r/static/js/75.d8b46218.chunk.js.map",
     "746.82dbc2e4.chunk.js.map": "/project-digitall3.0-r/static/js/746.82dbc2e4.chunk.js.map",
     "794.5dc2b256.chunk.js.map": "/project-digitall3.0-r/static/js/794.5dc2b256.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.1b27d1a2.css",
-    "static/js/main.d7ce542f.js"
+    "static/css/main.5ad38ba3.css",
+    "static/js/main.76e2c232.js"
   ]
 }
