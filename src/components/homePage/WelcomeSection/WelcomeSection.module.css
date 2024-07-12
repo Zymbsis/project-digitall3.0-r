@@ -15,11 +15,16 @@
 
 .descriptionParagraph {
   margin-bottom: 16px;
+  font-size: 14px;
+  line-height: 18px;
+  letter-spacing: 6%;
 }
 
 .title {
   font-weight: 700;
   font-size: 38px;
+  line-height: 38px;
+  letter-spacing: -1%;
   color: var(--primary-dark-grey-color);
 }
 
@@ -70,12 +75,19 @@
 @media (min-width: 768px) {
   .wrapper {
     width: 704px;
+    height: 498px;
     padding: 32px 93px 50px 32px;
     gap: 50px;
   }
 
   .title {
     font-size: 64px;
+    line-height: 70px;
+  }
+
+  .descriptionParagraph {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .buttons {
@@ -97,12 +109,18 @@
 
 @media (min-width: 1440px) {
   .wrapper {
+    height: 736px;
     gap: 132px;
     padding-right: 61px;
     padding-bottom: 188px;
   }
 
+  .descriptionParagraph {
+    line-height: 24px;
+  }
+
   .title {
     font-size: 80px;
+    line-height: 76px;
   }
 }

@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import css from './WelcomeSection.module.css';
 import Logo from 'shared/components/Logo/Logo';
 
@@ -13,12 +14,12 @@ const WelcomeSection = () => {
           <h1 className={css.title}>Water consumption tracker</h1>
         </div>
         <div className={css.buttons}>
-          <button type="button" className={css.buttonTryTracker}>
+          <NavLink to="/signup" className={css.buttonTryTracker}>
             Try tracker
-          </button>
-          <button type="button" className={css.buttonSignIn}>
+          </NavLink>
+          <NavLink to="/signin" className={css.buttonSignIn}>
             Sign In
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>
