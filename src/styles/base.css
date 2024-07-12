@@ -2,8 +2,8 @@
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
   font-size: 14px;
-  color-scheme: light dark;
   color: var(--primary-dark-grey-color);
+  color-scheme: light dark;
   background-color: var(--primary-white-color);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;

@@ -4,7 +4,7 @@ import { Container, Section } from 'shared';
 const SignInPage = () => {
   return (
     <Section>
-      <Container></Container>
+      <Container>Welcome to SignInPage</Container>
     </Section>
   );
 };
