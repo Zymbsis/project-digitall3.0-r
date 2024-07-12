@@ -26,6 +26,7 @@ button {
   border: none;
   color: inherit;
   padding: 0;
+  outline: none;
 }
 
 input,
