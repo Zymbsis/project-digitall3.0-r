@@ -1,12 +1,12 @@
-import { useCallback, useEffect, useRef } from 'react';
+import { Children, useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useModal } from 'context';
-import { Container, Icon } from 'shared';
+import { Icon } from 'shared';
 import css from './Modal.module.css';
 
 const Modal = ({ children }) => {
   const { setModalContent } = useModal();
-  const backdropRef = useRef();
+  const backdropRef = useRef(null);
 
   const closeModal = useCallback(
     e => {
@@ -25,23 +25,31 @@ const Modal = ({ children }) => {
     const timer = setTimeout(() => {
       if (backdropRef.current === null) return;
       backdropRef.current.style.opacity = 1;
+      document.body.style.overflow = 'hidden';
     }, 0);
+
+    Children.map(children, child => {
+      if (
+        child.type.name === 'UserSettingsForm' &&
+        backdropRef.current !== null
+      ) {
+        backdropRef.current.classList.add(css.optionClass);
+      }
+    });
     return () => {
       window.removeEventListener('keydown', closeModal);
       clearTimeout(timer);
     };
-  }, [closeModal]);
+  }, [closeModal, children]);
 
   return createPortal(
     <div className={css.modalBackdrop} onClick={closeModal} ref={backdropRef}>
-      <Container className={css.test}>
-        <div className={css.modalContainer}>
-          <button className={css.modalButtonClose} onClick={closeModal}>
-            <Icon iconId="icon-x" className={css.iconClose} />
-          </button>
-          {children}
-        </div>
-      </Container>
+      <div className={css.modalContainer}>
+        <button className={css.modalButtonClose} onClick={closeModal}>
+          <Icon iconId="icon-x" className={css.iconClose} />
+        </button>
+        {children}
+      </div>
     </div>,
     document.querySelector('#modal-root')
   );
