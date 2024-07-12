@@ -4,7 +4,7 @@ import Logo from 'shared/components/Logo/Logo';
 const WelcomeSection = () => {
   return (
     <div className={css.wrapper}>
-      <div className={css.logo}>Logo</div>
+      <Logo />
       <div className={css.content}>
         <div className={css.description}>
           <p className={css.descriptionParagraph}>

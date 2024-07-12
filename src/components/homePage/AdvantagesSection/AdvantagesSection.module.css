@@ -1,0 +1,32 @@
+.wrapper {
+  width: 343px;
+  padding: 206px 16px 32px 16px;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../../../../public/img/HomePage/BG\ 1x-mobile.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@media (min-device-pixel-ratio: 2),
+  (min-resolution: 192dpi),
+  (min-resolution: 2dppx) {
+  .wrapper {
+    background-image: url(../../../../public/img/HomePage/BG\ 2-x-mobile.png);
+  }
+}
+
+.customers {
+  z-index: 1;
+  width: 160px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+
+.advantages {
+  z-index: 1;
+  width: 168px;
+  height: 56px;
+  margin-left: auto;
+}

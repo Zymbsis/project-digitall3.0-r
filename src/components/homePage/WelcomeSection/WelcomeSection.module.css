@@ -9,11 +9,6 @@
   padding: 24px 16px 67px 16px;
 }
 
-.logo {
-  width: 114px;
-  height: 20px;
-}
-
 .description {
   margin-bottom: 32px;
 }
@@ -77,11 +72,6 @@
     width: 704px;
     padding: 32px 93px 50px 32px;
     gap: 50px;
-  }
-
-  .logo {
-    width: 155px;
-    height: 24px;
   }
 
   .title {
