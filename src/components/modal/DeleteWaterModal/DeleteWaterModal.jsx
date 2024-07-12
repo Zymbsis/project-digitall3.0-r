@@ -1,45 +1,35 @@
 // import css from './DeleteWaterModal.module.css'
 
-import React, { useState } from 'eact';
-import axios from 'axios';
-import { useDispatch } from 'eact-redux';
-import { closeModal } from '../../redux/modalSlice';
-import { updateWaterData } from '../../redux/waterSlice';
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { Modal, Button } from 'shared';
+import { useModal } from '../../context';
 
 const DeleteWaterModal = () => {
-  const [error, setError] = useState(null);
-  const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
-  const handleDelete = async () => {
-    try {
-      const response = await axios.delete('/api/water/delete'); // replace with your backend API endpoint
-      if (response.status === 200) {
-        dispatch(updateWaterData()); // update water data in Redux store
-        dispatch(closeModal()); // close the modal
-      } else {
-        setError(response.data.error);
-      }
-    } catch (error) {
-      setError(error.message);
-    }
+  const handleDelete = () => {
+    // dispatch action to delete water record
+    dispatch(deleteWaterRecord());
   };
 
   const handleCancel = () => {
-    dispatch(closeModal()); // close the modal
+    closeModal(); // close the modal
   };
 
   return (
-    <div className="modal-content">
-      <h2>Delete Water Record</h2>
-      <p>Are you sure you want to delete this water record?</p>
-      {error && <div className="error-notification">{error}</div>}
-      <button className="button" onClick={handleDelete}>
-        Delete
-      </button>
-      <button className="button" onClick={handleCancel}>
-        Cancel
-      </button>
-    </div>
+    <Modal onClose={handleCancel}>
+      <div className="modal-content">
+        <h2 className="title">Delete entry</h2>
+        <p>Are you sure you want to delete the entry?</p>
+        <Button className="button" type="button" onClick={handleDelete}>
+          Delete
+        </Button>
+        <Button className="button" type="button" onClick={handleCancel}>
+          Cancel
+        </Button>
+      </div>
+    </Modal>
   );
 };
 
