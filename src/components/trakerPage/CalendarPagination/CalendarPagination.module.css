@@ -1,8 +1,8 @@
-.box {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    column-gap: 24px;
+    margin-bottom: 24px;
 }
 .title {
 color: var(--primary-dark-grey-color);

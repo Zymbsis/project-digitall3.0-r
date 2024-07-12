@@ -1,0 +1,17 @@
+.button {
+display: flex;
+width: 28px;
+height: 28px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 30px;
+background-color: #fff;
+
+color: var(--primary-dark-grey-color);
+font-size: 14px;
+font-weight: 700;
+line-height: 1.29;
+letter-spacing: -0.14px;
+}
