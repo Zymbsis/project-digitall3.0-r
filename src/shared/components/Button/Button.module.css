@@ -1,0 +1,22 @@
+.button {
+  height: 50px;
+  width: 116px;
+  border-radius: 30px;
+  background-color: var(--primary-green-color);
+  font-weight: 700;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+
+  @media (min-width:768px) {
+    height: 60px;
+    width: 141px;
+    line-height: 1.5;
+  }
+}
+
+.button:hover {
+  @media (min-width:768px) {
+    background-color: var(--hover-green-color);
+  }
+}
