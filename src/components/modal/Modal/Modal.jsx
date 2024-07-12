@@ -1,4 +1,4 @@
-import { Children, useCallback, useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { useModal } from 'context';
 import { Icon } from 'shared';
@@ -29,14 +29,6 @@ const Modal = ({ children }) => {
       document.body.style.overflow = 'hidden';
     }, 0);
 
-    Children.map(children, child => {
-      if (
-        child.type.name === 'UserSettingsForm' &&
-        backdropRef.current !== null
-      ) {
-        backdropRef.current.classList.add(css.optionClass);
-      }
-    });
     return () => {
       window.removeEventListener('keydown', closeModal);
       clearTimeout(timer);
@@ -44,12 +36,18 @@ const Modal = ({ children }) => {
   }, [closeModal, children]);
 
   return createPortal(
-    <div className={css.modalBackdrop} onClick={closeModal} ref={backdropRef}>
-      <div className={css.modalContainer}>
-        <button className={css.modalButtonClose} onClick={closeModal}>
-          <Icon iconId="icon-x" className={css.iconClose} />
-        </button>
-        {children}
+    <div className={css.modalBackdrop} ref={backdropRef}>
+      <div className={css.modalWrapper} onClick={closeModal}>
+        <div className={css.modalContainer}>
+          <button
+            className={css.modalButtonClose}
+            onClick={closeModal}
+            aria-label="close-modal-window-button"
+          >
+            <Icon iconId="icon-x" className={css.iconClose} />
+          </button>
+          {children}
+        </div>
       </div>
     </div>,
     document.querySelector('#modal-root')
