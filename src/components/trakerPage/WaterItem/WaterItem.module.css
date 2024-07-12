@@ -1,0 +1,91 @@
+.waterItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--main-white);
+  width: 149px;
+  height: 74px;
+  padding: 18px 14px;
+  border-radius: 15px;
+}
+
+.waterItemWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: start;
+  justify-content: center;
+  border-radius: 15px;
+  background-color: var(--color-white);
+}
+.waterItemMl {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1;
+  color: #323f47;
+}
+
+.waterItemData {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 1;
+  color: rgba(47, 47, 47, 0.6);
+}
+
+.waterItemBtnWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.waterItemBtn {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  background-color: var(--color-white);
+  border: none;
+  stroke: #323f47;
+  fill: var(--main-white);
+  stroke-width: 1.30px;
+}
+
+@media screen and (min-width: 768px) {
+  .waterItem {
+      gap: 20px;
+      background-color: var(--main-white);
+      border-radius: 15px;
+      width: 192px;
+      height: 86px;
+      padding: 20px;
+  }
+
+  .waterItemWrap {
+      gap: 0px;
+  }
+
+  .waterIconGlass {
+      width: 44px;
+      height: 45px;
+  }
+
+  .waterItemMl {
+      font-size: 15px;
+      line-height: 1.49333;
+
+  }
+
+  .waterItemData {
+      line-height: 1.86667;
+  }
+
+  .waterItemBtnWrap {
+      gap: 14px;
+  }
+
+  .waterIconBtn {
+      width: 16px;
+      height: 16px;
+  }
+}
