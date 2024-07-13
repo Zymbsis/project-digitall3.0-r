@@ -1,10 +1,16 @@
+import SignUpForm from 'components/signUpPage/SignUpForm/SignUpForm';
 import { Container, Section } from 'shared';
-// import css from './SignUpPage.module.css'
+import Logo from '../../shared/components/Logo/Logo';
+import css from './SignUpPage.module.css';
 
 const SignUpPage = () => {
   return (
     <Section>
-      <Container>Welcome to SignUpPage</Container>
+      <Container className={css.signUpContainer}>
+        {/* Welcome to SignUpPage */}
+        <Logo className={css.singUpLogo} />
+        <SignUpForm />
+      </Container>
     </Section>
   );
 };
