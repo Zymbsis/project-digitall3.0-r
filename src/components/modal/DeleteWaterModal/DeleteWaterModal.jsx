@@ -1,37 +1,34 @@
-// import css from './DeleteWaterModal.module.css'
-
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { Modal, Button } from 'shared';
-import { useModal } from '../../context';
-import { deleteWaterRecord,} from 'redux/actions';
-
+import css from './DeleteWaterModal.module.css';
+// import { useDispatch } from 'react-redux';
+// import { deleteWaterRecord } from 'redux/actions';
+import { Button, Title } from 'shared';
+import { useModal } from 'context';
 
 const DeleteWaterModal = () => {
-  const { closeModal } = useModal();
+  // const dispatch = useDispatch();
+  const { setModalContent } = useModal();
 
   const handleDelete = () => {
-    // dispatch action to delete water record
-    dispatch(deleteWaterRecord());
+    // dispatch(deleteWaterRecord());
+    setModalContent();
   };
-
   const handleCancel = () => {
-    closeModal(); // close the modal
+    setModalContent();
   };
 
   return (
-    <Modal onClose={handleCancel}>
-      <div className="modal-content">
-        <h2 className="title">Delete entry</h2>
-        <p>Are you sure you want to delete the entry?</p>
-        <Button className="button" type="button" onClick={handleDelete}>
+    <div className={css.modalContent}>
+      <Title className={css.title}>Delete entry</Title>
+      <p className={css.subtitle}>Are you sure you want to delete the entry?</p>
+      <div className={css.buttonWrapper}>
+        <Button className={css.deleteButton} onClick={handleDelete}>
           Delete
         </Button>
-        <Button className="button" type="button" onClick={handleCancel}>
+        <Button className={css.cancelButton} onClick={handleCancel}>
           Cancel
         </Button>
       </div>
-    </Modal>
+    </div>
   );
 };
 
