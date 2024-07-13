@@ -13,9 +13,12 @@ letter-spacing: -0.2px;
 }
 .dateBox {
     display: flex;
-    gap: 16px;
+    gap: 8px;
 }
 .date {
+    display: flex;
+    justify-content: center;
+    width: 120px;
     color: var(--primary-dark-grey-color);
     font-size: 14px;
     font-weight: 700;
@@ -27,11 +30,6 @@ letter-spacing: -0.2px;
   height: 18px;
   fill: none;
   stroke: var(--primary-dark-grey-color);
-  opacity: 0.5;
-  stroke-width: 2.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-miterlimit: 4;
 }
 
 .IconBtn {

@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 
 const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  console.log(selectedDate);
   const userDate = new Date('2024-04-01');
 
   useEffect(() => {
