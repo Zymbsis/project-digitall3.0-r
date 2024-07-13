@@ -21,16 +21,16 @@ const Modal = ({ children }) => {
   );
 
   useEffect(() => {
-    window.addEventListener('keydown', closeModal);
+    window.addEventListener('keydown', handleCloseModal);
     const timer = setTimeout(() => {
       if (backdropRef.current === null) return;
       backdropRef.current.style.opacity = 1;
     }, 0);
     return () => {
-      window.removeEventListener('keydown', closeModal);
+      window.removeEventListener('keydown', handleCloseModal);
       clearTimeout(timer);
     };
-  }, [closeModal]);
+  }, [handleCloseModal]);
 
   return createPortal(
     <div className={css.modalBackdrop} ref={backdropRef}>
