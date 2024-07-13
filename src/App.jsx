@@ -1,6 +1,3 @@
-import WaterMainInfo from 'components/trakerPage/WaterMainInfo/WaterMainInfo';
-import { Section, Container } from 'shared';
-
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useEffect } from 'react';
@@ -25,7 +22,6 @@ const App = () => {
 
   return (
     <>
-      <WaterMainInfo />
       {isRefreshing ? (
         <p>Some Loader</p>
       ) : (
