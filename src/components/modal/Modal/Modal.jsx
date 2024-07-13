@@ -5,20 +5,19 @@ import { Icon } from 'shared';
 import css from './Modal.module.css';
 
 const Modal = ({ children }) => {
-  const { setModalContent } = useModal();
+  const { closeModal } = useModal();
   const backdropRef = useRef(null);
 
-  const closeModal = useCallback(
+  const handleCloseModal = useCallback(
     e => {
       if (e.target === e.currentTarget || e.code === 'Escape') {
         backdropRef.current.style.opacity = 0;
-        document.body.style.overflow = 'visible';
         setTimeout(() => {
-          setModalContent(null);
+          closeModal();
         }, 1000);
       }
     },
-    [setModalContent]
+    [closeModal]
   );
 
   useEffect(() => {
@@ -26,22 +25,20 @@ const Modal = ({ children }) => {
     const timer = setTimeout(() => {
       if (backdropRef.current === null) return;
       backdropRef.current.style.opacity = 1;
-      document.body.style.overflow = 'hidden';
     }, 0);
-
     return () => {
       window.removeEventListener('keydown', closeModal);
       clearTimeout(timer);
     };
-  }, [closeModal, children]);
+  }, [closeModal]);
 
   return createPortal(
     <div className={css.modalBackdrop} ref={backdropRef}>
-      <div className={css.modalWrapper} onClick={closeModal}>
+      <div className={css.modalWrapper} onClick={handleCloseModal}>
         <div className={css.modalContainer}>
           <button
             className={css.modalButtonClose}
-            onClick={closeModal}
+            onClick={handleCloseModal}
             aria-label="close-modal-window-button"
           >
             <Icon iconId="icon-x" className={css.iconClose} />

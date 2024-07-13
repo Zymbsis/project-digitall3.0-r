@@ -3,6 +3,9 @@ import { Route, Routes } from 'react-router-dom';
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { PrivateRoutes, RestrictedRoutes, SharedLayout } from 'components';
+import { Button } from './shared';
+import { useModal } from './context';
+import Logo from './shared/components/Logo/Logo';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -17,11 +20,11 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [dispatch]);
-
   const isRefreshing = false;
-
+  const { openModal } = useModal();
   return (
     <>
+      <Button onClick={() => openModal(<Logo />)}>Test</Button>
       {isRefreshing ? (
         <p>Some Loader</p>
       ) : (
