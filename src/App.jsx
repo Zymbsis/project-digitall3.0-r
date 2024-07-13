@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
 import { PrivateRoutes, RestrictedRoutes, SharedLayout } from 'components';
-import WaterMainInfo from 'components/trakerPage/WaterMainInfo/WaterMainInfo';
+import WaterMainInfo from 'components/trackerPage/WaterMainInfo/WaterMainInfo';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -23,6 +23,7 @@ const App = () => {
 
   return (
     <>
+      <WaterMainInfo />
       {isRefreshing ? (
         <p>Some Loader</p>
       ) : (

@@ -1,5 +1,5 @@
 import { Container, Section } from 'shared';
-import WaterMainInfo from 'components';
+import { WaterMainInfo, WaterDetailedInfo } from 'components';
 // import css from './TrackerPage.module.css';
 
 const TrackerPage = () => {
@@ -7,6 +7,7 @@ const TrackerPage = () => {
     <Section>
       <Container>
         <WaterMainInfo />
+        <WaterDetailedInfo />
       </Container>
     </Section>
   );
