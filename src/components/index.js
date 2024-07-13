@@ -5,3 +5,4 @@ export { default as RestrictedRoutes } from './routes/RestrictedRoutes.jsx';
 export { default as SharedLayout } from './sharedLayout/SharedLayout.jsx';
 export { default as Modal } from './modal/Modal/Modal.jsx';
 export { default as WaterMainInfo } from './trackerPage/WaterMainInfo/WaterMainInfo.jsx';
+export { default as WaterDetailedInfo } from './trackerPage/WaterDetailedInfo/WaterDetailedInfo.jsx';
