@@ -10,7 +10,7 @@ const SharedLayout = ({ children }) => {
   return (
     <>
       <main>
-        <Suspense fallback={<p>SomeLoader</p>}>{children}</Suspense>;
+        <Suspense fallback={<p>SomeLoader</p>}>{children}</Suspense>
       </main>
       {modalContent && <Modal>{modalContent}</Modal>}
     </>
