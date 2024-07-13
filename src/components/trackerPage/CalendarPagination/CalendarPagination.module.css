@@ -5,11 +5,17 @@
     margin-bottom: 24px;
 }
 .title {
-color: var(--primary-dark-grey-color);
-font-size: 20px;
-font-weight: 700;
-line-height: 1.2; 
-letter-spacing: -0.2px;
+    color: var(--primary-dark-grey-color);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.2; 
+    letter-spacing: -0.2px;
+
+@media (min-width: 768px) {
+    font-size: 28px;
+    line-height: 1.14;
+    letter-spacing: -0.28px;
+  }
 }
 .dateBox {
     display: flex;
@@ -20,10 +26,15 @@ letter-spacing: -0.2px;
     justify-content: center;
     width: 120px;
     color: var(--primary-dark-grey-color);
-    font-size: 14px;
     font-weight: 700;
     line-height: 1.29;
     letter-spacing: -0.14px; 
+
+    @media (min-width: 768px) {
+    line-height: 1.5;
+    letter-spacing: -0.16px;
+      }
+
 }
 .logo {
     width: 18px;
