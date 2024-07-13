@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Modal, Button } from 'shared';
 import { useModal } from '../../context';
+import { deleteWaterRecord,} from 'redux/actions';
+
 
 const DeleteWaterModal = () => {
   const { closeModal } = useModal();
