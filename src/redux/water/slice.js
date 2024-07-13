@@ -1,13 +1,19 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { addWaterIntake, deleteWaterIntake, getInfoByDay, getInfoByMonth, updateWaterIntake } from './operations';
+import {
+  addWaterIntake,
+  deleteWaterIntake,
+  getInfoByDay,
+  getInfoByMonth,
+  updateWaterIntake,
+} from './operations';
 
-const INITIAL_STATE ={
-  dailyIntake: [], // type Object   { ml, date }
-  monthlyStats: [], // type Object  { date, totalMl }
-  selectedDate: null, // type Date
+const INITIAL_STATE = {
+  dailyIntake: [],
+  monthlyStats: [],
+  selectedDate: null,
   loading: false,
   error: null,
-}
+};
 
 const waterSlice = createSlice({
   name: 'water',
@@ -17,7 +23,7 @@ const waterSlice = createSlice({
       state.selectedDate = action.payload;
     },
   },
-  extraReducers: (builder) => {
+  extraReducers: builder => {
     builder
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
@@ -26,7 +32,9 @@ const waterSlice = createSlice({
 
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        const index = state.dailyIntake.findIndex(item => item.id === action.payload.id);
+        const index = state.dailyIntake.findIndex(
+          item => item.id === action.payload._id
+        );
         if (index !== -1) {
           state.dailyIntake[index] = {
             ...state.dailyIntake[index],
@@ -37,7 +45,9 @@ const waterSlice = createSlice({
 
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyIntake = state.dailyIntake.filter(item => item.id !== action.payload.id);
+        state.dailyIntake = state.dailyIntake.filter(
+          item => item.id !== action.payload._id
+        );
       })
 
       .addCase(getInfoByDay.fulfilled, (state, action) => {
@@ -51,22 +61,33 @@ const waterSlice = createSlice({
       })
 
       .addMatcher(
-        isAnyOf(addWaterIntake.pending, updateWaterIntake.pending, deleteWaterIntake.pending, getInfoByDay.pending, getInfoByMonth.pending),
+        isAnyOf(
+          addWaterIntake.pending,
+          updateWaterIntake.pending,
+          deleteWaterIntake.pending,
+          getInfoByDay.pending,
+          getInfoByMonth.pending
+        ),
         state => {
           state.loading = true;
           state.error = null;
         }
       )
 
-       .addMatcher(
-        isAnyOf(addWaterIntake.rejected, updateWaterIntake.rejected, deleteWaterIntake.rejected, getInfoByDay.rejected, getInfoByMonth.rejected),
+      .addMatcher(
+        isAnyOf(
+          addWaterIntake.rejected,
+          updateWaterIntake.rejected,
+          deleteWaterIntake.rejected,
+          getInfoByDay.rejected,
+          getInfoByMonth.rejected
+        ),
         (state, action) => {
           state.loading = false;
           state.error = action.payload;
         }
       );
   },
-
 });
 export const { setSelectedDate } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

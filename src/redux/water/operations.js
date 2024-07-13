@@ -1,19 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from "axios";
-
+import axios from 'axios';
+import { store } from 'redux/store';
+const BASE_URL = 'https://aquatracker-node.onrender.com';
+// add BASE_URL to constants
 const instance = axios.create({
-  // baseURL: BASE_URL, from constants
+  baseURL: BASE_URL,
 });
+const token = store.auth.token; // use store
 
+if (token) {
+  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+}
 
 export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
   async (waterData, { rejectWithValue }) => {
     try {
-      const response = await instance.post('/water/add', waterData); //update url from backend
-      return response.data;
+      const { data } = await instance.post('/water', waterData);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.data.message);
     }
   }
 );
@@ -22,10 +28,10 @@ export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
   async ({ id, ...waterData }, { rejectWithValue }) => {
     try {
-      const response = await instance.patch(`/water/update/${id}`, waterData); //update url from backend
-      return response.data;
+      const { data } = await instance.patch(`/water/${id}`, waterData);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.data.message);
     }
   }
 );
@@ -34,10 +40,10 @@ export const deleteWaterIntake = createAsyncThunk(
   'water/deleteWaterIntake',
   async (id, { rejectWithValue }) => {
     try {
-      const response = await instance.delete(`/water/delete/${id}`); //update url from backend
-      return response.data;
+      const { data } = await instance.delete(`/water/${id}`);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.data.message);
     }
   }
 );
@@ -46,10 +52,10 @@ export const getInfoByDay = createAsyncThunk(
   'water/getInfoByDay',
   async (date, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`/water/getInfoByDay?date=${date}`); //update url from backend
-      return response.data;
+      const { data } = await instance.get(`/water/day/${date}`);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.data.message);
     }
   }
 );
@@ -58,10 +64,10 @@ export const getInfoByMonth = createAsyncThunk(
   'water/getInfoByMonth',
   async (month, { rejectWithValue }) => {
     try {
-      const response = await instance.get(`/water/getInfoByMonth?month=${month}`); //update url from backend
-      return response.data;
+      const { data } = await instance.get(`/water/month/${month}`);
+      return data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.data.message);
     }
   }
 );
