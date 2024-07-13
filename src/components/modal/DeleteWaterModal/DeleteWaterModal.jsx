@@ -6,14 +6,14 @@ import { useModal } from 'context';
 
 const DeleteWaterModal = () => {
   // const dispatch = useDispatch();
-  const { setModalContent } = useModal();
+  const { closeModal } = useModal();
 
   const handleDelete = () => {
     // dispatch(deleteWaterRecord());
-    setModalContent();
+    closeModal();
   };
   const handleCancel = () => {
-    setModalContent();
+    closeModal();
   };
 
   return (
