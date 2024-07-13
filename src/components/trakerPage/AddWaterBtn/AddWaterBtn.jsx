@@ -1,6 +1,8 @@
 import css from './AddWaterBtn.module.css';
 // import clsx from 'clsx';
 
+// логіка на відкриття модалки
+
 const AddWaterBtn = () => {
   return (
     <div>
