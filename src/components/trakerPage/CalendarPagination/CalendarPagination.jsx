@@ -1,5 +1,4 @@
 import css from './CalendarPagination.module.css'
-import { Container } from 'shared';
 import { useEffect, useState } from "react";
 
 const fetchUser = async => {
@@ -16,62 +15,67 @@ const fetchUser = async => {
     updatedAt: '2024-07-01T00:00:00.000Z'
   };
 }
-const CalendarPagination = () => {
-  const [currentDate, setCurrentDate] = useState(new Date());
-  const [navDate, setNavDate] = useState(new Date());
- const [user, setUser] = useState(null)
+const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
+//   const [currentDate, setCurrentDate] = useState(new Date());
+//   const [navDate, setNavDate] = useState(new Date());
+//  const [user, setUser] = useState(null)
 
-useEffect(() => {
-  const getUser = async () => {
-    const userData = await fetchUser();
-    setUser(userData);
-    setCurrentDate(new Date());
-    setNavDate(new Date());
-  };
-  getUser();
-}, []);
+// useEffect(() => {
+//   const getUser = async () => {
+//     const userData = await fetchUser();
+//     setUser(userData);
+//     setCurrentDate(new Date());
+//     setNavDate(new Date());
+//   };
+//   getUser();
+// }, []);
 
-  const handlePreviouslyMonth = () => {
-    setNavDate((prevDate) => {
+  const handlePrevMonth = () => {
+    setSelectedDate((prevDate) => {
+
       const prevMonthDate = new Date(prevDate.getFullYear(), prevDate.getMonth() - 1, 1);
-      return prevMonthDate;
-    });
+      return prevMonthDate
+    })
+
    };
  
   const handleNextMonth = () => {
-    setNavDate((nextDate) => {
+    setSelectedDate((nextDate) => {
       const nextMonthDate = new Date(nextDate.getFullYear(), nextDate.getMonth() + 1, 1);
-      return nextMonthDate;
-    });
-  }
+      return nextMonthDate
+    })
+  };
+
   const formatDate = (date) => {
     const format = { month: 'long', year: 'numeric'};
     const data = new Intl.DateTimeFormat('en-US', format).format(date)
     const [month, year] = data.split(' ');
     return `${month}, ${year}`
-  }
-  if (!user) {
-    return <div>User not found!</div>;
-  }
-  const userDate = new Date(user.createdAt);
+  };
+  // if (!user) {
+  //   return <div>User not found!</div>;
+  // }
+  // const userDate = new Date(user.createdAt);
 
-  const isPrevDis = navDate.getFullYear() < userDate.getFullYear() ||
-  (navDate.getFullYear() === userDate.getFullYear() && 
-  navDate.getMonth() <= userDate.getMonth());
+  const isPrevDis = selectedDate.getFullYear() < userDate.getFullYear() ||
+  (selectedDate.getFullYear() === userDate.getFullYear() && 
+  selectedDate.getMonth() <= userDate.getMonth());
  
  
- return <Container className={css.box}>
-    <h2 className={css.title}>Month</h2>
-    <div className={css.dateBox}>
-    <button onClick={handlePreviouslyMonth} disabled={isPrevDis}>
-        Prev
-    </button>
-    <p className={css.date}>{formatDate(navDate)}</p>
-    <button onClick={handleNextMonth}>
-      Next
-    </button>
-    </div>
-  </Container>;
+ return (
+ <div className={css.container}>
+  <h2 className={css.title}>Month</h2>
+  <div className={css.dateBox}>
+  <button onClick={handlePrevMonth} disabled={isPrevDis}>
+      {'<'}
+  </button>
+  <p className={css.date}>{formatDate(selectedDate)}</p>
+  <button onClick={handleNextMonth}>
+    {'>'}
+  </button>
+  </div>
+</div>
+)
 };
 
 export default CalendarPagination;
