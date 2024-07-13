@@ -46,7 +46,7 @@ const waterSlice = createSlice({
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         state.dailyIntake = state.dailyIntake.filter(
-          item => item.id !== action.payload._id
+          item => item.id !== action.payload
         );
       })
 

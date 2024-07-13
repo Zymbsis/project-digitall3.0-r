@@ -19,7 +19,7 @@ export const addWaterIntake = createAsyncThunk(
       const { data } = await instance.post('/water', waterData);
       return data;
     } catch (error) {
-      return rejectWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -31,7 +31,7 @@ export const updateWaterIntake = createAsyncThunk(
       const { data } = await instance.patch(`/water/${id}`, waterData);
       return data;
     } catch (error) {
-      return rejectWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -41,9 +41,9 @@ export const deleteWaterIntake = createAsyncThunk(
   async (id, { rejectWithValue }) => {
     try {
       const { data } = await instance.delete(`/water/${id}`);
-      return data;
+      return id;
     } catch (error) {
-      return rejectWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -55,7 +55,7 @@ export const getInfoByDay = createAsyncThunk(
       const { data } = await instance.get(`/water/day/${date}`);
       return data;
     } catch (error) {
-      return rejectWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
@@ -67,7 +67,7 @@ export const getInfoByMonth = createAsyncThunk(
       const { data } = await instance.get(`/water/month/${month}`);
       return data;
     } catch (error) {
-      return rejectWithValue(error.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
