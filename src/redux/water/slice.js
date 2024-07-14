@@ -32,15 +32,9 @@ const waterSlice = createSlice({
 
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        const index = state.dailyIntake.findIndex(
-          item => item.id === action.payload._id
+        state.dailyIntake = state.dailyIntake.map(item =>
+          item._id === action.payload._id ? action.payload : item
         );
-        if (index !== -1) {
-          state.dailyIntake[index] = {
-            ...state.dailyIntake[index],
-            ...action.payload,
-          };
-        }
       })
 
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
