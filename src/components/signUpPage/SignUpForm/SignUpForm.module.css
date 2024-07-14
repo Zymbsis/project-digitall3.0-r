@@ -1,5 +1,16 @@
 @import '../../../styles/variables.css';
 
+.wrapper {
+  background-color: var(--primary-light-grey-color);
+  padding: 24px 16px;
+  border-radius: 30px;
+  @media (min-width: 1440px) {
+    width: calc((100% - 32px) / 2);
+    margin-top: 9px;
+    margin-bottom: 9px;
+  }
+}
+
 .registerContainer {
   @media (max-width: 374.98px) {
     max-width: 311px;
@@ -12,6 +23,17 @@
 
   @media (min-width: 768px) {
     width: 444px;
+  }
+}
+
+.singUpLogo {
+  margin-bottom: 126px;
+  @media (min-width: 768px) {
+    margin-bottom: 171px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-bottom: 74px;
   }
 }
 
@@ -162,8 +184,10 @@ input[value] {
   @media (max-width: 374.98px) {
     font-size: 16px;
     line-height: 150%;
+    text-align: center;
   }
 
+  padding: 0;
   font-weight: 700;
   line-height: 129%;
   letter-spacing: -0.01em;
@@ -188,4 +212,8 @@ input[value] {
   height: 50px;
 
   box-sizing: border-box;
+
+  @media (min-width: 768px) {
+    width: 436px;
+  }
 }
