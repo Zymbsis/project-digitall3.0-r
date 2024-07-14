@@ -5,9 +5,7 @@
     max-width: 375px;
   }
 
-  background-color: var(--primary-light-grey-color);
-  padding: 24px 16px;
-  border-radius: 30px;
+  padding: 16px;
 
   margin: 0 auto;
   width: 342px;
@@ -19,16 +17,7 @@
 
   @media (min-width: 1440px) {
     width: 1406px;
-  }
-}
-
-.singUpLogo {
-  margin-bottom: 126px;
-  @media (min-width: 768px) {
-    margin-bottom: 171px;
-  }
-
-  @media (min-width: 1440px) {
-    margin-bottom: 74px;
+    display: flex;
+    gap: 32px;
   }
 }
