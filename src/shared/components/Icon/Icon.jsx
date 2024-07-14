@@ -2,6 +2,7 @@ import clsx from 'clsx';
 import css from './Icon.module.css';
 import { icon } from 'icons';
 
+
 const Icon = ({ iconId, className, ...props }) => {
   return (
     <svg

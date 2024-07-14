@@ -9,10 +9,12 @@
   width: 124px;
   height: 30px;
   border: none;
-
   font-weight: 700;
   font-size: 16px;
   color: black;
   background-color: white;
   position: absolute;
+  border-radius: 30px;
+  height: 46px;
+  padding: 14px 0px;
 }
