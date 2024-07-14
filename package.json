@@ -4,7 +4,10 @@
   "private": true,
   "homepage": "https://zymbsis.github.io/project-digitall3.0-r",
   "dependencies": {
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.5",
     "@hookform/resolvers": "^3.9.0",
+    "@mui/material": "^5.16.1",
     "@reduxjs/toolkit": "^2.2.6",
     "@testing-library/jest-dom": "^5.16.3",
     "@testing-library/react": "^12.1.4",

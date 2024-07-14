@@ -1,0 +1,120 @@
+.wrapper {
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 74px;
+  background-color: var(--primary-light-grey-color);
+  padding: 24px 16px 67px 16px;
+
+  @media (min-width: 768px) {
+    height: 498px;
+    padding: 32px 93px 50px 32px;
+    gap: 50px;
+  }
+
+  @media (min-width: 1440px) {
+    width: calc((100% - 32px) / 2);
+    height: 736px;
+    gap: 132px;
+    padding-right: 61px;
+    padding-bottom: 188px;
+  }
+}
+
+.content {
+  @media (min-width: 768px) {
+    padding-left: 32px;
+  }
+}
+
+.description {
+  margin-bottom: 32px;
+}
+
+.descriptionParagraph {
+  margin-bottom: 16px;
+  line-height: 1.28;
+  letter-spacing: 0.06em;
+
+  @media (min-width: 768px) {
+    line-height: 1.5;
+  }
+}
+
+.title {
+  font-weight: 700;
+  font-size: 38px;
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--primary-dark-grey-color);
+
+  @media (min-width: 768px) {
+    font-size: 64px;
+    line-height: 1.09;
+  }
+
+  @media (min-width: 1440px) {
+    font-size: 80px;
+    line-height: 0.9;
+  }
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+
+  @media (min-width: 768px) {
+    gap: 16px;
+  }
+}
+
+.buttonTryTracker {
+  background-color: var(--primary-green-color);
+  color: var(--primary-dark-grey-color);
+  padding: 14px 19px;
+  border-radius: 30px;
+  font-weight: 700;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+
+  @media (min-width: 768px) {
+    padding: 18px 40px;
+  }
+}
+
+.buttonTryTracker:hover {
+  @media (min-width: 1440px) {
+    background-color: var(--hover-green-color);
+  }
+}
+
+.buttonTryTracker:disabled {
+  background-color: transparent;
+  color: #bcbcbc;
+}
+
+.buttonSignIn {
+  background-color: transparent;
+  border: 1px solid var(--primary-dark-grey-color);
+  color: var(--primary-dark-grey-color);
+  border-radius: 30px;
+  padding: 14px 28px;
+  border-radius: 30px;
+  font-weight: 700;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+
+  @media (min-width: 768px) {
+    padding: 18px 40px;
+  }
+}
+
+.buttonSignIn:hover {
+  @media (min-width: 1440px) {
+    border: 1px solid var(--hover-green-color);
+    color: var(--hover-green-color);
+  }
+}
+
+.buttonSignIn:disabled {
+  border: 1px solid #bcbcbc;
+  color: #bcbcbc;
+}
