@@ -1,11 +1,12 @@
-// import css from './SharedLayout.module.css'
+// import css from './SharedLayout.module.css';
+import { Loader } from 'components';
 import { Suspense } from 'react';
 
 const SharedLayout = ({ children }) => {
   return (
     <>
       <main>
-        <Suspense fallback={<p>SomeLoader</p>}>{children}</Suspense>
+        <Suspense fallback={<Loader />}>{children}</Suspense>
       </main>
     </>
   );
