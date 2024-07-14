@@ -1,22 +1,23 @@
-import { Section, Container, Button } from 'shared';
+import { AdvantagesSection, WelcomeSection } from 'components';
+import { Button, Container, Section } from 'shared';
+import css from './HomePage.module.css';
 import { useModal } from '../../context';
-import Logo from '../../shared/components/Logo/Logo';
-import UserSettingsForm from '../../components/modal/UserSettingsForm/UserSettingsForm';
-// import css from './HomePage.module.css';
+import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
 
 const HomePage = () => {
-  const { setModalContent } = useModal();
-  const handleClick = () => {
-    setModalContent(<UserSettingsForm />);
-    setModalContent(<Logo />);
-  };
-
+  const { openModal } = useModal();
   return (
     <Section>
-      <Container>Welcome to HomePage</Container>
-      <Container>
-        <Logo />
-        <Button onClick={handleClick}>TestModal</Button>
+      <Button
+        onClick={() => {
+          openModal(<DeleteWaterModal />);
+        }}
+      >
+        Click me
+      </Button>
+      <Container className={css.container}>
+        <WelcomeSection />
+        <AdvantagesSection />
       </Container>
     </Section>
   );
