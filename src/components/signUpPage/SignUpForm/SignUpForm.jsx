@@ -1,15 +1,15 @@
+import clsx from 'clsx';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-import { register } from '../../../redux/auth/operations';
-import Icon from '../../../shared/components/Icon/Icon';
-import '../../../icons/index';
-import clsx from 'clsx';
+// import { register } from '../../../redux/auth/operations';
+
+// import { useDispatch } from 'react-redux';
 import css from './SignUpForm.module.css';
-import Logo from '../../../shared/components/Logo/Logo';
+
+import { Icon, Logo } from '../../../shared';
 
 const schema = yup.object({
   email: yup.string().email().required(),
@@ -22,7 +22,7 @@ const schema = yup.object({
 });
 
 const SignUpForm = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -37,7 +37,9 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    dispatch(register({ email, password }));
+    // dispatch(register({ email, password }));
+    console.log({ email, password });
+
     reset();
   };
 
@@ -52,13 +54,12 @@ const SignUpForm = () => {
       <div className={css.registerContainer}>
         <h2 className={css.title}>Sign Up</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
-          <label className={css.field}>
+          <label
+            className={clsx(css.field, { [css.errorField]: errors.email })}
+          >
             Email
             <input
-              className={clsx({
-                [css.input]: !errors.email,
-                [css.inputError]: errors.email,
-              })}
+              className={clsx(css.input, { [css.inputError]: errors.email })}
               placeholder="Enter your email"
               {...registerField('email', {
                 required: true,
@@ -69,13 +70,12 @@ const SignUpForm = () => {
             <p className={css.errorsMessage}>{errors.email.message}</p>
           )}
 
-          <label className={css.field}>
+          <label
+            className={clsx(css.field, { [css.errorField]: errors.password })}
+          >
             Password
             <input
-              className={clsx({
-                [css.input]: !errors.password,
-                [css.inputError]: errors.password,
-              })}
+              className={clsx(css.input, { [css.inputError]: errors.password })}
               type={showPassword ? 'text' : 'password'}
               placeholder="Enter your password"
               {...registerField('password', { required: true })}
@@ -98,11 +98,14 @@ const SignUpForm = () => {
             </p>
           )}
 
-          <label className={css.field}>
+          <label
+            className={clsx(css.field, {
+              [css.errorField]: errors.confirmPassword,
+            })}
+          >
             Repeat password
             <input
-              className={clsx({
-                [css.input]: !errors.confirmPassword,
+              className={clsx(css.input, {
                 [css.inputError]: errors.confirmPassword,
               })}
               type={showPassword ? 'text' : 'password'}
@@ -126,14 +129,13 @@ const SignUpForm = () => {
           )}
 
           <input className={css.submit} type="submit" value="Sign Up" />
-
-          <div className={css.inviteOnLogIn}>
-            <p>Already have account?</p>
-            <Link className={css.link} to="/signin">
-              Sign In
-            </Link>
-          </div>
         </form>
+        <div className={css.inviteOnLogIn}>
+          <p className={css.inviteText}>Already have account?</p>
+          <Link className={css.link} to="/signin">
+            Sign In
+          </Link>
+        </div>
       </div>
     </div>
   );
