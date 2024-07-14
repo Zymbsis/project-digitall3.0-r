@@ -5,32 +5,6 @@ import { Button, Title } from 'shared';
 import { useModal } from 'context';
 
 const DeleteWaterModal = () => {
-  const { closeModal } = useModal();
-
-  const handleDelete = () => {
-
-    dispatch(deleteWaterRecord());
-  };
-
-  const handleCancel = () => {
-    closeModal();
-  };
-
-  return (
-    <Modal onClose={handleCancel}>
-      <div className="modal-content">
-        <h2 className="title">Delete entry</h2>
-        <p>Are you sure you want to delete the entry?</p>
-        <Button className="button" type="button" onClick={handleDelete}>
-          Delete
-        </Button>
-        <Button className="button" type="button" onClick={handleCancel}>
-          Cancel
-        </Button>
-      </div>
-    </Modal>
-  );
-
   // const dispatch = useDispatch();
   const { closeModal } = useModal();
 
