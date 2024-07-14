@@ -23,7 +23,7 @@ export const ModalProvider = ({ children }) => {
       backdropRef.current.style.opacity = 0;
       setTimeout(() => {
         setModalContent(null);
-      }, 1000);
+      }, 700);
     }
   }, []);
 
@@ -39,14 +39,12 @@ export const ModalProvider = ({ children }) => {
     };
   }, [closeModal]);
 
-  // const closeModal = () => {
-  //   document.body.style.overflow = 'visible';
-  //   setModalContent(null);
-  // };
-
   const openModal = content => {
     document.body.style.overflow = 'hidden';
     setModalContent(content);
+    setTimeout(() => {
+      backdropRef.current.style.opacity = 1;
+    }, 700);
   };
 
   return (
