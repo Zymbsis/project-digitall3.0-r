@@ -166,6 +166,7 @@
 .errorsMessage {
   color: var(--error-red-color);
   margin-bottom: 8px;
+  font-size: 13px;
 }
 
 .inputError {
