@@ -5,14 +5,14 @@ import { useModal } from 'context';
 import { Modal } from 'components';
 
 const SharedLayout = ({ children }) => {
-  const { modalContent } = useModal();
+  // const { modalContent } = useModal();
 
   return (
     <>
       <main>
-        <Suspense fallback={<p>SomeLoader</p>}>{children}</Suspense>;
+        <Suspense fallback={<p>SomeLoader</p>}>{children}</Suspense>
       </main>
-      {modalContent && <Modal>{modalContent}</Modal>}
+      {/* {modalContent && <Modal>{modalContent}</Modal>} */}
     </>
   );
 };
