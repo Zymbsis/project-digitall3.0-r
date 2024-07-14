@@ -5,7 +5,6 @@ import { Button, Title } from 'shared';
 import { useModal } from 'context';
 
 const DeleteWaterModal = () => {
-  return <div></div>;
   const { closeModal } = useModal();
 
   const handleDelete = () => {
