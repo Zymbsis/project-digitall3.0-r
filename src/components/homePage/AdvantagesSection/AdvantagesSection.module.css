@@ -3,25 +3,59 @@
   padding: 206px 16px 32px 16px;
   display: flex;
   flex-direction: column;
-  background-image: url('/public/img/HomePage/BG-1x-mobile.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-}
+  background-image: image-set(
+    url('/public/img/homePage/mobile/background-mobile-@1x.webp') 1x,
+    url('/public/img/homePage/mobile/background-mobile-@1x.png') 1x
+  );
 
-@media (-webkit-min-device-pixel-ratio: 1),
-(min-resolution: 96dpi) {
-  .wrapper {
-    background-image: image-set(url('/public/img/HomePage/Mobile-@1x.webp') 1x,
-        url('/public/img/HomePage/Mobile-@2x.webp') 2x);
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 144dpi),
+    (min-resolution: 2dppx) {
+    background-image: image-set(
+      url('/public/img/homePage/mobile/background-mobile-@2x.webp') 2x,
+      url('/public/img/homePage/mobile/background-mobile-@2x.png') 2x
+    );
   }
-}
 
-@media (min-device-pixel-ratio: 2),
-(min-resolution: 192dpi),
-(min-resolution: 2dppx) {
-  .wrapper {
-    background-image: url('/public/img/HomePage/BG-2-x-mobile.png');
+  @media (min-width: 768px) {
+    flex-direction: row;
+    height: 446px;
+    padding: 283px 32px 32px 32px;
+    background-image: image-set(
+      url('/public/img/homePage/tablet/background-tablet-@1x.webp') 1x,
+      url('/public/img/homePage/tablet/background-tablet-@1x.png') 1x
+    );
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/homePage/tablet/background-tablet-@2x.webp') 2x,
+        url('/public/img/homePage/tablet/background-tablet-@2x.png') 2x
+      );
+    }
+  }
+
+  @media (min-width: 1440px) {
+    width: calc((100% - 32px) / 2);
+    height: 736px;
+    padding: 537px 32px 64px 32px;
+    background-image: image-set(
+      url('/public/img/homePage/desktop/background-desktop-@1x.webp') 1x,
+      url('/public/img/homePage/desktop/background-desktop-@1x.png') 1x
+    );
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/homePage/desktop/background-desktop-@2x.webp') 2x,
+        url('/public/img/homePage/desktop/background-desktop-@2x.png') 2x
+      );
+    }
   }
 }
 
@@ -32,10 +66,19 @@
   padding: 10px 14px;
   background: var(--primary-white-color);
   margin-bottom: 8px;
-  background-image: url('/public/img/HomePage/Group\ 5@2x.png');
+  background-image: image-set(
+    url('/public/img/homePage/customers/customers.webp'),
+    url('/public/img/homePage/customers/customers.png')
+  );
   background-position: center;
   background-repeat: no-repeat;
   background-size: 84%;
+
+  @media (min-width: 768px) {
+    width: 237px;
+    height: 67px;
+    margin-bottom: 64px;
+  }
 }
 
 .advantages {
@@ -45,6 +88,12 @@
   width: 170px;
   height: 56px;
   margin-left: auto;
+
+  @media (min-width: 768px) {
+    margin-top: 64px;
+    width: 242px;
+    height: 78px;
+  }
 }
 
 .habit {
@@ -55,6 +104,12 @@
   border-radius: 30px;
   padding: 9px 12px;
   background-color: var(--primary-dark-grey-color);
+
+  @media (min-width: 768px) {
+    width: 112px;
+    height: 34px;
+    padding: 11px 16px;
+  }
 }
 
 .habitText {
@@ -64,12 +119,23 @@
   line-height: 8px;
   letter-spacing: -1%;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
 .statistics {
   border-radius: 30px;
   padding: 9px 12px;
   background-color: var(--primary-green-color);
+
+  @media (min-width: 768px) {
+    width: 122px;
+    height: 34px;
+    padding: 11px 16px;
+  }
 }
 
 .statisticsText {
@@ -78,12 +144,23 @@
   line-height: 8px;
   letter-spacing: -1%;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
 .rate {
   border-radius: 30px;
   padding: 9px 12px;
   background-color: var(--primary-white-color);
+
+  @media (min-width: 768px) {
+    width: 161px;
+    height: 34px;
+    padding: 11px 16px;
+  }
 }
 
 .rateText {
@@ -92,6 +169,11 @@
   line-height: 8px;
   letter-spacing: -1%;
   text-align: center;
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+    line-height: 12px;
+  }
 }
 
 .dot {
@@ -100,99 +182,4 @@
   height: 8px;
   border-radius: 50%;
   background-color: var(--primary-green-color);
-}
-
-@media (min-width: 768px) {
-  .wrapper {
-    flex-direction: row;
-    height: 446px;
-    padding: 283px 32px 32px 32px;
-    background-image: url('../../../../public/img/HomePage/BG-1-x-tablet.png');
-  }
-
-  @media (-webkit-min-device-pixel-ratio: 1),
-  (min-resolution: 96dpi) {
-    .wrapper {
-      background-image: image-set(url('/public/img/HomePage/Tablet-@1x.webp') 1x,
-          url('/public/img/HomePage/Tablet-@2x.webp') 2x);
-    }
-  }
-
-  @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('/public/img/HomePage/BG-2-x-tablet.png');
-    }
-  }
-
-  .customers {
-    width: 237px;
-    height: 67px;
-    margin-bottom: 64px;
-  }
-
-  .advantages {
-    margin-top: 64px;
-    width: 242px;
-    height: 78px;
-  }
-
-  .habit {
-    width: 112px;
-    height: 34px;
-    padding: 11px 16px;
-  }
-
-  .habitText {
-    font-size: 12px;
-    line-height: 12px;
-  }
-
-  .statistics {
-    width: 122px;
-    height: 34px;
-    padding: 11px 16px;
-  }
-
-  .statisticsText {
-    font-size: 12px;
-    line-height: 12px;
-  }
-
-  .rate {
-    width: 161px;
-    height: 34px;
-    padding: 11px 16px;
-  }
-
-  .rateText {
-    font-size: 12px;
-    line-height: 12px;
-  }
-}
-
-@media (min-width: 1440px) {
-  .wrapper {
-    width: calc((100% - 32px) /2);
-    height: 736px;
-    padding: 537px 32px 64px 32px;
-    background-image: url('/public/img/HomePage/BG-1-x-desktop.png');
-  }
-
-  @media (-webkit-min-device-pixel-ratio: 1),
-  (min-resolution: 96dpi) {
-    .wrapper {
-      background-image: image-set(url('/public/img/HomePage/PC-@1x.webp') 1x,
-          url('/public/img/HomePage/PC-@2x.webp') 2x);
-    }
-  }
-
-  @media (min-device-pixel-ratio: 2),
-  (min-resolution: 192dpi),
-  (min-resolution: 2dppx) {
-    .wrapper {
-      background-image: url('/public/img/HomePage/BG-2-x-desktop.png');
-    }
-  }
 }
