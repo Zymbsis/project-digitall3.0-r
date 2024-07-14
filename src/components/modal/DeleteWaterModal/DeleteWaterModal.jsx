@@ -8,12 +8,12 @@ const DeleteWaterModal = () => {
   // const dispatch = useDispatch();
   const { closeModal } = useModal();
 
-  const handleDelete = () => {
+  const handleDelete = e => {
     // dispatch(deleteWaterRecord());
-    closeModal();
+    closeModal(e);
   };
-  const handleCancel = () => {
-    closeModal();
+  const handleCancel = e => {
+    closeModal(e);
   };
 
   return (
