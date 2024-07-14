@@ -1,37 +1,33 @@
-import css from './UserBarPopover.module.css'
-import UserSettingsModal from "./components/modal/UserSettingsModal/UserSettingsModal";
-import LogOutModal from "./components/modal/LogOutModal/LogOutModal";
-import { useState } from "react";
+import React from 'react';
+import css from './UserBarPopover.module.css';
+import UserSettingsModal from '../../modal/UserSettingsModal/UserSettingsModal';
+import LogOutModal from '../../modal/LogOutModal/LogOutModal';
+import { useModal } from '../../context';
 import { Icon } from 'icons';
+import { Button } from 'shared';
 
-const UserBarPopover = ({ openUserSettingsModal, openLogOutModal }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const UserBarPopover = React.forwardRef((props, ref) => {
+  const { openModal } = useModal();
 
-  // const handleTogglePopover = () => {
-  //   setIsOpen(!isOpen);
-  // };
-
-  const handleOutsideClick = (e) => {
-    // Перевіряємо, чи клік був за межами UserBarPopover
-    if (!e.target.closest('.userBarPopover')) {
-      setIsOpen(false);
-    }
+  const handleSettingsClick = () => {
+    openModal(<UserSettingsModal />);
   };
 
+  const handleLogOutClick = () => {
+    openModal(<LogOutModal />);
+  };
 
   return (
-    <div className={css.userBarPopover} onClick={handleOutsideClick}>
-      <button className={css.settingsButton} onClick={openUserSettingsModal}>
-      <Icon iconId="icon-settings"/>
+    <div className={css.userBarPopover} ref={ref}>
+      <Button className={css.settingsButton} onClick={handleSettingsClick}>
+        <Icon iconId="icon-settings" />
         <span className={css.btnSetting}>Setting</span>
-      </button>
-
-      <button className={css.logoutButton} onClick={openLogOutModal}>
-      <Icon iconId="icon-log-out"/>
+      </Button>
+      <Button className={css.logoutButton} onClick={handleLogOutClick}>
+        <Icon iconId="icon-log-out" />
         <span className={css.logoutButton}>Log out</span>
-      </button>
+      </Button>
     </div>
   );
-};
-
+});
 export default UserBarPopover;
