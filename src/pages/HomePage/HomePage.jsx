@@ -6,6 +6,7 @@ import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWate
 
 const HomePage = () => {
   const { openModal } = useModal();
+
   return (
     <Section>
       <Button
