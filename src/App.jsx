@@ -17,7 +17,6 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [dispatch]);
-
   const isRefreshing = false;
 
   return (
