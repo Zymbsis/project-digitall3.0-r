@@ -1,0 +1,19 @@
+.wrapper {
+  width: 343px;
+  height: 780px;
+  background-color: var(--primary-light-grey-color);
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -1%;
+  text-align: left;
+  margin-top: 172px;
+  margin-bottom: 32px;
+}

@@ -1,0 +1,36 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: var(--primary-black-color);
+  margin-bottom: 8px;
+}
+
+.input {
+  padding: 16px;
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: var(--primary-black-color);
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  background-color: transparent;
+}
+
+.error {
+}
+
+.button {
+}
