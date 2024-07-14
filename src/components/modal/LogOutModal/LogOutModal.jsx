@@ -5,13 +5,16 @@
 // import { useModal } from '../hooks/useModal';
 // import axios from 'axios';
 
+//{Hello, Katya;)}
+
 const LogOutModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleLogOut = () => {
-    axios.post('/logout')
-      .then((response) => {
+    axios
+      .post('/logout')
+      .then(response => {
         // Deauthorize user on client-side
         dispatch({ type: 'LOGOUT_SUCCESS' });
         // Clear Redux store and localStorage
@@ -19,7 +22,7 @@ const LogOutModal = () => {
         // Redirect to HomePage
         window.location.href = '/home';
       })
-      .catch((error) => {
+      .catch(error => {
         console.error(error);
       });
   };
