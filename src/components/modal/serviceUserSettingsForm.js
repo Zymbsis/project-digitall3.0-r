@@ -7,9 +7,8 @@ export const yupValidationSchema = yup.object().shape({
     .max(40, 'Must be max 40 characters or less')
     .matches(
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-      'Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer'
-    )
-    .required('Username is required'),
+      'Name may contain only letters, apostrophe, dash and spaces.'
+    ),
   email: yup
     .string()
     .max(40, 'Must be max 40 characters or less')
