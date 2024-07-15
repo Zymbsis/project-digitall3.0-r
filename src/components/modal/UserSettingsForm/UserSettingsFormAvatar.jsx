@@ -4,18 +4,12 @@ import avatarDefault from '../../../icons/avatar_default.png';
 
 import css from './UserSettingsForm.module.css';
 
-const UserSettingsFormAvatar = ({
-  register,
-  errors,
-  userData,
-  setUserData,
-}) => {
+const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   const handleFileChange = evt => {
     const file = evt.target.files[0];
 
     if (file) {
-      userData.avatar = file;
-      setUserData({ ...userData });
+      setValue('avatar', file);
     }
   };
 
@@ -35,7 +29,7 @@ const UserSettingsFormAvatar = ({
       <div className={css.avatarThumb}>
         <img
           className={css.avatar}
-          src={getSrcForAvatar(userData.avatar)}
+          src={getSrcForAvatar(watch('avatar'))}
           alt="User avatar"
         />
         <div>

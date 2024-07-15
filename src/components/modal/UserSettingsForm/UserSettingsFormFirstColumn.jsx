@@ -49,7 +49,7 @@ const UserSettingsFormFirstColumn = ({
             className={css.inputText}
             type="text"
             id="name"
-            maxlength="40"
+            maxLength="40"
             autoComplete="off"
             {...register('name')}
           />
@@ -65,7 +65,7 @@ const UserSettingsFormFirstColumn = ({
             className={css.inputText}
             type="email"
             id="email"
-            maxlength="40"
+            maxLength="40"
             autoComplete="off"
             {...register('email')}
           />
