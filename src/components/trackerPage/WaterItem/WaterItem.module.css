@@ -26,6 +26,11 @@
   color: #323f47;
 }
 
+.waterIcon {
+  fill: var(--accent-color);;
+}
+
+
 .waterItemData {
   font-family: 'Poppins', sans-serif;
   font-weight: 400;
@@ -59,6 +64,11 @@
   .waterItemWrap {
     gap: 0px;
   }
+  
+  .waterIconGlass {
+    width: 44px;
+    height: 45px;
+}
 
   .waterItemMl {
     font-size: 15px;
