@@ -4,7 +4,7 @@ import css from './HomePage.module.css';
 
 const HomePage = () => {
   return (
-    <Section className={css.section}>
+    <Section>
       <Container className={css.container}>
         <WelcomeSection />
         <AdvantagesSection />

@@ -1,7 +1,3 @@
-.section {
-  height: 100vh;
-}
-
 .container {
   background-color: var(--primary-light-grey-color);
   font-family: var(--secondary-font-family);
