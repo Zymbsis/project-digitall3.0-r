@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/674.94997063.chunk.css","mappings":"AAAA,2BACE,6BACE,YAAa,CACb,qBAAsB,CACtB,QACF,CACF","sources":["pages/HomePage/HomePage.module.css"],"sourcesContent":[".container {\n  @media (max-width:1439.98px) {\n    display: flex;\n    flex-direction: column;\n    gap: 16px;\n  }\n}"],"names":[],"sourceRoot":""}
