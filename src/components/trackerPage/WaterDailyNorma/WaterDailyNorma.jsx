@@ -4,7 +4,7 @@ import css from './WaterDailyNorma.module.css';
 // юзер
 // норма води (в чому приходить?)
 const WaterDailyNorma = () => {
-  const dayNorma = 1.5;
+  const dayNorma = 1500 / 1000;
   return (
     <div className={css.thumb}>
       <p className={css.boldtext}> {dayNorma} L </p>

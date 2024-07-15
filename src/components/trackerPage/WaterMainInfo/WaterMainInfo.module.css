@@ -7,43 +7,89 @@
   position: relative;
   display: flex;
   justify-content: center;
+
+  @media (min-width: 768px) {
+    min-width: 704px;
+    height: 578px;
+  }
+
+  @media (min-width: 1440px) {
+    min-width: 672px;
+    height: 736px;
+  }
 }
+
 .imgWrapper {
   display: flex;
   align-items: center;
   margin-top: 50px;
+
+  width: 262px;
+  height: 335px;
+  background-size: cover;
+  background-image: image-set(
+    url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png'),
+    url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp')
+  );
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 144dpi),
+    (min-resolution: 2dppx) {
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp')
+    );
+  }
+  @media (min-width: 768px) {
+    margin-top: 69px;
+    width: 374px;
+    height: 477px;
+    /* background-size: cover; */
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp')
+    );
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png'),
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp')
+      );
+    }
+  }
+  @media (min-width: 1440px) {
+    margin-top: 92px;
+    width: 472px;
+    height: 604px;
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp')
+    );
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png'),
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp')
+      );
+    }
+  }
 }
 
-.img {
+/* .img {
   width: 262px;
   height: 335px;
   object-fit: cover;
-}
 
-@media (min-width: 768px) {
-  .container {
-    min-width: 704px;
-    height: 578px;
-  }
-  .imgWrapper {
-    margin-top: 69px;
-  }
-  .img {
+  @media (min-width: 768px) {
     width: 374px;
     height: 477px;
   }
-}
-
-@media (min-width: 1440px) {
-  .container {
-    min-width: 672px;
-    height: 100%;
-  }
-  .imgWrapper {
-    margin-top: 92px;
-  }
-  .img {
+  @media (min-width: 1440px) {
     width: 472px;
     height: 604px;
   }
-}
+} */

@@ -9,24 +9,8 @@
   padding: 12px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
   background: var(--primary-white-color);
-}
 
-.boldtext {
-  font-size: 14px;
-  line-height: 100%;
-  font-weight: bold;
-  color: var(--primary-black-color);
-}
-
-.normaltext {
-  font-size: 10px;
-  font-weight: normal;
-  line-height: 100%;
-  color: var(--light-grey-text-color);
-}
-
-@media (min-width: 768px) {
-  .thumb {
+  @media (min-width: 768px) {
     top: 157px;
     left: 32px;
 
@@ -35,13 +19,31 @@
     padding: 14px 18px;
   }
 
-  .boldtext {
+  @media (min-width: 1440px) {
+    left: 64px;
+  }
+}
+
+.boldtext {
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: bold;
+  color: var(--primary-black-color);
+
+  @media (min-width: 768px) {
     font-size: 15px;
     line-height: 149%;
     font-weight: bold;
   }
+}
 
-  .normaltext {
+.normaltext {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 100%;
+  color: var(--backdrop-color);
+
+  @media (min-width: 768px) {
     font-size: 12px;
     line-height: 187%;
     font-weight: normal;
