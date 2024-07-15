@@ -7,4 +7,10 @@
     padding-top: 32px;
     padding-bottom: 32px;
   }
+
+  @media (min-width:1440px) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
 }

@@ -19,14 +19,6 @@
   }
 }
 
-.section {
-  @media (min-width: 1440px) {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-
 .container {
   display: flex;
   flex-direction: column;
