@@ -2,23 +2,29 @@ import SignInForm from 'components/sigInPage/SignInForm/SignInForm';
 import { Container, Section } from 'shared';
 import Logo from 'shared/components/Logo/Logo';
 import css from './SignInPage.module.css';
-import { NavLink } from 'react-router-dom';
+import { AdvantagesSection } from 'components';
+import { useEffect, useState } from 'react';
 
 const SignInPage = () => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.addEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <Section>
-      <Container>
+    <Section className={css.section}>
+      <Container className={css.container}>
         <div className={css.wrapper}>
           <Logo />
-          <h2 className={css.title}>Sign in</h2>
           <SignInForm />
-          <p className={css.signUpText}>
-            Don't have an account?{' '}
-            <NavLink to="/signup" className={css.signUpLink}>
-              Sign Up
-            </NavLink>
-          </p>
         </div>
+        {windowWidth > 1439.98 && <AdvantagesSection />}
       </Container>
     </Section>
   );
