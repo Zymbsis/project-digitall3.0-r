@@ -5,17 +5,17 @@ import { useModal } from '../../context';
 import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
 
 const HomePage = () => {
-  const { openModal } = useModal();
+  // const { openModal } = useModal();
 
   return (
-    <Section>
-      <Button
+    <Section className={css.section}>
+      {/* <Button
         onClick={() => {
           openModal(<DeleteWaterModal />);
         }}
       >
         Click me
-      </Button>
+      </Button> */}
       <Container className={css.container}>
         <WelcomeSection />
         <AdvantagesSection />

@@ -12,5 +12,6 @@
   --invite-text-color: #2f2f2f80;
   --transition-duration: 0.7s;
   --transition-timing-function: ease-in-out;
+  --primary-font-family: 'Poppins', sans-serif;
   --secondary-font-family: 'Gilroy', sans-serif;
 }
