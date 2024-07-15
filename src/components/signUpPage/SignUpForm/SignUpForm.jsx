@@ -15,7 +15,7 @@ const schema = yup.object({
   email: yup.string().email().required(),
   password: yup
     .string()
-    .min(8, 'Must contain at least 8 characters')
+    .min(8, 'must contain at least 8 characters')
     .max(64)
     .required(),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null]),
@@ -94,7 +94,7 @@ const SignUpForm = () => {
           </label>
           {errors.password && (
             <p className={css.errorsMessage}>
-              {'Must contain at least 8 characters'}
+              {'must contain at least 8 characters'}
             </p>
           )}
 

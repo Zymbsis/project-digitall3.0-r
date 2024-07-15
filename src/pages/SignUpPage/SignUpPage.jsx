@@ -17,7 +17,7 @@ const SignUpPage = () => {
   }, []);
 
   return (
-    <Section>
+    <Section className={css.section}>
       <Container className={css.signUpContainer}>
         <SignUpForm />
         {windowWidth > 1439.98 && <AdvantagesSection />}
