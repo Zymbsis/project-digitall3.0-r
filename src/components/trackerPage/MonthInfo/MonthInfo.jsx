@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 
 const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const userDate = new Date('2024-04-01');
 
   useEffect(() => {
     setSelectedDate(new Date());
@@ -13,7 +12,7 @@ const MonthInfo = () => {
 
 return (
   <div className={css.container}>
-    <CalendarPagination selectedDate={selectedDate} setSelectedDate={setSelectedDate} userDate={userDate}/>
+    <CalendarPagination selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
     <Calendar selectedDate={selectedDate}/>
   </div>
   ) 

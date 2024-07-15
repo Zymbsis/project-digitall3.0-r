@@ -1,7 +1,13 @@
 import css from './CalendarPagination.module.css'
 import { Icon } from 'shared';
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/selectors";
+import { formatDate } from "./CalendarPaginationFunction.jsx";
 
-const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
+const CalendarPagination = ({ selectedDate, setSelectedDate}) => {
+
+  const user = useSelector(selectCurrentUser);
+  const userCreatedDate = new Date(user?.createdAt);
 
   const handlePrevMonth = () => {
     setSelectedDate((prevDate) => {
@@ -19,16 +25,9 @@ const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
     })
   };
 
-  const formatDate = (date) => {
-    const format = { month: 'long', year: 'numeric'};
-    const data = new Intl.DateTimeFormat('en-US', format).format(date)
-    const [month, year] = data.split(' ');
-    return `${month}, ${year}`
-  };
-
-  const isPrevDis = selectedDate.getFullYear() < userDate.getFullYear() ||
-  (selectedDate.getFullYear() === userDate.getFullYear() && 
-  selectedDate.getMonth() <= userDate.getMonth());
+  const isPrevDis = selectedDate.getFullYear() < userCreatedDate.getFullYear() ||
+  (selectedDate.getFullYear() === userCreatedDate.getFullYear() && 
+  selectedDate.getMonth() <= userCreatedDate.getMonth());
  
  
  return (
@@ -48,3 +47,18 @@ const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
 };
 
 export default CalendarPagination;
+
+
+
+  // const user = {
+  //   email: 'test@example.com',
+  //   password: '12345678',
+  //   name: 'Kate',
+  //   gender: 'woman',
+  //   avatar: 'image.png',
+  //   dailyNorma: 1.8,
+  //   weight: 0,
+  //   activeHours: 0,
+  //   createdAt: '2024-02-01T00:00:00.000Z',
+  //   updatedAt: '2024-07-01T00:00:00.000Z'
+  // };
