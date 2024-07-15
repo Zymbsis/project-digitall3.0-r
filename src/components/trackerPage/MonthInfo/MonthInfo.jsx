@@ -1,7 +1,6 @@
 import css from './MonthInfo.module.css';
 import CalendarPagination from "../CalendarPagination/CalendarPagination";
 import Calendar from "../Calendar/Calendar";
-import { Section } from 'shared';
 import { useState, useEffect } from "react";
 
 const MonthInfo = () => {
@@ -13,10 +12,10 @@ const MonthInfo = () => {
   }, []);
 
 return (
-  <Section className={css.container}>
+  <div className={css.container}>
     <CalendarPagination selectedDate={selectedDate} setSelectedDate={setSelectedDate} userDate={userDate}/>
     <Calendar selectedDate={selectedDate}/>
-  </Section>
+  </div>
   ) 
 };
 
