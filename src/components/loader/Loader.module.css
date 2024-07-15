@@ -1,0 +1,31 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+}
+
+.loader {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75px;
+  height: 160px;
+  display: block;
+  border: 2px solid var(--primary-green-color);
+  box-sizing: border-box;
+  animation: animloader 2s linear infinite alternate;
+  color: var(--primary-green-color);
+  border-radius: 0 0 4px 4px;
+  transform: perspective(140px) rotateX(-45deg);
+}
+
+@keyframes animloader {
+  0% {
+    box-shadow: 0 0 inset;
+  }
+
+  100% {
+    box-shadow: 0 -150px inset;
+  }
+}
