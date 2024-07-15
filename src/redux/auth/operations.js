@@ -1,59 +1,59 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-// -----------------------------------
-axios.defaults.baseURL = 'smeUrl';
+const instance = axios.create({
+  baseURL: 'https://aquatracker-node.onrender.com',
+});
 
-const setAuthHeader = token => {
-  axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+const setToken = token => {
+  instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-const clearAuthHeader = () => {
-  axios.defaults.headers.common['Authorization'] = '';
+const clearToken = () => {
+  instance.defaults.headers.common.Authorization = '';
 };
 
-// ????????????????????????????????????????????????????
+// =============================================================
 export const register = createAsyncThunk(
   'auth/register',
-  // credentials дані користувача з форми
   async (credentials, thunkAPI) => {
     try {
-      // ----------------------------------------
-      await axios.post('', credentials);
-      //   ---------------------------------------
-      const response = await axios.post('', credentials);
-      setAuthHeader(response.data.token);
+      await instance.post('/users/register', credentials);
+      const response = await instance.post('/users/login', credentials);
+      setToken(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+// ===================================================================
 
+// ==================================================================
 export const logIn = createAsyncThunk(
   'auth/login',
-  // credentials дані користувача з форми
   async (credentials, thunkAPI) => {
     try {
-      // ---------------------------------------------------
-      const response = await axios.post('', credentials);
-      setAuthHeader(response.data.token);
+      const response = await instance.post('/users/login', credentials);
+      setToken(response.data.data.accessToken);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
+// ===================================================================
 
+// ====================================================================
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    //   ---------------------------
-    await axios.post('');
-    clearAuthHeader();
+    await instance.post('/users/logout');
+    clearToken();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
 });
+// ====================================================================
 
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
@@ -61,8 +61,10 @@ export const refreshUser = createAsyncThunk(
     const {
       auth: { token },
     } = thunkAPI.getState();
-    setAuthHeader(token);
-    const response = await axios.get('/users/current');
+    setToken(token);
+    // const response = await instance.post('/users/refresh');
+
+    const response = await instance.post('/users/refresh');
     return response.data;
   },
   {
