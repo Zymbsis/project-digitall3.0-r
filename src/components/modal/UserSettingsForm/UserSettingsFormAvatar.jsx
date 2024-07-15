@@ -20,8 +20,6 @@ const UserSettingsFormAvatar = ({
   };
 
   const getSrcForAvatar = avatar => {
-    console.log('avatar: ', avatar);
-    console.log('type of avatar: ', typeof avatar);
     if (typeof avatar === 'string') {
       if (avatar === '') {
         return avatarDefault;
@@ -30,10 +28,6 @@ const UserSettingsFormAvatar = ({
     } else {
       return URL.createObjectURL(avatar);
     }
-    // https://i.pravatar.cc/300
-    // if (avatar) {
-    //   return URL.createObjectURL(avatar);
-    // }
   };
 
   return (
@@ -42,11 +36,6 @@ const UserSettingsFormAvatar = ({
         <img
           className={css.avatar}
           src={getSrcForAvatar(userData.avatar)}
-          // src={
-          //   userData.avatar
-          //     ? URL.createObjectURL(userData.avatar)
-          //     : avatarDefault
-          // }
           alt="User avatar"
         />
         <div>

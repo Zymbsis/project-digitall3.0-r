@@ -53,7 +53,7 @@ const UserSettingsForm = () => {
   };
 
   const onSubmit = data => {
-    console.log('Form data: ', data);
+    // console.log('Form data: ', data);
     //this part emulates data for backend
     userData.name = data.name;
     userData.email = data.email;
@@ -67,6 +67,21 @@ const UserSettingsForm = () => {
 
     console.log('userData for redux: ', userData);
     setUserData({ ...userData });
+
+    //ogject FofmData for sending to backend (as insisted by the project task)
+    const formData = new FormData();
+
+    for (const key in userData) {
+      if (userData.hasOwnProperty(key)) {
+        console.log('key, value: ', key, userData[key]);
+        formData.append(key, userData[key]);
+      }
+    }
+
+    console.log('formData: ', formData);
+    for (let [key, value] of formData.entries()) {
+      console.log(`${key}:`, value);
+    }
   };
 
   const handleKeyDown = event => {
