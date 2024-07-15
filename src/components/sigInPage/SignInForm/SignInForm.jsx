@@ -6,10 +6,12 @@ import clsx from 'clsx';
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
 import { Icon } from 'shared';
+import { useDispatch } from 'react-redux';
+import { logIn } from '../../../redux/auth/operations';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
-
+  const dispatch = useDispatch();
   const formValidation = Yup.object({
     email: Yup.string().email().required(),
     password: Yup.string()
@@ -37,7 +39,7 @@ const SignInForm = () => {
   };
 
   const onSubmit = data => {
-    console.log(data);
+    dispatch(logIn(data));
     reset();
   };
 
