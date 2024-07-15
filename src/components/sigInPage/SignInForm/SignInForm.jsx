@@ -11,15 +11,11 @@ const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const formValidation = Yup.object({
-    email: Yup.string('You must enter a valid email!')
-      .trim()
-      .required('Email is required!')
-      .min(3, 'Too short!')
-      .max(30, 'Too long!'),
-    password: Yup.string('You must enter a valid password!')
-      .required('Password is required!')
-      .min(8, 'Too short!')
-      .max(50, 'Too long!'),
+    email: Yup.string().email().required(),
+    password: Yup.string()
+      .min(8, 'must contain at least 8 characters')
+      .max(64)
+      .required(),
   });
 
   const {
