@@ -5,7 +5,6 @@ import { useModal } from '../../context';
 import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
 import DailyInfo from '../../components/trackerPage/DailyInfo/DailyInfo';
 
-
 const HomePage = () => {
   const { openModal } = useModal();
 
