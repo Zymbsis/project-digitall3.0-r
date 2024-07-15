@@ -49,22 +49,41 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const {
+//       auth: { token },
+//     } = thunkAPI.getState();
+//     setToken(token);
+
+//     const response = await instance.post('/users/refresh');
+//     return response.data;
+//   },
+//   {
+//     condition: (_, { getState }) => {
+//       const reduxState = getState();
+//       const savedToken = reduxState.auth.token;
+//       return savedToken !== null;
+//     },
+//   }
+// );
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const {
-      auth: { token },
-    } = thunkAPI.getState();
-    setToken(token);
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    console.log(persistedToken);
 
-    const response = await instance.post('/users/refresh');
-    return response.data;
-  },
-  {
-    condition: (_, { getState }) => {
-      const reduxState = getState();
-      const savedToken = reduxState.auth.token;
-      return savedToken !== null;
-    },
+    if (persistedToken === null) {
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+    try {
+      setToken(persistedToken);
+      const { data } = await instance.post('/users/refresh');
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
   }
 );
