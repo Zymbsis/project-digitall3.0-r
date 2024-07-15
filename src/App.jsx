@@ -2,7 +2,12 @@ import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 // import { useEffect } from 'react';
 // import { useDispatch, useSelector } from 'react-redux';
-import { PrivateRoutes, RestrictedRoutes, SharedLayout } from 'components';
+import {
+  PrivateRoutes,
+  RestrictedRoutes,
+  SharedLayout,
+  Loader,
+} from 'components';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -17,13 +22,12 @@ const App = () => {
   // useEffect(() => {
   //   dispatch(refreshUser());
   // }, [dispatch]);
-
   const isRefreshing = false;
 
   return (
     <>
       {isRefreshing ? (
-        <p>Some Loader</p>
+        <Loader />
       ) : (
         <SharedLayout>
           <Routes>

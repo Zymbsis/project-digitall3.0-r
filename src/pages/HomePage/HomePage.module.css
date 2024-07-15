@@ -1,0 +1,24 @@
+.section {
+  @media (min-width:1440px) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 1440px) {
+    max-height: 100%;
+    overflow-y: auto;
+    gap: 32px;
+    flex-direction: row;
+  }
+}
+
+.container::-webkit-scrollbar {
+  display: none;
+}
