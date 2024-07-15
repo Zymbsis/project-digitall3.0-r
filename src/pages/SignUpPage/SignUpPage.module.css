@@ -1,23 +1,19 @@
-@import '../../styles/variables.css';
+.section {
+  @media (min-width:1440px) {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+}
 
 .signUpContainer {
-  @media (max-width: 374.98px) {
-    max-width: 375px;
-  }
-
-  padding: 16px;
-
-  margin: 0 auto;
-  width: 342px;
-
-  @media (min-width: 768px) {
-    width: 768px;
-    padding: 32px;
-  }
-
   @media (min-width: 1440px) {
-    width: 1406px;
+    max-height: 100%;
     display: flex;
     gap: 32px;
   }
+}
+
+.signUp::-webkit-scrollbar {
+  display: none;
 }

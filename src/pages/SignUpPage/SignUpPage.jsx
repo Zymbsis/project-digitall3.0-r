@@ -6,26 +6,21 @@ import css from './SignUpPage.module.css';
 
 const SignUpPage = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
-
     window.addEventListener('resize', handleResize);
-
     return () => {
       window.addEventListener('resize', handleResize);
     };
   }, []);
 
   return (
-    <Section>
+    <Section className={css.section}>
       <Container className={css.signUpContainer}>
         <SignUpForm />
-        {windowWidth > 1439.98 && (
-          <AdvantagesSection className={css.advantages} />
-        )}
+        {windowWidth > 1439.98 && <AdvantagesSection />}
       </Container>
     </Section>
   );
