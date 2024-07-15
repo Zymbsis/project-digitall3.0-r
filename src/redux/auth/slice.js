@@ -36,6 +36,9 @@ const authSlice = createSlice({
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
+      .addCase(refreshUser.rejected, state => {
+        state.isRefreshing = false;
+      })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.loading = true;
         state.error = false;

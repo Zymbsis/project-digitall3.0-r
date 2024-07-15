@@ -32,7 +32,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await instance.post('/users/login', credentials);
-      console.log(credentials);
       setToken(response.data.data.accessToken);
       return response.data;
     } catch (error) {
