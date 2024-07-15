@@ -7,7 +7,7 @@ import Icon from 'shared/components/Icon/Icon';
 const WaterItem = () => {
   return (
     <div className={css.waterItem}>
-           <Icon iconId="" className={css.waterIcon} />
+           <Icon iconId="icon-Vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
         <p className={css.waterItemMl}>250 ml</p>
         <p className={css.waterItemData}>data</p>

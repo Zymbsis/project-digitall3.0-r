@@ -26,10 +26,9 @@
   color: #323f47;
 }
 
-.waterIcon {
-  fill: var(--accent-color);;
+.waterIconBtn {
+  fill : transparent;
 }
-
 
 .waterItemData {
   font-family: 'Poppins', sans-serif;
@@ -37,6 +36,12 @@
   font-size: 12px;
   line-height: 1;
   color: rgba(47, 47, 47, 0.6);
+}
+
+.waterItemBtnWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .waterItemBtn {
@@ -64,8 +69,8 @@
   .waterItemWrap {
     gap: 0px;
   }
-  
-  .waterIconGlass {
+
+  .waterIcon {
     width: 44px;
     height: 45px;
 }
