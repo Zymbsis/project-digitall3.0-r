@@ -11,7 +11,7 @@ const LogOutModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
-  const handleLogOut = () => {
+ const handleLogOut = () => {
     axios
       .post('/logout')
       .then(response => {
@@ -32,22 +32,19 @@ const LogOutModal = () => {
   };
 
   return (
-    <Modal onClose={handleCancel}>
-      <div className={styles.modalContent}>
-        <h2 className={styles.title}>Log out</h2>
-        <p className={styles.subtitle}>Do you really want to leave?</p>
-        <div className={styles.buttonWrapper}>
-          <Button className={styles.deleteButton} type="button" onClick={handleLogOut}>
-            Log Out
-          </Button>
-          <Button className={styles.cancelButton} type="button" onClick={handleCancel}>
-            Cancel
-          </Button>
-        </div>
+    <div className={styles.modalContent}>
+      <h2 className={styles.title}>Log out</h2>
+      <p className={styles.subtitle}>Do you really want to leave?</p>
+      <div className={styles.buttonWrapper}>
+        <Button className={styles.deleteButton} type="button" onClick={handleLogOut}>
+          Log Out
+        </Button>
+        <Button className={styles.cancelButton} type="button" onClick={handleCancel}>
+          Cancel
+        </Button>
       </div>
-    </Modal>
+    </div>
   );
 };
-
 
 export default LogOutModal;
