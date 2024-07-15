@@ -8,6 +8,8 @@ import {
   SharedLayout,
   Loader,
 } from 'components';
+// import { PrivateRoutes, RestrictedRoutes, SharedLayout } from 'components';
+import WaterMainInfo from 'components/trackerPage/WaterMainInfo/WaterMainInfo';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <>
+      <WaterMainInfo />
       {isRefreshing ? (
         <Loader />
       ) : (
