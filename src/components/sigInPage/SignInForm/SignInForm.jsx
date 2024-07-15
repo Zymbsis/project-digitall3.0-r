@@ -19,6 +19,7 @@ const SignInForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formValidation),
@@ -30,6 +31,7 @@ const SignInForm = () => {
 
   const onSubmit = data => {
     console.log(data);
+    reset();
   };
 
   return (
