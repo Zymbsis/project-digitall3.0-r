@@ -1,0 +1,150 @@
+.wrapper {
+  @media screen and (min-width: 768px) {
+    width: 436px;
+    margin: 0 auto;
+  }
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @media (min-width: 768px) {
+    max-width: 436px;
+  }
+}
+
+.labelWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* position: relative; */
+}
+
+.label {
+  font-weight: 700;
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: var(--primary-black-color);
+  margin-bottom: 8px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 10px;
+  line-height: 18px;
+  letter-spacing: -1%;
+  text-align: left;
+  color: var(--primary-black-color);
+  border: 1px solid rgba(47, 47, 47, 0.2);
+  border-radius: 15px;
+  background-color: transparent;
+
+  @media (min-width: 768px) {
+    line-height: 1.5;
+    height: 56px;
+  }
+}
+
+.errorMessage {
+  color: var(--error-red-color);
+  font-size: 13px;
+}
+
+.inputError {
+  border: 1px solid var(--error-red-color);
+  color: var(--error-red-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.button {
+  margin-top: 16px;
+  margin-bottom: 16px;
+  font-weight: 700;
+  border: none;
+  width: 100%;
+  color: var(--primary-dark-grey-color);
+  border-radius: 30px;
+  height: 50px;
+  background: var(--primary-green-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+
+  @media (min-width: 768px) {
+    height: 60px;
+  }
+}
+
+.button:hover {
+  @media (min-width: 1440px) {
+    background-color: var(--hover-green-color);
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 32px;
+  letter-spacing: -1%;
+  text-align: left;
+  margin-top: 172px;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    margin-top: 225px;
+    font-size: 36px;
+    line-height: 1.06;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 113px;
+  }
+}
+
+.signUpText {
+  color: var(--invite-text-color);
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    line-height: 1.5;
+  }
+}
+
+.signUpLink {
+  line-height: 1.28;
+  font-weight: 700;
+  text-decoration: underline;
+  color: var(--primary-black-color);
+
+  @media (min-width: 768px) {
+    line-height: 1.5;
+  }
+}
+
+.showPasswordBtn {
+  display: none;
+
+  @media screen and (min-width: 768px) {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 20px;
+    top: 18px;
+  }
+}
+
+.icon {
+  fill: none;
+  stroke: var(--primary-black-color);
+  width: 100%;
+  height: 100%;
+}
