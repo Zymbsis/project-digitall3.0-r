@@ -1,4 +1,4 @@
-// import css from './LogOutModal.module.css'
+import css from './LogOutModal.module.css'
 
 // import React from 'react';
 // import { useDispatch } from 'react-redux';
@@ -33,18 +33,21 @@ const LogOutModal = () => {
 
   return (
     <Modal onClose={handleCancel}>
-      <div className="modal-content">
-        <h2 className="title">Log out</h2>
-        <p>Do you really want to leave?</p>
-        <Button className="button" type="button" onClick={handleLogOut}>
-          Log Out
-        </Button>
-        <Button className="button" type="button" onClick={handleCancel}>
-          Cancel
-        </Button>
+      <div className={styles.modalContent}>
+        <h2 className={styles.title}>Log out</h2>
+        <p className={styles.subtitle}>Do you really want to leave?</p>
+        <div className={styles.buttonWrapper}>
+          <Button className={styles.deleteButton} type="button" onClick={handleLogOut}>
+            Log Out
+          </Button>
+          <Button className={styles.cancelButton} type="button" onClick={handleCancel}>
+            Cancel
+          </Button>
+        </div>
       </div>
     </Modal>
   );
 };
+
 
 export default LogOutModal;
