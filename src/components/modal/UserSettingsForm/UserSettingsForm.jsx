@@ -5,20 +5,21 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { Button } from 'shared/index.js';
 import css from './UserSettingsForm.module.css';
 
-import { yupValidationSchema } from './serviceUserSettingsForm.js';
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
+import { yupValidationSchema } from '../serviceUserSettingsForm.js';
 
 const getInitialUserData = () => {
   const userData = {
-    username: 'Nadia',
-    gender: 'female',
-    email: 'nadia10@gmail.com',
-    weight: 55,
-    activeHours: 1,
-    dailyNorma: 1.7,
-    avatarFile: false,
+    name: 'User',
+    gender: 'woman',
+    email: '',
+    weight: 0,
+    activeHours: 0,
+    dailyNorma: 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
+    avatar: '',
+    // avatar: 'https://i.pravatar.cc/300', //waiting for URL from redux
   };
   return userData;
 };
@@ -32,32 +33,51 @@ const UserSettingsForm = () => {
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
     defaultValues: {
-      username: userData.username,
+      name: userData.name,
       gender: userData.gender,
       email: userData.email,
       weight: userData.weight,
       activeHours: userData.activeHours,
       dailyNorma: userData.dailyNorma,
-      avatarFile: userData.avatarFile,
+      avatar: userData.avatar,
     },
   });
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
-    console.log('name, value: ', name, value);
+    // console.log('name, value: ', name, value);
 
     userData[name] = value;
-    setUserData({ userData });
+    setUserData({ ...userData });
+    // console.log('userData: ', userData);
   };
 
   const onSubmit = data => {
     console.log('Form data: ', data);
+    //this part emulates data for backend
+    userData.name = data.name;
+    userData.email = data.email;
+    userData.weight = data.weight;
+    userData.activeHours = data.activeHours;
+    userData.dailyNorma = data.dailyNorma * 1000; //*1000 because data in form is in liters, bakend in ml
+
+    //these two fields are hidden in form, so their values are already in userData
+    // userData.gender = data.gender;
+    // userData.avatar = data.avatar;
+
+    console.log('userData for redux: ', userData);
+    setUserData({ ...userData });
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
   };
 
   return (
     <div className={css.modalSettingContent}>
-      <h2 className={css.settingTitle}>Setting</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
         <UserSettingsFormAvatar
           register={register}
           errors={errors}

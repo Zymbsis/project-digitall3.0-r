@@ -2,7 +2,8 @@ import { AdvantagesSection, WelcomeSection } from 'components';
 import { Button, Container, Section } from 'shared';
 import css from './HomePage.module.css';
 import { useModal } from '../../context';
-import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
+// import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
+import UserSettingsModal from 'components/modal/UserSettingsModal/UserSettingsModal.jsx';
 
 const HomePage = () => {
   const { openModal } = useModal();
@@ -10,7 +11,7 @@ const HomePage = () => {
     <Section>
       <Button
         onClick={() => {
-          openModal(<DeleteWaterModal />);
+          openModal(<UserSettingsModal />);
         }}
       >
         Click me

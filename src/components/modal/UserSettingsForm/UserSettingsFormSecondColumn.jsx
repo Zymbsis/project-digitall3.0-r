@@ -27,6 +27,7 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="weight"
             autoComplete="off"
             {...register('weight')}
@@ -42,7 +43,11 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="activeHours"
+            step="1"
+            min="0"
+            max="12"
             autoComplete="off"
             {...register('activeHours')}
             onChange={handleFieldChange}
@@ -67,7 +72,11 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="dailyNorma"
+            step="0.1"
+            min="0"
+            max="10"
             autoComplete="off"
             {...register('dailyNorma')}
           />

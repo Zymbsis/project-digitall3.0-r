@@ -14,9 +14,26 @@ const UserSettingsFormAvatar = ({
     const file = evt.target.files[0];
 
     if (file) {
-      userData.avatarFile = file;
+      userData.avatar = file;
       setUserData({ ...userData });
     }
+  };
+
+  const getSrcForAvatar = avatar => {
+    console.log('avatar: ', avatar);
+    console.log('type of avatar: ', typeof avatar);
+    if (typeof avatar === 'string') {
+      if (avatar === '') {
+        return avatarDefault;
+      }
+      return avatar;
+    } else {
+      return URL.createObjectURL(avatar);
+    }
+    // https://i.pravatar.cc/300
+    // if (avatar) {
+    //   return URL.createObjectURL(avatar);
+    // }
   };
 
   return (
@@ -24,26 +41,27 @@ const UserSettingsFormAvatar = ({
       <div className={css.avatarThumb}>
         <img
           className={css.avatar}
-          src={
-            userData.avatarFile
-              ? URL.createObjectURL(userData.avatarFile)
-              : avatarDefault
-          }
-          alt="avatar"
+          src={getSrcForAvatar(userData.avatar)}
+          // src={
+          //   userData.avatar
+          //     ? URL.createObjectURL(userData.avatar)
+          //     : avatarDefault
+          // }
+          alt="User avatar"
         />
-        <div className={css.fileUploadWrapper}>
+        <div>
           <input
-            id="avatarFile"
-            name="avatarFile"
+            id="avatar"
+            name="avatar"
             type="file"
             hidden
             accept=".jpg,.jpeg,.png,.gif"
-            {...register('avatarFile', { required: true })}
+            {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />
-          {errors.avatarFile && <span>This field is required</span>}
+          {errors.avatar && <span>Avatar image file is required</span>}
         </div>
-        <label htmlFor="avatarFile" className={css.uploadButton}>
+        <label htmlFor="avatar" className={css.uploadButton}>
           {<Icon className={css.uploadIcon} iconId="icon-upload" />}Upload a
           photo
         </label>
