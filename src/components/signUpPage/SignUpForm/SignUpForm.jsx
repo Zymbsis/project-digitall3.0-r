@@ -125,7 +125,7 @@ const SignUpForm = () => {
             </button>
           </label>
           {errors.confirmPassword && (
-            <p className={css.errorsMessage}>{'Repeat your password'}</p>
+            <p className={css.errorsMessage}>{'password does not match'}</p>
           )}
 
           <input className={css.submit} type="submit" value="Sign Up" />
