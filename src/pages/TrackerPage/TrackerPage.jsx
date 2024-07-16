@@ -15,7 +15,6 @@ const TrackerPage = () => {
   return (
     <Section>
       <Container>
-        {' '}
         {/* <Button
         onClick={() => {
           dispatch(logOut());
