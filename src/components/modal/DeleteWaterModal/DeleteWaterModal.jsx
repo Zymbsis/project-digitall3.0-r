@@ -1,15 +1,15 @@
 import css from './DeleteWaterModal.module.css';
 // import { useDispatch } from 'react-redux';
-// import { deleteWaterRecord } from 'redux/actions';
 import { Button, Title } from 'shared';
 import { useModal } from 'context';
+// import { deleteWaterIntake } from '../../../redux/water/operations';
 
-const DeleteWaterModal = () => {
+const DeleteWaterModal = ({ id }) => {
   // const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleDelete = e => {
-    // dispatch(deleteWaterRecord());
+    // dispatch(deleteWaterIntake(id));
     closeModal(e);
   };
   const handleCancel = e => {
