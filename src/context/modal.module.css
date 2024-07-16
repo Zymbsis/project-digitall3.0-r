@@ -1,0 +1,15 @@
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--backdrop-color);
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity var(--transition-timing-function) var(--transition-duration);
+}
+
+.modalBackdrop::-webkit-scrollbar {
+  display: none;
+}
