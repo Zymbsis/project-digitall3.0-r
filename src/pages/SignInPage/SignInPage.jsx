@@ -25,7 +25,7 @@ const SignInPage = () => {
   };
 
   return (
-    <Section className={css.section}>
+    <Section>
       <Container className={css.container}>
         <div className={css.wrapper}>
           <button onClick={handleSettingsTest}>Settings form test</button>
