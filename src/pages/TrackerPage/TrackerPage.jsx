@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Button, Container, Section } from 'shared';
 import { logOut } from '../../redux/auth/operations';
+import { getUser } from '../../redux/user/operations';
 // import css from './TrackerPage.module.css';
 
 const TrackerPage = () => {
@@ -14,6 +15,13 @@ const TrackerPage = () => {
         }}
       >
         Logout
+      </Button>
+      <Button
+        onClick={() => {
+          dispatch(getUser());
+        }}
+      >
+        User
       </Button>
     </Section>
   );
