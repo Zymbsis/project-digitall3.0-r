@@ -1,0 +1,56 @@
+.title {
+  text-align: center;
+  margin-bottom: 16px;
+
+  @media(min-width: 768px) {
+    margin-bottom: 24px
+  }
+}
+
+.subtitle {
+  width: 316px;
+  text-align: center;
+  line-height: 1.28;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+
+  @media (min-width:768px) {
+    width: 436px;
+    font-size: 18px;
+    line-height: 1.33;
+    margin-bottom: 24px;
+  }
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+
+  @media (min-width:768px) {
+    justify-content: center;
+    flex-direction: row;
+    gap: 10px;
+  }
+}
+
+.deleteButton,
+.cancelButton {
+  width: 304px;
+
+  @media (min-width:768px) {
+    width: 170px;
+  }
+}
+
+.cancelButton {
+  background-color: var(--primary-light-grey-color);
+  color: var(--opacity-grey-color);
+}
+
+.cancelButton:hover {
+  @media (min-width:1440px) {
+    background-color: var(--primary-light-grey-color);
+    color: var(--primary-dark-grey-color);
+  }
+}
