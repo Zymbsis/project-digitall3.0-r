@@ -34,9 +34,8 @@ const TrackerPage = () => {
       </Button>
       <Container className={css.container}>
         <WaterMainInfo />
-        <div>
-          <WaterDetailedInfo />
-        </div>
+
+        <WaterDetailedInfo />
       </Container>
     </Section>
   );
