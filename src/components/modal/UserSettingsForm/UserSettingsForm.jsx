@@ -8,10 +8,17 @@ import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 import { yupValidationSchema } from '../serviceUserSettingsForm.js';
+import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../../redux/user/selectors';
 // import { useModal } from 'context/modalContext.js';
 
 const UserSettingsForm = () => {
   // const { closeModal } = useModal();
+  const user = useSelector(selectCurrentUser);
+  const defaultValues = {
+    ...user,
+    dailyNorma: Math.round((user.dailyNorma / 1000) * 1000) / 1000,
+  };
   const {
     register,
     handleSubmit,
@@ -20,16 +27,7 @@ const UserSettingsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
-    defaultValues: {
-      name: 'User',
-      gender: 'woman',
-      email: '',
-      weight: 0,
-      activeHours: 0,
-      dailyNorma: 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
-      avatar: '',
-      // avatar: 'https://i.pravatar.cc/300', //waiting for URL from redux
-    },
+    defaultValues,
   });
 
   const handleFieldChange = evt => {

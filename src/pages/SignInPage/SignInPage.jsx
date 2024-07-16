@@ -20,15 +20,11 @@ const SignInPage = () => {
       window.addEventListener('resize', handleResize);
     };
   }, []);
-  const handleSettingsTest = () => {
-    openModal(<UserSettingsModal />);
-  };
 
   return (
     <Section>
       <Container className={css.container}>
         <div className={css.wrapper}>
-          <button onClick={handleSettingsTest}>Settings form test</button>
           <Logo />
           <SignInForm />
         </div>

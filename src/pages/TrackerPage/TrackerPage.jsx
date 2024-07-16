@@ -7,6 +7,7 @@ import LogOutModal from '../../components/modal/LogOutModal/LogOutModal';
 import css from './TrackerPage.module.css';
 import { WaterDetailedInfo, WaterMainInfo } from 'components';
 import { useEffect } from 'react';
+import UserSettingsForm from '../../components/modal/UserSettingsForm/UserSettingsForm';
 
 const TrackerPage = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,13 @@ const TrackerPage = () => {
         }}
       >
         Logout
+      </Button>
+      <Button
+        onClick={() => {
+          openModal(<UserSettingsForm />);
+        }}
+      >
+        UserSettings
       </Button>
       <Container className={css.container}>
         <WaterMainInfo />
