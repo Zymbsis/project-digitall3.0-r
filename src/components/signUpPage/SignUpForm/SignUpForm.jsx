@@ -32,7 +32,7 @@ const SignUpForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
   });
 
   const onSubmit = data => {

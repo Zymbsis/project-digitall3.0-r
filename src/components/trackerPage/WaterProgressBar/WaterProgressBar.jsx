@@ -19,7 +19,7 @@ const WaterProgressBar = () => {
   // }, [dispatch, today]);
 
   const day = 'Today';
-  const persentOfWater = 70;
+  const persentOfWater = 75;
   const invisMarkWater = [0, 50, 100];
 
   const marks = [
