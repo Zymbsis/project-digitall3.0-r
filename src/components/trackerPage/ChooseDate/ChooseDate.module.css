@@ -1,22 +1,15 @@
 .chooseDateTitle {
-  font-family: var(--font-family);
-  font-weight: var(--font-bold);
-  font-size: 1.25rem;
-  line-height: 1.2;
-  letter-spacing: var(--letter-spacing-normal);
-  color: var(--main-color);
-}
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: -1%;
+  text-align: left;
 
-@media screen and (min-width: 768px) {
-  .chooseDateTitle {
-    font-family: 'Poppins', sans-serif;
+  @media screen and (min-width: 768px) {
     font-weight: 700;
     font-size: 28px;
     line-height: 1.14286;
     letter-spacing: -0.01em;
-    color: #323f47;
+    color: var(--primary-dark-grey-color);
   }
-}
-
-@media screen and (min-width: 1440px) {
 }

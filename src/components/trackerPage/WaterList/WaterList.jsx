@@ -14,6 +14,9 @@ const WaterList = () => {
         <li className={css.waterItem}>
           <WaterItem />
         </li>
+        <li className={css.waterItem}>
+          <WaterItem />
+        </li>
       </ul>
     </div>
   );
