@@ -7,7 +7,7 @@ const UserSettingsModal = () => {
   return (
     <>
       <Title>Setting</Title>
-      <UserSettingsForm />;
+      <UserSettingsForm />
     </>
   );
 };

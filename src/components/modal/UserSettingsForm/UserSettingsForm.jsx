@@ -8,8 +8,10 @@ import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 import { yupValidationSchema } from '../serviceUserSettingsForm.js';
+// import { useModal } from 'context/modalContext.js';
 
 const UserSettingsForm = () => {
+  // const { closeModal } = useModal();
   const {
     register,
     handleSubmit,
@@ -33,7 +35,6 @@ const UserSettingsForm = () => {
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
     // console.log('name, value: ', name, value);
-
     setValue(name, value);
   };
 
@@ -44,16 +45,21 @@ const UserSettingsForm = () => {
     // const formData = new FormData();
 
     // for (const key in userData) {
-    //   if (userData.hasOwnProperty(key)) {
-    //     console.log('key, value: ', key, userData[key]);
-    //     formData.append(key, userData[key]);
+    //   if (data.hasOwnProperty(key)) {
+    //     console.log('key, value: ', key, data[key]);
+    //     formData.append(key, data[key]);
     //   }
     // }
 
+    //to check if data in FormData object is correct
     // console.log('formData: ', formData);
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
+
+    //close modal
+
+    // closeModal();
   };
 
   const handleKeyDown = event => {

@@ -5,7 +5,11 @@ import css from './SignInPage.module.css';
 import { AdvantagesSection } from 'components';
 import { useEffect, useState } from 'react';
 
+import { useModal } from 'context';
+import UserSettingsModal from 'components/modal/UserSettingsModal/UserSettingsModal.jsx';
+
 const SignInPage = () => {
+  const { openModal } = useModal();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {
@@ -16,11 +20,15 @@ const SignInPage = () => {
       window.addEventListener('resize', handleResize);
     };
   }, []);
+  const handleSettingsTest = () => {
+    openModal(<UserSettingsModal />);
+  };
 
   return (
     <Section className={css.section}>
       <Container className={css.container}>
         <div className={css.wrapper}>
+          <button onClick={handleSettingsTest}>Settings form test</button>
           <Logo />
           <SignInForm />
         </div>
