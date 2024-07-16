@@ -1,32 +1,42 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Container, Section } from 'shared';
-import { logOut } from '../../redux/auth/operations';
 import { getUser } from '../../redux/user/operations';
-import { selectDailyIntake } from '../../redux/water/selectors';
-// import css from './TrackerPage.module.css';
+import { useModal } from '../../context';
+// import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
+import LogOutModal from '../../components/modal/LogOutModal/LogOutModal';
+import css from './TrackerPage.module.css';
+import { WaterDetailedInfo, WaterMainInfo } from 'components';
+import { useEffect } from 'react';
 
 const TrackerPage = () => {
   const dispatch = useDispatch();
-  const water = useSelector(selectDailyIntake);
-  console.log(water);
+  useEffect(() => {
+    dispatch(getUser());
+  }, [dispatch]);
 
+  const { openModal } = useModal();
   return (
     <Section>
-      <Container>Welcome to TrackerPage</Container>
+      {/* <Button
+          onClick={() => {
+            dispatch(logOut());
+          }}
+        >
+          Logout
+        </Button> */}
+
       <Button
         onClick={() => {
-          dispatch(logOut());
+          openModal(<LogOutModal />);
         }}
       >
         Logout
       </Button>
-      <Button
-        onClick={() => {
-          dispatch(getUser());
-        }}
-      >
-        User
-      </Button>
+      <Container className={css.container}>
+        <WaterMainInfo />
+
+        <WaterDetailedInfo />
+      </Container>
     </Section>
   );
 };

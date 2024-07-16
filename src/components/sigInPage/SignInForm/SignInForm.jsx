@@ -27,7 +27,7 @@ const SignInForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formValidation),
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       email: '',
       password: '',
