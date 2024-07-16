@@ -1,34 +1,13 @@
 import css from './CalendarPagination.module.css'
-import { useEffect, useState } from "react";
+import { Icon } from 'shared';
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../../redux/user/selectors";
+import { formatDate } from "./CalendarPaginationFunction.jsx";
 
-const fetchUser = async => {
-  return {
-    email: 'test@example.com',
-    password: '12345678',
-    name: 'Kate',
-    gender: 'woman',
-    avatar: 'image.png',
-    dailyNorma: 1.8,
-    weight: 0,
-    activeHours: 0,
-    createdAt: '2024-02-01T00:00:00.000Z',
-    updatedAt: '2024-07-01T00:00:00.000Z'
-  };
-}
-const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
-//   const [currentDate, setCurrentDate] = useState(new Date());
-//   const [navDate, setNavDate] = useState(new Date());
-//  const [user, setUser] = useState(null)
+const CalendarPagination = ({ selectedDate, setSelectedDate}) => {
 
-// useEffect(() => {
-//   const getUser = async () => {
-//     const userData = await fetchUser();
-//     setUser(userData);
-//     setCurrentDate(new Date());
-//     setNavDate(new Date());
-//   };
-//   getUser();
-// }, []);
+  const user = useSelector(selectCurrentUser);
+  const userCreatedDate = new Date(user?.createdAt);
 
   const handlePrevMonth = () => {
     setSelectedDate((prevDate) => {
@@ -46,32 +25,21 @@ const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
     })
   };
 
-  const formatDate = (date) => {
-    const format = { month: 'long', year: 'numeric'};
-    const data = new Intl.DateTimeFormat('en-US', format).format(date)
-    const [month, year] = data.split(' ');
-    return `${month}, ${year}`
-  };
-  // if (!user) {
-  //   return <div>User not found!</div>;
-  // }
-  // const userDate = new Date(user.createdAt);
-
-  const isPrevDis = selectedDate.getFullYear() < userDate.getFullYear() ||
-  (selectedDate.getFullYear() === userDate.getFullYear() && 
-  selectedDate.getMonth() <= userDate.getMonth());
+  const isPrevDis = selectedDate.getFullYear() < userCreatedDate.getFullYear() ||
+  (selectedDate.getFullYear() === userCreatedDate.getFullYear() && 
+  selectedDate.getMonth() <= userCreatedDate.getMonth());
  
  
  return (
  <div className={css.container}>
   <h2 className={css.title}>Month</h2>
   <div className={css.dateBox}>
-  <button onClick={handlePrevMonth} disabled={isPrevDis}>
-      {'<'}
+  <button className={css.IconBtn} onClick={handlePrevMonth} disabled={isPrevDis}>
+      <Icon iconId="icon-chevron-left" className={css.logo}/>
   </button>
   <p className={css.date}>{formatDate(selectedDate)}</p>
-  <button onClick={handleNextMonth}>
-    {'>'}
+  <button className={css.IconBtn} onClick={handleNextMonth}>
+  <Icon iconId="icon-chevron-right" className={css.logo}/>
   </button>
   </div>
 </div>
@@ -79,3 +47,18 @@ const CalendarPagination = ({ selectedDate, setSelectedDate, userDate}) => {
 };
 
 export default CalendarPagination;
+
+
+
+  // const user = {
+  //   email: 'test@example.com',
+  //   password: '12345678',
+  //   name: 'Kate',
+  //   gender: 'woman',
+  //   avatar: 'image.png',
+  //   dailyNorma: 1.8,
+  //   weight: 0,
+  //   activeHours: 0,
+  //   createdAt: '2024-02-01T00:00:00.000Z',
+  //   updatedAt: '2024-07-01T00:00:00.000Z'
+  // };
