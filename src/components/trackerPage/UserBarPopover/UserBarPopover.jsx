@@ -2,9 +2,8 @@ import React from 'react';
 import css from './UserBarPopover.module.css';
 import UserSettingsModal from '../../modal/UserSettingsModal/UserSettingsModal';
 import LogOutModal from '../../modal/LogOutModal/LogOutModal';
-import { useModal } from '../../context';
-import { Icon } from 'icons';
-import { Button } from 'shared';
+import { useModal } from 'context';
+import { Icon, Button } from 'shared';
 
 const UserBarPopover = React.forwardRef((props, ref) => {
   const { openModal } = useModal();

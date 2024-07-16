@@ -1,12 +1,12 @@
-import css from './UserBar.module.css'
+import css from './UserBar.module.css';
 import { useState, useRef, useEffect } from 'react';
-import UserBarPopover from './UserBarPopover';
+import UserBarPopover from '../UserBarPopover/UserBarPopover';
 import { Button } from 'shared';
 import { useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../../redux/user/selectors';
 
 const UserBar = () => {
-  const userName = useSelector((state) => state.user.name);
-  const avatar = useSelector((state)=> state.user.avatar);
+  const { name, avatar } = useSelector(selectCurrentUser);
 
   const [isOpen, setIsOpen] = useState(false);
   const popoverRef = useRef();
@@ -27,14 +27,11 @@ const UserBar = () => {
   return (
     <div className={css.userBarContainer}>
       <Button className={css.userBarButton} onClick={handleTogglePopover}>
+        <span className={css.UserName}>{name}</span>
         <img src={avatar} alt="User Avatar" className={css.avatar} />
-        <span className={css.UserName}>{userName}</span>
       </Button>
       {isOpen && <UserBarPopover ref={popoverRef} />}
     </div>
   );
 };
 export default UserBar;
-
-
-

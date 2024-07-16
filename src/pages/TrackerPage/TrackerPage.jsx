@@ -5,7 +5,7 @@ import { useModal } from '../../context';
 // import DeleteWaterModal from '../../components/modal/DeleteWaterModal/DeleteWaterModal';
 import LogOutModal from '../../components/modal/LogOutModal/LogOutModal';
 import css from './TrackerPage.module.css';
-import { WaterMainInfo } from 'components';
+import { WaterDetailedInfo, WaterMainInfo } from 'components';
 import { useEffect } from 'react';
 
 const TrackerPage = () => {
@@ -19,7 +19,9 @@ const TrackerPage = () => {
     <Section>
       <Container className={css.container}>
         <WaterMainInfo />
+
         <div>
+          <WaterDetailedInfo />
           {/* <Button
           onClick={() => {
             dispatch(logOut());
