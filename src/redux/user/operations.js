@@ -1,18 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-
-const instance = axios.create({
-  baseURL: 'https://aquatracker-node.onrender.com',
-});
-
-instance.defaults.headers.common['Authorization'] =
-  'Bearer 43liatqJF9QLKVYk/Zkm1+WbHGqKnmOJY+LPrFTz';
-
-// const setAuthHeader = thunkAPI => {
-//   contactsAxios.defaults.headers.common['Authorization'] = `Bearer ${
-//     thunkAPI.getState().auth.token
-//   }`;
-// };
+import { instance } from '../auth/operations';
 
 export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
   try {
