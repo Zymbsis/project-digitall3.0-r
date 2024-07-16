@@ -19,15 +19,7 @@
   }
 }
 
-.section {
-  @media (min-width: 1440px) {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -42,4 +34,4 @@
 
 .container::-webkit-scrollbar {
   display: none;
-}
+} */
