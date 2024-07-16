@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject_digitall3_0_r=self.webpackChunkproject_digitall3_0_r||[]).push([[746],{1746:function(e,r,c){c.r(r);var n=c(4420),i=c(4192),t=c(9273),l=c(184);r.default=function(){var e=(0,n.I0)();return(0,l.jsxs)(i.$0,{children:[(0,l.jsx)(i.W2,{children:"Welcome to TrackerPage"}),(0,l.jsx)(i.zx,{onClick:function(){e((0,t.ni)())},children:"Logout"})]})}}}]);
-//# sourceMappingURL=746.9570a847.chunk.js.map
