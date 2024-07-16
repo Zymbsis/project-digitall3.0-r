@@ -166,10 +166,12 @@
 .errorsMessage {
   color: var(--error-red-color);
   margin-bottom: 8px;
+  font-size: 13px;
 }
 
 .inputError {
   border: 1px solid var(--error-red-color);
+  color: var(--error-red-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
 }
 
