@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Section } from 'shared';
-import { logOut } from '../../redux/auth/operations';
 import { getUser } from '../../redux/user/operations';
 import { selectDailyIntake } from '../../redux/water/selectors';
 import { useModal } from '../../context';
