@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/project-digitall3.0-r/static/css/main.fdb9f0d4.css",
-    "main.js": "/project-digitall3.0-r/static/js/main.de3580a8.js",
+    "main.css": "/project-digitall3.0-r/static/css/main.ff7be2e1.css",
+    "main.js": "/project-digitall3.0-r/static/js/main.e33b7932.js",
     "static/css/674.94997063.chunk.css": "/project-digitall3.0-r/static/css/674.94997063.chunk.css",
-    "static/js/674.5b1e4d61.chunk.js": "/project-digitall3.0-r/static/js/674.5b1e4d61.chunk.js",
+    "static/js/674.d75b9067.chunk.js": "/project-digitall3.0-r/static/js/674.d75b9067.chunk.js",
     "static/css/935.4ea1e27b.chunk.css": "/project-digitall3.0-r/static/css/935.4ea1e27b.chunk.css",
-    "static/js/935.d2b15ca0.chunk.js": "/project-digitall3.0-r/static/js/935.d2b15ca0.chunk.js",
+    "static/js/935.a4aeac51.chunk.js": "/project-digitall3.0-r/static/js/935.a4aeac51.chunk.js",
     "static/css/799.fb49fa61.chunk.css": "/project-digitall3.0-r/static/css/799.fb49fa61.chunk.css",
-    "static/js/799.b157e4a1.chunk.js": "/project-digitall3.0-r/static/js/799.b157e4a1.chunk.js",
+    "static/js/799.86e0ce7d.chunk.js": "/project-digitall3.0-r/static/js/799.86e0ce7d.chunk.js",
     "static/css/188.3fb95523.chunk.css": "/project-digitall3.0-r/static/css/188.3fb95523.chunk.css",
-    "static/js/188.8daea3f1.chunk.js": "/project-digitall3.0-r/static/js/188.8daea3f1.chunk.js",
+    "static/js/188.641e1827.chunk.js": "/project-digitall3.0-r/static/js/188.641e1827.chunk.js",
     "static/css/154.eb6e55d4.chunk.css": "/project-digitall3.0-r/static/css/154.eb6e55d4.chunk.css",
     "static/js/154.b358716f.chunk.js": "/project-digitall3.0-r/static/js/154.b358716f.chunk.js",
     "static/js/143.bbe6131c.chunk.js": "/project-digitall3.0-r/static/js/143.bbe6131c.chunk.js",
@@ -35,22 +35,22 @@
     "static/media/background-mobile-@1x.webp": "/project-digitall3.0-r/static/media/background-mobile-@1x.6eeb4bc49107a1a4ece8.webp",
     "static/media/customers.webp": "/project-digitall3.0-r/static/media/customers.2db441f83f8a11ecbe33.webp",
     "index.html": "/project-digitall3.0-r/index.html",
-    "main.fdb9f0d4.css.map": "/project-digitall3.0-r/static/css/main.fdb9f0d4.css.map",
-    "main.de3580a8.js.map": "/project-digitall3.0-r/static/js/main.de3580a8.js.map",
+    "main.ff7be2e1.css.map": "/project-digitall3.0-r/static/css/main.ff7be2e1.css.map",
+    "main.e33b7932.js.map": "/project-digitall3.0-r/static/js/main.e33b7932.js.map",
     "674.94997063.chunk.css.map": "/project-digitall3.0-r/static/css/674.94997063.chunk.css.map",
-    "674.5b1e4d61.chunk.js.map": "/project-digitall3.0-r/static/js/674.5b1e4d61.chunk.js.map",
+    "674.d75b9067.chunk.js.map": "/project-digitall3.0-r/static/js/674.d75b9067.chunk.js.map",
     "935.4ea1e27b.chunk.css.map": "/project-digitall3.0-r/static/css/935.4ea1e27b.chunk.css.map",
-    "935.d2b15ca0.chunk.js.map": "/project-digitall3.0-r/static/js/935.d2b15ca0.chunk.js.map",
+    "935.a4aeac51.chunk.js.map": "/project-digitall3.0-r/static/js/935.a4aeac51.chunk.js.map",
     "799.fb49fa61.chunk.css.map": "/project-digitall3.0-r/static/css/799.fb49fa61.chunk.css.map",
-    "799.b157e4a1.chunk.js.map": "/project-digitall3.0-r/static/js/799.b157e4a1.chunk.js.map",
+    "799.86e0ce7d.chunk.js.map": "/project-digitall3.0-r/static/js/799.86e0ce7d.chunk.js.map",
     "188.3fb95523.chunk.css.map": "/project-digitall3.0-r/static/css/188.3fb95523.chunk.css.map",
-    "188.8daea3f1.chunk.js.map": "/project-digitall3.0-r/static/js/188.8daea3f1.chunk.js.map",
+    "188.641e1827.chunk.js.map": "/project-digitall3.0-r/static/js/188.641e1827.chunk.js.map",
     "154.eb6e55d4.chunk.css.map": "/project-digitall3.0-r/static/css/154.eb6e55d4.chunk.css.map",
     "154.b358716f.chunk.js.map": "/project-digitall3.0-r/static/js/154.b358716f.chunk.js.map",
     "143.bbe6131c.chunk.js.map": "/project-digitall3.0-r/static/js/143.bbe6131c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.fdb9f0d4.css",
-    "static/js/main.de3580a8.js"
+    "static/css/main.ff7be2e1.css",
+    "static/js/main.e33b7932.js"
   ]
 }

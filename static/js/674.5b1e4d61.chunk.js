@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkproject_digitall3_0_r=self.webpackChunkproject_digitall3_0_r||[]).push([[674],{8674:function(e,n,r){r.r(n),r.d(n,{default:function(){return u}});var t=r(1935),c=r(4192),i="HomePage_container__uNu-e",s=r(184),u=function(){return(0,s.jsx)(c.$0,{children:(0,s.jsxs)(c.W2,{className:i,children:[(0,s.jsx)(t.i0,{}),(0,s.jsx)(t.l6,{})]})})}}}]);
-//# sourceMappingURL=674.5b1e4d61.chunk.js.map
