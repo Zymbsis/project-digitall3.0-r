@@ -1,5 +1,5 @@
-export const selectDailyIntake = state => state.dailyIntake;
-export const selectMonthlyStats = state => state.monthlyStats;
-export const selectSelectedDate = state => state.selectedDate;
-export const selectLoading = state => state.loading;
-export const selectError = state => state.error;
+export const selectDailyIntake = state => state.water.dailyIntake;
+export const selectMonthlyStats = state => state.water.monthlyStats;
+export const selectSelectedDate = state => state.water.selectedDate;
+export const selectLoading = state => state.water.loading;
+export const selectError = state => state.water.error;

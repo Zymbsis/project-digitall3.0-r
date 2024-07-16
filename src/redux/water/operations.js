@@ -1,73 +1,77 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
-import { store } from 'redux/store';
-const BASE_URL = 'https://aquatracker-node.onrender.com';
-// add BASE_URL to constants
-const instance = axios.create({
-  baseURL: BASE_URL,
-});
-const token = store.auth.token; // use store
-
-if (token) {
-  instance.defaults.headers.common['Authorization'] = `Bearer ${token}`;
-}
+import { AXIOS_INSTANCE } from '../constants';
 
 export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
   async (waterData, { rejectWithValue }) => {
     try {
-      const { data } = await instance.post('/water', waterData);
-      return data;
+      const { data } = await AXIOS_INSTANCE.post('/water', waterData);
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
+  // Example: addWaterIntake({
+  //   time: "09:00:05",
+  //   date: "2024-07-01",
+  //   volume: 150
+  // })
 );
 
 export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
-  async ({ id, ...waterData }, { rejectWithValue }) => {
+  async ({ _id, ...waterData }, { rejectWithValue }) => {
     try {
-      const { data } = await instance.patch(`/water/${id}`, waterData);
-      return data;
+      const { data } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
+        ...waterData,
+      });
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
+  //Example: updateWaterIntake({
+  //  _id: '669657233a9e3788a6f219b0',
+  //  time: '10:30:00',
+  //  volume: 50,
+  // })
 );
 
 export const deleteWaterIntake = createAsyncThunk(
   'water/deleteWaterIntake',
-  async (id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue }) => {
     try {
-      const { data } = await instance.delete(`/water/${id}`);
-      return id;
+      await AXIOS_INSTANCE.delete(`/water/${_id}`);
+      return _id;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
+  // Example: deleteWaterIntake('669659783a9e3788a6f21a13')
 );
 
 export const getInfoByDay = createAsyncThunk(
   'water/getInfoByDay',
   async (date, { rejectWithValue }) => {
     try {
-      const { data } = await instance.get(`/water/day/${date}`);
-      return data;
+      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
+  // Example: getInfoByDay('2024-07-02')
 );
 
 export const getInfoByMonth = createAsyncThunk(
   'water/getInfoByMonth',
   async (month, { rejectWithValue }) => {
     try {
-      const { data } = await instance.get(`/water/month/${month}`);
-      return data;
+      const { data } = await AXIOS_INSTANCE.get(`/water/month/${month}`);
+      return data.data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
   }
+  // Example: getInfoByMonth('2024-07')
 );

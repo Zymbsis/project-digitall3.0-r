@@ -6,18 +6,11 @@ import {
   getInfoByMonth,
   updateWaterIntake,
 } from './operations';
-
-const INITIAL_STATE = {
-  dailyIntake: [],
-  monthlyStats: [],
-  selectedDate: null,
-  loading: false,
-  error: null,
-};
+import { INITIAL_STATE } from '../constants';
 
 const waterSlice = createSlice({
   name: 'water',
-  initialState: INITIAL_STATE,
+  initialState: INITIAL_STATE.water,
   reducers: {
     setSelectedDate: (state, action) => {
       state.selectedDate = action.payload;
@@ -29,31 +22,26 @@ const waterSlice = createSlice({
         state.loading = false;
         state.dailyIntake.push(action.payload);
       })
-
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         state.dailyIntake = state.dailyIntake.map(item =>
           item._id === action.payload._id ? action.payload : item
         );
       })
-
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         state.dailyIntake = state.dailyIntake.filter(
-          item => item.id !== action.payload
+          item => item._id !== action.payload
         );
       })
-
       .addCase(getInfoByDay.fulfilled, (state, action) => {
         state.loading = false;
         state.dailyIntake = action.payload;
       })
-
       .addCase(getInfoByMonth.fulfilled, (state, action) => {
         state.loading = false;
         state.monthlyStats = action.payload;
       })
-
       .addMatcher(
         isAnyOf(
           addWaterIntake.pending,
@@ -67,7 +55,6 @@ const waterSlice = createSlice({
           state.error = null;
         }
       )
-
       .addMatcher(
         isAnyOf(
           addWaterIntake.rejected,
