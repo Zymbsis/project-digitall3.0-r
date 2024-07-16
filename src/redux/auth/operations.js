@@ -5,6 +5,8 @@ const instance = axios.create({
   baseURL: 'https://aquatracker-node.onrender.com',
 });
 
+// instance.defaults.withCredentials = true;
+
 const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
@@ -81,6 +83,7 @@ export const refreshUser = createAsyncThunk(
     try {
       setToken(persistedToken);
       const { data } = await instance.post('/users/refresh');
+
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
