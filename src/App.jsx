@@ -1,8 +1,15 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-// import { useEffect } from 'react';
-// import { useDispatch, useSelector } from 'react-redux';
-import { PrivateRoutes, RestrictedRoutes, SharedLayout } from 'components';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  PrivateRoutes,
+  RestrictedRoutes,
+  SharedLayout,
+  Loader,
+} from 'components';
+import { selectIsRefreshing } from './redux/auth/selectors';
+import { refreshUser } from './redux/auth/operations';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -11,18 +18,18 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
-  // const dispatch = useDispatch();
-  // const isRefreshing = useSelector(selectIsRefreshing);
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectIsRefreshing);
 
-  // useEffect(() => {
-  //   dispatch(refreshUser());
-  // }, [dispatch]);
-  const isRefreshing = false;
+  useEffect(() => {
+    dispatch(refreshUser());
+  }, [dispatch]);
+  // const isRefreshing = false;
 
   return (
     <>
       {isRefreshing ? (
-        <p>Some Loader</p>
+        <Loader />
       ) : (
         <SharedLayout>
           <Routes>

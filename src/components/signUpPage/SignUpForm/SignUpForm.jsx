@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-// import { register } from '../../../redux/auth/operations';
+import { register } from '../../../redux/auth/operations';
 
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import css from './SignUpForm.module.css';
 
 import { Icon, Logo } from '../../../shared';
@@ -15,14 +15,14 @@ const schema = yup.object({
   email: yup.string().email().required(),
   password: yup
     .string()
-    .min(8, 'Must contain at least 8 characters')
+    .min(8, 'must contain at least 8 characters')
     .max(64)
     .required(),
   confirmPassword: yup.string().oneOf([yup.ref('password'), null]),
 });
 
 const SignUpForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -37,7 +37,7 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    // dispatch(register({ email, password }));
+    dispatch(register({ email, password }));
     console.log({ email, password });
 
     reset();
@@ -94,7 +94,7 @@ const SignUpForm = () => {
           </label>
           {errors.password && (
             <p className={css.errorsMessage}>
-              {'Must contain at least 8 characters'}
+              {'must contain at least 8 characters'}
             </p>
           )}
 
