@@ -1,4 +1,4 @@
-.button {
+button {
   height: 50px;
   width: 116px;
   border-radius: 30px;
@@ -15,7 +15,7 @@
   }
 }
 
-.button:hover {
+button:hover {
   @media (min-width:1440px) {
     background-color: var(--hover-green-color);
   }
