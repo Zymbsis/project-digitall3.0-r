@@ -1,45 +1,32 @@
-import css from './LogOutModal.module.css'
+import css from './LogOutModal.module.css';
 
-// import React from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useModal } from '../hooks/useModal';
-// import axios from 'axios';
-
-//{Hello, Katya;)}
+import { useDispatch } from 'react-redux';
+import { logOut } from '../../../redux/auth/operations';
+import { useModal } from '../../../context';
+import { Button, Title } from 'shared';
 
 const LogOutModal = () => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
- const handleLogOut = () => {
-    axios
-      .post('/logout')
-      .then(response => {
-        // Deauthorize user on client-side
-        dispatch({ type: 'LOGOUT_SUCCESS' });
-        // Clear Redux store and localStorage
-        // ...
-        // Redirect to HomePage
-        window.location.href = '/home';
-      })
-      .catch(error => {
-        console.error(error);
-      });
+  const handleLogOut = e => {
+    dispatch(logOut());
+    closeModal(e);
   };
 
-  const handleCancel = () => {
-    closeModal();
+  const handleCancel = e => {
+    closeModal(e);
   };
 
   return (
-    <div className={styles.modalContent}>
-      <h2 className={styles.title}>Log out</h2>
-      <p className={styles.subtitle}>Do you really want to leave?</p>
-      <div className={styles.buttonWrapper}>
-        <Button className={styles.deleteButton} type="button" onClick={handleLogOut}>
+    <div className={css.modalContent}>
+      <Title className={css.title}>Log out</Title>
+      <p className={css.subtitle}>Do you really want to leave?</p>
+      <div className={css.buttonWrapper}>
+        <Button className={css.deleteButton} onClick={handleLogOut}>
           Log Out
         </Button>
-        <Button className={styles.cancelButton} type="button" onClick={handleCancel}>
+        <Button className={css.cancelButton} onClick={handleCancel}>
           Cancel
         </Button>
       </div>
