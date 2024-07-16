@@ -1,17 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getUser, updateUser } from './operations';
-
-const initialState = {
-  user: {},
-  isLoading: false,
-  isError: false,
-};
+import { INITIAL_STATE } from '../constants';
 
 const handlePending = (state, action) => {
   state.error = false;
   state.loading = true;
 };
-
 const handleRejected = (state, action) => {
   state.loading = false;
   state.error = true;
@@ -23,7 +17,7 @@ const handleFulfilled = (state, action) => {
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: initialState,
+  initialState: INITIAL_STATE.user,
   extraReducers: builder => {
     builder
       .addCase(getUser.fulfilled, handleFulfilled)

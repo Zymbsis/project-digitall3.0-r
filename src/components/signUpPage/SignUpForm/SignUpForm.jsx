@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
-// import { register } from '../../../redux/auth/operations';
+import { register } from '../../../redux/auth/operations';
 
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import css from './SignUpForm.module.css';
 
 import { Icon, Logo } from '../../../shared';
@@ -22,7 +22,7 @@ const schema = yup.object({
 });
 
 const SignUpForm = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -37,7 +37,7 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    // dispatch(register({ email, password }));
+    dispatch(register({ email, password }));
     console.log({ email, password });
 
     reset();
