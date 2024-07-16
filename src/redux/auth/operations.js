@@ -5,7 +5,7 @@ const instance = axios.create({
   baseURL: 'https://aquatracker-node.onrender.com',
 });
 
-// instance.defaults.withCredentials = true;
+instance.defaults.withCredentials = true;
 
 const setToken = token => {
   instance.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -20,9 +20,9 @@ export const register = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       await instance.post('/users/register', credentials);
-      const response = await instance.post('/users/login', credentials);
-      setToken(response.data.data.accessToken);
-      return response.data;
+      const { data } = await instance.post('/users/login', credentials);
+      setToken(data.data.accessToken);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -33,9 +33,9 @@ export const logIn = createAsyncThunk(
   'auth/login',
   async (credentials, thunkAPI) => {
     try {
-      const response = await instance.post('/users/login', credentials);
-      setToken(response.data.data.accessToken);
-      return response.data;
+      const { data } = await instance.post('/users/login', credentials);
+      setToken(data.data.accessToken);
+      return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
     }
@@ -75,15 +75,13 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(persistedToken);
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
+    setToken(persistedToken);
     try {
-      setToken(persistedToken);
       const { data } = await instance.post('/users/refresh');
-
+      setToken(data.data.accessToken);
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

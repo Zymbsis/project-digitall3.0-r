@@ -20,6 +20,7 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.data.accessToken;
+        state.refreshToken = action.payload.data.refreshToken;
         state.isLoggedIn = true;
         state.loading = false;
       })
@@ -33,6 +34,7 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.user = action.payload;
+        state.token = action.payload.data.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
