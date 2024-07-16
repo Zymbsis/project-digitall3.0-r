@@ -27,7 +27,6 @@ const App = () => {
 
   return (
     <>
-      <WaterMainInfo />
       {isRefreshing ? (
         <Loader />
       ) : (

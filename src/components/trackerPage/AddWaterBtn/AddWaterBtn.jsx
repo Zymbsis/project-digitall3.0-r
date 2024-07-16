@@ -1,13 +1,14 @@
 import { Icon } from 'shared';
 import css from './AddWaterBtn.module.css';
 import { Button } from 'shared';
+import { useModal } from '../../../context';
+import WaterModal from '../../modal/WaterModal/WaterModal';
 // import clsx from 'clsx';
 
-// логіка на відкриття модалки
-
 const AddWaterBtn = () => {
+  const { openModal } = useModal();
   const handleClick = () => {
-    alert('Button clicked!');
+    openModal(<WaterModal type={'add'} />);
   };
 
   return (
