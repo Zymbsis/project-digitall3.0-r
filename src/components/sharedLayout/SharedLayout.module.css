@@ -1,0 +1,11 @@
+.mainContainer {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+}
+
+.mainContainer::-webkit-scrollbar {
+  display: none;
+}
