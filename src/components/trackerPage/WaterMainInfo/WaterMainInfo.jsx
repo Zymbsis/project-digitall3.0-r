@@ -9,7 +9,6 @@ const WaterMainInfo = () => {
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn />
-      <div className={css.imgWrapper}> </div>
     </div>
   );
 };
