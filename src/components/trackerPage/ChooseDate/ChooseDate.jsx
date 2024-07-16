@@ -1,8 +1,4 @@
-// import css from './ChooseDate.module.css'
-
 import css from './ChooseDate.module.css';
-
-// import React, { useEffect } from 'react';
 
 const ChooseDate = () => {
   return <h3 className={css.chooseDateTitle}>Today</h3>;

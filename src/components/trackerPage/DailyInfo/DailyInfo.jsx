@@ -4,13 +4,13 @@ import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
 import css from './DailyInfo.module.css';
 
-
 const DailyInfo = () => {
   return (
     <div className={css.dailyInfoContainer}>
-      <ChooseDate />
-
-      <AddWaterBtn />
+      <div className={css.wrapperTop}>
+        <ChooseDate />
+        <AddWaterBtn />
+      </div>
       <WaterList />
     </div>
   );

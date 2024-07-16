@@ -1,6 +1,0 @@
-.signUpContainer {
-  @media (min-width: 1440px) {
-    display: flex;
-    gap: 32px;
-  }
-}
