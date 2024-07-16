@@ -1,5 +1,3 @@
-
-
 import css from './WaterList.module.css';
 import WaterItem from '../WaterItem/WaterItem';
 
