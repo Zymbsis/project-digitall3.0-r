@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Container, Section } from 'shared';
 import { getUser } from '../../redux/user/operations';
 import { useModal } from '../../context';
@@ -17,33 +17,25 @@ const TrackerPage = () => {
   const { openModal } = useModal();
   return (
     <Section>
-      <Container className={css.container}>
-        <WaterMainInfo />
-
-        <div>
-          <WaterDetailedInfo />
-          {/* <Button
+      {/* <Button
           onClick={() => {
             dispatch(logOut());
           }}
         >
           Logout
         </Button> */}
-          <Button
-            onClick={() => {
-              dispatch(getUser());
-            }}
-          >
-            User
-          </Button>
-          <Button
-            onClick={() => {
-              openModal(<LogOutModal />);
-            }}
-          >
-            Logout
-          </Button>
-        </div>
+
+      <Button
+        onClick={() => {
+          openModal(<LogOutModal />);
+        }}
+      >
+        Logout
+      </Button>
+      <Container className={css.container}>
+        <WaterMainInfo />
+
+        <WaterDetailedInfo />
       </Container>
     </Section>
   );
