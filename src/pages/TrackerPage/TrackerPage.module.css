@@ -1,0 +1,4 @@
+.container {
+  background-color: var(--primary-light-grey-color);
+  border-radius: 30px;
+}

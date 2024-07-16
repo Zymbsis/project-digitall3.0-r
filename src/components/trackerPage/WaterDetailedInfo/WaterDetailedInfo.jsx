@@ -1,4 +1,4 @@
-// import css from './WaterDetailedInfo.module.css'
+// import css from './WaterDetailedInfo.module.css';
 
 import DailyInfo from '../DailyInfo/DailyInfo';
 import MonthInfo from '../MonthInfo/MonthInfo';
