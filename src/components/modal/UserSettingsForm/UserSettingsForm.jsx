@@ -1,68 +1,81 @@
-import { useState } from 'react'; //temporary,  waiting for redux
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { Button } from 'shared/index.js';
 import css from './UserSettingsForm.module.css';
 
-import { yupValidationSchema } from './serviceUserSettingsForm.js';
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
-
-const getInitialUserData = () => {
-  const userData = {
-    username: 'Nadia',
-    gender: 'female',
-    email: 'nadia10@gmail.com',
-    weight: 55,
-    activeHours: 1,
-    dailyNorma: 1.7,
-    avatarFile: false,
-  };
-  return userData;
-};
+import { yupValidationSchema } from '../serviceUserSettingsForm.js';
+// import { useModal } from 'context/modalContext.js';
 
 const UserSettingsForm = () => {
-  const [userData, setUserData] = useState(getInitialUserData); //temporary,  waiting for redux
+  // const { closeModal } = useModal();
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
     defaultValues: {
-      username: userData.username,
-      gender: userData.gender,
-      email: userData.email,
-      weight: userData.weight,
-      activeHours: userData.activeHours,
-      dailyNorma: userData.dailyNorma,
-      avatarFile: userData.avatarFile,
+      name: 'User',
+      gender: 'woman',
+      email: '',
+      weight: 0,
+      activeHours: 0,
+      dailyNorma: 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
+      avatar: '',
+      // avatar: 'https://i.pravatar.cc/300', //waiting for URL from redux
     },
   });
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
-    console.log('name, value: ', name, value);
-
-    userData[name] = value;
-    setUserData({ userData });
+    // console.log('name, value: ', name, value);
+    setValue(name, value);
   };
 
   const onSubmit = data => {
     console.log('Form data: ', data);
+
+    //object FofmData for sending to backend (as insisted by the project task)
+    // const formData = new FormData();
+
+    // for (const key in userData) {
+    //   if (data.hasOwnProperty(key)) {
+    //     console.log('key, value: ', key, data[key]);
+    //     formData.append(key, data[key]);
+    //   }
+    // }
+
+    //to check if data in FormData object is correct
+    // console.log('formData: ', formData);
+    // for (let [key, value] of formData.entries()) {
+    //   console.log(`${key}:`, value);
+    // }
+
+    //close modal
+
+    // closeModal();
+  };
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
   };
 
   return (
     <div className={css.modalSettingContent}>
-      <h2 className={css.settingTitle}>Setting</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
         <UserSettingsFormAvatar
           register={register}
           errors={errors}
-          userData={userData}
-          setUserData={setUserData}
+          setValue={setValue}
+          watch={watch}
         />
         <div className={css.toColumns}>
           <UserSettingsFormFirstColumn
@@ -73,7 +86,7 @@ const UserSettingsForm = () => {
           <UserSettingsFormSecondColumn
             register={register}
             errors={errors}
-            userData={userData}
+            watch={watch}
             handleFieldChange={handleFieldChange}
           />
         </div>

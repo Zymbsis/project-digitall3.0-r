@@ -15,7 +15,7 @@ const countNorma = userData => {
 const UserSettingsFormSecondColumn = ({
   register,
   errors,
-  userData,
+  watch,
   handleFieldChange,
 }) => {
   return (
@@ -27,6 +27,7 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="weight"
             autoComplete="off"
             {...register('weight')}
@@ -42,7 +43,11 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="activeHours"
+            step="1"
+            min="0"
+            max="12"
             autoComplete="off"
             {...register('activeHours')}
             onChange={handleFieldChange}
@@ -57,9 +62,7 @@ const UserSettingsFormSecondColumn = ({
           <p className={css.ordinaryText}>
             The required amount of water in liters per day: &nbsp;
           </p>
-          <span className={css.ordinaryTextGreen}>
-            {countNorma(userData)} L
-          </span>
+          <span className={css.ordinaryTextGreen}>{countNorma(watch())} L</span>
         </div>
         <div className={css.baseInput}>
           <label className={css.settingBoldTitle} htmlFor="dailyNorma">
@@ -67,9 +70,14 @@ const UserSettingsFormSecondColumn = ({
           </label>
           <input
             className={css.inputText}
+            type="number"
             id="dailyNorma"
+            step="0.1"
+            min="0"
+            max="10"
             autoComplete="off"
             {...register('dailyNorma')}
+            onChange={handleFieldChange}
           />
           {errors.dailyNorma && (
             <span className={css.yupAlert}>{errors.dailyNorma.message}</span>

@@ -14,45 +14,47 @@ const UserSettingsFormFirstColumn = ({
         <div className={css.genderRadioGroup}>
           <input
             type="radio"
-            id="female"
+            id="woman"
             name="gender"
-            value="female"
+            value="woman"
             autoComplete="off"
             hidden
             {...register('gender', { required: true })}
             onChange={handleFieldChange}
           />
-          <label htmlFor="female" className={css.radioStyle}>
+          <label htmlFor="woman" className={css.radioStyle}>
             Woman
           </label>
           <input
             type="radio"
-            id="male"
+            id="man"
             name="gender"
-            value="male"
+            value="man"
             autoComplete="off"
             hidden
             {...register('gender', { required: true })}
             onChange={handleFieldChange}
           />
-          <label htmlFor="male" className={css.radioStyle}>
+          <label htmlFor="man" className={css.radioStyle}>
             Man
           </label>
         </div>
       </div>
       <div className={css.dataBlock}>
         <div className={css.baseInput}>
-          <label className={css.settingBoldTitle} htmlFor="username">
+          <label className={css.settingBoldTitle} htmlFor="name">
             Your name
           </label>
           <input
             className={css.inputText}
-            id="username"
+            type="text"
+            id="name"
+            maxLength="40"
             autoComplete="off"
-            {...register('username')}
+            {...register('name')}
           />
-          {errors.username && (
-            <span className={css.yupAlert}>{errors.username.message}</span>
+          {errors.name && (
+            <span className={css.yupAlert}>{errors.name.message}</span>
           )}
         </div>
         <div className={css.baseInput}>
@@ -61,8 +63,9 @@ const UserSettingsFormFirstColumn = ({
           </label>
           <input
             className={css.inputText}
-            id="email"
             type="email"
+            id="email"
+            maxLength="40"
             autoComplete="off"
             {...register('email')}
           />

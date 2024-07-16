@@ -4,18 +4,23 @@ import avatarDefault from '../../../icons/avatar_default.png';
 
 import css from './UserSettingsForm.module.css';
 
-const UserSettingsFormAvatar = ({
-  register,
-  errors,
-  userData,
-  setUserData,
-}) => {
+const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   const handleFileChange = evt => {
     const file = evt.target.files[0];
 
     if (file) {
-      userData.avatarFile = file;
-      setUserData({ ...userData });
+      setValue('avatar', file);
+    }
+  };
+
+  const getSrcForAvatar = avatar => {
+    if (typeof avatar === 'string') {
+      if (avatar === '') {
+        return avatarDefault;
+      }
+      return avatar;
+    } else {
+      return URL.createObjectURL(avatar);
     }
   };
 
@@ -24,26 +29,22 @@ const UserSettingsFormAvatar = ({
       <div className={css.avatarThumb}>
         <img
           className={css.avatar}
-          src={
-            userData.avatarFile
-              ? URL.createObjectURL(userData.avatarFile)
-              : avatarDefault
-          }
-          alt="avatar"
+          src={getSrcForAvatar(watch('avatar'))}
+          alt="User avatar"
         />
-        <div className={css.fileUploadWrapper}>
+        <div>
           <input
-            id="avatarFile"
-            name="avatarFile"
+            id="avatar"
+            name="avatar"
             type="file"
             hidden
             accept=".jpg,.jpeg,.png,.gif"
-            {...register('avatarFile', { required: true })}
+            {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />
-          {errors.avatarFile && <span>This field is required</span>}
+          {errors.avatar && <span>Avatar image file is required</span>}
         </div>
-        <label htmlFor="avatarFile" className={css.uploadButton}>
+        <label htmlFor="avatar" className={css.uploadButton}>
           {<Icon className={css.uploadIcon} iconId="icon-upload" />}Upload a
           photo
         </label>
