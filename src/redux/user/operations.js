@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { instance } from '../auth/operations';
+import { AXIOS_INSTANCE } from '../constants';
 
 export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
   try {
@@ -16,7 +16,17 @@ export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
           createdAt,
         },
       },
-    } = await instance.get('/users/current');
+    } = await AXIOS_INSTANCE.get('/users/current');
+    console.log({
+      email,
+      name,
+      gender,
+      dailyNorma,
+      activeHours,
+      weight,
+      avatar,
+      createdAt,
+    });
 
     return {
       email,
@@ -50,7 +60,7 @@ export const updateUser = createAsyncThunk(
             createdAt,
           },
         },
-      } = await instance.patch('/users/update', payload);
+      } = await AXIOS_INSTANCE.patch('/users/update', payload);
       return {
         email,
         name,
