@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Container, Section } from 'shared';
 import { getUser } from '../../redux/user/operations';
 import { useModal } from '../../context';
