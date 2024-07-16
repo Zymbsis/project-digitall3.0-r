@@ -1,3 +1,4 @@
+import { WaterMainInfo, WaterDetailedInfo } from 'components';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Container, Section } from 'shared';
 import { logOut } from '../../redux/auth/operations';
@@ -12,21 +13,10 @@ const TrackerPage = () => {
 
   return (
     <Section>
-      <Container>Welcome to TrackerPage</Container>
-      <Button
-        onClick={() => {
-          dispatch(logOut());
-        }}
-      >
-        Logout
-      </Button>
-      <Button
-        onClick={() => {
-          dispatch(getUser());
-        }}
-      >
-        User
-      </Button>
+      <Container>
+        <WaterMainInfo />
+        <WaterDetailedInfo />
+      </Container>
     </Section>
   );
 };
