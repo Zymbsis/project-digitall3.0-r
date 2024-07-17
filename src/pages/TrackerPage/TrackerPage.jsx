@@ -16,7 +16,7 @@ const TrackerPage = () => {
 
   return (
     <Section>
-      <Container>
+      <Container className={css.container}>
         <WaterMainInfo />
         <WaterDetailedInfo />
       </Container>

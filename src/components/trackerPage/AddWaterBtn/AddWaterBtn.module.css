@@ -1,4 +1,4 @@
-/* .addWaterBtn {
+.addWaterBtn {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -37,9 +37,9 @@
 
 .addWaterBtn:hover .iconPlus {
   --color1: var(--primary-white-color);
-} */
+}
 
-.btn {
+/* .btn {
   position: absolute;
   right: 16px;
   bottom: 32px;
@@ -102,4 +102,4 @@
 .btn:hover .boldtext,
 .btn:focus .boldtext {
   color: var(--hover-green-color);
-}
+} */
