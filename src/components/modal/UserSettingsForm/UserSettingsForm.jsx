@@ -1,6 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
+import { selectCurrentUser } from '../../../redux/user/selectors.js';
+import { getUser } from '../../../redux/user/operations.js';
 import { Button } from 'shared/index.js';
 import css from './UserSettingsForm.module.css';
 
@@ -8,10 +11,14 @@ import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 import { yupValidationSchema } from '../serviceUserSettingsForm.js';
+
 // import { useModal } from 'context/modalContext.js';
 
 const UserSettingsForm = () => {
   // const { closeModal } = useModal();
+  const dispatch = useDispatch();
+  const user = useSelector(selectCurrentUser);
+
   const {
     register,
     handleSubmit,
@@ -20,17 +27,26 @@ const UserSettingsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
+    mode: 'onBlur',
     defaultValues: {
-      name: 'User',
-      gender: 'woman',
-      email: '',
-      weight: 0,
-      activeHours: 0,
-      dailyNorma: 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
-      avatar: '',
-      // avatar: 'https://i.pravatar.cc/300', //waiting for URL from redux
+      name: user.name,
+      gender: user.gender,
+      email: user.email,
+      weight: user.weight,
+      activeHours: user.activeHours,
+      dailyNorma: user.dailyNorma ? user.dailyNorma / 1000 : 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
+      avatar: user.avatar,
+      // avatar: 'https://i.pravatar.cc/300',
     },
   });
+
+  // if user is empty, get her/him from backend
+  if (!user.hasOwnProperty('email')) {
+    console.log('user is empty! go dispatch etUser()');
+    dispatch(getUser());
+    return;
+  }
+  console.log('user in settings: ', user);
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;

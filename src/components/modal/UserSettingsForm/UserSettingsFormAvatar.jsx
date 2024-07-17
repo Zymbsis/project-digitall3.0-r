@@ -14,14 +14,23 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   };
 
   const getSrcForAvatar = avatar => {
+    console.log(
+      'avatar before src -  typeof: ',
+      typeof avatar,
+      ', avdata:',
+      avatar
+    );
     if (typeof avatar === 'string') {
-      if (avatar === '') {
-        return avatarDefault;
+      console.log('avatar length: ', avatar.length);
+      if (avatar.length !== 0) {
+        return avatar;
       }
-      return avatar;
-    } else {
-      return URL.createObjectURL(avatar);
+    } else if (typeof avatar === 'object') {
+      if (avatar.length !== 0) {
+        return URL.createObjectURL(avatar);
+      }
     }
+    return avatarDefault;
   };
 
   return (
@@ -37,8 +46,8 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
             id="avatar"
             name="avatar"
             type="file"
+            accept="image/*"
             hidden
-            accept=".jpg,.jpeg,.png,.gif"
             {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />

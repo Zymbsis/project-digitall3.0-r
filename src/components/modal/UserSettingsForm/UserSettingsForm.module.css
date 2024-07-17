@@ -15,8 +15,15 @@
 }
 
 .yupAlert {
-  font-weight: bold;
-  color: red;
+  color: var(--error-red-color);
+}
+
+.yupAlertBorder {
+  border: 1px solid var(--error-red-color);
+}
+
+.baseBorder {
+  border: 1px solid rgba(47, 47, 47, 0.15);
 }
 
 .toColumns {
@@ -199,7 +206,7 @@ input[type='radio']:checked + label::after {
   /* font-size: 14px; */
   line-height: 18px;
   letter-spacing: -0.14px;
-  border: 1px solid rgba(47, 47, 47, 0.15);
+  /* border: 1px solid rgba(47, 47, 47, 0.15); */
   border-radius: 15px;
 
   @media screen and (min-width: 768px) {

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import css from './UserSettingsForm.module.css';
 
 const countNorma = userData => {
@@ -26,7 +27,10 @@ const UserSettingsFormSecondColumn = ({
             Your weight in kilograms:
           </label>
           <input
-            className={css.inputText}
+            className={clsx(
+              css.inputText,
+              errors.weight ? css.yupAlertBorder : css.baseBorder
+            )}
             type="number"
             id="weight"
             autoComplete="off"
@@ -42,7 +46,10 @@ const UserSettingsFormSecondColumn = ({
             The time of active participation in sports:
           </label>
           <input
-            className={css.inputText}
+            className={clsx(
+              css.inputText,
+              errors.activeHours ? css.yupAlertBorder : css.baseBorder
+            )}
             type="number"
             id="activeHours"
             step="1"
@@ -69,7 +76,10 @@ const UserSettingsFormSecondColumn = ({
             Write down how much water you will drink:
           </label>
           <input
-            className={css.inputText}
+            className={clsx(
+              css.inputText,
+              errors.dailyNorma ? css.yupAlertBorder : css.baseBorder
+            )}
             type="number"
             id="dailyNorma"
             step="0.1"
