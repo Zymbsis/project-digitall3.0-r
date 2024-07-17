@@ -9,12 +9,18 @@ AXIOS_INSTANCE.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
-    console.log('originalRequest =', originalRequest);
-    if (error.response.status === 401 && !originalRequest._retry) {
+
+    console.log('originalRequest', originalRequest);
+
+    if (
+      error.response.status === 401 &&
+      // error.response.data.data.message === '' &&
+      !originalRequest._retry
+    ) {
       originalRequest._retry = true;
       console.log(error.response.data.data.message);
+
       try {
-        console.log('try in interceptor');
         const response = await axios.post(
           'https://aquatracker-node.onrender.com/users/refresh',
           null,
@@ -22,7 +28,11 @@ AXIOS_INSTANCE.interceptors.response.use(
         );
         const { accessToken } = response.data.data;
 
-        setToken(accessToken);
+        if (accessToken) {
+          AXIOS_INSTANCE.defaults.headers.common[
+            'Authorization'
+          ] = `Bearer ${accessToken}`;
+        }
         return AXIOS_INSTANCE(originalRequest);
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
@@ -86,7 +96,6 @@ export const refreshUser = createAsyncThunk(
     const persistedAccessToken = state.auth.token;
 
     if (persistedAccessToken === null) {
-      console.log('if token === null in refreshUser thunk');
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
 
