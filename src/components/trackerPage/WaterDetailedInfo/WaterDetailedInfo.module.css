@@ -1,3 +1,21 @@
+.wrapper {
+  border-radius: 30px;
+  background: var(--primary-light-grey-color);
+  padding: 40px 0 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media (min-width:768px) {
+    padding: 32px;
+  }
+
+  @media (min-width:1440px) {
+    height: 736px;
+    width: calc((100% - 32px) /2);
+  }
+}
+
 /* DeleteWaterModal.css */
 /* .modal-overlay {
   position: fixed;
@@ -57,20 +75,3 @@
   font-size: 14px;
   margin-bottom: 16px;
 } */
-.wrapper {
-  border-radius: 30px;
-  background: var(--primary-light-grey-color);
-  padding: 40px 0 40px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-
-  @media (min-width:768px) {
-    padding: 32px;
-  }
-
-  @media (min-width:1440px) {
-    height: 736px;
-    width: calc((100% - 32px) /2);
-  }
-}
