@@ -33,6 +33,7 @@ const TrackerPage = () => {
       >
         Logout
       </Button>
+
       <Button
         onClick={() => {
           openModal(<UserSettingsForm />);
