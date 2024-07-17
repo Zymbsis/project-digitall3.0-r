@@ -4,13 +4,14 @@ import Icon from 'shared/components/Icon/Icon';
 import WaterModal from 'components/modal/WaterModal/WaterModal';
 import DeleteWaterModal from 'components/modal/DeleteWaterModal/DeleteWaterModal';
 
-const WaterItem = ({ water }) => {
+const WaterItem = ({ item }) => {
   const { openModal } = useModal();
-  const handleClickDelete = () => {
-    openModal(<DeleteWaterModal type={'add'} />);
+
+  const onDelete = id => {
+    openModal(<DeleteWaterModal _id={item._id} />);
   };
-  const handleClickEdit = () => {
-    openModal(<WaterModal type={'add'} />);
+  const onEdit = () => {
+    openModal(<WaterModal type={'edit'} />);
   };
 
   const convertTime = time => {
@@ -22,13 +23,13 @@ const WaterItem = ({ water }) => {
     return `${hours}:${minutes} ${period}`;
   };
 
-  const formattedTime = convertTime(water.time);
+  const formattedTime = convertTime(item.time);
 
   return (
     <div className={css.waterItem}>
       <Icon iconId="icon-Vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
-        <p className={css.waterItemMl}>{`${water.volume} ml`}</p>
+        <p className={css.waterItemMl}>{`${item.volume} ml`}</p>
         <p className={css.waterItemData}>{formattedTime}</p>
       </div>
       <div className={css.waterItemBtnWrap}>
@@ -36,14 +37,14 @@ const WaterItem = ({ water }) => {
           <Icon
             iconId="icon-edit-2"
             className={css.waterIconBtn}
-            onClick={handleClickEdit}
+            onClick={() => onEdit(item._id)}
           />
         </button>
         <button type="button" className={css.waterItemBtn}>
           <Icon
             iconId="icon-trash-04"
             className={css.waterIconBtn}
-            onClick={handleClickDelete}
+            onClick={() => onDelete(item._id)}
           />
         </button>
       </div>
