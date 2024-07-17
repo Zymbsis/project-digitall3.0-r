@@ -14,27 +14,10 @@ const TrackerPage = () => {
     dispatch(getUser());
   }, [dispatch]);
 
-  const { openModal } = useModal();
   return (
     <Section>
-      {/* <Button
-          onClick={() => {
-            dispatch(logOut());
-          }}
-        >
-          Logout
-        </Button> */}
-
-      <Button
-        onClick={() => {
-          openModal(<LogOutModal />);
-        }}
-      >
-        Logout
-      </Button>
       <Container className={css.container}>
         <WaterMainInfo />
-
         <WaterDetailedInfo />
       </Container>
     </Section>
