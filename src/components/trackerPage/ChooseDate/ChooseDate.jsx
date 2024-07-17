@@ -1,10 +1,24 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ChooseDate.module.css';
-import { selectSelectedDate } from '../../../redux/water/selectors';
-import { useEffect } from 'react';
-import { getInfoByDay } from '../../../redux/water/operations';
+// import { selectSelectedDate } from '../../../redux/water/selectors';  by author
 
+// import { selectCurrentDate } from '../../../redux/water/selectors'; // by me for waterSlice Selector
+
+// import { selectSelectedDate } from '../../../redux/date/selectors'; // by me for dateSlice Selector
+
+import { useEffect } from 'react';
+import { selectSelectedDate } from '../../../redux/date/selectors';
+import { getInfoByDay } from '../../../redux/date/operations';
+
+// maybe need to fix
 const ChooseDate = () => {
+  // const selectedDate = useSelector(selectSelectedDate);  by author
+
+  // by me
+  // from waterSlice
+  // const selectedDate = useSelector(selectCurrentDate)
+
+  // from dateSlice
   const selectedDate = useSelector(selectSelectedDate);
 
   let date;

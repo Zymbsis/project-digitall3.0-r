@@ -14,6 +14,7 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { dateReducer } from '../redux/date/slice.js';
 
 const authPersistConfig = {
   key: 'authSlice',
@@ -28,6 +29,7 @@ export const store = configureStore({
     auth: persistedAuthReducer,
     water: waterReducer,
     user: userReducer,
+    date: dateReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

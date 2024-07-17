@@ -2,8 +2,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './WaterProgressBar.module.css';
 import Slider from '@mui/material/Slider';
 import { useEffect } from 'react';
-import { getInfoByDay } from '../../../redux/water/operations.js';
 import { selectDailyIntake } from '../../../redux/water/selectors.js';
+import { getInfoByDay } from '../../../redux/date/operations';
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();

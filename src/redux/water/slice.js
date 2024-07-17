@@ -2,7 +2,6 @@ import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   addWaterIntake,
   deleteWaterIntake,
-  getInfoByDay,
   getInfoByMonth,
   updateWaterIntake,
 } from './operations';
@@ -12,8 +11,8 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: INITIAL_STATE.water,
   reducers: {
-    setSelectedDate: (state, action) => {
-      state.selectedDate = action.payload;
+    setcurrentDate: (state, action) => {
+      state.currentDate = action.payload;
     },
   },
   extraReducers: builder => {
@@ -34,10 +33,7 @@ const waterSlice = createSlice({
           item => item._id !== action.payload
         );
       })
-      .addCase(getInfoByDay.fulfilled, (state, action) => {
-        state.loading = false;
-        state.dailyIntake = action.payload;
-      })
+
       .addCase(getInfoByMonth.fulfilled, (state, action) => {
         state.loading = false;
         state.monthlyStats = action.payload;
@@ -47,7 +43,6 @@ const waterSlice = createSlice({
           addWaterIntake.pending,
           updateWaterIntake.pending,
           deleteWaterIntake.pending,
-          getInfoByDay.pending,
           getInfoByMonth.pending
         ),
         state => {
@@ -60,7 +55,6 @@ const waterSlice = createSlice({
           addWaterIntake.rejected,
           updateWaterIntake.rejected,
           deleteWaterIntake.rejected,
-          getInfoByDay.rejected,
           getInfoByMonth.rejected
         ),
         (state, action) => {
@@ -70,5 +64,5 @@ const waterSlice = createSlice({
       );
   },
 });
-export const { setSelectedDate } = waterSlice.actions;
+export const { setcurrentDate } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

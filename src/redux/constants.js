@@ -12,7 +12,14 @@ export const INITIAL_STATE = {
   water: {
     dailyIntake: [],
     monthlyStats: [],
+    currentDate: null,
+    loading: false,
+    error: null,
+  },
+  date: {
     selectedDate: null,
+    selectedDateInfo: [],
+    completionRate: null,
     loading: false,
     error: null,
   },

@@ -50,19 +50,6 @@ export const deleteWaterIntake = createAsyncThunk(
   // Example: deleteWaterIntake('669659783a9e3788a6f21a13')
 );
 
-export const getInfoByDay = createAsyncThunk(
-  'water/getInfoByDay',
-  async (date, { rejectWithValue }) => {
-    try {
-      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
-  }
-  // Example: getInfoByDay('2024-07-02')
-);
-
 export const getInfoByMonth = createAsyncThunk(
   'water/getInfoByMonth',
   async (month, { rejectWithValue }) => {
