@@ -3,6 +3,7 @@ import WaterItem from '../WaterItem/WaterItem';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   selectInfoBySelectedDay,
+  selectInfoByToday,
   selectSelectedDate,
 } from '../../../redux/water/selectors';
 import { useEffect } from 'react';
@@ -14,7 +15,7 @@ import {
 const WaterList = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
-  const { portions: todayPortions } = useSelector(selectInfoBySelectedDay);
+  const { portions: todayPortions } = useSelector(selectInfoByToday);
   const { portions: selectedDayPortions } = useSelector(
     selectInfoBySelectedDay
   );

@@ -13,7 +13,7 @@ export const INITIAL_STATE = {
     infoByToday: [],
     infoBySelectedDay: [],
     infoByMonth: [],
-    selectedDate: '2024-07-01',
+    selectedDate: null,
     loading: false,
     error: null,
   },
