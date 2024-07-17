@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { selectCurrentUser } from '../../../redux/user/selectors.js';
-import { getUser } from '../../../redux/user/operations.js';
+import { getUser, updateUser } from '../../../redux/user/operations.js';
 import { Button } from 'shared/index.js';
 import css from './UserSettingsForm.module.css';
 
@@ -27,7 +27,7 @@ const UserSettingsForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       name: user.name,
       gender: user.gender,
@@ -42,36 +42,59 @@ const UserSettingsForm = () => {
 
   // if user is empty, get her/him from backend
   if (!user.hasOwnProperty('email')) {
-    console.log('user is empty! go dispatch etUser()');
+    // console.log('user is empty! go dispatch etUser()');
     dispatch(getUser());
     return;
   }
-  console.log('user in settings: ', user);
+
+  // const testUset = watch();
+  // console.log('testUset: ', testUset);
+
+  // console.log('user in settings: ', user);
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
     // console.log('name, value: ', name, value);
+    if (name === 'dailyNorma') {
+      const newValue = value.replace(',', '.');
+      setValue(name, newValue);
+      return;
+    }
+    if (['weight ', 'activeHours', 'dailyNorma'].includes(name)) {
+      setValue(name, Number(value));
+      return;
+    }
+
     setValue(name, value);
   };
 
   const onSubmit = data => {
+    delete data.avatar;
+    data.dailyNorma = data.dailyNorma * 1000;
+
     console.log('Form data: ', data);
 
     //object FofmData for sending to backend (as insisted by the project task)
-    // const formData = new FormData();
+    const formData = new FormData();
 
-    // for (const key in userData) {
-    //   if (data.hasOwnProperty(key)) {
-    //     console.log('key, value: ', key, data[key]);
-    //     formData.append(key, data[key]);
-    //   }
-    // }
+    for (const key in data) {
+      if (data.hasOwnProperty(key)) {
+        if (key === 'avatar') {
+          continue;
+        }
+        // console.log('key, value: ', key, data[key]);
+
+        formData.append(key, data[key]);
+      }
+    }
 
     //to check if data in FormData object is correct
     // console.log('formData: ', formData);
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
+
+    dispatch(updateUser(data));
 
     //close modal
 
@@ -86,7 +109,11 @@ const UserSettingsForm = () => {
 
   return (
     <div className={css.modalSettingContent}>
-      <form onSubmit={handleSubmit(onSubmit)} onKeyDown={handleKeyDown}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        onKeyDown={handleKeyDown}
+        noValidate
+      >
         <UserSettingsFormAvatar
           register={register}
           errors={errors}
