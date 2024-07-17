@@ -19,6 +19,7 @@ const WaterProgressBar = () => {
   const today = new Date().toISOString().split('T')[0];
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
+  const invisMarkWater = [0, 50, 100];
   const marks = [
     {
       value: percentOfWater,
@@ -33,7 +34,18 @@ const WaterProgressBar = () => {
   return (
     <div className={css.thumb}>
       <p className={css.boldText}>Today</p>
-      <Slider className={css.slider} value={percentOfWater} marks={marks} />
+      <Slider
+        className={css.slider}
+        value={percentOfWater}
+        marks={marks}
+        sx={{
+          '& .MuiSlider-markLabel': {
+            visibility: invisMarkWater.includes(percentOfWater)
+              ? 'hidden'
+              : 'visible',
+          },
+        }}
+      />
       <ul className={css.scale}>
         <li className={css.normalText}>0%</li>
         <li className={css.normalText}>50%</li>
