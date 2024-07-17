@@ -1,4 +1,3 @@
-import React from 'react';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
@@ -17,3 +16,4 @@ const DailyInfo = () => {
 };
 
 export default DailyInfo;
+

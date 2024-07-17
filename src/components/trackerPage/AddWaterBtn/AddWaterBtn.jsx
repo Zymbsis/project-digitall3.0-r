@@ -1,9 +1,18 @@
+import React, { useState } from 'react';
 import { Icon } from 'shared';
 import css from './AddWaterBtn.module.css';
+// import Modal from 'components/Modal/Modal.jsx';
+
 
 const AddWaterBtn = ({ addWater }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const handleClick = () => {
-    addWater();
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   return (
