@@ -6,7 +6,6 @@ import { useEffect } from 'react';
 import { selectDailyIntake } from '../../../redux/water/selectors.js';
 // by me
 // import { selectCompletionRate } from '../../../redux/date/selectors.js';
-
 import { getInfoByDay } from '../../../redux/date/operations';
 
 const WaterProgressBar = () => {
@@ -15,7 +14,7 @@ const WaterProgressBar = () => {
   const { completionRate } = useSelector(selectDailyIntake);
 
   // by me
-  // const completionRate =  useSelector(selectCompletionRate)
+  // const completionRate = useSelector(selectCompletionRate);
 
   const today = new Date().toISOString().split('T')[0];
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;

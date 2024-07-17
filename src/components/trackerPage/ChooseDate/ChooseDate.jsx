@@ -31,7 +31,7 @@ const ChooseDate = () => {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getInfoByDay('2024-07-01'));
+    dispatch(getInfoByDay('2024-07-16'));
   }, [dispatch]);
 
   return (
