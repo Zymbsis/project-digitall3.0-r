@@ -8,7 +8,7 @@ const WaterMainInfo = () => {
     <div className={css.container}>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn />
+      <AddWaterBtn className="waterMainInfoStyles" />
     </div>
   );
 };

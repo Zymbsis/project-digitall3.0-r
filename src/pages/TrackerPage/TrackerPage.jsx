@@ -14,7 +14,6 @@ const TrackerPage = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
   const { openModal } = useModal();
   return (
     <Section>
@@ -43,7 +42,6 @@ const TrackerPage = () => {
       </Button>
       <Container className={css.container}>
         <WaterMainInfo />
-
         <WaterDetailedInfo />
       </Container>
     </Section>
