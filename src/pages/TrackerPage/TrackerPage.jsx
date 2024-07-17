@@ -13,9 +13,16 @@ const TrackerPage = () => {
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-
+  const { openModal } = useModal();
   return (
     <Section>
+      <Button
+        onClick={() => {
+          openModal(<LogOutModal />);
+        }}
+      >
+        Log Out
+      </Button>
       <Container className={css.container}>
         <WaterMainInfo />
         <WaterDetailedInfo />
