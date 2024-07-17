@@ -1,13 +1,13 @@
 import css from './WaterItem.module.css';
 import Icon from 'shared/components/Icon/Icon';
 
-const WaterItem = () => {
+const WaterItem = ({ item }) => {
   return (
     <div className={css.waterItem}>
       <Icon iconId="icon-Vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
-        <p className={css.waterItemMl}>250 ml</p>
-        <p className={css.waterItemData}>data</p>
+        <p className={css.waterItemMl}>{`${item.volume} ml`}</p>
+        <p className={css.waterItemData}>{item.time}</p>
       </div>
       <div className={css.waterItemBtnWrap}>
         <button type="button" className={css.waterItemBtn}>

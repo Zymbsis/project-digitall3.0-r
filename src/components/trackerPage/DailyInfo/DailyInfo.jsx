@@ -9,7 +9,7 @@ const DailyInfo = () => {
     <div className={css.dailyInfoContainer}>
       <div className={css.wrapperTop}>
         <ChooseDate />
-        <AddWaterBtn />
+        <AddWaterBtn className="dailyInfoStyles" />
       </div>
       <WaterList />
     </div>
