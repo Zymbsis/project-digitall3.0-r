@@ -9,8 +9,8 @@ const WaterProgressBar = () => {
   const dispatch = useDispatch();
   const { completionRate } = useSelector(selectDailyIntake);
   const today = new Date().toISOString().split('T')[0];
-  const percentOfWater = Math.round(completionRate * 100);
-  // const visibleMarkWater = [0, 50, 100];
+  const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
+
   const marks = [
     {
       value: percentOfWater,
@@ -22,37 +22,14 @@ const WaterProgressBar = () => {
     dispatch(getInfoByDay(today));
   }, [dispatch, today]);
 
-  const day = 'Today';
-  // const percentOfWater = 23;
-  // const invisMarkWater = [0, 50, 100];
-
-  // const marks = [
-  //   {
-  //     value: percentOfWater,
-  //     label: `${percentOfWater}%`,
-  //     // label: `${percentOfWater}`,
-  //   },
-  // ];
-
   return (
     <div className={css.thumb}>
-      <p className={css.boldtext}>{day}</p>
-      <Slider
-        className={css.slider}
-        value={percentOfWater}
-        marks={marks}
-        // sx={{
-        //   '& .MuiSlider-markLabel': {
-        //     visibility: invisMarkWater.includes(persentOfWater)
-        //       ? 'hidden'
-        //       : 'visible',
-        //   },
-        // }}
-      />
+      <p className={css.boldText}>Today</p>
+      <Slider className={css.slider} value={percentOfWater} marks={marks} />
       <ul className={css.scale}>
-        <li className={css.normaltext}>0%</li>
-        <li className={css.normaltext}>50%</li>
-        <li className={css.normaltext}>100%</li>
+        <li className={css.normalText}>0%</li>
+        <li className={css.normalText}>50%</li>
+        <li className={css.normalText}>100%</li>
       </ul>
     </div>
   );
