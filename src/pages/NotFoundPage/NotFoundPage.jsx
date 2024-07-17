@@ -20,7 +20,7 @@ const NotFoundPage = () => {
   }
 
   return (
-    <Section>
+    <Section className={css.section}>
       <Container className={css.container}>
         <div className={css.wrapper}>
           <p className={css.status}>404</p>

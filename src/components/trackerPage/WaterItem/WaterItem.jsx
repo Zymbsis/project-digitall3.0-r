@@ -1,5 +1,3 @@
-// import css from './WaterItem.module.css'
-
 import css from './WaterItem.module.css';
 import Icon from 'shared/components/Icon/Icon';
 
