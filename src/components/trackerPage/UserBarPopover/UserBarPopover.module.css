@@ -1,18 +1,19 @@
 .userBarPopover {
-  position: absolute;
-  top: 100%;
-  right: 0;
+  /* position: absolute; */
+  /* top: 100%; */
+  /* right: 0; */
   background-color: white;
   border: 1px solid #ddd;
   border-radius: 5px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 10px;
-  z-index: 1000;
+  z-index: 10;
+  position: relative;
 }
 
 .settingsButton,
 .logoutButton {
-    background-color: transparent;
+  background-color: transparent;
   display: flex;
   align-items: center;
   background: none;

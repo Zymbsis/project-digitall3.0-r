@@ -1,35 +1,46 @@
 import css from './UserBar.module.css';
 import { useState, useRef, useEffect } from 'react';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
-import { Button } from 'shared';
+import { Button, Icon } from 'shared';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/user/selectors';
+import clsx from 'clsx';
 
 const UserBar = () => {
   const { name, avatar } = useSelector(selectCurrentUser);
-
   const [isOpen, setIsOpen] = useState(false);
+
   const popoverRef = useRef();
-  const handleTogglePopover = () => {
+  const handleClosePopover = () => {
     setIsOpen(!isOpen);
   };
-  const handleOutsideClick = e => {
-    if (popoverRef.current && !popoverRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
-  };
-  useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
+  // const handleTogglePopover = () => {
+  //   setIsOpen(!isOpen);
+  // };
+  // const handleOutsideClick = e => {
+  //   if (popoverRef.current && !popoverRef.current.contains(e.target)) {
+  //     setIsOpen(false);
+  //   }
+  // };
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleOutsideClick);
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleOutsideClick);
+  //   };
+  // }, []);
   return (
     <div className={css.userBarContainer}>
-      <Button className={css.userBarButton} onClick={handleTogglePopover}>
-        <span className={css.UserName}>{name}</span>
+      <div className={css.userBarWrapper}>
+        <span className={css.userName}>{name}</span>
         <img src={avatar} alt="User Avatar" className={css.avatar} />
-      </Button>
+        <button
+          className={clsx(css.userBarButton, { [css.openPopover]: isOpen })}
+          onClick={handleClosePopover}
+          type="button"
+        >
+          <Icon iconId="icon-chevron-down" className={css.userBarIcon} />
+        </button>
+      </div>
       {isOpen && <UserBarPopover ref={popoverRef} />}
     </div>
   );
