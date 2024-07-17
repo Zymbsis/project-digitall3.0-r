@@ -4,7 +4,7 @@ import { selectCurrentUser } from '../../../redux/user/selectors';
 
 const WaterDailyNorma = () => {
   const { dailyNorma } = useSelector(selectCurrentUser);
-  const dayNorma = Math.round((dailyNorma / 1000) * 100) / 100;
+  const dayNorma = dailyNorma ? Math.round((dailyNorma / 1000) * 100) / 100 : 0;
   // Не скорочуй вираз) Ми множимо на 100, а потім ділимо на 100, щоб округлити до двох знаків після коми)
   return (
     <div className={css.thumb}>

@@ -1,5 +1,5 @@
 .container {
-  @media (max-width:1439.98px) {
+  @media (max-width: 1439.98px) {
     display: flex;
     flex-direction: column;
     gap: 16px;
