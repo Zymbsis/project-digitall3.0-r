@@ -10,7 +10,7 @@ const WaterMainInfo = () => {
       <Logo />
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn />
+      <AddWaterBtn className="waterMainInfoStyles" />
     </div>
   );
 };
