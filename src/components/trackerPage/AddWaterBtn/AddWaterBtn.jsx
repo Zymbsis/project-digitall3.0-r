@@ -3,7 +3,7 @@ import css from './AddWaterBtn.module.css';
 import { useModal } from '../../../context';
 import WaterModal from '../../modal/WaterModal/WaterModal';
 
-const AddWaterBtn = ({ addWater }) => {
+const AddWaterBtn = () => {
   const { openModal } = useModal();
   const handleClick = () => {
     openModal(<WaterModal type={'add'} />);
