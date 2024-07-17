@@ -1,6 +1,7 @@
 .userBarContainer {
   height: 50px;
   width: fit-content;
+  position: relative;
 
   @media (min-width:768px) {
     height: 56px;
