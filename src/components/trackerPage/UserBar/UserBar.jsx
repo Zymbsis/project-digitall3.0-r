@@ -1,7 +1,7 @@
 import css from './UserBar.module.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import UserBarPopover from '../UserBarPopover/UserBarPopover';
-import { Button, Icon } from 'shared';
+import { Icon } from 'shared';
 import { useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/user/selectors';
 import clsx from 'clsx';
@@ -9,37 +9,38 @@ import clsx from 'clsx';
 const UserBar = () => {
   const { name, avatar } = useSelector(selectCurrentUser);
   const [isOpen, setIsOpen] = useState(false);
+  const buttonRef = useRef(null);
 
-  const popoverRef = useRef();
-  const handleClosePopover = () => {
+  const handleTogglePopover = () => {
     setIsOpen(!isOpen);
   };
-
-  const handleOutsideClick = e => {
-    if (popoverRef.current && !popoverRef.current.contains(e.target)) {
-      setIsOpen(false);
-    }
+  const handleClosePopover = () => {
+    setIsOpen(false);
   };
-  useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick);
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
+  const restrictionClick = e => {
+    return buttonRef.current && buttonRef.current.contains(e.target);
+  };
+
   return (
     <div className={css.userBarContainer}>
       <div className={css.userBarWrapper}>
         <span className={css.userName}>{name}</span>
         <img src={avatar} alt="User Avatar" className={css.avatar} />
         <button
+          ref={buttonRef}
           className={clsx(css.userBarButton, { [css.openPopover]: isOpen })}
-          onClick={handleClosePopover}
+          onClick={handleTogglePopover}
           type="button"
         >
           <Icon iconId="icon-chevron-down" className={css.userBarIcon} />
         </button>
       </div>
-      {isOpen && <UserBarPopover ref={popoverRef} />}
+
+      <UserBarPopover
+        closePopover={handleClosePopover}
+        restrictionClick={restrictionClick}
+        isOpen={isOpen}
+      />
     </div>
   );
 };
