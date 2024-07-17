@@ -21,6 +21,5 @@ export const INITIAL_STATE = {
 
 export const AXIOS_INSTANCE = axios.create({
   baseURL: 'https://aquatracker-node.onrender.com',
+  withCredentials: true,
 });
-
-AXIOS_INSTANCE.defaults.withCredentials = true;

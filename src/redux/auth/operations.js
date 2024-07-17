@@ -3,37 +3,26 @@ import { AXIOS_INSTANCE } from '../constants';
 import axios from 'axios';
 
 // ------------------------------------------
-// const AXIOS_INSTANCE = axios.create({
-//   baseURL: 'https://aquatracker-node.onrender.com',
-//   withCredentials: true,
-// headers: {
-//   'Content-Type': 'application/json',
-// },
-// });
 
 // #################
 AXIOS_INSTANCE.interceptors.response.use(
   response => response,
   async error => {
     const originalRequest = error.config;
+    console.log('originalRequest =', originalRequest);
     if (error.response.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
       console.log(error.response.data.data.message);
       try {
+        console.log('try in interceptor');
         const response = await axios.post(
           'https://aquatracker-node.onrender.com/users/refresh',
-          {},
-          {
-            withCredentials: true,
-          }
+          null,
+          { withCredentials: true }
         );
-        const { accessToken } = response.data;
-        console.log(accessToken);
+        const { accessToken } = response.data.data;
 
-        AXIOS_INSTANCE.defaults.headers.common[
-          'Authorization'
-        ] = `Bearer ${accessToken}`;
-
+        setToken(accessToken);
         return AXIOS_INSTANCE(originalRequest);
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);
@@ -73,7 +62,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
-      // console.log(data.data.accessToken);
       setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
@@ -94,14 +82,20 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    // const state = thunkAPI.getState();
-    // const persistedToken = state.auth.token;
-    // if (persistedToken === null) {
-    //   return thunkAPI.rejectWithValue('Unable to fetch user');
-    // }
-    // setToken(persistedToken);
+    const state = thunkAPI.getState();
+    const persistedAccessToken = state.auth.token;
+
+    if (persistedAccessToken === null) {
+      console.log('if token === null in refreshUser thunk');
+      return thunkAPI.rejectWithValue('Unable to fetch user');
+    }
+
     try {
-      const { data } = await AXIOS_INSTANCE.post('/users/refresh');
+      const { data } = await axios.post(
+        'https://aquatracker-node.onrender.com/users/refresh',
+        {},
+        { withCredentials: true }
+      );
       setToken(data.data.accessToken);
       return data.data;
     } catch (error) {

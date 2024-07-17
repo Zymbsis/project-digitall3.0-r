@@ -27,13 +27,13 @@ const authSlice = createSlice({
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        state.isLoggedIn = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.loading = true;
