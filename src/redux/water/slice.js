@@ -1,9 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  addWaterIntake,
-  deleteWaterIntake,
+  getInfoByToday,
+  getInfoBySelectedDay,
   getInfoByMonth,
+  addWaterIntake,
   updateWaterIntake,
+  deleteWaterIntake,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
 
@@ -11,32 +13,45 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: INITIAL_STATE.water,
   reducers: {
-    setcurrentDate: (state, action) => {
+    setCurrentDate: (state, action) => {
       state.currentDate = action.payload;
     },
   },
   extraReducers: builder => {
     builder
+      .addCase(getInfoByToday.fulfilled, (state, action) => {
+        state.loading = false;
+        state.infoByToday = action.payload;
+      })
+      .addCase(getInfoBySelectedDay.fulfilled, (state, action) => {
+        state.loading = false;
+        state.infoBySelectedDay = action.payload;
+      })
+      .addCase(getInfoByMonth.fulfilled, (state, action) => {
+        state.loading = false;
+        state.monthlyStats = action.payload;
+      })
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyIntake.push(action.payload);
+        state.infoByToday.push(action.payload);
       })
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyIntake = state.dailyIntake.map(item =>
+        state.infoByToday = state.dailyIntake.map(item =>
+          item._id === action.payload._id ? action.payload : item
+        );
+        state.infoBySelectedDay = state.dailyIntake.map(item =>
           item._id === action.payload._id ? action.payload : item
         );
       })
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.dailyIntake = state.dailyIntake.filter(
+        state.infoByToday = state.dailyIntake.filter(
           item => item._id !== action.payload
         );
-      })
-
-      .addCase(getInfoByMonth.fulfilled, (state, action) => {
-        state.loading = false;
-        state.monthlyStats = action.payload;
+        state.infoBySelectedDay = state.dailyIntake.filter(
+          item => item._id !== action.payload
+        );
       })
       .addMatcher(
         isAnyOf(
