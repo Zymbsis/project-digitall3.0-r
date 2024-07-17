@@ -2,12 +2,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './WaterProgressBar.module.css';
 import Slider from '@mui/material/Slider';
 import { useEffect } from 'react';
+// by author
 import { selectDailyIntake } from '../../../redux/water/selectors.js';
+// by me
+// import { selectCompletionRate } from '../../../redux/date/selectors.js';
+
 import { getInfoByDay } from '../../../redux/date/operations';
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();
+  // by author
   const { completionRate } = useSelector(selectDailyIntake);
+
+  // by me
+  // const completionRate =  useSelector(selectCompletionRate)
+
   const today = new Date().toISOString().split('T')[0];
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
