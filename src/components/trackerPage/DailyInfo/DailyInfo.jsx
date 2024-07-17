@@ -1,4 +1,3 @@
-import React from 'react';
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
@@ -9,7 +8,7 @@ const DailyInfo = () => {
     <div className={css.dailyInfoContainer}>
       <div className={css.wrapperTop}>
         <ChooseDate />
-        <AddWaterBtn />
+        <AddWaterBtn className="dailyInfoStyles" />
       </div>
       <WaterList />
     </div>
@@ -17,3 +16,4 @@ const DailyInfo = () => {
 };
 
 export default DailyInfo;
+

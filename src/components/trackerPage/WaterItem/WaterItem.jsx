@@ -28,7 +28,7 @@ const WaterItem = ({ water }) => {
     <div className={css.waterItem}>
       <Icon iconId="icon-Vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
-        <p className={css.waterItemMl}>{water.volume} ml</p>
+        <p className={css.waterItemMl}>{`${water.volume} ml`}</p>
         <p className={css.waterItemData}>{formattedTime}</p>
       </div>
       <div className={css.waterItemBtnWrap}>

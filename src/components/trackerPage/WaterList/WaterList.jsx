@@ -1,10 +1,10 @@
 import css from './WaterList.module.css';
 import WaterItem from '../WaterItem/WaterItem';
-// import { useSelector } from 'react-redux';
-// import { selectDailyIntake } from '../../../redux/water/selectors';
+import { useSelector } from 'react-redux';
+import { selectDailyIntake } from '../../../redux/water/selectors';
 
 const WaterList = () => {
-  // const filteredIntake = useSelector(selectDailyIntake);
+  const { portions } = useSelector(selectDailyIntake);
 
   const testFilteredIntake = {
     status: 200,
@@ -47,22 +47,13 @@ const WaterList = () => {
   return (
     <div className={css.waterListWrap}>
       <ul className={css.waterList}>
-        {Array.isArray(testFilteredIntake.data.portions) &&
-          testFilteredIntake.data.portions.length === 0 && (
-            <li>
-              <p className={css.paragraph}>
-                There are no daily water intakes here yet.
-              </p>
+        {Array.isArray(portions) &&
+          portions.length !== 0 &&
+          portions.map(portion => (
+            <li key={portion._id}>
+              <WaterItem item={portion} />
             </li>
-          )}
-        {Array.isArray(testFilteredIntake.data.portions) &&
-          testFilteredIntake.data.portions.map(water => {
-            return (
-              <li key={water.id} className={css.waterItem}>
-                <WaterItem water={water} />
-              </li>
-            );
-          })}
+          ))}
       </ul>
     </div>
   );
