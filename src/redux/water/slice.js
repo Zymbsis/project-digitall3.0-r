@@ -13,7 +13,7 @@ const waterSlice = createSlice({
   name: 'water',
   initialState: INITIAL_STATE.water,
   reducers: {
-    setCurrentDate: (state, action) => {
+    setSelectedDay: (state, action) => {
       state.currentDate = action.payload;
     },
   },
@@ -55,10 +55,12 @@ const waterSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
+          getInfoByToday.pending,
+          getInfoBySelectedDay.pending,
+          getInfoByMonth.pending,
           addWaterIntake.pending,
           updateWaterIntake.pending,
-          deleteWaterIntake.pending,
-          getInfoByMonth.pending
+          deleteWaterIntake.pending
         ),
         state => {
           state.loading = true;
@@ -67,10 +69,12 @@ const waterSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
+          getInfoByToday.rejected,
+          getInfoBySelectedDay.rejected,
+          getInfoByMonth.rejected,
           addWaterIntake.rejected,
           updateWaterIntake.rejected,
-          deleteWaterIntake.rejected,
-          getInfoByMonth.rejected
+          deleteWaterIntake.rejected
         ),
         (state, action) => {
           state.loading = false;
@@ -79,5 +83,5 @@ const waterSlice = createSlice({
       );
   },
 });
-export const { setcurrentDate } = waterSlice.actions;
+export const { setSelectedDay } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;

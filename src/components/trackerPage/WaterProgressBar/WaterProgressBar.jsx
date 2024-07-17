@@ -2,24 +2,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import css from './WaterProgressBar.module.css';
 import Slider from '@mui/material/Slider';
 import { useEffect } from 'react';
-// by author
-import { selectDailyIntake } from '../../../redux/water/selectors.js';
-// by me
-// import { selectCompletionRate } from '../../../redux/date/selectors.js';
-import { getInfoByDay } from '../../../redux/date/operations';
+import { selectInfoByToday } from '../../../redux/water/selectors.js';
+import { getInfoByToday } from '../../../redux/water/operations';
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();
-  // by author
-  const { completionRate } = useSelector(selectDailyIntake);
-
-  // by me
-  // const completionRate = useSelector(selectCompletionRate);
+  const { completionRate } = useSelector(selectInfoByToday);
 
   const today = new Date().toISOString().split('T')[0];
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
-  const invisMarkWater = [0, 50, 100];
+  const invisibleMarkWater = [0, 50, 100];
   const marks = [
     {
       value: percentOfWater,
@@ -28,7 +21,7 @@ const WaterProgressBar = () => {
   ];
 
   useEffect(() => {
-    dispatch(getInfoByDay(today));
+    dispatch(getInfoByToday(today));
   }, [dispatch, today]);
 
   return (
@@ -40,7 +33,7 @@ const WaterProgressBar = () => {
         marks={marks}
         sx={{
           '& .MuiSlider-markLabel': {
-            visibility: invisMarkWater.includes(percentOfWater)
+            visibility: invisibleMarkWater.includes(percentOfWater)
               ? 'hidden'
               : 'visible',
           },
