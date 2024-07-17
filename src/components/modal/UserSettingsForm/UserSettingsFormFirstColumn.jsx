@@ -1,6 +1,7 @@
 import { Icon } from 'shared/index.js';
 
 import css from './UserSettingsForm.module.css';
+import clsx from 'clsx';
 
 const UserSettingsFormFirstColumn = ({
   register,
@@ -46,7 +47,10 @@ const UserSettingsFormFirstColumn = ({
             Your name
           </label>
           <input
-            className={css.inputText}
+            className={clsx(
+              css.inputText,
+              errors.name ? css.yupAlertBorder : css.baseBorder
+            )}
             type="text"
             id="name"
             maxLength="40"
@@ -62,9 +66,13 @@ const UserSettingsFormFirstColumn = ({
             Email
           </label>
           <input
-            className={css.inputText}
+            className={clsx(
+              css.inputText,
+              errors.email ? css.yupAlertBorder : css.baseBorder
+            )}
             type="email"
             id="email"
+            // readOnly
             maxLength="40"
             autoComplete="off"
             {...register('email')}

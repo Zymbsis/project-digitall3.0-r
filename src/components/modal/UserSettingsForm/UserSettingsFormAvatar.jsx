@@ -3,25 +3,40 @@ import { Icon } from 'shared/index.js';
 import avatarDefault from '../../../icons/avatar_default.png';
 
 import css from './UserSettingsForm.module.css';
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../../redux/user/operations.js';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
+  const dispatch = useDispatch();
   const handleFileChange = evt => {
     const file = evt.target.files[0];
 
     if (file) {
       setValue('avatar', file);
+      const formData = new FormData();
+      formData.append('avatar', file);
+      dispatch(updateUser(formData));
     }
   };
 
   const getSrcForAvatar = avatar => {
+    // console.log(
+    //   'avatar before src -  typeof: ',
+    //   typeof avatar,
+    //   ', avdata:',
+    //   avatar
+    // );
     if (typeof avatar === 'string') {
-      if (avatar === '') {
-        return avatarDefault;
+      // console.log('avatar length: ', avatar.length);
+      if (avatar.length !== 0) {
+        return avatar;
       }
-      return avatar;
-    } else {
-      return URL.createObjectURL(avatar);
+    } else if (typeof avatar === 'object') {
+      if (avatar.length !== 0) {
+        return URL.createObjectURL(avatar);
+      }
     }
+    return avatarDefault;
   };
 
   return (
@@ -37,8 +52,8 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
             id="avatar"
             name="avatar"
             type="file"
+            accept="image/*"
             hidden
-            accept=".jpg,.jpeg,.png,.gif"
             {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />

@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import css from './UserSettingsForm.module.css';
 
 const countNorma = userData => {
@@ -26,8 +27,13 @@ const UserSettingsFormSecondColumn = ({
             Your weight in kilograms:
           </label>
           <input
-            className={css.inputText}
-            type="number"
+            className={clsx(
+              css.inputText,
+              errors.weight ? css.yupAlertBorder : css.baseBorder
+            )}
+            // type="number"
+            type="text"
+            maxLength={3}
             id="weight"
             autoComplete="off"
             {...register('weight')}
@@ -42,12 +48,17 @@ const UserSettingsFormSecondColumn = ({
             The time of active participation in sports:
           </label>
           <input
-            className={css.inputText}
-            type="number"
+            className={clsx(
+              css.inputText,
+              errors.activeHours ? css.yupAlertBorder : css.baseBorder
+            )}
+            // type="number"
+            type="text"
+            maxLength={2}
             id="activeHours"
-            step="1"
-            min="0"
-            max="12"
+            // step="1"
+            // min="0"
+            // max="12"
             autoComplete="off"
             {...register('activeHours')}
             onChange={handleFieldChange}
@@ -69,12 +80,17 @@ const UserSettingsFormSecondColumn = ({
             Write down how much water you will drink:
           </label>
           <input
-            className={css.inputText}
-            type="number"
+            className={clsx(
+              css.inputText,
+              errors.dailyNorma ? css.yupAlertBorder : css.baseBorder
+            )}
+            // type="number"
+            type="text"
+            maxLength={4}
             id="dailyNorma"
-            step="0.1"
-            min="0"
-            max="10"
+            // step="0.1"
+            // min="0"
+            // max="10"
             autoComplete="off"
             {...register('dailyNorma')}
             onChange={handleFieldChange}
