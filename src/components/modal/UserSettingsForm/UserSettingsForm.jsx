@@ -79,9 +79,9 @@ const UserSettingsForm = () => {
 
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
-        if (key === 'avatar') {
-          continue;
-        }
+        // if (key === 'avatar') {
+        //   continue;
+        // }
         // console.log('key, value: ', key, data[key]);
 
         formData.append(key, data[key]);
@@ -95,6 +95,7 @@ const UserSettingsForm = () => {
     // }
 
     dispatch(updateUser(data));
+    // dispatch(updateUser(formData));
 
     //close modal
 

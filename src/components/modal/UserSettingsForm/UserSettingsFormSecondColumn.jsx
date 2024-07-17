@@ -86,7 +86,7 @@ const UserSettingsFormSecondColumn = ({
             )}
             // type="number"
             type="text"
-            maxLength={3}
+            maxLength={4}
             id="dailyNorma"
             // step="0.1"
             // min="0"
