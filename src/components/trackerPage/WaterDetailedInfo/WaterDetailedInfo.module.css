@@ -1,7 +1,7 @@
 .wrapper {
   border-radius: 30px;
   background: var(--primary-light-grey-color);
-  padding: 40px 0 40px 20px;
+  padding: 40px 20px;
   display: flex;
   flex-direction: column;
   gap: 40px;

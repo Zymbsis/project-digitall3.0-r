@@ -14,20 +14,18 @@ const UserBar = () => {
   const handleClosePopover = () => {
     setIsOpen(!isOpen);
   };
-  // const handleTogglePopover = () => {
-  //   setIsOpen(!isOpen);
-  // };
-  // const handleOutsideClick = e => {
-  //   if (popoverRef.current && !popoverRef.current.contains(e.target)) {
-  //     setIsOpen(false);
-  //   }
-  // };
-  // useEffect(() => {
-  //   document.addEventListener('mousedown', handleOutsideClick);
-  //   return () => {
-  //     document.removeEventListener('mousedown', handleOutsideClick);
-  //   };
-  // }, []);
+
+  const handleOutsideClick = e => {
+    if (popoverRef.current && !popoverRef.current.contains(e.target)) {
+      setIsOpen(false);
+    }
+  };
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutsideClick);
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
   return (
     <div className={css.userBarContainer}>
       <div className={css.userBarWrapper}>
