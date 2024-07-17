@@ -11,11 +11,10 @@ import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 import { yupValidationSchema } from '../serviceUserSettingsForm.js';
-
-// import { useModal } from 'context/modalContext.js';
+import { useModal } from '../../../context/modalContext.js';
 
 const UserSettingsForm = () => {
-  // const { closeModal } = useModal();
+  const { closeModal } = useModal();
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
 
@@ -68,7 +67,7 @@ const UserSettingsForm = () => {
     setValue(name, value);
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data, e) => {
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
 
@@ -99,7 +98,7 @@ const UserSettingsForm = () => {
 
     //close modal
 
-    // closeModal();
+    closeModal(e);
   };
 
   const handleKeyDown = event => {
