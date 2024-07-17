@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 import { selectCurrentUser } from '../../../redux/user/selectors.js';
-import { getUser, updateUser } from '../../../redux/user/operations.js';
+import { updateUser } from '../../../redux/user/operations.js';
 import { Button } from 'shared/index.js';
 import css from './UserSettingsForm.module.css';
 
@@ -41,11 +41,11 @@ const UserSettingsForm = () => {
   });
 
   // if user is empty, get her/him from backend
-  if (!user.hasOwnProperty('email')) {
-    // console.log('user is empty! go dispatch etUser()');
-    dispatch(getUser());
-    return;
-  }
+  // if (!user.hasOwnProperty('email')) {
+  //   // console.log('user is empty! go dispatch etUser()');
+  //   dispatch(getUser());
+  //   return;
+  // }
 
   // const testUset = watch();
   // console.log('testUset: ', testUset);
