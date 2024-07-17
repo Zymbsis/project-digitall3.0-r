@@ -1,8 +1,13 @@
-.container {
+.section {
   background-color: var(--primary-light-grey-color);
-  font-family: var(--secondary-font-family);
   border-radius: 30px;
   height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  font-family: var(--secondary-font-family);
   display: flex;
   flex-direction: column;
   justify-content: center;
