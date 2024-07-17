@@ -38,7 +38,6 @@ const SignUpForm = () => {
   const onSubmit = data => {
     const { email, password } = data;
     dispatch(register({ email, password }));
-    console.log({ email, password });
 
     reset();
   };
