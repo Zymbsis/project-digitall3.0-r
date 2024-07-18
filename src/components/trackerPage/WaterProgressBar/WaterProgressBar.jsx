@@ -1,53 +1,48 @@
+import { useDispatch, useSelector } from 'react-redux';
 import css from './WaterProgressBar.module.css';
 import Slider from '@mui/material/Slider';
+import { useEffect } from 'react';
+import { selectInfoByToday } from '../../../redux/water/selectors.js';
+import { getInfoByToday } from '../../../redux/water/operations';
 
 const WaterProgressBar = () => {
-  // const dispatch = useDispatch();
-  // const { completionRate } = useSelector(selectDailyIntake);
-  // const today = new Date().toISOString().split('T')[0];
-  // const percentOfWater = Math.round(completionRate * 100);
-  // const visibleMarkWater = [0, 50, 100];
-  // const marks = [
-  //   {
-  //     value: percentOfWater,
-  //     label: `${percentOfWater}%`,
-  //   },
-  // ];
+  const dispatch = useDispatch();
+  const { completionRate } = useSelector(selectInfoByToday);
 
-  // useEffect(() => {
-  //   dispatch(getInfoByDay(today));
-  // }, [dispatch, today]);
+  const today = new Date().toISOString().split('T')[0];
+  const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
-  const day = 'Today';
-  const persentOfWater = 75;
-  const invisMarkWater = [0, 50, 100];
-
+  const invisibleMarkWater = [0, 50, 100];
   const marks = [
     {
-      value: persentOfWater,
-      label: `${persentOfWater}%`,
+      value: percentOfWater,
+      label: `${percentOfWater}%`,
     },
   ];
 
+  useEffect(() => {
+    dispatch(getInfoByToday(today));
+  }, [dispatch, today]);
+
   return (
     <div className={css.thumb}>
-      <p className={css.boldtext}>{day}</p>
+      <p className={css.boldText}>Today</p>
       <Slider
         className={css.slider}
-        defaultValue={persentOfWater}
+        value={percentOfWater}
         marks={marks}
         sx={{
           '& .MuiSlider-markLabel': {
-            visibility: invisMarkWater.includes(persentOfWater)
+            visibility: invisibleMarkWater.includes(percentOfWater)
               ? 'hidden'
               : 'visible',
           },
         }}
       />
       <ul className={css.scale}>
-        <li className={css.normaltext}>0%</li>
-        <li className={css.normaltext}>50%</li>
-        <li className={css.normaltext}>100%</li>
+        <li className={css.normalText}>0%</li>
+        <li className={css.normalText}>50%</li>
+        <li className={css.normalText}>100%</li>
       </ul>
     </div>
   );

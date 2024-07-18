@@ -10,8 +10,9 @@ export const INITIAL_STATE = {
   },
   user: { user: {}, isLoading: false, isError: false },
   water: {
-    dailyIntake: [],
-    monthlyStats: [],
+    infoByToday: [],
+    infoBySelectedDay: [],
+    infoByMonth: [],
     selectedDate: null,
     loading: false,
     error: null,

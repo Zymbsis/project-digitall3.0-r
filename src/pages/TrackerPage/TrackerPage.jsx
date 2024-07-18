@@ -15,6 +15,7 @@ const TrackerPage = () => {
     dispatch(getUser());
   }, [dispatch]);
   const { openModal } = useModal();
+
   return (
     <Section>
       {/* <Button
