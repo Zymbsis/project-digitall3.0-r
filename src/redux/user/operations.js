@@ -51,6 +51,8 @@ export const updateUser = createAsyncThunk(
           },
         },
       } = await AXIOS_INSTANCE.patch('/users/update', payload);
+      console.log(2);
+
       return {
         email,
         name,

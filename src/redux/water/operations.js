@@ -2,7 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
 
 export const getInfoByToday = createAsyncThunk(
-  'date/getInfoByToday',
+  'water/getInfoByToday',
   async (date, { rejectWithValue }) => {
     try {
       const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
@@ -15,7 +15,7 @@ export const getInfoByToday = createAsyncThunk(
 );
 
 export const getInfoBySelectedDay = createAsyncThunk(
-  'date/getInfoBySelectedDay',
+  'water/getInfoBySelectedDay',
   async (date, { rejectWithValue }) => {
     try {
       const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
