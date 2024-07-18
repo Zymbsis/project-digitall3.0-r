@@ -76,7 +76,6 @@ const UserSettingsFormFirstColumn = ({
             maxLength="40"
             autoComplete="off"
             {...register('email')}
-            // onFocus={() => clearErrors('email')}
           />
           {errors.email && (
             <span className={css.yupAlert}>{errors.email.message}</span>

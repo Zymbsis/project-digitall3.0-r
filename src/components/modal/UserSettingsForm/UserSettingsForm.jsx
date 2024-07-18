@@ -49,13 +49,18 @@ const UserSettingsForm = () => {
       return;
     }
     if (['weight', 'activeHours', 'dailyNorma'].includes(name)) {
+      if (isNaN(Number(value))) {
+        setValue(name, 0);
+        return;
+      }
       setValue(name, Number(value));
       return;
     }
     setValue(name, value);
   };
 
-  const onSubmit = (data, e) => {
+  const onSubmit = (originalData, evt) => {
+    const data = { ...originalData };
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
     // console.log('data to dispatch: ', data);
@@ -73,7 +78,7 @@ const UserSettingsForm = () => {
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
-    closeModal(e);
+    closeModal(evt);
   };
 
   const handleKeyDown = event => {
