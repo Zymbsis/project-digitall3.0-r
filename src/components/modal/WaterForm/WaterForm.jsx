@@ -62,7 +62,7 @@ const WaterForm = ({
       <Button
         disabled={!time || !value}
         onClick={closeModal}
-        // className={styles.saveButton}
+        className={styles.saveButton}
         type="submit"
       >
         Save

@@ -96,19 +96,7 @@
 }
 
 .saveButton {
-  font-family: Poppins, sans-serif;
-  font-weight: bold;
-  justify-content: center;
-  border-radius: 30px;
-  background-color: var(--Accent, #9be1a0);
   margin-top: 24px;
-  white-space: nowrap;
-  text-align: center;
-  letter-spacing: -0.14px;
-  line-height: 129%;
-  padding: 14px 40px;
-  width: 116px;
-  height: 46px;
 }
 
 .form {
