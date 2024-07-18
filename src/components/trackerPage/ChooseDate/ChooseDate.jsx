@@ -1,14 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import css from './ChooseDate.module.css';
-import { selectSelectedDate } from '../../../redux/water/selectors';
+
 import { useEffect } from 'react';
-import { getInfoByDay } from '../../../redux/water/operations';
+
+import { selectSelectedDate } from '../../../redux/water/selectors';
+import { getInfoBySelectedDay } from '../../../redux/water/operations';
 
 const ChooseDate = () => {
   const selectedDate = useSelector(selectSelectedDate);
-
+  const today = new Date().toISOString().split('T')[0];
+  const condition = selectedDate === null || selectedDate === today;
   let date;
-  if (selectedDate !== null) {
+
+  if (!condition) {
     const [year, month, day] = selectedDate.split('-');
     const queryDate = new Date(year, month - 1, day);
     const monthName = queryDate.toLocaleString('en-US', { month: 'long' });
@@ -17,12 +21,10 @@ const ChooseDate = () => {
   }
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getInfoByDay('2024-07-01'));
+    dispatch(getInfoBySelectedDay('2024-07-16'));
   }, [dispatch]);
 
-  return (
-    <h3 className={css.chooseDateTitle}>{selectedDate ? date : 'Today'}</h3>
-  );
+  return <h3 className={css.chooseDateTitle}>{condition ? 'Today' : date}</h3>;
 };
 
 export default ChooseDate;
