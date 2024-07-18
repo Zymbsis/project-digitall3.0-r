@@ -18,7 +18,11 @@ export const ModalProvider = ({ children }) => {
   const backdropRef = useRef(null);
 
   const closeModal = useCallback(e => {
-    if (e.target === e.currentTarget || e.code === 'Escape') {
+    if (
+      e.target === e.currentTarget ||
+      e.code === 'Escape' ||
+      e.target.nodeName === 'FORM'
+    ) {
       document.body.style.overflow = 'visible';
       backdropRef.current.style.opacity = 0;
       setTimeout(() => {
