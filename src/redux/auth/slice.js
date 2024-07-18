@@ -5,7 +5,14 @@ import { INITIAL_STATE } from '../constants';
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE.auth,
-
+  reducers: {
+    setToken: (state, action) => {
+      state.token = action.payload;
+    },
+    clearToken: state => {
+      state.token = null;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
@@ -44,5 +51,5 @@ const authSlice = createSlice({
         state.error = true;
       }),
 });
-
+export const { setToken, clearToken } = authSlice.actions;
 export const authReducer = authSlice.reducer;

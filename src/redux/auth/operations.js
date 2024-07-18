@@ -90,12 +90,11 @@ export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
-    const persistedAccessToken = state.auth.token;
-
-    if (persistedAccessToken === null) {
+    const accessToken = state.auth.token;
+    if (accessToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
+    setToken(accessToken);
     try {
       const { data } = await axios.post(
         'https://aquatracker-node.onrender.com/users/refresh',
@@ -105,6 +104,7 @@ export const refreshUser = createAsyncThunk(
       setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
+      // logOut();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
