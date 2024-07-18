@@ -1,4 +1,6 @@
 // import css from './MonthInfo.module.css';
+import CalendarPagination from '../CalendarPagination/CalendarPagination';
+import Calendar from '../Calendar/Calendar';
 
 import Calendar from '../Calendar/Calendar';
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
