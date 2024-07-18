@@ -1,0 +1,102 @@
+.thumb {
+  position: absolute;
+  top: 225px;
+  left: 73px;
+  border-radius: 15px;
+  padding: 10px;
+  width: 198px;
+  height: 70px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.1);
+  background: var(--primary-white-color);
+
+  @media (min-width: 768px) {
+    top: 322px;
+    left: 205px;
+    padding: 20px;
+    width: 295px;
+    height: 106px;
+  }
+
+  @media (min-width: 1440px) {
+    top: 450px;
+    left: 188px;
+    padding: 20px;
+    width: 295px;
+    height: 106px;
+  }
+}
+
+.boldText {
+  display: inline-block;
+  margin-bottom: 4px;
+  font-size: 14px;
+  line-height: 100%;
+  font-weight: bold;
+  color: var(--primary-black-color);
+
+  @media (min-width: 768px) {
+    font-size: 15px;
+    line-height: 149%;
+    font-weight: bold;
+  }
+}
+
+.scale {
+  margin-top: 6px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.normalText {
+  font-size: 10px;
+  font-weight: normal;
+  line-height: 100%;
+  color: var(--backdrop-color);
+
+  @media (min-width: 768px) {
+    font-size: 12px;
+    line-height: 187%;
+    font-weight: normal;
+  }
+}
+
+.slider:global {
+  height: 6px !important;
+  pointer-events: none;
+  padding: 0 !important;
+  margin: 0 !important;
+
+  @media (min-width: 768px) {
+    height: 8px !important;
+  }
+}
+
+.slider :global .MuiSlider-thumb {
+  border: 1px solid var(--primary-green-color);
+  width: 12px;
+  height: 12px;
+  color: var(--primary-white-color);
+  border-radius: '12px';
+}
+
+.slider :global .MuiSlider-markLabel {
+  font-size: 8px;
+  font-weight: normal;
+  top: -10px;
+  line-height: 100%;
+  color: var(--primary-green-color);
+
+  @media (min-width: 768px) {
+    top: -10px;
+  }
+}
+
+.slider :global .MuiSlider-track {
+  border: none;
+  background: var(--primary-green-color);
+}
+
+.slider :global .MuiSlider-rail {
+  background: var(--primary-light-grey-color);
+  opacity: 1;
+}

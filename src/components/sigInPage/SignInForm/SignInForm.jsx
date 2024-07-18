@@ -27,7 +27,7 @@ const SignInForm = () => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formValidation),
-    mode: 'onBlur',
+    mode: 'onSubmit',
     defaultValues: {
       email: '',
       password: '',
@@ -45,7 +45,7 @@ const SignInForm = () => {
 
   return (
     <div className={css.wrapper}>
-      <h2 className={css.title}>Sign in</h2>
+      <h2 className={css.title}>Sign In</h2>
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
         <label className={css.labelWrapper}>
           <span className={css.label}>Email: </span>

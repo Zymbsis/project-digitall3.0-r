@@ -1,0 +1,104 @@
+/* common styles */
+.addWaterBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.iconPlusWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconPlus {
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+/* waterMainInfoStyles */
+.waterMainInfoStyles {
+  position: absolute;
+  right: 16px;
+  bottom: 32px;
+  width: 140px;
+  height: 46px;
+
+  @media (min-width: 768px) {
+    right: 32px;
+    bottom: 64px;
+    width: 178px;
+    height: 60px;
+  }
+}
+
+.waterMainInfoStyles .addWaterBtn {
+  height: 100%;
+  width: 100%;
+  line-height: 1.28;
+  border-radius: 30px;
+  color: var(--primary-white-color);
+  background-color: var(--primary-black-color);
+
+  @media (min-width: 768px) {
+    line-height: 1.5;
+  }
+}
+
+.waterMainInfoStyles .iconPlusWrap {
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.waterMainInfoStyles .iconPlus {
+  width: 100%;
+  height: 100%;
+  stroke: var(--primary-white-color);
+}
+
+.waterMainInfoStyles .addWaterBtn:hover {
+  color: var(--primary-green-color);
+}
+
+.waterMainInfoStyles .addWaterBtn:hover .iconPlus {
+  stroke: var(--primary-green-color);
+}
+
+/* .dailyInfoStyles */
+.dailyInfoStyles .addWaterBtn {
+  background-color: transparent;
+  width: 124px;
+  height: 30px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.dailyInfoStyles .iconPlusWrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  background-color: var(--primary-green-color);
+  transition: all var(--transition-duration) var(--transition-timing-function);
+}
+
+.dailyInfoStyles .iconPlus {
+  width: 16px;
+  height: 16px;
+  stroke: var(--primary-dark-grey-color);
+}
+
+.dailyInfoStyles .addWaterBtn:hover .iconPlusWrap {
+  background-color: var(--primary-dark-grey-color);
+}
+
+.dailyInfoStyles .addWaterBtn:hover .iconPlus {
+  stroke: var(--primary-white-color);
+}

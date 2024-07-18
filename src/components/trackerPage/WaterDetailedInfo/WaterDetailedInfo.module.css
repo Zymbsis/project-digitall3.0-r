@@ -1,5 +1,20 @@
+.wrapper {
+  background-color: var(--primary-light-grey-color);
+  border-radius: 30px;
+  padding: 40px 20px;
+
+  @media screen and (min-width: 768px) {
+    padding: 32px 32px 35px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding: 32px;
+    width: 672px;
+  }
+}
+
 /* DeleteWaterModal.css */
-.modal-overlay {
+/* .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -56,4 +71,4 @@
   color: #ff0000;
   font-size: 14px;
   margin-bottom: 16px;
-}
+} */
