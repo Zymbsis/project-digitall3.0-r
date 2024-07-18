@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-export const yupValidationSchema = yup.object().shape({
+export const userSettingsFormSchema = yup.object().shape({
   name: yup
     .string()
     .min(3, 'Must be at least 3 characters')
