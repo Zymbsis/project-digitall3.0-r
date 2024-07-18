@@ -25,7 +25,15 @@ const UserBar = () => {
     <div className={css.userBarContainer}>
       <div className={css.userBarWrapper}>
         <span className={css.userName}>{name}</span>
-        <img src={avatar} alt="User Avatar" className={css.avatar} />
+        <img
+          src={
+            avatar
+              ? avatar
+              : 'https://res.cloudinary.com/dvkqniafr/image/upload/v1721220091/kotik_vae38k.jpg'
+          }
+          alt="User Avatar"
+          className={css.avatar}
+        />
         <button
           ref={buttonRef}
           className={clsx(css.userBarButton, { [css.openPopover]: isOpen })}

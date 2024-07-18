@@ -23,9 +23,8 @@ const WaterList = () => {
   const condition = selectedDate === null || selectedDate === today;
 
   useEffect(() => {
-    condition
-      ? dispatch(getInfoByToday(today))
-      : dispatch(getInfoBySelectedDay(selectedDate));
+    if (condition) return;
+    dispatch(getInfoBySelectedDay(selectedDate));
   }, [condition, dispatch, today, selectedDate]);
   const waterList = condition ? todayPortions : selectedDayPortions;
 
