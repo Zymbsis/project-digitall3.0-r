@@ -28,6 +28,13 @@ const WaterList = () => {
   return (
     <div className={css.waterListWrap}>
       <ul className={css.waterList}>
+        {Array.isArray(waterList) && waterList.length === 0 && (
+          <li>
+            <p className={css.paragraph}>
+              There are no daily water intakes here yet.
+            </p>
+          </li>
+        )}
         {Array.isArray(waterList) &&
           waterList.length !== 0 &&
           waterList.map(portion => (
