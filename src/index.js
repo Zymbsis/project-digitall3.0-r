@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store, persistor } from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { ModalProvider } from 'context';
 import App from './App';
 import './index.css';
-import { store, persistor } from './redux/store';
-import { Provider } from 'react-redux';
-import { ModalProvider } from 'context';
-import { PersistGate } from 'redux-persist/integration/react';
-import './redux/user/interceptor';
+// import './redux/auth/interceptor';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

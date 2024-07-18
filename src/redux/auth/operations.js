@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
+import { store } from '../store';
 
 const setToken = token => {
   AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -59,8 +60,40 @@ export const refreshUser = createAsyncThunk(
       setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
-      // logOut();
+      logOut();
       return thunkAPI.rejectWithValue(error.message);
     }
+  }
+);
+
+AXIOS_INSTANCE.interceptors.response.use(
+  function (response) {
+    return response;
+  },
+  error => {
+    const originalRequest = error.config;
+
+    if (
+      error.response &&
+      error.response.status === 401 &&
+      !originalRequest._retry
+    ) {
+      originalRequest._retry = true;
+      try {
+        store.dispatch(refreshUser());
+        // const { data } = store.dispatch(refreshUser());
+        // const newToken = data.data.accessToken;
+        // AXIOS_INSTANCE.defaults.headers.common[
+        //   'Authorization'
+        // ] = `Bearer ${newToken}`;
+        // originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+        return AXIOS_INSTANCE(originalRequest);
+      } catch (error) {
+        store.dispatch(clearToken());
+        window.location.href = '/project-digitall3.0-r/signin';
+        return Promise.reject(error);
+      }
+    }
+    return Promise.reject(error);
   }
 );
