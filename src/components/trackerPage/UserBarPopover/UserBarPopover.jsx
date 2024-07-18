@@ -1,12 +1,12 @@
-import React, { useCallback, useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import css from './UserBarPopover.module.css';
 import UserSettingsModal from '../../modal/UserSettingsModal/UserSettingsModal';
 import LogOutModal from '../../modal/LogOutModal/LogOutModal';
 import { useModal } from 'context';
-import { Icon, Button } from 'shared';
+import { Icon } from 'shared';
 import clsx from 'clsx';
 
-const UserBarPopover = ({ closePopover, restrictionClick, isOpen }) => {
+const UserBarPopover = ({ closePopover, restrictionClick, isVisible }) => {
   const { openModal } = useModal();
   const popoverRef = useRef(null);
 
@@ -37,17 +37,25 @@ const UserBarPopover = ({ closePopover, restrictionClick, isOpen }) => {
 
   return (
     <div
-      className={clsx(css.userBarPopover, { [css.visible]: isOpen })}
+      className={clsx(css.userBarPopover, { [css.visible]: isVisible })}
       ref={popoverRef}
     >
-      <Button className={css.settingsButton} onClick={handleSettingsClick}>
-        <Icon iconId="icon-settings" />
-        <span className={css.btnSetting}>Setting</span>
-      </Button>
-      <Button className={css.logoutButton} onClick={handleLogOutClick}>
-        <Icon iconId="icon-log-out" />
-        <span className={css.logoutButton}>Log out</span>
-      </Button>
+      <button
+        className={css.settingsButton}
+        onClick={handleSettingsClick}
+        type="button"
+      >
+        <Icon iconId="icon-settings" className={css.settingsIcon} />
+        Setting
+      </button>
+      <button
+        className={css.logoutButton}
+        onClick={handleLogOutClick}
+        type="button"
+      >
+        <Icon iconId="icon-log-out" className={css.logoutIcon} />
+        Log out
+      </button>
     </div>
   );
 };

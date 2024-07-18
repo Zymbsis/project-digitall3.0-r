@@ -9,13 +9,27 @@ import clsx from 'clsx';
 const UserBar = () => {
   const { name, avatar } = useSelector(selectCurrentUser);
   const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   const buttonRef = useRef(null);
 
   const handleTogglePopover = () => {
-    setIsOpen(!isOpen);
+    if (isOpen === false) {
+      setIsOpen(true);
+      setTimeout(() => {
+        setIsVisible(true);
+      }, 0);
+    } else {
+      setIsVisible(false);
+      setTimeout(() => {
+        setIsOpen(false);
+      }, 500);
+    }
   };
   const handleClosePopover = () => {
-    setIsOpen(false);
+    setIsVisible(false);
+    setTimeout(() => {
+      setIsOpen(false);
+    }, 500);
   };
   const restrictionClick = e => {
     return buttonRef.current && buttonRef.current.contains(e.target);
@@ -44,11 +58,14 @@ const UserBar = () => {
         </button>
       </div>
 
-      <UserBarPopover
-        closePopover={handleClosePopover}
-        restrictionClick={restrictionClick}
-        isOpen={isOpen}
-      />
+      {isOpen && (
+        <UserBarPopover
+          closePopover={handleClosePopover}
+          restrictionClick={restrictionClick}
+          setIsVisible={setIsVisible}
+          isVisible={isVisible}
+        />
+      )}
     </div>
   );
 };
