@@ -1,3 +1,11 @@
+.dailyInfoContainer {
+  min-height: 160px;
+
+  @media (min-width: 768px) {
+    min-height: 174px;
+  }
+}
+
 .wrapperTop {
   display: flex;
   justify-content: space-between;

@@ -17,13 +17,6 @@ const TrackerPage = () => {
 
   return (
     <Section>
-      <Button
-        onClick={() => {
-          openModal(<LogOutModal />);
-        }}
-      >
-        Log Out
-      </Button>
       <Container className={css.container}>
         <WaterMainInfo />
         <WaterDetailedInfo />

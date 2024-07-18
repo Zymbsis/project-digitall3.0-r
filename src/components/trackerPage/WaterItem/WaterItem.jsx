@@ -8,7 +8,7 @@ const WaterItem = ({ item }) => {
   const { openModal } = useModal();
 
   const onDelete = id => {
-    openModal(<DeleteWaterModal _id={item._id} />);
+    openModal(<DeleteWaterModal id={item._id} />);
   };
   const onEdit = () => {
     openModal(<WaterModal type={'edit'} />);
