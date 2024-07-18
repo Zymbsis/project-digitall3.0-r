@@ -2,22 +2,8 @@ import { AXIOS_INSTANCE } from '../constants.js';
 import { store } from '../store.js';
 
 import { clearToken, setToken } from '../auth/slice.js';
-import axios from 'axios';
-import { refreshUser } from '../auth/operations.js';
 
-AXIOS_INSTANCE.interceptors.request.use(
-  request => {
-    const state = store.getState();
-    const accessToken = state.auth.token;
-    if (accessToken) {
-      request.headers['Authorization'] = `Bearer ${accessToken}`;
-    }
-    return request;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
+import { refreshUser } from '../auth/operations.js';
 
 AXIOS_INSTANCE.interceptors.response.use(
   function (response) {
