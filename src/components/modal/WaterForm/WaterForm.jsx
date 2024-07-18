@@ -35,7 +35,7 @@ const WaterForm = ({
     },
   });
 
-  const onSubmit = async () => {
+  const onSubmit = (data, e) => {
     // try {
     //   if (type === "add") {
     //     await dispatch(addWaterIntake(data)).unwrap();
@@ -52,7 +52,7 @@ const WaterForm = ({
     // setTime(data.time);
     // setValue(data.amount);
     console.log({ time: time, value: value });
-    onClose();
+    closeModal(e);
   };
 
   return (

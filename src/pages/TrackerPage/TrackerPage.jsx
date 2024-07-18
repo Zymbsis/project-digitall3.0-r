@@ -23,7 +23,14 @@ const TrackerPage = () => {
           openModal(<WaterModal />);
         }}
       >
-        WaterModal
+        Add Water
+      </Button>
+      <Button
+        onClick={() => {
+          openModal(<WaterModal type="edit" />);
+        }}
+      >
+        Edit Water
       </Button>
       <Container className={css.container}>
         <WaterMainInfo />
