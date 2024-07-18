@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getUser, updateUser } from './operations';
+import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
 const handlePending = (state, action) => {
@@ -22,10 +22,15 @@ const userSlice = createSlice({
     builder
       .addCase(getUser.fulfilled, handleFulfilled)
       .addCase(updateUser.fulfilled, handleFulfilled)
+      .addCase(countUsers.fulfilled, (state, action) => {
+        state.countUser = action.payload;
+      })
       .addCase(getUser.pending, handlePending)
       .addCase(updateUser.pending, handlePending)
+      .addCase(countUsers.pending, handlePending)
       .addCase(getUser.rejected, handleRejected)
-      .addCase(updateUser.rejected, handleRejected);
+      .addCase(updateUser.rejected, handleRejected)
+      .addCase(countUsers.rejected, handleRejected);
   },
 });
 
