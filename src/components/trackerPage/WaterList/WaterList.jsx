@@ -7,12 +7,17 @@ import {
   selectSelectedDate,
 } from '../../../redux/water/selectors';
 import { useEffect } from 'react';
+<<<<<<< HEAD
 import {
   getInfoBySelectedDay,
   getInfoByToday,
 } from '../../../redux/water/operations';
 import { TODAY } from '../../../constants';
 import { store } from '../../../redux/store';
+=======
+import { getInfoBySelectedDay } from '../../../redux/water/operations';
+import { TODAY } from 'constants';
+>>>>>>> 318881f0144721be5cc2d685771b8a1635775437
 
 const WaterList = () => {
   const dispatch = useDispatch();
@@ -24,11 +29,9 @@ const WaterList = () => {
   const condition = selectedDate === null || selectedDate === TODAY;
 
   useEffect(() => {
-    condition
-      ? dispatch(getInfoByToday(TODAY))
-      : dispatch(getInfoBySelectedDay(selectedDate));
+    if (condition) return;
+    dispatch(getInfoBySelectedDay(selectedDate));
   }, [condition, dispatch, selectedDate]);
-
   const waterList = condition ? todayPortions : selectedDayPortions;
 
   return (
