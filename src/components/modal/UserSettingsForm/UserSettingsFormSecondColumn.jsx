@@ -2,15 +2,14 @@ import clsx from 'clsx';
 import css from './UserSettingsForm.module.css';
 
 const countNorma = userData => {
-  if (userData.gender === 'male') {
-    return (
-      Math.round((userData.weight * 0.04 + userData.activeHours * 0.6) * 10) /
-      10
-    );
+  const { gender, weight, activeHours } = userData;
+
+  if (weight > 150 || activeHours > 12) return '-';
+
+  if (gender === 'male') {
+    return Math.round((weight * 0.04 + activeHours * 0.6) * 10) / 10;
   }
-  return (
-    Math.round((userData.weight * 0.03 + userData.activeHours * 0.4) * 10) / 10
-  );
+  return Math.round((weight * 0.03 + activeHours * 0.4) * 10) / 10;
 };
 
 const UserSettingsFormSecondColumn = ({
