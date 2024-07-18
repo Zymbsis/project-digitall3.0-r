@@ -44,7 +44,7 @@ export const ModalProvider = ({ children }) => {
     setModalContent(content);
     setTimeout(() => {
       backdropRef.current.style.opacity = 1;
-    }, 700);
+    }, 0);
   };
 
   return (
