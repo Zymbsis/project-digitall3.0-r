@@ -23,6 +23,7 @@ const UserSettingsForm = () => {
     handleSubmit,
     setValue,
     watch,
+    clearErrors,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(yupValidationSchema),
@@ -35,7 +36,6 @@ const UserSettingsForm = () => {
       activeHours: user.activeHours,
       dailyNorma: user.dailyNorma ? user.dailyNorma / 1000 : 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
       avatar: user.avatar,
-      // avatar: 'https://i.pravatar.cc/300',
     },
   });
 
@@ -45,7 +45,6 @@ const UserSettingsForm = () => {
   //   dispatch(getUser());
   //   return;
   // }
-
   // const testUset = watch();
   // console.log('testUset: ', testUset);
 
@@ -67,10 +66,9 @@ const UserSettingsForm = () => {
     setValue(name, value);
   };
 
-  const onSubmit = (data, e) => {
+  const onSubmit = data => {
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
-
     console.log('Form data: ', data);
 
     //object FofmData for sending to backend (as insisted by the project task)
@@ -78,15 +76,9 @@ const UserSettingsForm = () => {
 
     for (const key in data) {
       if (data.hasOwnProperty(key)) {
-        // if (key === 'avatar') {
-        //   continue;
-        // }
-        // console.log('key, value: ', key, data[key]);
-
         formData.append(key, data[key]);
       }
     }
-
     //to check if data in FormData object is correct
     // console.log('formData: ', formData);
     // for (let [key, value] of formData.entries()) {
@@ -96,9 +88,7 @@ const UserSettingsForm = () => {
     dispatch(updateUser(data));
     // dispatch(updateUser(formData));
 
-    //close modal
-
-    closeModal(e);
+    closeModal();
   };
 
   const handleKeyDown = event => {
@@ -125,12 +115,14 @@ const UserSettingsForm = () => {
             register={register}
             errors={errors}
             handleFieldChange={handleFieldChange}
+            clearErrors={clearErrors}
           />
           <UserSettingsFormSecondColumn
             register={register}
             errors={errors}
             watch={watch}
             handleFieldChange={handleFieldChange}
+            clearErrors={clearErrors}
           />
         </div>
         <Button className={css.saveButton} type="submit">

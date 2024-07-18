@@ -18,6 +18,7 @@ const UserSettingsFormSecondColumn = ({
   errors,
   watch,
   handleFieldChange,
+  clearErrors,
 }) => {
   return (
     <div className={css.columnTwo}>
@@ -33,10 +34,11 @@ const UserSettingsFormSecondColumn = ({
             )}
             // type="number"
             type="text"
-            maxLength={3}
+            maxLength="3"
             id="weight"
             autoComplete="off"
             {...register('weight')}
+            // onFocus={() => clearErrors('weight')}
             onChange={handleFieldChange}
           />
           {errors.weight && (
@@ -61,6 +63,7 @@ const UserSettingsFormSecondColumn = ({
             // max="12"
             autoComplete="off"
             {...register('activeHours')}
+            onFocus={() => clearErrors('activeHours')}
             onChange={handleFieldChange}
           />
           {errors.activeHours && (
@@ -93,6 +96,7 @@ const UserSettingsFormSecondColumn = ({
             // max="10"
             autoComplete="off"
             {...register('dailyNorma')}
+            onFocus={() => clearErrors('dailyNorma')}
             onChange={handleFieldChange}
           />
           {errors.dailyNorma && (
