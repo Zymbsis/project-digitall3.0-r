@@ -7,6 +7,7 @@ import LogOutModal from '../../components/modal/LogOutModal/LogOutModal';
 import css from './TrackerPage.module.css';
 import { WaterDetailedInfo, WaterMainInfo } from 'components';
 import { useEffect } from 'react';
+import WaterModal from '../../components/modal/WaterModal/WaterModal';
 
 const TrackerPage = () => {
   const dispatch = useDispatch();
@@ -19,10 +20,10 @@ const TrackerPage = () => {
     <Section>
       <Button
         onClick={() => {
-          openModal(<LogOutModal />);
+          openModal(<WaterModal />);
         }}
       >
-        Log Out
+        WaterModal
       </Button>
       <Container className={css.container}>
         <WaterMainInfo />

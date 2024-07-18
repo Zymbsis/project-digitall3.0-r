@@ -11,9 +11,6 @@
   color: #323f47;
   font-weight: 700;
   padding: 20px 20px 40px;
-  opacity: 0;
-  pointer-events: none;
-  display: none;
 }
 
 .header {
@@ -143,38 +140,48 @@
   width: 116px;
   height: 46px;
 }
+
 .form {
   display: flex;
   flex-direction: column;
 }
+
 .closeButton {
   border: none;
   background-color: transparent;
   padding: 0;
   margin: 0;
 }
+
 @media (min-width: 768px) {
   .popup {
     min-width: 518px;
   }
+
   .header {
     gap: 100px;
   }
+
   .title {
     font-size: 24px;
   }
+
   .correctData {
     font-size: 18px;
   }
+
   .label {
     font-size: 16px;
   }
+
   .inputLabel {
     font-size: 18px;
   }
+
   .waterInput {
     font-size: 16px;
   }
+
   .saveButton {
     font-size: 16px;
   }
