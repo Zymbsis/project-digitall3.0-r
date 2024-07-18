@@ -46,8 +46,8 @@ const WaterModal = ({ type = 'add' }) => {
 
   return (
     <div id="popup" className={css.wrapper}>
-      <Title>{title}</Title>
-      <div className={css.correctData}>{popupType}</div>
+      <Title className={css.title}>{title}</Title>
+      <p className={css.correctData}>{popupType}</p>
       <WaterAmount
         amount={waterAmount}
         setAmount={setWaterAmount}

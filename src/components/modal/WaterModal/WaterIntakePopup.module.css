@@ -1,18 +1,29 @@
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-
   @media (min-width:768px) {
     width: 438px
   }
 }
 
+.title {
+  width: 248px;
+  margin-bottom: 24px;
+
+  @media (min-width:768px) {
+    width: 347px;
+  }
+}
+
 .correctData {
-  text-align: left;
-  letter-spacing: -0.16px;
-  font: 16px Poppins, sans-serif;
-  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+  margin-bottom: 20px;
+
+  @media (min-width:768px) {
+    font-size: 18px;
+    line-height: 1.33;
+  }
 }
 
 .label {
@@ -112,22 +123,6 @@
 }
 
 @media (min-width: 768px) {
-  .popup {
-    min-width: 518px;
-  }
-
-  .header {
-    gap: 100px;
-  }
-
-  .title {
-    font-size: 24px;
-  }
-
-  .correctData {
-    font-size: 18px;
-  }
-
   .label {
     font-size: 16px;
   }
