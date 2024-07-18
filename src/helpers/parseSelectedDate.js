@@ -1,6 +1,6 @@
 import { TODAY } from '../constants';
 
-export const parseSelectedDate = selectedDate => {
+export const parseSelectedDay = selectedDate => {
   if (selectedDate === null || selectedDate === TODAY) return;
 
   const [year, month, day] = selectedDate.split('-');
@@ -9,4 +9,11 @@ export const parseSelectedDate = selectedDate => {
   const dayOfMonth = newFormatDay.getDate();
   const parsedDate = `${dayOfMonth}, ${monthName}`;
   return parsedDate;
+};
+
+export const parseSelectedMonth = selectedDate => {
+  const format = { month: 'long', year: 'numeric' };
+  const data = new Intl.DateTimeFormat('en-US', format).format(selectedDate);
+  const [month, year] = data.split(' ');
+  return `${month}, ${year}`;
 };

@@ -1,22 +1,33 @@
-import css from './CalendarPagination.module.css';
-import { Icon } from 'shared';
-import { useSelector } from 'react-redux';
-import { selectCurrentUser } from '../../../redux/user/selectors';
-import { formatDate } from './CalendarPaginationFunction.jsx';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCurrentUser } from '../../../redux/user/selectors';
+import { getInfoByMonth } from '../../../redux/water/operations';
+import { parseMonthForFetch, parseSelectedMonth } from 'helpers';
+import { Icon } from 'shared';
+import css from './CalendarPagination.module.css';
 
 const CalendarPagination = () => {
+  const dispatch = useDispatch();
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const { createdAt } = useSelector(selectCurrentUser);
+  const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
+  const limitDate = new Date();
+  limitDate.setFullYear(limitDate.getFullYear() + 1);
+
+  const hasPrevMonth =
+    selectedDate.getFullYear() < userCreatedDate.getFullYear() ||
+    (selectedDate.getFullYear() === userCreatedDate.getFullYear() &&
+      selectedDate.getMonth() <= userCreatedDate.getMonth());
+
+  const hasNextMonth =
+    selectedDate.getFullYear > limitDate.getFullYear() ||
+    (selectedDate.getFullYear() === limitDate.getFullYear() &&
+      selectedDate.getMonth() >= limitDate.getMonth());
 
   useEffect(() => {
-    setSelectedDate(new Date());
-  }, []);
-
-  const user = useSelector(selectCurrentUser);
-  const userCreatedDate = new Date(user?.createdAt);
-  const currentDate = new Date();
-  const limitDate = new Date(currentDate);
-  limitDate.setFullYear(currentDate.getFullYear() + 1);
+    const dateForFetch = parseMonthForFetch(selectedDate);
+    dispatch(getInfoByMonth(dateForFetch));
+  }, [selectedDate, dispatch]);
 
   const handlePrevMonth = () => {
     setSelectedDate(prevDate => {
@@ -40,32 +51,22 @@ const CalendarPagination = () => {
     });
   };
 
-  const isPrevDis =
-    selectedDate.getFullYear() < userCreatedDate.getFullYear() ||
-    (selectedDate.getFullYear() === userCreatedDate.getFullYear() &&
-      selectedDate.getMonth() <= userCreatedDate.getMonth());
-
-  const isNextDis =
-    selectedDate.getFullYear > limitDate.getFullYear() ||
-    (selectedDate.getFullYear() === limitDate.getFullYear() &&
-      selectedDate.getMonth() >= limitDate.getMonth());
-
   return (
     <div className={css.container}>
       <h2 className={css.title}>Month</h2>
       <div className={css.dateBox}>
         <button
-          className={css.IconBtn}
+          className={css.iconBtn}
           onClick={handlePrevMonth}
-          disabled={isPrevDis}
+          disabled={hasPrevMonth}
         >
           <Icon iconId="icon-chevron-left" className={css.logo} />
         </button>
-        <p className={css.date}>{formatDate(selectedDate)}</p>
+        <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
         <button
-          className={css.IconBtn}
+          className={css.iconBtn}
           onClick={handleNextMonth}
-          disabled={isNextDis}
+          disabled={hasNextMonth}
         >
           <Icon iconId="icon-chevron-right" className={css.logo} />
         </button>
