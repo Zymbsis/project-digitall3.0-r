@@ -7,10 +7,7 @@ import {
   selectSelectedDate,
 } from '../../../redux/water/selectors';
 import { useEffect } from 'react';
-import {
-  getInfoBySelectedDay,
-  getInfoByToday,
-} from '../../../redux/water/operations';
+import { getInfoBySelectedDay } from '../../../redux/water/operations';
 
 const WaterList = () => {
   const dispatch = useDispatch();
