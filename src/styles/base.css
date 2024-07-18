@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--primary-font-family);
   font-weight: 400;
   font-size: 14px;
   color: var(--primary-dark-grey-color);

@@ -1,0 +1,62 @@
+.container {
+  height: 415px;
+  background: var(--primary-green-color);
+  border-radius: 30px;
+  padding: 24px 16px;
+  position: relative;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: 262px 335px;
+  background-position: center;
+  background-image: image-set(
+    url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp'),
+    url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png')
+  );
+
+  @media (min-device-pixel-ratio: 2),
+    (min-resolution: 144dpi),
+    (min-resolution: 2dppx) {
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png')
+    );
+  }
+
+  @media (min-width: 768px) {
+    height: 578px;
+    padding: 32px 32px;
+    background-size: 374px 477px;
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png')
+    );
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp'),
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png')
+      );
+    }
+  }
+
+  @media (min-width: 1440px) {
+    height: 736px;
+    background-size: 472px 604px;
+    background-image: image-set(
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.webp'),
+      url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@1x.png')
+    );
+    width: calc((100% - 32px) / 2);
+
+    @media (min-device-pixel-ratio: 2),
+      (min-resolution: 144dpi),
+      (min-resolution: 2dppx) {
+      background-image: image-set(
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.webp'),
+        url('/public/img/waterMailInfo/bottle-mob/bottle-mob-@2x.png')
+      );
+    }
+  }
+}

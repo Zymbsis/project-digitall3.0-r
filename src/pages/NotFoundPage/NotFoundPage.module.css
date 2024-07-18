@@ -1,0 +1,48 @@
+.section {
+  background-color: var(--primary-light-grey-color);
+  border-radius: 30px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  font-family: var(--secondary-font-family);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  display: flex;
+  gap: 21px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.status {
+  position: relative;
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.status::after {
+  content: '';
+  position: absolute;
+  height: 40px;
+  width: 1px;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--primary-black-color)
+}
+
+.message {
+  font-size: 20px;
+}
+
+.timer {
+  text-align: center;
+}
