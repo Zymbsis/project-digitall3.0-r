@@ -55,7 +55,7 @@ const UserSettingsForm = () => {
     setValue(name, value);
   };
 
-  const onSubmit = data => {
+  const onSubmit = (data, e) => {
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
     // console.log('data to dispatch: ', data);
@@ -73,7 +73,7 @@ const UserSettingsForm = () => {
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
-    closeModal();
+    closeModal(e);
   };
 
   const handleKeyDown = event => {

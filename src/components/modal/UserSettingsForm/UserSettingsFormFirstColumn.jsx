@@ -72,7 +72,7 @@ const UserSettingsFormFirstColumn = ({
             )}
             type="email"
             id="email"
-            // readOnly
+            readOnly
             maxLength="40"
             autoComplete="off"
             {...register('email')}
