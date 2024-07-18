@@ -18,21 +18,18 @@ AXIOS_INSTANCE.interceptors.response.use(
       !originalRequest._retry
     ) {
       originalRequest._retry = true;
-      console.log(error.response.data.data.message);
 
       try {
-        const response = await axios.post(
+        const { data } = await axios.post(
           'https://aquatracker-node.onrender.com/users/refresh',
-          null,
+          {},
           { withCredentials: true }
         );
-        const { accessToken } = response.data.data;
 
-        if (accessToken) {
-          AXIOS_INSTANCE.defaults.headers.common[
-            'Authorization'
-          ] = `Bearer ${accessToken}`;
+        if (data.data.accessToken) {
+          setToken(data.data.accessToken);
         }
+
         return AXIOS_INSTANCE(originalRequest);
       } catch (refreshError) {
         console.error('Token refresh failed:', refreshError);

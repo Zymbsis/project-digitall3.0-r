@@ -10,7 +10,7 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
-import { getUser } from './redux/user/operations';
+import { getUser } from './redux/user/operations.js';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
