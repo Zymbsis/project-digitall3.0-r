@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import css from './UserBarPopover.module.css';
 import UserSettingsModal from '../../modal/UserSettingsModal/UserSettingsModal';
 import LogOutModal from '../../modal/LogOutModal/LogOutModal';
