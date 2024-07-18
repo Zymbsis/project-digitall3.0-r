@@ -5,13 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { selectCurrentUser } from '../../../redux/user/selectors.js';
 import { updateUser } from '../../../redux/user/operations.js';
 import { Button } from 'shared/index.js';
-import css from './UserSettingsForm.module.css';
-
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 import { yupValidationSchema } from '../serviceUserSettingsForm.js';
 import { useModal } from '../../../context/modalContext.js';
+
+import css from './UserSettingsForm.module.css';
 
 const UserSettingsForm = () => {
   const { closeModal } = useModal();
@@ -39,53 +39,40 @@ const UserSettingsForm = () => {
     },
   });
 
-  // if user is empty, get her/him from backend
-  // if (!user.hasOwnProperty('email')) {
-  //   // console.log('user is empty! go dispatch etUser()');
-  //   dispatch(getUser());
-  //   return;
-  // }
-  // const testUset = watch();
-  // console.log('testUset: ', testUset);
-
-  // console.log('user in settings: ', user);
-
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
     // console.log('name, value: ', name, value);
+    clearErrors(name);
     if (name === 'dailyNorma') {
       const newValue = value.replace(',', '.');
       setValue(name, newValue);
       return;
     }
-    if (['weight ', 'activeHours', 'dailyNorma'].includes(name)) {
+    if (['weight', 'activeHours', 'dailyNorma'].includes(name)) {
       setValue(name, Number(value));
       return;
     }
-
     setValue(name, value);
   };
 
   const onSubmit = data => {
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
-    console.log('Form data: ', data);
+    // console.log('data to dispatch: ', data);
+    dispatch(updateUser(data));
 
     //object FofmData for sending to backend (as insisted by the project task)
-    const formData = new FormData();
-
-    for (const key in data) {
-      if (data.hasOwnProperty(key)) {
-        formData.append(key, data[key]);
-      }
-    }
+    // const formData = new FormData();
+    // for (const key in data) {
+    //   if (data.hasOwnProperty(key)) {
+    //     formData.append(key, data[key]);
+    //   }
+    // }
     //to check if data in FormData object is correct
-    // console.log('formData: ', formData);
+    // console.log('formData to dispatch: ', formData);
     // for (let [key, value] of formData.entries()) {
     //   console.log(`${key}:`, value);
     // }
-
-    dispatch(updateUser(data));
     // dispatch(updateUser(formData));
 
     closeModal();
@@ -115,14 +102,12 @@ const UserSettingsForm = () => {
             register={register}
             errors={errors}
             handleFieldChange={handleFieldChange}
-            clearErrors={clearErrors}
           />
           <UserSettingsFormSecondColumn
             register={register}
             errors={errors}
             watch={watch}
             handleFieldChange={handleFieldChange}
-            clearErrors={clearErrors}
           />
         </div>
         <Button className={css.saveButton} type="submit">

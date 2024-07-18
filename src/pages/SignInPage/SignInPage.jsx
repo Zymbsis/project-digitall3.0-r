@@ -5,11 +5,7 @@ import css from './SignInPage.module.css';
 import { AdvantagesSection } from 'components';
 import { useEffect, useState } from 'react';
 
-import { useModal } from 'context';
-import UserSettingsModal from 'components/modal/UserSettingsModal/UserSettingsModal.jsx';
-
 const SignInPage = () => {
-  const { openModal } = useModal();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   useEffect(() => {
     const handleResize = () => {

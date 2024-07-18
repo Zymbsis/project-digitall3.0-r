@@ -7,7 +7,6 @@ const UserSettingsFormFirstColumn = ({
   register,
   errors,
   handleFieldChange,
-  clearErrors,
 }) => {
   return (
     <div>
@@ -57,7 +56,6 @@ const UserSettingsFormFirstColumn = ({
             maxLength="40"
             autoComplete="off"
             {...register('name')}
-            onFocus={() => clearErrors('name')}
           />
           {errors.name && (
             <span className={css.yupAlert}>{errors.name.message}</span>
@@ -78,7 +76,7 @@ const UserSettingsFormFirstColumn = ({
             maxLength="40"
             autoComplete="off"
             {...register('email')}
-            onFocus={() => clearErrors('email')}
+            // onFocus={() => clearErrors('email')}
           />
           {errors.email && (
             <span className={css.yupAlert}>{errors.email.message}</span>
