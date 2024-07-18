@@ -50,7 +50,7 @@ const UserBar = () => {
         />
         <button
           ref={buttonRef}
-          className={clsx(css.userBarButton, { [css.openPopover]: isOpen })}
+          className={clsx(css.userBarButton, { [css.openPopover]: isVisible })}
           onClick={handleTogglePopover}
           type="button"
         >
