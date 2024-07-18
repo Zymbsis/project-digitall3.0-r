@@ -12,6 +12,7 @@ import {
   getInfoByToday,
 } from '../../../redux/water/operations';
 import { TODAY } from '../../../constants';
+import { store } from '../../../redux/store';
 
 const WaterList = () => {
   const dispatch = useDispatch();

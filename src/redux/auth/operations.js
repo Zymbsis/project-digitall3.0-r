@@ -45,18 +45,40 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   }
 });
 
+// export const refreshUser = createAsyncThunk(
+//   'auth/refresh',
+//   async (_, thunkAPI) => {
+//     const state = thunkAPI.getState();
+//     const persistedToken = state.auth.token;
+//     if (persistedToken === null) {
+//       return thunkAPI.rejectWithValue('Unable to fetch user');
+//     }
+//     setToken(persistedToken);
+//     try {
+//       const { data } = await AXIOS_INSTANCE.post('/users/refresh');
+//       setToken(data.data.accessToken);
+//       return data.data;
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error.message);
+//     }
+//   }
+// );
+
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
+
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-    setToken(persistedToken);
+
     try {
+      // Непотрібно встановлювати токен тут, тому що інтерцептори вже це роблять
       const { data } = await AXIOS_INSTANCE.post('/users/refresh');
-      setToken(data.data.accessToken);
+
+      // Відповідь з новим токеном, не потрібно знову використовувати setToken
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
