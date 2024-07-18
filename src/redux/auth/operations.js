@@ -69,16 +69,11 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-
     try {
-      // Непотрібно встановлювати токен тут, тому що інтерцептори вже це роблять
       const { data } = await AXIOS_INSTANCE.post('/users/refresh');
-
-      // Відповідь з новим токеном, не потрібно знову використовувати setToken
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

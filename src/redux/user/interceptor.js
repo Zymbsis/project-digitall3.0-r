@@ -3,6 +3,7 @@ import { store } from '../store.js';
 
 import { clearToken, setToken } from '../auth/slice.js';
 import axios from 'axios';
+import { refreshUser } from '../auth/operations.js';
 
 AXIOS_INSTANCE.interceptors.request.use(
   request => {
@@ -31,11 +32,7 @@ AXIOS_INSTANCE.interceptors.response.use(
     ) {
       originalRequest._retry = true;
       try {
-        const { data } = await axios.post(
-          'https://aquatracker-node.onrender.com/users/refresh',
-          {},
-          { withCredentials: true }
-        );
+        const { data } = store.dispatch(refreshUser);
         const newToken = data.data.accessToken;
         store.dispatch(setToken(newToken));
         console.log(newToken);
