@@ -8,6 +8,7 @@ import {
 } from '../../../redux/water/selectors';
 import { useEffect } from 'react';
 import { getInfoBySelectedDay } from '../../../redux/water/operations';
+import { TODAY } from 'constants';
 
 const WaterList = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,12 @@ const WaterList = () => {
   const { portions: selectedDayPortions } = useSelector(
     selectInfoBySelectedDay
   );
-  const today = new Date().toISOString().split('T')[0];
-  const condition = selectedDate === null || selectedDate === today;
+  const condition = selectedDate === null || selectedDate === TODAY;
 
   useEffect(() => {
     if (condition) return;
     dispatch(getInfoBySelectedDay(selectedDate));
-  }, [condition, dispatch, today, selectedDate]);
+  }, [condition, dispatch, selectedDate]);
   const waterList = condition ? todayPortions : selectedDayPortions;
 
   return (
