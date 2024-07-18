@@ -43,7 +43,9 @@
   fill: none;
   stroke: var(--primary-dark-grey-color);
 }
-
+button:disabled .logo {
+  stroke: var(--invite-text-color);
+}
 .IconBtn {
     background: none;
     border: none;

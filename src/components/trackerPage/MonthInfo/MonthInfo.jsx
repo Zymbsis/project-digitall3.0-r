@@ -11,7 +11,7 @@ const MonthInfo = () => {
   }, []);
 
 return (
-  <div className={css.container}>
+  <div>
     <CalendarPagination selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
     <Calendar selectedDate={selectedDate}/>
   </div>

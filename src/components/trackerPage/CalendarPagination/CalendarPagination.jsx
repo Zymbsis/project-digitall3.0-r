@@ -8,6 +8,10 @@ const CalendarPagination = ({ selectedDate, setSelectedDate}) => {
 
   const user = useSelector(selectCurrentUser);
   const userCreatedDate = new Date(user?.createdAt);
+  const currentDate = new Date()
+  const limitDate = new Date(currentDate)
+  limitDate.setFullYear(currentDate.getFullYear() + 1);
+
 
   const handlePrevMonth = () => {
     setSelectedDate((prevDate) => {
@@ -29,7 +33,10 @@ const CalendarPagination = ({ selectedDate, setSelectedDate}) => {
   (selectedDate.getFullYear() === userCreatedDate.getFullYear() && 
   selectedDate.getMonth() <= userCreatedDate.getMonth());
  
- 
+ const isNextDis = selectedDate.getFullYear >  limitDate.getFullYear() ||
+ (selectedDate.getFullYear() === limitDate.getFullYear() && 
+  selectedDate.getMonth() >= limitDate.getMonth());
+  
  return (
  <div className={css.container}>
   <h2 className={css.title}>Month</h2>
@@ -38,7 +45,7 @@ const CalendarPagination = ({ selectedDate, setSelectedDate}) => {
       <Icon iconId="icon-chevron-left" className={css.logo}/>
   </button>
   <p className={css.date}>{formatDate(selectedDate)}</p>
-  <button className={css.IconBtn} onClick={handleNextMonth}>
+  <button className={css.IconBtn} onClick={handleNextMonth} disabled={isNextDis}>
   <Icon iconId="icon-chevron-right" className={css.logo}/>
   </button>
   </div>
