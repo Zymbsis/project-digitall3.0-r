@@ -16,7 +16,23 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/project-digitall3.0-r">
           <ModalProvider>
-            <TourProvider steps={tourSteps}>
+            <TourProvider
+              steps={tourSteps}
+              styles={{
+                popover: base => ({
+                  ...base,
+                  '--reactour-accent': '#87d28d',
+                  borderRadius: '30px',
+                  fontSize: '20px',
+                  textAlign: 'center',
+                  backgroundColor: '#f0eff4',
+                }),
+
+                badge: base => ({ ...base, rigth: 'auto', left: '-0.8125em' }),
+                controls: base => ({ ...base, marginTop: 100 }),
+                close: base => ({ ...base, left: 'auto', rigth: 8, top: 8 }),
+              }}
+            >
               <App />
             </TourProvider>
           </ModalProvider>

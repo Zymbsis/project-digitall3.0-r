@@ -48,6 +48,7 @@ const UserBar = () => {
           alt="User Avatar"
           className={css.avatar}
         />
+
         <button
           ref={buttonRef}
           className={clsx(css.userBarButton, { [css.openPopover]: isVisible })}

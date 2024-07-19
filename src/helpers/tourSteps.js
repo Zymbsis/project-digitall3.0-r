@@ -1,30 +1,29 @@
 export const tourSteps = [
   {
     selector: '.tour-logo',
-    content: 'Вітаємо на сторінці відстеження води!',
+    content: 'Welcome to the AquaTrack page!',
   },
   {
     selector: '.tour-user-info',
-    content:
-      'Тут ви можете побачити та редагувати основну інформацію по вашему профілю.',
+    content: 'Here you can view and edit basic information on your profile.',
   },
   {
     selector: '.tour-water-main-info',
     content:
-      'Тут ви можете побачити основну інформацію про ваше денне споживання води.',
+      'Basic information about your daily water consumption is available here.',
   },
   {
     selector: '.tour-add-water',
-    content: 'Натисніть, щоб додати нову порцію води до своєї статистики.',
+    content: 'Click on the button to add more water to your stats.',
   },
   {
     selector: '.tour-daily-progress',
     content:
-      'Тут ви можете побачити та редагувати детальну інформацію про спожиту воду за день',
+      'Here you can view and edit detailed information about the water consumed per day.',
   },
   {
     selector: '.tour-month-progress',
     content:
-      'Тут ви можете побачити детальну інформацію про спожиту воду за місяць',
+      'Detailed information about the water consumed for the month is available here.',
   },
 ];
