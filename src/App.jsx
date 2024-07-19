@@ -10,6 +10,7 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
+import WeekDiagram from 'components/trackerPage/WeekDiagramm/WeekDiagram';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -27,6 +28,7 @@ const App = () => {
 
   return (
     <>
+      <WeekDiagram />
       {isRefreshing ? (
         <Loader />
       ) : (
