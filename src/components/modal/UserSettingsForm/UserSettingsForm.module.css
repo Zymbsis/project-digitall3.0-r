@@ -28,8 +28,8 @@
 }
 
 .toColumns {
+  flex-direction: column;
 
-  /* flex-direction: column; */
   @media (min-width: 1440px) {
     display: flex;
     flex-direction: row;
