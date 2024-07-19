@@ -2,23 +2,8 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
 import { parseDayForFetch } from '../../helpers';
 
-export const getInfoByToday = createAsyncThunk(
-  'water/getInfoByToday',
-  async (date, { rejectWithValue }) => {
-    try {
-      const {
-        data: { data },
-      } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
-  }
-  // Example: getInfoByDay('2024-07-02')
-);
-
-export const getInfoBySelectedDay = createAsyncThunk(
-  'water/getInfoBySelectedDay',
+export const getInfoByDay = createAsyncThunk(
+  'water/getInfoByDay',
   async (date, { rejectWithValue }) => {
     try {
       const {
@@ -46,12 +31,32 @@ export const getInfoByMonth = createAsyncThunk(
 );
 export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
-  async (waterData, { rejectWithValue }) => {
+  async (waterData, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
     try {
       const {
         data: { data },
       } = await AXIOS_INSTANCE.post('/water', waterData);
-      return data;
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
+      let infoByToday;
+      if (waterData.date === currentDay) {
+        const {
+          data: { data },
+        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
+        console.log(data);
+        infoByToday = data;
+      }
+
+      return { data, infoByMonth, infoByToday };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -65,14 +70,32 @@ export const addWaterIntake = createAsyncThunk(
 
 export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
-  async ({ _id, ...waterData }, { rejectWithValue }) => {
+  async ({ _id, ...waterData }, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
     try {
       const {
         data: { data },
       } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
         ...waterData,
       });
-      return data;
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
+      let infoByToday;
+      if (selectedDate === null) {
+        const {
+          data: { data },
+        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
+        infoByToday = data;
+      }
+      return { data, infoByMonth, infoByToday };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -106,7 +129,6 @@ export const deleteWaterIntake = createAsyncThunk(
             : currentDay.substring(0, 7)
         }`
       );
-
       return { infoByDay, infoByMonth };
     } catch (error) {
       return rejectWithValue(error.response.data.message);

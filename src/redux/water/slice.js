@@ -1,11 +1,10 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
-  getInfoByToday,
-  getInfoBySelectedDay,
   getInfoByMonth,
   addWaterIntake,
   updateWaterIntake,
   deleteWaterIntake,
+  getInfoByDay,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
 
@@ -19,13 +18,13 @@ const waterSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getInfoByToday.fulfilled, (state, action) => {
+      .addCase(getInfoByDay.fulfilled, (state, action) => {
         state.loading = false;
-        state.infoByToday = action.payload;
-      })
-      .addCase(getInfoBySelectedDay.fulfilled, (state, action) => {
-        state.loading = false;
-        state.infoBySelectedDay = action.payload;
+        if (state.selectedDate === action.payload.date) {
+          state.infoBySelectedDay = action.payload;
+        } else {
+          state.infoByToday = action.payload;
+        }
       })
       .addCase(getInfoByMonth.fulfilled, (state, action) => {
         state.loading = false;
@@ -33,33 +32,34 @@ const waterSlice = createSlice({
       })
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        if (!setSelectedDay) {
-          state.infoByToday = {
-            ...state.infoByToday,
-            portions: state.infoByToday.portions.push(action.payload),
-            completionRate: action.payload.completionRate,
+        if (state.selectedDate === action.payload.data.date) {
+          state.infoBySelectedDay = {
+            ...state.infoBySelectedDay,
+            portions: [
+              ...state.infoBySelectedDay.portions,
+              action.payload.data,
+            ],
           };
+        } else {
+          state.infoByToday = action.payload.infoByToday;
         }
+        state.infoByMonth = action.payload.infoByMonth;
       })
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
+        const updatePortions = portions =>
+          portions.map(item =>
+            item._id === action.payload.data._id ? action.payload.data : item
+          );
         if (state.selectedDate) {
           state.infoBySelectedDay = {
             ...state.infoBySelectedDay,
-            portions: state.infoBySelectedDay.portions.map(item =>
-              item._id === action.payload._id ? action.payload : item
-            ),
-            completionRate: action.payload.completionRate,
+            portions: updatePortions(state.infoBySelectedDay.portions),
           };
         } else {
-          state.infoByToday = {
-            ...state.infoByToday,
-            portions: state.infoByToday.portions.map(item =>
-              item._id === action.payload._id ? action.payload : item
-            ),
-            completionRate: action.payload.completionRate,
-          };
+          state.infoByToday = action.payload.infoByToday;
         }
+        state.infoByMonth = action.payload.infoByMonth;
       })
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
@@ -72,8 +72,7 @@ const waterSlice = createSlice({
       })
       .addMatcher(
         isAnyOf(
-          getInfoByToday.pending,
-          getInfoBySelectedDay.pending,
+          getInfoByDay.pending,
           getInfoByMonth.pending,
           addWaterIntake.pending,
           updateWaterIntake.pending,
@@ -86,8 +85,7 @@ const waterSlice = createSlice({
       )
       .addMatcher(
         isAnyOf(
-          getInfoByToday.rejected,
-          getInfoBySelectedDay.rejected,
+          getInfoByDay.rejected,
           getInfoByMonth.rejected,
           addWaterIntake.rejected,
           updateWaterIntake.rejected,

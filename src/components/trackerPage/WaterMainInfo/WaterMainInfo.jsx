@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { getInfoByToday } from '../../../redux/water/operations';
+import { getInfoByDay } from '../../../redux/water/operations';
 import { parseDayForFetch } from 'helpers';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma';
@@ -13,7 +13,7 @@ const WaterMainInfo = () => {
   const currentDay = parseDayForFetch(new Date());
 
   useEffect(() => {
-    dispatch(getInfoByToday(currentDay));
+    dispatch(getInfoByDay(currentDay));
   }, [currentDay, dispatch]);
 
   return (
