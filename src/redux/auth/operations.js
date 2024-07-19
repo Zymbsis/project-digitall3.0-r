@@ -7,7 +7,7 @@ const setToken = token => {
 };
 
 const clearToken = () => {
-  AXIOS_INSTANCE.defaults.headers.common.Authorization = '';
+  AXIOS_INSTANCE.defaults.headers.common.Authorization = null;
 };
 
 export const register = createAsyncThunk(
@@ -16,7 +16,6 @@ export const register = createAsyncThunk(
     try {
       await AXIOS_INSTANCE.post('/users/register', credentials);
       const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
-      setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -29,7 +28,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
-      setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -51,53 +49,48 @@ export const refreshUser = createAsyncThunk(
   async (_, thunkAPI) => {
     const state = thunkAPI.getState();
     const accessToken = state.auth.token;
-    if (accessToken === null) {
+    if (!accessToken) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-    setToken(accessToken);
     try {
-      const { data } = await axios.post(
-        'https://aquatracker-node.onrender.com/users/refresh',
-        {},
-        { withCredentials: true }
-      );
-      setToken(data.data.accessToken);
+      const { data } = await AXIOS_INSTANCE.post('/users/refresh');
       return data.data;
     } catch (error) {
-      logOut();
+      store.dispatch(logOut());
+      clearToken();
       return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
 
-AXIOS_INSTANCE.interceptors.response.use(
-  function (response) {
-    return response;
-  },
-  error => {
-    const originalRequest = error.config;
+// AXIOS_INSTANCE.interceptors.response.use(
+//   function (response) {
+//     return response;
+//   },
+//   error => {
+//     const originalRequest = error.config;
 
-    if (
-      error.response &&
-      error.response.status === 401 &&
-      !originalRequest._retry
-    ) {
-      originalRequest._retry = true;
-      try {
-        store.dispatch(refreshUser());
-        // const { data } = store.dispatch(refreshUser());
-        // const newToken = data.data.accessToken;
-        // AXIOS_INSTANCE.defaults.headers.common[
-        //   'Authorization'
-        // ] = `Bearer ${newToken}`;
-        // originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
-        return AXIOS_INSTANCE(originalRequest);
-      } catch (error) {
-        store.dispatch(clearToken());
-        window.location.href = '/project-digitall3.0-r/signin';
-        return Promise.reject(error);
-      }
-    }
-    return Promise.reject(error);
-  }
-);
+//     if (
+//       error.response &&
+//       error.response.status === 401 &&
+//       !originalRequest._retry
+//     ) {
+//       originalRequest._retry = true;
+//       try {
+//         store.dispatch(refreshUser());
+//         // const { data } = store.dispatch(refreshUser());
+//         // const newToken = data.data.accessToken;
+//         // AXIOS_INSTANCE.defaults.headers.common[
+//         //   'Authorization'
+//         // ] = `Bearer ${newToken}`;
+//         // originalRequest.headers['Authorization'] = `Bearer ${newToken}`;
+//         return AXIOS_INSTANCE(originalRequest);
+//       } catch (error) {
+//         store.dispatch(clearToken());
+//         window.location.href = '/project-digitall3.0-r/signin';
+//         return Promise.reject(error);
+//       }
+//     }
+//     return Promise.reject(error);
+//   }
+// );
