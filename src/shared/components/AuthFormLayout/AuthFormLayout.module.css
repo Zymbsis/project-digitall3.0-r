@@ -1,20 +1,19 @@
-/* .wrapper {
-  max-width: 343px;
-  height: 780px;
+.layout {
   background-color: var(--primary-light-grey-color);
   border-radius: 30px;
+  height: 780px;
   display: flex;
-  flex-direction: column;
-  padding: 24px 16px;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
 
-  @media (min-width: 768px) {
-    max-width: 704px;
+  @media (min-width:768px) {
     height: 960px;
-    padding: 32px;
+    padding: 0;
   }
 
   @media (min-width: 1440px) {
     width: calc((100% - 32px) / 2);
     height: 736px;
   }
-} */
+}

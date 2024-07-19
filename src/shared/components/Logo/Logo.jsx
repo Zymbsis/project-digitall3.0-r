@@ -1,13 +1,9 @@
-import clsx from 'clsx';
 import css from './Logo.module.css';
-import { useRef } from 'react';
+import clsx from 'clsx';
 
 const Logo = ({ className }) => {
-  const refRef = useRef();
   return (
-    <p className={clsx(css.logo, { [className]: className })} ref={refRef}>
-      AquaTrack
-    </p>
+    <p className={clsx(css.logo, { [className]: className })}>AquaTrack</p>
   );
 };
 

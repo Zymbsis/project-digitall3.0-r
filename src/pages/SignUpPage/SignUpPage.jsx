@@ -1,26 +1,15 @@
-import { useState, useEffect } from 'react';
+import { Container, Logo, Section } from 'shared';
 import { AdvantagesSection } from 'components';
 import SignUpForm from 'components/signUpPage/SignUpForm/SignUpForm';
-import { Container, Section } from 'shared';
-import css from './SignUpPage.module.css';
+// import css from './SignUpPage.module.css';
 
 const SignUpPage = () => {
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.addEventListener('resize', handleResize);
-    };
-  }, []);
-
   return (
     <Section>
-      <Container className={css.signUpContainer}>
+      <Container>
+        <Logo />
         <SignUpForm />
-        {windowWidth > 1439.98 && <AdvantagesSection />}
+        <AdvantagesSection className="signUpPage" />
       </Container>
     </Section>
   );
