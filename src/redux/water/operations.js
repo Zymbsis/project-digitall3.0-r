@@ -93,12 +93,21 @@ export const deleteWaterIntake = createAsyncThunk(
     try {
       await AXIOS_INSTANCE.delete(`/water/${_id}`);
       const {
-        data: { data },
+        data: { data: infoByDay },
       } = await AXIOS_INSTANCE.get(
         `/water/day/${selectedDate ? selectedDate : currentDay}`
       );
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
 
-      return data;
+      return { infoByDay, infoByMonth };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }

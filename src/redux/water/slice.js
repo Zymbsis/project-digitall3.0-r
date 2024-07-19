@@ -64,10 +64,11 @@ const waterSlice = createSlice({
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         if (state.selectedDate) {
-          state.infoBySelectedDay = action.payload;
+          state.infoBySelectedDay = action.payload.infoByDay;
         } else {
-          state.infoByToday = action.payload;
+          state.infoByToday = action.payload.infoByDay;
         }
+        state.infoByMonth = action.payload.infoByMonth;
       })
       .addMatcher(
         isAnyOf(
