@@ -9,7 +9,6 @@ import css from './WaterItem.module.css';
 const WaterItem = ({ item: { _id, volume, time } }) => {
   const { openModal } = useModal();
   const formattedTime = parsedTime(time);
-
   const handleDelete = () => {
     openModal(<DeleteWaterModal id={_id} />);
   };
