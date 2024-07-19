@@ -68,7 +68,7 @@ const App = () => {
             <Route
               path="/tracker"
               element={
-                <PrivateRoutes redirectTo="/" component={<TrackerPage />} />
+                <PrivateRoutes redirectTo="/" component={<HomePage />} />
               }
             />
             <Route path="*" element={<NotFoundPage />} />

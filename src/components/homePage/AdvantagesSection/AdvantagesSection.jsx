@@ -4,7 +4,16 @@ import css from './AdvantagesSection.module.css';
 const AdvantagesSection = ({ className }) => {
   return (
     <div className={clsx(css.wrapper, css[className])}>
-      <div className={css.customers}></div>
+      <div className={css.customers}>
+        <div className={css.customersPhotos}>
+          <div className={css.customersPhotoOne}></div>
+          <div className={css.customersPhotoTwo}></div>
+          <div className={css.customersPhotoThree}></div>
+        </div>
+        <p className={css.customersText}>
+          13 <span className={css.customersSpan}>happy</span> customers
+        </p>
+      </div>
       <div className={css.advantages}>
         <div className={css.habit}>
           <div className={css.dot}></div>
