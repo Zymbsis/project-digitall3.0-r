@@ -10,6 +10,8 @@
     margin-bottom: 6px;
     position: relative;
     background-color: var(--opacity-grey-color);
+    color: var(--primary-dark-grey-color);
+    overflow: hidden;
 
     @media (min-width: 768px) {
         width: 38px;
@@ -17,16 +19,45 @@
         margin-bottom: 4px;
     }
 }
-
+.button:focus {
+    background-color: var(--primary-dark-grey-color);
+    color: var(--hover-green-color);
+}
+.button .wave {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .wave svg {
+    width: 200%;
+    height: 200%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    fill: #87d28d;
+    transform: translate(-50%, 100%) scale(0.5);
+    transition: transform 1s;
+  }
+  
+  .wave.animate svg {
+    transform: translate(-50%, calc(100% - var(--completion-rate))) scale(0.5);
+  }
+  
 .completed {
     background-color: var(--primary-white-color);
 }
 .day {
-    color: var(--primary-dark-grey-color);
+   
     font-size: 14px;
     font-weight: 700;
     line-height: 1.29;
     letter-spacing: -0.14px;
+    z-index: 1; /* Піднімаємо текст над хвилею */
+    position: relative;
 }
 
 .percent {
@@ -37,4 +68,6 @@
     font-size: 12px;
     font-weight: 400;
     line-height: 1.87; 
+    z-index: 1; /* Піднімаємо текст над хвилею */
+    position: relative; /* Додаємо позиціонування для правильного накладання */
 }

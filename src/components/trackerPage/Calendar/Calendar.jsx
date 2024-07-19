@@ -1,45 +1,43 @@
 import css from './Calendar.module.css'
 import CalendarItem from '../CalendarItem/CalendarItem';
 import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectMonthlyStats } from '../../../redux/water/selectors';
+import { useDispatch } from 'react-redux';
 import { getInfoByMonth } from "../../../redux/water/operations";
-import { selectIsLoggedIn } from '../../../redux/auth/selectors';
-import { logIn  } from "../../../redux/auth/operations";
+
 const Calendar = ({ selectedDate }) => {
   const [waterData, setWaterData] = useState([]);
+  const [displayDays, setDisplayDays] = useState([]);
   const dispatch = useDispatch();
-  // const waterData = useSelector(selectMonthlyStats);
-  const isLoggedIn = useSelector(selectIsLoggedIn);
-
-  // useEffect(() => {
-  //   if (isLoggedIn) {
-  //     dispatch(getInfoByMonth(`${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}`));
-  //   }
-  // }, [selectedDate, isLoggedIn, dispatch]);
+  
+  const year = selectedDate.getFullYear();
+  const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
 
   useEffect(() => {
     const fetchWaterData = async () => {
       try {
-        const res = await fetch(`/water/month/${selectedDate.getFullYear()}-${selectedDate.getMonth() + 1}`)
-        const data = await res.json();
-        setWaterData(data.days)
+        const date = `${year}-${month}`;
+        const res = await dispatch(getInfoByMonth(date)).unwrap();
+        setWaterData(res.days)
       } catch (error) {
         console.error(error)
       }
     };
-    fetchWaterData();
-  }, [selectedDate]);
+    const displayDays = () => {
+      const daysInMonth = new Date(year, selectedDate.getMonth() + 1, 0).getDate();
+      const days = Array.from({ length: daysInMonth }, (_, i) => (i + 1).toString());
+      setDisplayDays(days);
+    };
 
-  
-  const daysInMonth = new Date(selectedDate.getFullYear(), selectedDate.getMonth() + 1, 0).getDate();
+    fetchWaterData();
+    displayDays();
+  }, [selectedDate, year, month, dispatch]);
+
   return (
     <ul className={css.container}>
-    {Array.from({ length: daysInMonth }, (_, i) => {
-      const day = i + 1;
-      const dayData = waterData.find(water => water.day === String(day)) || { completionRate: 0};
-      return <CalendarItem key={day} day={day} waterData={dayData} selectedDate={selectedDate} />;
-    })}
+    {displayDays.map(day => {
+        const dayData = waterData.find(water => water.day === day.padStart(2, '0')) || { completionRate: 0 };
+        return <CalendarItem key={day} day={day} waterData={dayData} selectedDate={selectedDate} />;
+      })}
   </ul>
 )
 };
