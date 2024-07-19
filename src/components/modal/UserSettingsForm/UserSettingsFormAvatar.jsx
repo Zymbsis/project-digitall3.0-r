@@ -1,7 +1,4 @@
 import { Icon } from 'shared/index.js';
-
-import avatarDefault from '../../../icons/avatar_default.png';
-
 import css from './UserSettingsForm.module.css';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/user/operations.js';
@@ -26,17 +23,12 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
     //   ', avdata:',
     //   avatar
     // );
-    if (typeof avatar === 'string') {
-      // console.log('avatar length: ', avatar.length);
-      if (avatar.length !== 0) {
-        return avatar;
-      }
-    } else if (typeof avatar === 'object') {
-      if (avatar.length !== 0) {
-        return URL.createObjectURL(avatar);
-      }
+    if (typeof avatar === 'string' && avatar.length !== 0) {
+      return avatar;
+    } else if (typeof avatar === 'object' && avatar.length !== 0) {
+      return URL.createObjectURL(avatar);
     }
-    return avatarDefault;
+    return '/public/img/userSettingsForm/avatar_default.png';
   };
 
   return (
@@ -57,7 +49,7 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
             {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />
-          {errors.avatar && <span>Avatar image file is required</span>}
+          {/* {errors.avatar && <span>Avatar image file is required</span>} */}
         </div>
         <label htmlFor="avatar" className={css.uploadButton}>
           {<Icon className={css.uploadIcon} iconId="icon-upload" />}Upload a

@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { authReducer } from './auth/slice';
-import { waterReducer } from './water/slice';
+import { persistedAuthReducer } from './auth/slice';
+import { persistedWaterReducer } from './water/slice';
 import { userReducer } from './user/slice';
 
 import {
   persistStore,
-  persistReducer,
   FLUSH,
   REHYDRATE,
   PAUSE,
@@ -13,20 +12,11 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-
-const authPersistConfig = {
-  key: 'auth',
-  storage,
-  whitelist: ['token'],
-};
-
-const persistedAuthReducer = persistReducer(authPersistConfig, authReducer);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    water: waterReducer,
+    water: persistedWaterReducer,
     user: userReducer,
   },
   middleware: getDefaultMiddleware =>

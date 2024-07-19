@@ -1,7 +1,11 @@
 .container {
+  position: relative;
   margin: 0 auto;
   padding-left: 16px;
   padding-right: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 
   @media (max-width:374.98px) {
     max-width: 375px;
@@ -19,7 +23,6 @@
 
   @media (min-width:1440px) {
     width: 1440px;
-    display: flex;
     flex-direction: row;
     gap: 32px;
   }

@@ -1,11 +1,17 @@
 .logo {
+  position: absolute;
+  top: 24px;
+  left: 32px;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.11;
   letter-spacing: -0.01em;
   text-transform: uppercase;
+  z-index: 15;
 
   @media (min-width:768px) {
+    top: 32px;
+    left: 64px;
     font-size: 24px;
     line-height: 1;
   }

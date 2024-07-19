@@ -4,4 +4,4 @@ export { default as Icon } from './components/Icon/Icon.jsx';
 export { default as Logo } from './components/Logo/Logo.jsx';
 export { default as Section } from './components/Section/Section.jsx';
 export { default as Title } from './components/Title/Title.jsx';
-// export { default as Subtitle } from './components/Subtitle/Subtitle.jsx';
+export { default as AuthFormLayout } from './components/AuthFormLayout/AuthFormLayout.jsx';
