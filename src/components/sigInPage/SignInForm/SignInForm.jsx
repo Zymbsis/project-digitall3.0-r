@@ -1,24 +1,18 @@
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
-import css from './SignInForm.module.css';
-import clsx from 'clsx';
-import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { Icon } from 'shared';
+import { useForm } from 'react-hook-form';
+import { NavLink } from 'react-router-dom';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/auth/operations';
+import { signInFormSchema } from 'validationSchemas';
+import { Icon } from 'shared';
+
+import clsx from 'clsx';
+import css from './SignInForm.module.css';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
-  const formValidation = Yup.object({
-    email: Yup.string().email().required(),
-    password: Yup.string()
-      .min(8, 'must contain at least 8 characters')
-      .max(64)
-      .required(),
-  });
 
   const {
     register,
@@ -26,7 +20,7 @@ const SignInForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(formValidation),
+    resolver: yupResolver(signInFormSchema),
     mode: 'onSubmit',
     defaultValues: {
       email: '',
