@@ -10,6 +10,8 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
+import { addWaterIntake } from './redux/water/operations';
+import { selectInfoByToday } from './redux/water/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -24,6 +26,9 @@ const App = () => {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
+
+  const waterList = useSelector(selectInfoByToday);
+  console.log(waterList);
 
   return (
     <>
