@@ -67,8 +67,9 @@
 }
 
 .customers {
-  position: relative;
-  width: 160px;
+  display: flex;
+  justify-content: space-between;
+  min-width: 160px;
   height: 48px;
   border-radius: 30px;
   padding: 10px 14px;
@@ -76,14 +77,17 @@
   margin-bottom: 8px;
 
   @media (min-width: 768px) {
-    width: 237px;
+    min-width: 237px;
     height: 67px;
     margin-bottom: 64px;
   }
 }
 
 .customersPhotos {
+  display: block;
   position: relative;
+  width: 100%;
+  height: 100%;
 }
 
 .customersPhotoOne {
@@ -176,9 +180,7 @@
 }
 
 .customersText {
-  width: 67px;
-  position: absolute;
-  right: 14px;
+  min-width: 67px;
   font-size: 12px;
   font-weight: 700;
   line-height: 14px;
@@ -186,7 +188,7 @@
   text-align: left;
 
   @media (min-width: 768px) {
-    width: 90px;
+    min-width: 90px;
     font-size: 15px;
     line-height: 22.4px;
   }
