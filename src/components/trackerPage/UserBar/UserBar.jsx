@@ -36,7 +36,7 @@ const UserBar = () => {
   };
 
   return (
-    <div className={css.userBarContainer}>
+    <div className={clsx(css.userBarContainer, 'tour-user-info')}>
       <div className={css.userBarWrapper}>
         <span className={css.userName}>{name}</span>
         <img

@@ -7,7 +7,7 @@ const MonthInfo = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
 
   return (
-    <div>
+    <div className="tour-month-progress">
       <CalendarPagination
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
