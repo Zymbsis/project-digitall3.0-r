@@ -1,7 +1,5 @@
-import { TODAY } from '../constants';
-
-export const parseSelectedDay = selectedDate => {
-  if (selectedDate === null || selectedDate === TODAY) return;
+export const parseSelectedDay = (selectedDate, currentDate) => {
+  if (selectedDate === null || selectedDate === currentDate) return;
 
   const [year, month, day] = selectedDate.split('-');
   const newFormatDay = new Date(year, month - 1, day);

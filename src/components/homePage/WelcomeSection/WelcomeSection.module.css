@@ -1,29 +1,20 @@
 .wrapper {
   border-radius: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 74px;
   background-color: var(--primary-light-grey-color);
-  padding: 24px 16px 67px 16px;
+  padding: 118px 16px 67px 16px;
 
   @media (min-width: 768px) {
     height: 498px;
-    padding: 32px 93px 50px 32px;
-    gap: 50px;
+    padding: 106px 64px 50px 64px;
   }
 
   @media (min-width: 1440px) {
     width: calc((100% - 32px) / 2);
     height: 736px;
-    gap: 132px;
-    padding-right: 61px;
-    padding-bottom: 188px;
-  }
-}
-
-.content {
-  @media (min-width: 768px) {
-    padding-left: 32px;
+    padding: 0 64px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
   }
 }
 

@@ -1,7 +1,21 @@
-.wrapper {
-  @media screen and (min-width: 768px) {
+.registerContainer {
+  width: 100%;
+
+  @media (min-width: 768px) {
     width: 436px;
-    margin: 0 auto;
+  }
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  margin-bottom: 32px;
+
+  @media (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.06;
   }
 }
 
@@ -84,26 +98,6 @@
 .button:hover {
   @media (min-width: 1440px) {
     background-color: var(--hover-green-color);
-  }
-}
-
-.title {
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 32px;
-  letter-spacing: -1%;
-  text-align: left;
-  margin-top: 172px;
-  margin-bottom: 32px;
-
-  @media (min-width: 768px) {
-    margin-top: 225px;
-    font-size: 36px;
-    line-height: 1.06;
-  }
-
-  @media (min-width: 1440px) {
-    margin-top: 113px;
   }
 }
 

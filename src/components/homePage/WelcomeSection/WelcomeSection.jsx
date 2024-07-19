@@ -4,9 +4,9 @@ import Logo from 'shared/components/Logo/Logo';
 
 const WelcomeSection = () => {
   return (
-    <div className={css.wrapper}>
+    <>
       <Logo />
-      <div className={css.content}>
+      <div className={css.wrapper}>
         <div className={css.description}>
           <p className={css.descriptionParagraph}>
             Record daily water intake and track
@@ -22,7 +22,7 @@ const WelcomeSection = () => {
           </NavLink>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 

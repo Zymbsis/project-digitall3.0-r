@@ -2,7 +2,11 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/user/selectors';
 import { getInfoByMonth } from '../../../redux/water/operations';
-import { parseMonthForFetch, parseSelectedMonth } from 'helpers';
+import {
+  parseDayForFetch,
+  parseMonthForFetch,
+  parseSelectedMonth,
+} from 'helpers';
 import { Icon } from 'shared';
 import css from './CalendarPagination.module.css';
 
@@ -12,6 +16,7 @@ const CalendarPagination = () => {
   const { createdAt } = useSelector(selectCurrentUser);
   const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   const limitDate = new Date();
+  const currentDay = parseDayForFetch(new Date());
   limitDate.setFullYear(limitDate.getFullYear() + 1);
 
   const hasPrevMonth =
@@ -25,9 +30,9 @@ const CalendarPagination = () => {
       selectedDate.getMonth() >= limitDate.getMonth());
 
   useEffect(() => {
-    const dateForFetch = parseMonthForFetch(selectedDate);
+    const dateForFetch = parseMonthForFetch(selectedDate, currentDay);
     dispatch(getInfoByMonth(dateForFetch));
-  }, [selectedDate, dispatch]);
+  }, [selectedDate, currentDay, dispatch]);
 
   const handlePrevMonth = () => {
     setSelectedDate(prevDate => {
