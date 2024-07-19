@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { ModalProvider } from 'context';
 import { PersistGate } from 'redux-persist/integration/react';
 import { TourProvider } from '@reactour/tour';
-import { tourSteps } from 'helpers/tourSteps';
+import { tourSteps, tourStyles } from 'helpers/tourSteps';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -16,23 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/project-digitall3.0-r">
           <ModalProvider>
-            <TourProvider
-              steps={tourSteps}
-              styles={{
-                popover: base => ({
-                  ...base,
-                  '--reactour-accent': '#87d28d',
-                  borderRadius: '30px',
-                  fontSize: '20px',
-                  textAlign: 'center',
-                  backgroundColor: '#f0eff4',
-                }),
-
-                badge: base => ({ ...base, rigth: 'auto', left: '-0.8125em' }),
-                controls: base => ({ ...base, marginTop: 100 }),
-                close: base => ({ ...base, left: 'auto', rigth: 8, top: 8 }),
-              }}
-            >
+            <TourProvider steps={tourSteps} styles={tourStyles}>
               <App />
             </TourProvider>
           </ModalProvider>
