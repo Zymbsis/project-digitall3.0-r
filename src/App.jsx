@@ -10,7 +10,7 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
-import { selectInfoByToday } from './redux/water/selectors';
+import { selectInfoByMonth, selectInfoByToday } from './redux/water/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
@@ -26,7 +26,9 @@ const App = () => {
     dispatch(refreshUser());
   }, [dispatch]);
 
-  const waterList = useSelector(selectInfoByToday);
+  // const waterList = useSelector(selectInfoByToday);
+  const waterList = useSelector(selectInfoByMonth);
+
   console.log(waterList);
 
   return (

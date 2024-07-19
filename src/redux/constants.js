@@ -12,7 +12,7 @@ export const INITIAL_STATE = {
   water: {
     infoByToday: { date: '', portions: [], completionRate: null },
     infoBySelectedDay: { date: '', portions: [], completionRate: null },
-    infoByMonth: [],
+    infoByMonth: { date: '', days: [] },
     selectedDate: null,
     loading: false,
     error: null,
