@@ -4,7 +4,7 @@
     align-items: flex-start;
     align-content: flex-start; 
     row-gap: 20px;
-    column-gap: 18px;
+    column-gap: 17px;
 
     @media (min-width: 768px) {
     row-gap: 15px;
