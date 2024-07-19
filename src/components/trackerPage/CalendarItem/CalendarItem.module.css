@@ -1,0 +1,55 @@
+.button {
+    display: flex;
+    width: 28px;
+    height: 28px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 6px;
+    background-color: var(--opacity-grey-color);
+    color: var(--primary-dark-grey-color);
+
+    @media (min-width: 768px) {
+        width: 38px;
+        height: 38px;
+        margin-bottom: 4px;
+    }
+}
+.button:focus {
+    background-color: var(--primary-dark-grey-color);
+    color: var(--hover-green-color);
+}
+.button:hover {
+    background-color: var(--hover-green-color);
+    color: var(--primary-dark-grey-color);
+}
+.completed {
+    background-color: var(--primary-white-color);
+}
+.day {
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.29;
+    letter-spacing: -0.14px;
+
+    @media (min-width: 768px) {
+       font-size: 16px;
+       line-height: 1.5;
+    }
+}
+
+.percent {
+    display: flex;
+    justify-content: center;
+    color: var(--primary-black-color);
+    opacity: 0.6;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 1; 
+
+    @media (min-width: 768px) {
+        font-size: 12px;
+        line-height: 1.87;
+     }
+
+}
