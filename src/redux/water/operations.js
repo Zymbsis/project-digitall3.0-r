@@ -1,12 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
+import { parseDayForFetch } from '../../helpers';
 
 export const getInfoByToday = createAsyncThunk(
   'water/getInfoByToday',
   async (date, { rejectWithValue }) => {
     try {
-      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data.data;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -18,8 +21,10 @@ export const getInfoBySelectedDay = createAsyncThunk(
   'water/getInfoBySelectedDay',
   async (date, { rejectWithValue }) => {
     try {
-      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data.data;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -43,8 +48,10 @@ export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
   async (waterData, { rejectWithValue }) => {
     try {
-      const { data } = await AXIOS_INSTANCE.post('/water', waterData);
-      return data.data;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.post('/water', waterData);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -60,10 +67,12 @@ export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
   async ({ _id, ...waterData }, { rejectWithValue }) => {
     try {
-      const { data } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
         ...waterData,
       });
-      return data.data;
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -77,10 +86,19 @@ export const updateWaterIntake = createAsyncThunk(
 
 export const deleteWaterIntake = createAsyncThunk(
   'water/deleteWaterIntake',
-  async (_id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
+
     try {
       await AXIOS_INSTANCE.delete(`/water/${_id}`);
-      return _id;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.get(
+        `/water/day/${selectedDate ? selectedDate : currentDay}`
+      );
+
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }

@@ -8,6 +8,8 @@ import {
   deleteWaterIntake,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
+import storage from 'redux-persist/lib/storage';
+import persistReducer from 'redux-persist/es/persistReducer';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -33,25 +35,41 @@ const waterSlice = createSlice({
       })
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.infoByToday.push(action.payload);
+        if (!setSelectedDay) {
+          state.infoByToday = {
+            ...state.infoByToday,
+            portions: state.infoByToday.portions.push(action.payload),
+            completionRate: action.payload.completionRate,
+          };
+        }
       })
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.infoByToday = state.infoByToday.map(item =>
-          item._id === action.payload._id ? action.payload : item
-        );
-        state.infoBySelectedDay = state.infoBySelectedDay.map(item =>
-          item._id === action.payload._id ? action.payload : item
-        );
+        if (state.selectedDate) {
+          state.infoBySelectedDay = {
+            ...state.infoBySelectedDay,
+            portions: state.infoBySelectedDay.portions.map(item =>
+              item._id === action.payload._id ? action.payload : item
+            ),
+            completionRate: action.payload.completionRate,
+          };
+        } else {
+          state.infoByToday = {
+            ...state.infoByToday,
+            portions: state.infoByToday.portions.map(item =>
+              item._id === action.payload._id ? action.payload : item
+            ),
+            completionRate: action.payload.completionRate,
+          };
+        }
       })
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        state.infoByToday = state.infoByToday.filter(
-          item => item._id !== action.payload
-        );
-        state.infoBySelectedDay = state.infoBySelectedDay.filter(
-          item => item._id !== action.payload
-        );
+        if (state.selectedDate) {
+          state.infoBySelectedDay = action.payload;
+        } else {
+          state.infoByToday = action.payload;
+        }
       })
       .addMatcher(
         isAnyOf(
@@ -84,4 +102,14 @@ const waterSlice = createSlice({
   },
 });
 export const { setSelectedDay } = waterSlice.actions;
-export const waterReducer = waterSlice.reducer;
+const waterReducer = waterSlice.reducer;
+const waterPersistConfig = {
+  key: 'water',
+  storage,
+  whitelist: ['selectedDate'],
+};
+
+export const persistedWaterReducer = persistReducer(
+  waterPersistConfig,
+  waterReducer
+);

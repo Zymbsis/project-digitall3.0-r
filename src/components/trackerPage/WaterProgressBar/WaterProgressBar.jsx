@@ -4,12 +4,13 @@ import Slider from '@mui/material/Slider';
 import { useEffect } from 'react';
 import { selectInfoByToday } from '../../../redux/water/selectors.js';
 import { getInfoByToday } from '../../../redux/water/operations';
+import { parseDayForFetch } from '../../../helpers';
 
 const WaterProgressBar = () => {
   const dispatch = useDispatch();
   const { completionRate } = useSelector(selectInfoByToday);
 
-  const today = new Date().toISOString().split('T')[0];
+  const currentDay = parseDayForFetch(new Date());
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
   const invisibleMarkWater = [0, 50, 100];
@@ -21,8 +22,8 @@ const WaterProgressBar = () => {
   ];
 
   useEffect(() => {
-    dispatch(getInfoByToday(today));
-  }, [dispatch, today]);
+    dispatch(getInfoByToday(currentDay));
+  }, [currentDay, dispatch]);
 
   return (
     <div className={css.thumb}>

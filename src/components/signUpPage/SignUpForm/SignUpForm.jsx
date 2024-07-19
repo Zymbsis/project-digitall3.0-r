@@ -1,25 +1,14 @@
-import clsx from 'clsx';
-import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { Link } from 'react-router-dom';
-import * as yup from 'yup';
-import { register } from '../../../redux/auth/operations';
-
+import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { register } from '../../../redux/auth/operations';
+import { signUpFormSchema } from 'validationSchemas';
+import { Icon, Logo } from 'shared';
+
+import clsx from 'clsx';
 import css from './SignUpForm.module.css';
-
-import { Icon, Logo } from '../../../shared';
-
-const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup
-    .string()
-    .min(8, 'must contain at least 8 characters')
-    .max(64)
-    .required(),
-  confirmPassword: yup.string().oneOf([yup.ref('password'), null]),
-});
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
@@ -31,7 +20,7 @@ const SignUpForm = () => {
     reset,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(signUpFormSchema),
     mode: 'onSubmit',
   });
 

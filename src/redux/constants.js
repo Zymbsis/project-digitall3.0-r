@@ -8,10 +8,10 @@ export const INITIAL_STATE = {
     loading: false,
     error: false,
   },
-  user: { user: {}, isLoading: false, isError: false },
+  user: { user: {}, countUser: null, isLoading: false, isError: false },
   water: {
-    infoByToday: [],
-    infoBySelectedDay: [],
+    infoByToday: { date: '', portions: [], completionRate: null },
+    infoBySelectedDay: { date: '', portions: [], completionRate: null },
     infoByMonth: [],
     selectedDate: null,
     loading: false,
