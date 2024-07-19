@@ -1,4 +1,5 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
+import { toast } from 'react-hot-toast';
 import {
   getInfoByToday,
   getInfoBySelectedDay,
@@ -97,6 +98,7 @@ const waterSlice = createSlice({
         (state, action) => {
           state.loading = false;
           state.error = action.payload;
+          toast.error(action.payload);
         }
       );
   },

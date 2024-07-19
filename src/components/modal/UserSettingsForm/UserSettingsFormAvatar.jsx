@@ -3,6 +3,9 @@ import css from './UserSettingsForm.module.css';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/user/operations.js';
 
+// import avatarDefault from '../../../../public/img/userSettingsForm/avatar_default.png';
+import avatarDefault from './avatar_default.png';
+
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   const dispatch = useDispatch();
   const handleFileChange = evt => {
@@ -28,7 +31,9 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
     } else if (typeof avatar === 'object' && avatar.length !== 0) {
       return URL.createObjectURL(avatar);
     }
-    return '/public/img/userSettingsForm/avatar_default.png';
+    // return '/public/img/userSettingsForm/avatar_default.png';
+    // return '../../../../public/img/userSettingsForm/avatar_default.png';
+    return avatarDefault;
   };
 
   return (

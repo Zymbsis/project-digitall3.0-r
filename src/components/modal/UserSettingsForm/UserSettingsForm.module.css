@@ -77,7 +77,8 @@
 .avatar {
   width: 75px;
   height: 75px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+  background-color: var(--primary-light-grey-color);
   border-radius: 50%;
   object-fit: cover;
   @media screen and (min-width: 768px) {
