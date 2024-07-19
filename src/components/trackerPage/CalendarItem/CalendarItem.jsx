@@ -3,7 +3,7 @@ import clsx from 'clsx';
 // import { getInfoByDay } from "../../../redux/water/operations"
 import { Button } from 'shared';
 import { useDispatch } from 'react-redux';
-import { setSelectedDate } from '../../../redux/water/slice';
+import { setSelectedDay } from '../../../redux/water/slice';
 
 
 const CalendarItem = ({ day, selectedDate, waterData}) => {
@@ -21,7 +21,7 @@ const CalendarItem = ({ day, selectedDate, waterData}) => {
 
   const handleWaterOfDay = (day) => {
     const date = `${selectedDate.getFullYear()}-${(selectedDate.getMonth() + 1).toString().padStart(2, '0')}-${String(day).padStart(2, '0')}`;
-   dispatch(setSelectedDate(date))
+   dispatch(setSelectedDay(date))
   };
   return (
   <li>
