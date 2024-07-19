@@ -24,12 +24,12 @@ const App = () => {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
   const {
-    auth: { token },
+    auth: { token: accessToken },
   } = store.getState();
   const user = useSelector(selectCurrentUser);
 
   useEffect(() => {
-    if (!user.name && token) {
+    if (!user.name && accessToken) {
       dispatch(getUser());
     }
   }, [dispatch]);
