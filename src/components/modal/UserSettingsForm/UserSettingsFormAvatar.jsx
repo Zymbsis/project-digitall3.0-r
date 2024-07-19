@@ -3,7 +3,6 @@ import css from './UserSettingsForm.module.css';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/user/operations.js';
 
-// import avatarDefault from '../../../../public/img/userSettingsForm/avatar_default.png';
 import avatarDefault from './avatar_default.png';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
