@@ -8,8 +8,6 @@ import {
   deleteWaterIntake,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
-import storage from 'redux-persist/lib/storage';
-import persistReducer from 'redux-persist/es/persistReducer';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -103,13 +101,3 @@ const waterSlice = createSlice({
 });
 export const { setSelectedDay } = waterSlice.actions;
 export const waterReducer = waterSlice.reducer;
-// const waterPersistConfig = {
-//   key: 'water',
-//   storage,
-//   whitelist: ['selectedDate'],
-// };
-
-// export const persistedWaterReducer = persistReducer(
-//   waterPersistConfig,
-//   waterReducer
-// );
