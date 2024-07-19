@@ -19,7 +19,6 @@ const WaterMainInfo = () => {
 
   return (
     <div className={css.container}>
-      <Logo />
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn className="waterMainInfoStyles" />

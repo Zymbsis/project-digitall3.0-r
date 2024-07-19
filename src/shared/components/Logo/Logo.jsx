@@ -3,7 +3,12 @@ import clsx from 'clsx';
 
 const Logo = ({ className }) => {
   return (
-    <p className={clsx(css.logo, { [className]: className })}>AquaTrack</p>
+    <a
+      href="/project-digitall3.0-r/"
+      className={clsx(css.logo, { [className]: className })}
+    >
+      AquaTrack
+    </a>
   );
 };
 

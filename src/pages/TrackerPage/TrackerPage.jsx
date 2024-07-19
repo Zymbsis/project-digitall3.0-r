@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Container, Section } from 'shared';
+import { Container, Logo, Section } from 'shared';
 import { getUser } from '../../redux/user/operations';
 import { WaterDetailedInfo, WaterMainInfo } from 'components';
 import css from './TrackerPage.module.css';
@@ -14,6 +14,7 @@ const TrackerPage = () => {
   return (
     <Section>
       <Container className={css.container}>
+        <Logo />
         <WaterMainInfo />
         <WaterDetailedInfo />
       </Container>
