@@ -102,14 +102,14 @@ const waterSlice = createSlice({
   },
 });
 export const { setSelectedDay } = waterSlice.actions;
-const waterReducer = waterSlice.reducer;
-const waterPersistConfig = {
-  key: 'water',
-  storage,
-  whitelist: ['selectedDate'],
-};
+export const waterReducer = waterSlice.reducer;
+// const waterPersistConfig = {
+//   key: 'water',
+//   storage,
+//   whitelist: ['selectedDate'],
+// };
 
-export const persistedWaterReducer = persistReducer(
-  waterPersistConfig,
-  waterReducer
-);
+// export const persistedWaterReducer = persistReducer(
+//   waterPersistConfig,
+//   waterReducer
+// );

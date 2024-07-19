@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/user/selectors';
 import { getInfoByMonth } from '../../../redux/water/operations';
@@ -10,9 +10,9 @@ import {
 import { Icon } from 'shared';
 import css from './CalendarPagination.module.css';
 
-const CalendarPagination = () => {
+const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   const dispatch = useDispatch();
-  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const { createdAt } = useSelector(selectCurrentUser);
   const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   const limitDate = new Date();
