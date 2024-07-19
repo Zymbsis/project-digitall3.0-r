@@ -21,7 +21,7 @@ const waterSlice = createSlice({
       .addCase(getInfoByDay.fulfilled, (state, action) => {
         state.loading = false;
         if (state.selectedDate === action.payload.date) {
-          state.infoBySelectedDay = action.payload;
+          state.infoBySelectedDay = action.payload.portions;
         } else {
           state.infoByToday = action.payload;
         }
@@ -33,13 +33,7 @@ const waterSlice = createSlice({
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         if (state.selectedDate === action.payload.data.date) {
-          state.infoBySelectedDay = {
-            ...state.infoBySelectedDay,
-            portions: [
-              ...state.infoBySelectedDay.portions,
-              action.payload.data,
-            ],
-          };
+          state.infoBySelectedDay.push(action.payload);
         } else {
           state.infoByToday = action.payload.infoByToday;
         }
@@ -47,15 +41,10 @@ const waterSlice = createSlice({
       })
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
-        const updatePortions = portions =>
-          portions.map(item =>
+        if (state.selectedDate) {
+          state.infoBySelectedDay.map(item =>
             item._id === action.payload.data._id ? action.payload.data : item
           );
-        if (state.selectedDate) {
-          state.infoBySelectedDay = {
-            ...state.infoBySelectedDay,
-            portions: updatePortions(state.infoBySelectedDay.portions),
-          };
         } else {
           state.infoByToday = action.payload.infoByToday;
         }
@@ -64,7 +53,7 @@ const waterSlice = createSlice({
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
         state.loading = false;
         if (state.selectedDate) {
-          state.infoBySelectedDay = action.payload.infoByDay;
+          state.infoBySelectedDay = action.payload.infoByDay.portions;
         } else {
           state.infoByToday = action.payload.infoByDay;
         }

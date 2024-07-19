@@ -14,9 +14,7 @@ const WaterList = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const { portions: todayWaterList } = useSelector(selectInfoByToday);
-  const { portions: selectedDayWaterList } = useSelector(
-    selectInfoBySelectedDay
-  );
+  const selectedDayWaterList = useSelector(selectInfoBySelectedDay);
 
   useEffect(() => {
     if (!selectedDate) return;
