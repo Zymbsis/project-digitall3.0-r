@@ -43,13 +43,6 @@
 <symbol id="icon-chevron-down" viewBox="0 0 32 32">
 <path fill="none" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 12l8 8 8-8"></path>
 </symbol>
-<symbol id="icon-water-decrease" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.44" d="M10.286 16h11.429"></path>
-</symbol>
-<symbol id="icon-water-increase" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.44" d="M16 10.286v11.429"></path>
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="1.44" d="M10.286 16h11.429"></path>
-</symbol>
 
 </defs>
 </svg>
