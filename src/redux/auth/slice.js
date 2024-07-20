@@ -61,9 +61,11 @@ const authSlice = createSlice({
         //     </div>
         //   );
         // }
-        // toast.error(<b>{action.payload}</b>);
+
         if (action.payload.includes('401')) {
           toast.error(<b>Authorization expired!, please log in again</b>);
+        } else {
+          toast.error(<b>{action.payload}</b>);
         }
         state.isRefreshing = false;
         state.error = action.payload;
