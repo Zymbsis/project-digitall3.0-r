@@ -35,8 +35,8 @@ const userSlice = createSlice({
       })
       .addCase(updateUser.rejected, (state, action) => {
         handleRejected(state, action);
-        //mistake handled over toast.promise in UserSettingsForm
-        toast.error(<b>{action.payload}</b>);
+        //mistake handled over toast.promise, example in UserSettingsFormAvatar
+        // toast.error(<b>{action.payload}</b>);
       })
       .addCase(countUsers.rejected, handleRejected);
   },

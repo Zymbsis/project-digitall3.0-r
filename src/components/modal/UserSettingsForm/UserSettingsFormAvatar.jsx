@@ -1,11 +1,11 @@
+import toast from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { selectError } from '../../../redux/user/selectors.js';
 import { updateUser } from '../../../redux/user/operations.js';
 import { Icon } from 'shared/index.js';
 import avatarDefault from './avatar_default.png';
 import css from './UserSettingsFormColumns.module.css';
-import toast from 'react-hot-toast';
-import { selectError } from '../../../redux/user/selectors.js';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   const currentError = useSelector(selectError);
@@ -17,11 +17,13 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
       setValue('avatar', file);
       const formData = new FormData();
       formData.append('avatar', file);
-      // dispatch(updateUser(formData));
-      toast.promise(dispatch(updateUser(formData)), {
+
+      //dispatch(updateUser(formData));
+      const promise = dispatch(updateUser(formData)).unwrap();
+      toast.promise(promise, {
         pending: 'Updating your avatar...',
         success: <b>Your avatar is successfully updated</b>,
-        error: currentError.error,
+        error: <b>Could not update your avatar. ({currentError}).</b>,
       });
     }
   };

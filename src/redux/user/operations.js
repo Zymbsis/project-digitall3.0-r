@@ -17,16 +17,16 @@ export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
         },
       },
     } = await AXIOS_INSTANCE.get('/users/current');
-    console.log({
-      email,
-      name,
-      gender,
-      dailyNorma,
-      activeHours,
-      weight,
-      avatar,
-      createdAt,
-    });
+    // console.log({
+    //   email,
+    //   name,
+    //   gender,
+    //   dailyNorma,
+    //   activeHours,
+    //   weight,
+    //   avatar,
+    //   createdAt,
+    // });
 
     return {
       email,

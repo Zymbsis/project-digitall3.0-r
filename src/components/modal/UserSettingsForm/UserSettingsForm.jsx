@@ -55,19 +55,18 @@ const UserSettingsForm = () => {
     setValue(name, value);
   };
 
-  const onSubmit = (originalData, evt) => {
-    const data = { ...originalData };
+  const onSubmit = (originalFormData, evt) => {
+    const data = { ...originalFormData };
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
-
     // console.log('data to dispatch: ', data);
-    // dispatch(updateUser(data));
 
-    toast.promise(dispatch(updateUser(data)), {
+    // dispatch(updateUser(data));
+    const promise = dispatch(updateUser(data)).unwrap();
+    toast.promise(promise, {
       pending: <b>'Saving...'</b>,
       success: <b>Settings are saved!</b>,
-      error: currentError.error,
-      // error: <b>Could not save your settings. Server error.</b>,
+      error: <b>Could not save your settings.({currentError}).</b>,
     });
 
     //object FofmData for sending to backend (as insisted by the project task)
