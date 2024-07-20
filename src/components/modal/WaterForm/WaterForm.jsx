@@ -92,7 +92,6 @@ const WaterForm = ({ type, id, date }) => {
       };
       dispatch(updateWaterIntake(payload));
     }
-
     closeModal(e);
   };
 

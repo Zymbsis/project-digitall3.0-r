@@ -31,33 +31,25 @@ export const getInfoByMonth = createAsyncThunk(
 );
 export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
-  async (waterData, { rejectWithValue, getState }) => {
+  async (waterData, { rejectWithValue, getState, dispatch }) => {
     const selectedDate = getState().water.selectedDate;
     const currentDay = parseDayForFetch(new Date());
     try {
       const {
         data: { data },
       } = await AXIOS_INSTANCE.post('/water', waterData);
-
-      const {
-        data: { data: infoByMonth },
-      } = await AXIOS_INSTANCE.get(
-        `/water/month/${
+      const { payload: infoByMonth } = await dispatch(
+        getInfoByMonth(
           selectedDate
             ? selectedDate.substring(0, 7)
             : currentDay.substring(0, 7)
-        }`
+        )
       );
-
       let infoByToday;
       if (waterData.date === currentDay) {
-        const {
-          data: { data },
-        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
-        console.log(data);
-        infoByToday = data;
+        const { payload } = await dispatch(getInfoByDay(currentDay));
+        infoByToday = payload;
       }
-
       return { data, infoByMonth, infoByToday };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
@@ -72,7 +64,7 @@ export const addWaterIntake = createAsyncThunk(
 
 export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
-  async ({ _id, ...waterData }, { rejectWithValue, getState }) => {
+  async ({ _id, ...waterData }, { rejectWithValue, getState, dispatch }) => {
     const selectedDate = getState().water.selectedDate;
     const currentDay = parseDayForFetch(new Date());
     try {
@@ -81,21 +73,17 @@ export const updateWaterIntake = createAsyncThunk(
       } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
         ...waterData,
       });
-      const {
-        data: { data: infoByMonth },
-      } = await AXIOS_INSTANCE.get(
-        `/water/month/${
+      const { payload: infoByMonth } = await dispatch(
+        getInfoByMonth(
           selectedDate
             ? selectedDate.substring(0, 7)
             : currentDay.substring(0, 7)
-        }`
+        )
       );
       let infoByToday;
       if (selectedDate === null) {
-        const {
-          data: { data },
-        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
-        infoByToday = data;
+        const { payload } = await dispatch(getInfoByDay(currentDay));
+        infoByToday = payload;
       }
       return { data, infoByMonth, infoByToday };
     } catch (error) {
@@ -111,10 +99,9 @@ export const updateWaterIntake = createAsyncThunk(
 
 export const deleteWaterIntake = createAsyncThunk(
   'water/deleteWaterIntake',
-  async (_id, { rejectWithValue, getState }) => {
+  async (_id, { rejectWithValue, getState, dispatch }) => {
     const selectedDate = getState().water.selectedDate;
     const currentDay = parseDayForFetch(new Date());
-
     try {
       await AXIOS_INSTANCE.delete(`/water/${_id}`);
       const {
@@ -122,14 +109,12 @@ export const deleteWaterIntake = createAsyncThunk(
       } = await AXIOS_INSTANCE.get(
         `/water/day/${selectedDate ? selectedDate : currentDay}`
       );
-      const {
-        data: { data: infoByMonth },
-      } = await AXIOS_INSTANCE.get(
-        `/water/month/${
+      const { payload: infoByMonth } = await dispatch(
+        getInfoByMonth(
           selectedDate
             ? selectedDate.substring(0, 7)
             : currentDay.substring(0, 7)
-        }`
+        )
       );
       return { infoByDay, infoByMonth };
     } catch (error) {
