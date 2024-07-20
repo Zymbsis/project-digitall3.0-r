@@ -2,9 +2,8 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 
-import RecordingTime from './RecordingTime';
+import TimeInput from './TimeInput';
 import WaterInput from './WaterInput';
-import styles from '../WaterModal/WaterIntakePopup.module.css';
 import { Button } from '../../../shared';
 import { useModal } from '../../../context';
 import { useDispatch } from 'react-redux';
@@ -12,6 +11,7 @@ import {
   addWaterIntake,
   updateWaterIntake,
 } from '../../../redux/water/operations';
+import css from './WaterForm.module.css';
 
 // import { useDispatch } from "react-redux";
 const schema = yup.object().shape({
@@ -67,12 +67,12 @@ const WaterForm = ({
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-      <RecordingTime time={time} setTime={setTime} />
+    <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+      <TimeInput time={time} setTime={setTime} />
       <WaterInput value={value} setValue={setValue} />
       <Button
         disabled={!time || !value}
-        className={styles.saveButton}
+        className={css.saveButton}
         type="submit"
       >
         Save

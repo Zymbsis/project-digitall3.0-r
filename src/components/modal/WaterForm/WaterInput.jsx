@@ -1,4 +1,4 @@
-import styles from '../WaterModal/WaterIntakePopup.module.css';
+import css from './WaterForm.module.css';
 
 const WaterInput = ({ value, setValue }) => {
   const handleChange = e => {
@@ -7,15 +7,15 @@ const WaterInput = ({ value, setValue }) => {
 
   return (
     <>
-      <div className={styles.inputLabel}>
+      <label className={css.waterLabel}>
         Enter the value of the water used:
-      </div>
-      <input
-        type="number"
-        value={+value}
-        onChange={handleChange}
-        className={styles.waterInput}
-      />
+        <input
+          type="number"
+          value={+value}
+          onChange={handleChange}
+          className={css.waterInput}
+        />
+      </label>
     </>
   );
 };

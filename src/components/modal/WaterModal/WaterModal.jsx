@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import css from './WaterIntakePopup.module.css';
-import WaterAmount from './WaterAmount';
+import WaterAmount from '../WaterForm/WaterAmount';
 import WaterForm from '../WaterForm/WaterForm';
-import { Title } from '../../../shared';
+import { Title } from 'shared';
+import css from './WaterModal.module.css';
 
 export const getTime = timeString => {
   const dateAndTime = new Date();
@@ -46,10 +46,9 @@ const WaterModal = ({ type = 'add', id, date }) => {
   return (
     <div id="popup" className={css.wrapper}>
       <Title className={css.title}>{title}</Title>
-      <p className={css.correctData}>{popupType}</p>
+      <p className={css.subtitle}>{popupType}</p>
       <WaterAmount
         amount={waterAmount}
-        setAmount={setWaterAmount}
         decrease={decrease}
         increase={increase}
       />
