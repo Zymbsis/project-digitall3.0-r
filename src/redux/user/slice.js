@@ -3,15 +3,15 @@ import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
 const handlePending = (state, action) => {
-  state.error = false;
-  state.loading = true;
+  state.isError = false;
+  state.isLoading = true;
 };
 const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = true;
+  state.isLoading = false;
+  state.isError = true;
 };
 const handleFulfilled = (state, action) => {
-  state.loading = false;
+  state.isLoading = false;
   state.user = action.payload;
 };
 
