@@ -6,7 +6,7 @@
 
 .header {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 40px;
   font-size: 20px;
   letter-spacing: -0.2px;
@@ -75,7 +75,7 @@
 
 .timeInput {
   font-family: Poppins, sans-serif;
-  align-items: start;
+  align-items: flex-start;
   border-radius: 15px;
   border-color: rgba(47, 47, 47, 0.15);
   border-style: solid;
@@ -101,7 +101,7 @@
 .waterInput {
   font-family: Poppins, sans-serif;
   font-size: 14px;
-  align-items: start;
+  align-items: flex-start;
   border-radius: 15px;
   border-color: rgba(47, 47, 47, 0.15);
   border-style: solid;
