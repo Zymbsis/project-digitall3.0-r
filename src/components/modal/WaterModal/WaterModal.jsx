@@ -1,15 +1,15 @@
-import { useState } from "react";
-import styles from "./WaterIntakePopup.module.css";
-import Header from "./Header";
-import WaterAmount from "./WaterAmount";
-import WaterForm from "../WaterForm/WaterForm";
+import { useState } from 'react';
+import WaterAmount from './WaterAmount';
+import WaterForm from '../WaterForm/WaterForm';
+import { Title } from 'shared';
+import css from './WaterModal.module.css';
 
-export const getTime = (timeString) => {
+export const getTime = timeString => {
   const dateAndTime = new Date();
-  const padZero = (num) => num.toString().padStart(2, "0");
+  const padZero = num => num.toString().padStart(2, '0');
 
   if (timeString) {
-    const [hoursStr, minutesStr] = timeString.split(":");
+    const [hoursStr, minutesStr] = timeString.split(':');
     const hours = parseInt(hoursStr.slice(0, 2), 10);
     const minutes = parseInt(minutesStr.slice(0, 2), 10);
 
@@ -31,28 +31,28 @@ export const getTime = (timeString) => {
   return time;
 };
 
-const WaterModal = ({ type = "Add" }) => {
+const WaterModal = ({ type = 'add' }) => {
   const [waterAmount, setWaterAmount] = useState(50);
   const [recordingTime, setRecordingTime] = useState(getTime());
 
-  const decrease = () => setWaterAmount((prev) => Math.max(0, prev - 50));
+  const decrease = () => setWaterAmount(prev => Math.max(0, prev - 50));
   const increase = () =>
-    setWaterAmount((prev) => (prev > 950 ? 1000 : +prev + 50));
+    setWaterAmount(prev => (prev > 950 ? 1000 : +prev + 50));
 
-  let title = type === "Add" ? "Add water" : "Edit the entered amount of water";
-  let popupType = type === "Add" ? "Choose a value" : "Correct entered data:";
+  let title = type === 'add' ? 'Add water' : 'Edit the entered amount of water';
+  let popupType = type === 'add' ? 'Choose a value' : 'Correct entered data:';
 
   const onClose = () => {
-    const popup = document.querySelector("#popup");
-    popup.style.display = "none";
-    popup.style.opacity = "0";
-    popup.style.pointerEvents = "none";
+    const popup = document.querySelector('#popup');
+    popup.style.display = 'none';
+    popup.style.opacity = '0';
+    popup.style.pointerEvents = 'none';
   };
 
   return (
-    <div id="popup" className={styles.popup}>
-      <Header onClose={onClose} title={title} />
-      <div className={styles.correctData}>{popupType}</div>
+    <div className={css.wrapper}>
+      <Title>{title}</Title>
+      <p className={css.correctData}>{popupType}</p>
       <WaterAmount
         amount={waterAmount}
         setAmount={setWaterAmount}
