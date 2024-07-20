@@ -1,19 +1,46 @@
 import { useState } from 'react';
 import * as yup from 'yup';
-import styles from '../WaterModal/WaterModal.module.css';
+import css from './WaterForm.module.css';
+import { useSelector } from 'react-redux';
+import { selectSelectedDate } from '../../../redux/water/selectors';
+import { Button } from '../../../shared';
+import WaterAmount from './WaterAmount';
 
 // Define the validation schema
 const schema = yup.object().shape({
-  amount: yup.number().min(1).max(5000).required('Amount is required'),
+  amount: yup.number().min(50).max(1000).required('Amount is required'),
   time: yup
     .string()
     .matches(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format')
     .required('Time is required'),
 });
 
+export const getTime = timeString => {
+  const dateAndTime = new Date();
+  const padZero = num => num.toString().padStart(2, '0');
+  if (timeString) {
+    const [hoursStr, minutesStr] = timeString.split(':');
+    const hours = parseInt(hoursStr.slice(0, 2), 10);
+    const minutes = parseInt(minutesStr.slice(0, 2), 10);
+    if (!isNaN(hours) && hours >= 0 && hours < 24) {
+      dateAndTime.setHours(hours);
+    }
+    if (!isNaN(minutes) && minutes >= 0 && minutes < 60) {
+      dateAndTime.setMinutes(minutes);
+    } else {
+      dateAndTime.setMinutes(0);
+    }
+  }
+  const currentHours = dateAndTime.getHours();
+  const currentMinutes = dateAndTime.getMinutes();
+  const time = `${currentHours}:${padZero(currentMinutes)}`;
+
+  return time;
+};
+
 const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
   const [errors, setErrors] = useState({});
-
+  const selectedDate = useSelector(selectSelectedDate);
   const handleTimeChange = e => {
     let value = e.target.value;
 
@@ -57,40 +84,61 @@ const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
       setErrors(validationErrors);
     }
   };
+  const [waterAmount, setWaterAmount] = useState(50);
+
+  const [recordingTime, setRecordingTime] = useState(getTime());
+
+  const handleIncrease = () => {
+    if (waterAmount === 1000) return;
+    setWaterAmount(waterAmount + 50);
+  };
+  const handleDecrease = () => {
+    if (waterAmount === 50) return;
+    setWaterAmount(waterAmount - 50);
+  };
 
   return (
-    <form onSubmit={onSubmit} className={styles.form}>
-      <div className={styles.label}>Recording time:</div>
-      <input
-        type="text"
-        name="time"
-        value={time}
-        onChange={handleTimeChange}
-        placeholder="HH:MM"
-        className={styles.timeInput}
+    <>
+      <WaterAmount
+        amount={waterAmount}
+        handleIncrease={handleIncrease}
+        handleDecrease={handleDecrease}
       />
-      {errors.time && <p className={styles.error}>{errors.time}</p>}
+      <form onSubmit={onSubmit} className={css.form}>
+        <label className={css.timeLabel}>
+          Recording time:
+          <input
+            className={css.timeInput}
+            type="text"
+            name="time"
+            value={time}
+            onChange={handleTimeChange}
+            placeholder="HH:MM"
+          />
+        </label>
+        {errors.time && <p className={css.error}>{errors.time}</p>}
 
-      <div className={styles.inputLabel}>
-        Enter the value of the water used:
-      </div>
-      <input
-        type="number"
-        name="amount"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        className={styles.waterInput}
-      />
-      {errors.amount && <p className={styles.error}>{errors.amount}</p>}
+        <label className={css.waterLabel}>
+          Enter the value of the water used:
+          <input
+            className={css.waterInput}
+            type="number"
+            name="amount"
+            value={value}
+            onChange={e => setValue(e.target.value)}
+          />
+        </label>
+        {errors.amount && <p className={css.error}>{errors.amount}</p>}
 
-      <button
-        disabled={!time || !value}
-        className={styles.saveButton}
-        type="submit"
-      >
-        Save
-      </button>
-    </form>
+        <Button
+          disabled={!time || !value}
+          className={css.saveButton}
+          type="submit"
+        >
+          Save
+        </Button>
+      </form>
+    </>
   );
 };
 

@@ -3,10 +3,10 @@ import css from './AddWaterBtn.module.css';
 import { useModal } from 'context';
 import WaterModal from '../../modal/WaterModal/WaterModal';
 
-const AddWaterBtn = ({ className, date }) => {
+const AddWaterBtn = ({ className }) => {
   const { openModal } = useModal();
   const handleClick = () => {
-    openModal(<WaterModal type={'add'} date={date} />);
+    openModal(<WaterModal />);
   };
 
   return (
