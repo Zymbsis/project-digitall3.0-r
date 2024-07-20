@@ -51,21 +51,18 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
-        // const payloadError = action.payload;
-        // const stateError = state.error;
-        // if (stateError !== payloadError) {
-        //   console.log('bum!');
-        //   toast.error(
-        //     <div>
-        //       <b>User refresh failed!</b>
-        //     </div>
-        //   );
-        // }
-
-        if (action.payload.includes('401')) {
-          toast.error(<b>Authorization expired!, please log in again</b>);
-        } else {
-          toast.error(<b>{action.payload}</b>);
+        const payloadError = action.payload;
+        const stateError = state.error;
+        const toastId = toast.error();
+        toast.dismiss(toastId);
+        if (stateError !== payloadError) {
+          if (action.payload.includes('401')) {
+            toast.error(
+              <b>Refresh authorization expired!, please log in again</b>
+            );
+          } else {
+            toast.error(<b>{action.payload}</b>);
+          }
         }
         state.isRefreshing = false;
         state.error = action.payload;
