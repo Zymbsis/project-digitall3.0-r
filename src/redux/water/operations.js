@@ -1,25 +1,15 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
+import { parseDayForFetch } from '../../helpers';
 
-export const getInfoByToday = createAsyncThunk(
-  'water/getInfoByToday',
+export const getInfoByDay = createAsyncThunk(
+  'water/getInfoByDay',
   async (date, { rejectWithValue }) => {
     try {
-      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data.data;
-    } catch (error) {
-      return rejectWithValue(error.response.data.message);
-    }
-  }
-  // Example: getInfoByDay('2024-07-02')
-);
-
-export const getInfoBySelectedDay = createAsyncThunk(
-  'water/getInfoBySelectedDay',
-  async (date, { rejectWithValue }) => {
-    try {
-      const { data } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
-      return data.data;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
+      return data;
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -41,10 +31,32 @@ export const getInfoByMonth = createAsyncThunk(
 );
 export const addWaterIntake = createAsyncThunk(
   'water/addWaterIntake',
-  async (waterData, { rejectWithValue }) => {
+  async (waterData, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
     try {
-      const { data } = await AXIOS_INSTANCE.post('/water', waterData);
-      return data.data;
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.post('/water', waterData);
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
+      let infoByToday;
+      if (waterData.date === currentDay) {
+        const {
+          data: { data },
+        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
+        console.log(data);
+        infoByToday = data;
+      }
+
+      return { data, infoByMonth, infoByToday };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -58,12 +70,32 @@ export const addWaterIntake = createAsyncThunk(
 
 export const updateWaterIntake = createAsyncThunk(
   'water/updateWaterIntake',
-  async ({ _id, ...waterData }, { rejectWithValue }) => {
+  async ({ _id, ...waterData }, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
     try {
-      const { data } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
+      const {
+        data: { data },
+      } = await AXIOS_INSTANCE.patch(`/water/${_id}`, {
         ...waterData,
       });
-      return data.data;
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
+      let infoByToday;
+      if (selectedDate === null) {
+        const {
+          data: { data },
+        } = await AXIOS_INSTANCE.get(`/water/day/${currentDay}`);
+        infoByToday = data;
+      }
+      return { data, infoByMonth, infoByToday };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }
@@ -77,10 +109,27 @@ export const updateWaterIntake = createAsyncThunk(
 
 export const deleteWaterIntake = createAsyncThunk(
   'water/deleteWaterIntake',
-  async (_id, { rejectWithValue }) => {
+  async (_id, { rejectWithValue, getState }) => {
+    const selectedDate = getState().water.selectedDate;
+    const currentDay = parseDayForFetch(new Date());
+
     try {
       await AXIOS_INSTANCE.delete(`/water/${_id}`);
-      return _id;
+      const {
+        data: { data: infoByDay },
+      } = await AXIOS_INSTANCE.get(
+        `/water/day/${selectedDate ? selectedDate : currentDay}`
+      );
+      const {
+        data: { data: infoByMonth },
+      } = await AXIOS_INSTANCE.get(
+        `/water/month/${
+          selectedDate
+            ? selectedDate.substring(0, 7)
+            : currentDay.substring(0, 7)
+        }`
+      );
+      return { infoByDay, infoByMonth };
     } catch (error) {
       return rejectWithValue(error.response.data.message);
     }

@@ -1,15 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { selectCurrentUser } from '../../../redux/user/selectors.js';
+import { useDispatch, useSelector } from 'react-redux';
+import { useModal } from 'context';
 import { updateUser } from '../../../redux/user/operations.js';
+import { selectCurrentUser } from '../../../redux/user/selectors.js';
+import { userSettingsFormSchema } from 'validationSchemas';
 import { Button } from 'shared/index.js';
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
 import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
-import { yupValidationSchema } from '../serviceUserSettingsForm.js';
-import { useModal } from '../../../context/modalContext.js';
 
 import css from './UserSettingsForm.module.css';
 
@@ -17,6 +16,9 @@ const UserSettingsForm = () => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
+  const usersDailyNorma = user.dailyNorma / 1000;
+  const defaultValues = { ...user, dailyNorma: usersDailyNorma };
+  delete defaultValues.createdAt;
 
   const {
     register,
@@ -26,17 +28,9 @@ const UserSettingsForm = () => {
     clearErrors,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(yupValidationSchema),
+    resolver: yupResolver(userSettingsFormSchema),
     mode: 'onSubmit',
-    defaultValues: {
-      name: user.name,
-      gender: user.gender,
-      email: user.email,
-      weight: user.weight,
-      activeHours: user.activeHours,
-      dailyNorma: user.dailyNorma ? user.dailyNorma / 1000 : 1500 / 1000, //norm = 1500 ml per day (but data in form is in liters)
-      avatar: user.avatar,
-    },
+    defaultValues,
   });
 
   const handleFieldChange = evt => {

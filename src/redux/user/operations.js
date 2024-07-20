@@ -17,16 +17,6 @@ export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
         },
       },
     } = await AXIOS_INSTANCE.get('/users/current');
-    console.log({
-      email,
-      name,
-      gender,
-      dailyNorma,
-      activeHours,
-      weight,
-      avatar,
-      createdAt,
-    });
 
     return {
       email,
@@ -73,6 +63,22 @@ export const updateUser = createAsyncThunk(
       };
     } catch (error) {
       return thunkAPI.rejectWithValue('update error');
+    }
+  }
+);
+
+export const countUsers = createAsyncThunk(
+  'user/countUsers',
+  async (_, thunkAPI) => {
+    try {
+      const {
+        data: {
+          data: { count },
+        },
+      } = await AXIOS_INSTANCE.get('/users/count');
+      return count;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('count error');
     }
   }
 );

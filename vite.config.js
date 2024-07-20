@@ -20,6 +20,7 @@ export default defineConfig({
       modules: '/src/modules',
       styles: '/src/styles',
       utils: '/src/utils',
+      validationSchema: '/src/validationSchema',
     },
   },
 });

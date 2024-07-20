@@ -1,7 +1,20 @@
+import CalendarPagination from '../CalendarPagination/CalendarPagination';
+import Calendar from '../Calendar/Calendar';
+import { useState } from 'react';
 // import css from './MonthInfo.module.css';
 
 const MonthInfo = () => {
-  return <div></div>;
+  const [selectedDate, setSelectedDate] = useState(new Date());
+
+  return (
+    <div>
+      <CalendarPagination
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+      />
+      <Calendar selectedDate={selectedDate} />
+    </div>
+  );
 };
 
 export default MonthInfo;

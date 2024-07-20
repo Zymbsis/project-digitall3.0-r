@@ -1,12 +1,12 @@
 import { useSelector } from 'react-redux';
 import { selectSelectedDate } from '../../../redux/water/selectors';
-import { parseSelectedDate } from 'helpers/';
+import { parseSelectedDay } from 'helpers';
 
 import css from './ChooseDate.module.css';
 
 const ChooseDate = () => {
   const selectedDate = useSelector(selectSelectedDate);
-  const parsedDate = parseSelectedDate(selectedDate);
+  const parsedDate = parseSelectedDay(selectedDate);
 
   return (
     <h3 className={css.chooseDateTitle}>{parsedDate ? parsedDate : 'Today'}</h3>
