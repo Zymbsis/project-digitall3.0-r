@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
 
-const setToken = token => {
-  AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
-};
+// const setToken = token => {
+//   AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
+// };
 
-const clearToken = () => {
-  AXIOS_INSTANCE.defaults.headers.common.Authorization = '';
-};
+// const clearToken = () => {
+//   AXIOS_INSTANCE.defaults.headers.common.Authorization = null;
+// };
 
 export const register = createAsyncThunk(
   'auth/register',
@@ -15,7 +15,6 @@ export const register = createAsyncThunk(
     try {
       await AXIOS_INSTANCE.post('/users/register', credentials);
       const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
-      setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -28,7 +27,6 @@ export const logIn = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
-      setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -39,7 +37,6 @@ export const logIn = createAsyncThunk(
 export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
     await AXIOS_INSTANCE.post('/users/logout');
-    clearToken();
   } catch (error) {
     return thunkAPI.rejectWithValue(error.message);
   }
@@ -48,17 +45,18 @@ export const logOut = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
 export const refreshUser = createAsyncThunk(
   'auth/refresh',
   async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    if (persistedToken === null) {
+    const {
+      auth: { token },
+    } = thunkAPI.getState();
+
+    if (!token) {
       return thunkAPI.rejectWithValue('Unable to fetch user');
     }
-    setToken(persistedToken);
     try {
       const { data } = await AXIOS_INSTANCE.post('/users/refresh');
-      setToken(data.data.accessToken);
       return data.data;
     } catch (error) {
+      thunkAPI.dispatch(logOut());
       return thunkAPI.rejectWithValue(error.message);
     }
   }
