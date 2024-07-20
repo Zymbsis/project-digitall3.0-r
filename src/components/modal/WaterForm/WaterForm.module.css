@@ -1,7 +1,6 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
 }
 
 .timeLabel,
@@ -11,6 +10,7 @@
   flex-direction: column;
   gap: 8px;
   line-height: 1.28;
+  margin-bottom: 24px;
 
   @media (min-width:768px) {
     line-height: 1.5;
@@ -33,7 +33,6 @@
   width: 100%;
   height: 46px;
   padding-left: 16px;
-  margin-top: 8px;
   border: 1px solid rgba(47, 47, 47, 0.15);
   border-radius: 15px;
   line-height: 1.29;
@@ -42,4 +41,28 @@
     height: 56px;
     line-height: 1.5;
   }
+}
+
+.errorLabel.timeLabel,
+.errorLabel.waterLabel {
+  margin-bottom: 4px;
+}
+
+.errorLabel.waterInput,
+.errorLabel.timeInput {
+  border-color: var(--error-red-color);
+  color: var(--error-red-color);
+}
+
+.errorMessage {
+  color: var(--error-red-color);
+  line-height: 1.28;
+}
+
+.timeLabel + .errorMessage {
+  margin-bottom: 10px;
+}
+
+.waterLabel + .errorMessage {
+  margin-bottom: 24px;
 }

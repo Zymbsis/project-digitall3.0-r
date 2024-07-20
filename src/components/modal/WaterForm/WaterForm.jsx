@@ -13,21 +13,20 @@ import {
   updateWaterIntake,
 } from '../../../redux/water/operations';
 import { useModal } from '../../../context';
+import clsx from 'clsx';
 
 const waterModalSchema = yup
   .object({
     timeInput: yup
       .string()
-      .min(5)
-      .max(5)
       .matches(
         /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/,
-        'Invalid time format. Must be "HH:MM"'
+        'invalid time format. Must be "HH:MM"'
       )
       .required('Time is required'),
     waterInput: yup
-      .number('must be a number')
-      .min(50)
+      .number('the minimum is 50ml')
+      .min(50, 'the minimum is 50ml')
       .max(1000)
       .required('amount is required'),
   })
@@ -75,6 +74,7 @@ const WaterForm = ({ type, id, date }) => {
     },
   });
 
+  console.log(errors.waterInput);
   const onSubmit = (data, e) => {
     if (type === 'add') {
       const payload = {
@@ -92,11 +92,16 @@ const WaterForm = ({ type, id, date }) => {
       };
       dispatch(updateWaterIntake(payload));
     }
+
     closeModal(e);
   };
 
   const handleIncrease = () => {
     if (+waterAmount >= 1000) return;
+    if (+waterAmount > 950 && +waterAmount < 1000) {
+      setWaterAmount(1000);
+      return;
+    }
     setWaterAmount(+waterAmount + 50);
   };
 
@@ -122,7 +127,11 @@ const WaterForm = ({ type, id, date }) => {
         handleDecrease={handleDecrease}
       />
       <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
-        <label className={css.timeLabel}>
+        <label
+          className={clsx(css.timeLabel, {
+            [css.errorLabel]: errors.timeInput,
+          })}
+        >
           Recording time:
           <input
             className={css.timeInput}
@@ -130,9 +139,15 @@ const WaterForm = ({ type, id, date }) => {
             maxLength={5}
           />
         </label>
-        <p>{errors.timeInput?.message}</p>
+        {errors.timeInput && (
+          <p className={css.errorMessage}>{errors.timeInput?.message}</p>
+        )}
 
-        <label className={css.waterLabel}>
+        <label
+          className={clsx(css.waterLabel, {
+            [css.errorLabel]: errors.waterInput,
+          })}
+        >
           Enter the value of the water used:
           <input
             className={css.waterInput}
@@ -142,7 +157,9 @@ const WaterForm = ({ type, id, date }) => {
             maxLength={4}
           />
         </label>
-        <p>{errors.waterInput?.message}</p>
+        {errors.waterInput && (
+          <p className={css.errorMessage}>the minimum is 50ml</p>
+        )}
 
         <Button className={css.saveButton} type="submit">
           Save
