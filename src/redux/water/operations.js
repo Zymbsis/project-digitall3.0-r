@@ -38,6 +38,7 @@ export const addWaterIntake = createAsyncThunk(
       const {
         data: { data },
       } = await AXIOS_INSTANCE.post('/water', waterData);
+
       const {
         data: { data: infoByMonth },
       } = await AXIOS_INSTANCE.get(
@@ -47,6 +48,7 @@ export const addWaterIntake = createAsyncThunk(
             : currentDay.substring(0, 7)
         }`
       );
+
       let infoByToday;
       if (waterData.date === currentDay) {
         const {

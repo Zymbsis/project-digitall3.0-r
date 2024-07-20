@@ -5,8 +5,8 @@ export const INITIAL_STATE = {
     token: null,
     isLoggedIn: false,
     isRefreshing: false,
-    loading: false,
-    error: false,
+    isLoading: false,
+    isError: false,
   },
   user: { user: {}, countUser: null, isLoading: false, isError: false },
   water: {
@@ -14,8 +14,8 @@ export const INITIAL_STATE = {
     infoBySelectedDay: [],
     infoByMonth: { date: '', days: [] },
     selectedDate: null,
-    loading: false,
-    error: null,
+    isLoading: false,
+    isError: null,
   },
 };
 

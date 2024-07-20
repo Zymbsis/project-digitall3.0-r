@@ -40,21 +40,29 @@
   }
 }
 
-.logo {
-  width: 18px;
-  height: 18px;
-  fill: none;
+.icon {
+  width: 100%;
+  height: 100%;
   stroke: var(--primary-dark-grey-color);
 }
 
-button:disabled .logo {
+.iconBtn:disabled .icon {
   stroke: var(--invite-text-color);
 }
 
 .iconBtn {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  width: auto;
+  background: transparent;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconBtnLeft {
+  rotate: 90deg;
+}
+
+.iconBtnRight {
+  rotate: -90deg;
 }
