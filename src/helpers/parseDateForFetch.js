@@ -5,7 +5,7 @@ export const parseMonthForFetch = selectedDate => {
 };
 
 export const parseDayForFetch = selectedDate => {
-  const month = parseMonthForFetch(selectedDate);
+  const yearAndMonth = parseMonthForFetch(selectedDate);
   const day = selectedDate.getDate().toString().padStart(2, '0');
-  return `${month}-${day}`;
+  return `${yearAndMonth}-${day}`;
 };

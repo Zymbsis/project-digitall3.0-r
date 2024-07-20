@@ -33,7 +33,7 @@ const waterSlice = createSlice({
       .addCase(addWaterIntake.fulfilled, (state, action) => {
         state.isLoading = false;
         if (state.selectedDate === action.payload.data.date) {
-          state.infoBySelectedDay.push(action.payload);
+          state.infoBySelectedDay.push(action.payload.data);
         } else {
           state.infoByToday = action.payload.infoByToday;
         }
@@ -42,7 +42,7 @@ const waterSlice = createSlice({
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
         state.isLoading = false;
         if (state.selectedDate) {
-          state.infoBySelectedDay.map(item =>
+          state.infoBySelectedDay = state.infoBySelectedDay.map(item =>
             item._id === action.payload.data._id ? action.payload.data : item
           );
         } else {

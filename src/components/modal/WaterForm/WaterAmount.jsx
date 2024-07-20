@@ -13,7 +13,9 @@ const WaterAmount = ({ amount, handleDecrease, handleIncrease }) => {
         >
           <Icon iconId="icon-water-decrease" className={css.icon} />
         </button>
-        <div className={css.amount}>{amount} ml</div>
+        <div className={css.amount}>
+          {amount < 50 ? 50 : amount > 1000 ? 1000 : amount} ml
+        </div>
         <button
           onClick={handleIncrease}
           type="button"

@@ -26,11 +26,9 @@ const WaterList = () => {
     <div className={css.waterListWrap}>
       <ul className={css.waterList}>
         {Array.isArray(currentWaterList) && currentWaterList.length === 0 && (
-          <li>
-            <p className={css.paragraph}>
-              There are no daily water intakes here yet.
-            </p>
-          </li>
+          <p className={css.paragraph}>
+            There are no daily water intakes here yet.
+          </p>
         )}
         {Array.isArray(currentWaterList) &&
           currentWaterList.length !== 0 &&

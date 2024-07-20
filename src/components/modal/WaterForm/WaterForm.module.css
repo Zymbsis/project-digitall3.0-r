@@ -27,3 +27,19 @@
     line-height: 1.33;
   }
 }
+
+.timeInput,
+.waterInput {
+  width: 100%;
+  height: 46px;
+  padding-left: 16px;
+  margin-top: 8px;
+  border: 1px solid rgba(47, 47, 47, 0.15);
+  border-radius: 15px;
+  line-height: 1.29;
+
+  @media (min-width:768px) {
+    height: 56px;
+    line-height: 1.5;
+  }
+}
