@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux';
 import { selectCountUser } from '../../../../redux/user/selectors.js';
 import css from './CustomersCount.module.css';
-
 const CustomersCounter = () => {
   const countedUsers = useSelector(selectCountUser);
 
@@ -12,7 +11,7 @@ const CustomersCounter = () => {
           <img
             className={css.customersPhotoOne}
             // srcSet="../img/Customers@1x-1.webp 1x, ../img/Customers@1x-1.png 1x, ../img/Customers@2x-1.webp 2x, ../img/Customers@2x-1.png 2x"
-            src="public/img/homePage/customers/Customers@1x-1.png"
+            src="/assets/customers/Customers@1x-1.png"
             alt="blonde woman"
           />
         </li>
@@ -20,7 +19,7 @@ const CustomersCounter = () => {
           <img
             className={css.customersPhotoTwo}
             // srcSet="../img/Customers@1x-2.webp 1x, ../img/Customers@1x-2.png 1x, ../img/Customers@2x-2.webp 2x, ../img/Customers@2x-2.png 2x"
-            src="../img/Customers@1x-2.png"
+            src="customers/Customers@1x-1.png"
             alt="young man"
           />
         </li>
@@ -28,7 +27,7 @@ const CustomersCounter = () => {
           <img
             className={css.customersPhotoThree}
             // srcSet="../img/Customers@1x-3.webp 1x, ../img/Customers@1x-3.png 1x, ../img/Customers@2x-3.webp 2x, ../img/Customers@2x-3.png 2x"
-            src="../img/Customers@1x-3.png"
+            src="assets/customers/Customers@1x-3.webp"
             alt="young woman"
           />
         </li>
