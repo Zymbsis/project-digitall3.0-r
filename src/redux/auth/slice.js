@@ -15,19 +15,31 @@ const authSlice = createSlice({
         state.loading = false;
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
-        toast.success('Registration was successful!');
+      })
+      .addCase(register.rejected, (state, action) => {
+        let errorMessage = action.payload;
+        if (errorMessage.includes('409')) {
+          errorMessage = 'User with this email already exists';
+        }
+        state.loading = false;
+        state.error = action.payload;
+
+        toast.error(<b>{errorMessage}</b>);
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.loading = false;
-        toast.success('Login was successful!');
+      })
+      .addCase(logIn.rejected, state => {
+        state.loading = false;
+        state.error = true;
+        toast.error(<b>User login is failed!'</b>);
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
         state.isLoggedIn = false;
         state.loading = false;
-        toast.success('Logout was successful!');
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
@@ -37,20 +49,24 @@ const authSlice = createSlice({
         state.token = action.payload.accessToken;
         state.isLoggedIn = true;
         state.isRefreshing = false;
-        toast.success('Refresh was successful!');
       })
-      .addCase(refreshUser.rejected, state => {
+      .addCase(refreshUser.rejected, (state, action) => {
+        // const payloadError = action.payload;
+        // const stateError = state.error;
+        // console.log('state.error: ', stateError);
+        // console.log('action payload: ', payloadError);
+
+        // if (stateError !== payloadError) {
+        // console.log('bum!');
+        toast.error(<b>User refresh failed!</b>);
+        // }
+
         state.isRefreshing = false;
-        toast.error('Refresh failed!');
+        state.error = action.payload;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.loading = true;
         state.error = false;
-      })
-      .addMatcher(isAnyOf(register.rejected, logIn.rejected), state => {
-        state.loading = false;
-        state.error = true;
-        toast.error('Registration and/or login failed!');
       }),
 });
 const authPersistConfig = {

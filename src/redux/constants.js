@@ -8,7 +8,7 @@ export const INITIAL_STATE = {
     loading: false,
     error: false,
   },
-  user: { user: {}, countUser: null, isLoading: false, isError: false },
+  user: { user: {}, countUser: null, loading: false, error: false },
   water: {
     infoByToday: { date: '', portions: [], completionRate: null },
     infoBySelectedDay: { date: '', portions: [], completionRate: null },

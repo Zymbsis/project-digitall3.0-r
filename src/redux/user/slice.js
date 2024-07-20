@@ -9,9 +9,7 @@ const handlePending = (state, action) => {
 };
 const handleRejected = (state, action) => {
   state.loading = false;
-  state.error = true;
-  toast.error(action.payload);
-  console.log('action: ', action);
+  state.error = action.payload;
 };
 const handleFulfilled = (state, action) => {
   state.loading = false;
@@ -23,26 +21,23 @@ const userSlice = createSlice({
   initialState: INITIAL_STATE.user,
   extraReducers: builder => {
     builder
-      // .addCase(getUser.fulfilled, handleFulfilled)
-      // .addCase(updateUser.fulfilled, handleFulfilled)
-      .addCase(getUser.fulfilled, (state, action) => {
-        handleFulfilled(state, action);
-        const messageId = toast.success('User profile was loaded!');
-        console.log('messageId: ', messageId);
-      })
-      .addCase(updateUser.fulfilled, (state, action) => {
-        handleFulfilled(state, action);
-        toast.success('User profile was successfully updated!');
-      })
+      .addCase(getUser.fulfilled, handleFulfilled)
+      .addCase(updateUser.fulfilled, handleFulfilled)
       .addCase(countUsers.fulfilled, (state, action) => {
         state.countUser = action.payload;
-        toast.success('Users count was loaded!');
       })
       .addCase(getUser.pending, handlePending)
       .addCase(updateUser.pending, handlePending)
       .addCase(countUsers.pending, handlePending)
-      .addCase(getUser.rejected, handleRejected)
-      .addCase(updateUser.rejected, handleRejected)
+      .addCase(getUser.rejected, (state, action) => {
+        handleRejected(state, action);
+        toast.error(<b>User profile was not loaded!</b>);
+      })
+      .addCase(updateUser.rejected, (state, action) => {
+        handleRejected(state, action);
+        //mistake handled over toast.promise in UserSettingsForm
+        // toast.error(<b>{action.payload}</b>);
+      })
       .addCase(countUsers.rejected, handleRejected);
   },
 });

@@ -11,11 +11,14 @@ import UserSettingsFormFirstColumn from './UserSettingsFormFirstColumn.jsx';
 import UserSettingsFormSecondColumn from './UserSettingsFormSecondColumn.jsx';
 
 import css from './UserSettingsForm.module.css';
+import { selectError } from '../../../redux/user/selectors.js';
+import toast from 'react-hot-toast';
 
 const UserSettingsForm = () => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
+  const currentError = useSelector(selectError);
   const usersDailyNorma = user.dailyNorma / 1000;
   const defaultValues = { ...user, dailyNorma: usersDailyNorma };
   delete defaultValues.createdAt;
@@ -35,7 +38,6 @@ const UserSettingsForm = () => {
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
-    // console.log('name, value: ', name, value);
     clearErrors(name);
     if (name === 'dailyNorma') {
       const newValue = value.replace(',', '.');
@@ -57,8 +59,16 @@ const UserSettingsForm = () => {
     const data = { ...originalData };
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
+
     // console.log('data to dispatch: ', data);
-    dispatch(updateUser(data));
+    // dispatch(updateUser(data));
+
+    toast.promise(dispatch(updateUser(data)), {
+      pending: <b>'Saving...'</b>,
+      success: <b>Settings are saved!</b>,
+      error: currentError.error,
+      // error: <b>Could not save your settings. Server error.</b>,
+    });
 
     //object FofmData for sending to backend (as insisted by the project task)
     // const formData = new FormData();

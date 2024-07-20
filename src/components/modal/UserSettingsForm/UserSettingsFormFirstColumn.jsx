@@ -1,6 +1,6 @@
 import { Icon } from 'shared/index.js';
 
-import css from './UserSettingsForm.module.css';
+import css from './UserSettingsFormColumns.module.css';
 import clsx from 'clsx';
 
 const UserSettingsFormFirstColumn = ({
