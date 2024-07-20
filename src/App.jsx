@@ -8,7 +8,7 @@ import {
   SharedLayout,
   Loader,
 } from 'components';
-import { selectIsRefreshing } from './redux/auth/selectors';
+import { selectIsLoggedIn, selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
 import { getUser } from './redux/user/operations.js';
 import { store } from './redux/store.js';
@@ -41,6 +41,7 @@ const App = () => {
   //   }
   // }, [dispatch]);
   const { setIsOpen } = useTour();
+  const isLogged = useSelector(selectIsLoggedIn);
 
   const notify = () => {
     toast(<CustomToast setIsOpen={setIsOpen} />, {
@@ -49,12 +50,14 @@ const App = () => {
   };
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      notify();
-    }, 5000);
+    if (isLogged) {
+      const timer = setTimeout(() => {
+        notify();
+      }, 5000);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [isLogged]);
 
   return (
     <>
