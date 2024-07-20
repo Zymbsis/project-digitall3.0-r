@@ -3,7 +3,6 @@ import { register, logIn, logOut, refreshUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { getUser } from '../user/operations.js';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -18,16 +17,16 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.loading = false;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.loading = false;
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
         state.loading = false;
       })
       .addCase(refreshUser.pending, state => {
@@ -35,18 +34,12 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
-        state.isLoggedIn = false;
-      })
-      .addCase(getUser.fulfilled, state => {
-        state.isLoggedIn = true;
-      })
-      .addCase(getUser.rejected, state => {
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.loading = true;

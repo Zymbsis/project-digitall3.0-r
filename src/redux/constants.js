@@ -5,7 +5,7 @@ import { logOut, refreshUser } from './auth/operations.js';
 export const INITIAL_STATE = {
   auth: {
     token: null,
-    isLoggedIn: false,
+    // isLoggedIn: false,
     isRefreshing: false,
     loading: false,
     error: false,
@@ -32,10 +32,6 @@ AXIOS_INSTANCE.interceptors.request.use(
       auth: { token },
     } = store.getState();
 
-    if (!token && !request.url.includes('/login')) {
-      window.location.href = '/project-digitall3.0-r';
-      return;
-    }
     request.headers['Authorization'] = `Bearer ${token}`;
     return request;
   },
@@ -50,21 +46,23 @@ AXIOS_INSTANCE.interceptors.response.use(
   },
   async error => {
     const originalRequest = error.config;
+    if (
+      !store.getState().auth.isError &&
+      !store.getState().user.isError &&
+      !store.getState().water.isError
+    ) {
+      return AXIOS_INSTANCE(originalRequest);
+    }
     if (error.response.data.status === 401 && !originalRequest._retry) {
       originalRequest._retry = true;
-
       try {
-        const {
-          payload: { accessToken },
-        } = await store.dispatch(refreshUser());
+        const result = await store.dispatch(refreshUser());
 
-        AXIOS_INSTANCE.defaults.headers.common.Authorization = accessToken;
-
+        AXIOS_INSTANCE.defaults.headers.common.Authorization =
+          result.payload.accessToken;
+        console.log('done refreshing session');
         return AXIOS_INSTANCE(originalRequest);
       } catch (error) {
-        await store.dispatch(logOut());
-
-        window.location.href = '/project-digitall3.0-r/signin';
         return Promise.reject(error);
       }
     }
