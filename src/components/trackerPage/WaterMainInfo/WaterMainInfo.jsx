@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { getInfoByDay } from '../../../redux/water/operations';
 import { parseDayForFetch } from 'helpers';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
