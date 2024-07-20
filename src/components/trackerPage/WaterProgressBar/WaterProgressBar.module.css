@@ -29,15 +29,13 @@
 .boldText {
   display: inline-block;
   margin-bottom: 4px;
-  font-size: 14px;
-  line-height: 100%;
-  font-weight: bold;
+  line-height: 1;
+  font-weight: 700;
   color: var(--primary-black-color);
 
   @media (min-width: 768px) {
     font-size: 15px;
-    line-height: 149%;
-    font-weight: bold;
+    line-height: 1.49;
   }
 }
 
@@ -49,13 +47,12 @@
 
 .normalText {
   font-size: 10px;
-  font-weight: normal;
-  line-height: 100%;
+  line-height: 1;
   color: var(--backdrop-color);
 
   @media (min-width: 768px) {
     font-size: 12px;
-    line-height: 187%;
+    line-height: 1.87;
     font-weight: normal;
   }
 }
@@ -76,18 +73,18 @@
   width: 12px;
   height: 12px;
   color: var(--primary-white-color);
-  border-radius: '12px';
+  border-radius: 12px;
 }
 
 .slider :global .MuiSlider-markLabel {
   font-size: 8px;
-  font-weight: normal;
   top: -10px;
-  line-height: 100%;
+  line-height: 0.6;
   color: var(--primary-green-color);
 
   @media (min-width: 768px) {
     top: -10px;
+    font-size: 10px;
   }
 }
 

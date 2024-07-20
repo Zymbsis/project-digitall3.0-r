@@ -10,14 +10,11 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
-import { selectInfoByToday } from './redux/water/selectors';
-// import WeekDiagram from 'components/trackerPage/WeekDiagramm/WeekDiagram';
-import StatisticSection from 'components/StatisticSection/StatisticSection.jsx';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
-const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
-const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
@@ -27,9 +24,6 @@ const App = () => {
   useEffect(() => {
     dispatch(refreshUser());
   }, [dispatch]);
-
-  const waterList = useSelector(selectInfoByToday);
-  console.log(waterList);
 
   return (
     <>

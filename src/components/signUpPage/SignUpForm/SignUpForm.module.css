@@ -1,34 +1,12 @@
-.wrapper {
-  background-color: var(--primary-light-grey-color);
-  padding: 24px 16px;
-  border-radius: 30px;
-  height: 780px;
-
-  @media (min-width:768px) {
-    height: 960px;
-    padding: 32px;
-  }
-
-  @media (min-width: 1440px) {
-    width: calc((100% - 32px) / 2);
-    height: 736px;
-  }
-}
-
-.singUpLogo {
-  margin-bottom: 126px;
-
-  @media (min-width: 768px) {
-    margin-bottom: 171px;
-  }
-
-  @media (min-width: 1440px) {
-    margin-bottom: 74px;
+.layout {
+  @media (min-width:1400px) {
+    align-items: start;
+    padding-top: 130px;
   }
 }
 
 .registerContainer {
-  margin: 0 auto;
+  width: 100%;
 
   @media (min-width: 768px) {
     width: 436px;
@@ -52,7 +30,6 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
   margin-bottom: 16px;
 }
 

@@ -1,8 +1,9 @@
+import clsx from 'clsx';
 import css from './AdvantagesSection.module.css';
 
-const AdvantagesSection = () => {
+const AdvantagesSection = ({ className }) => {
   return (
-    <div className={css.wrapper}>
+    <div className={clsx(css.wrapper, css[className])}>
       <div className={css.customers}></div>
       <div className={css.advantages}>
         <div className={css.habit}>

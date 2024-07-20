@@ -10,9 +10,9 @@ export const INITIAL_STATE = {
   },
   user: { user: {}, countUser: null, isLoading: false, isError: false },
   water: {
-    infoByToday: { date: '', portions: [], completionRate: null },
-    infoBySelectedDay: { date: '', portions: [], completionRate: null },
-    infoByMonth: [],
+    infoByToday: { portions: [], completionRate: null },
+    infoBySelectedDay: [],
+    infoByMonth: { date: '', days: [] },
     selectedDate: null,
     loading: false,
     error: null,

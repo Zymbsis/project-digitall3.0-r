@@ -5,7 +5,7 @@ import {
   selectInfoByToday,
   selectSelectedDate,
 } from '../../../redux/water/selectors';
-import { getInfoBySelectedDay } from '../../../redux/water/operations';
+import { getInfoByDay } from '../../../redux/water/operations';
 import WaterItem from '../WaterItem/WaterItem';
 
 import css from './WaterList.module.css';
@@ -14,13 +14,11 @@ const WaterList = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const { portions: todayWaterList } = useSelector(selectInfoByToday);
-  const { portions: selectedDayWaterList } = useSelector(
-    selectInfoBySelectedDay
-  );
+  const selectedDayWaterList = useSelector(selectInfoBySelectedDay);
 
   useEffect(() => {
     if (!selectedDate) return;
-    dispatch(getInfoBySelectedDay(selectedDate));
+    dispatch(getInfoByDay(selectedDate));
   }, [dispatch, selectedDate]);
   const currentWaterList = selectedDate ? selectedDayWaterList : todayWaterList;
 

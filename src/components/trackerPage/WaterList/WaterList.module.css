@@ -1,17 +1,21 @@
 .waterListWrap {
-  margin-top: 24px;
   overflow-x: auto;
+  height: 106px;
+
+  @media (min-width:768px) {
+    height: 118px;
+  }
 }
 
 .waterList {
-  min-height: 74px;
+  height: 74px;
   display: flex;
   flex-wrap: nowrap;
   gap: 8px;
   margin-bottom: 24px;
 
   @media screen and (min-width: 768px) {
-    min-height: 86px;
+    height: 86px;
     gap: 32px;
   }
 }
