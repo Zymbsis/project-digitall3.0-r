@@ -27,7 +27,6 @@ const App = () => {
 
   return (
     <>
-      <StatisticSection />
       {isRefreshing ? (
         <Loader />
       ) : (

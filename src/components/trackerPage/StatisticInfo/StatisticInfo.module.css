@@ -2,7 +2,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* margin-bottom: 24px; */
+  margin-bottom: 47px;
+
+  @media (min-width: 768px) {
+    margin-bottom: 71px;
+  }
+
+  @media (min-width: 1440) {
+    margin-bottom: 49px;
+  }
 }
 
 .title {
@@ -14,7 +22,7 @@
 
   @media (min-width: 768px) {
     font-size: 28px;
-    line-height: 1.14;
+    line-height: 114%;
     letter-spacing: -0.28px;
   }
 }

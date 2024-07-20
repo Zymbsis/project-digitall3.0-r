@@ -7,7 +7,7 @@ import css from './StatisticSection.module.css';
 const StatisticSection = () => {
   return (
     <div className={css.container}>
-      {/* <StatisticInfo /> */}
+      <StatisticInfo />
       <WeekDiagram />
     </div>
   );

@@ -13,31 +13,6 @@ const data = [
   { name: '18', uv: 1800 },
 ];
 
-// const CustomDot = props => {
-//   const { cx, cy, index, data } = props;
-//   const dx = index === 0 ? 11 : 0;
-//   const dy = index === 0 ? -11 : 0;
-//   return (
-//     <circle
-//       cx={cx + dx}
-//       cy={cy + dy}
-//       r={7}
-//       fill="var(--primary-white-color)"
-//       strokeWidth={2}
-//       stroke="var(--hover-green-color)"
-//     />
-//   );
-// };
-
-// точки не кастомні
-// {{
-//   fill: 'var( --primary-white-color)',
-//   r: 7,
-//   strokeWidth: 2,
-//   stroke: 'var( --hover-green-color)',
-// }}
-// />
-
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     return (
@@ -58,16 +33,59 @@ const CustomTooltip = ({ active, payload }) => {
 };
 
 const WeekDiagram = () => {
-  const [chartSize, setChartSize] = useState({ width: 303, height: 256 });
+  const [chartSize, setChartSize] = useState({
+    width: 244,
+    height: 256,
+    r: 7,
+    strokeWidth: 2,
+  });
 
   useEffect(() => {
     const handleResize = () => {
-      if (Math.min(window.innerWidth - 64, 768)) {
-        setChartSize({ width: 588, height: 273 });
+      if (window.innerWidth < 370) {
+        setChartSize({
+          width: 244,
+          height: 256,
+          r: 8,
+          strokeWidth: 2,
+          // top: 47,
+        });
+      } else if (window.innerWidth < 767) {
+        setChartSize({
+          width: 303,
+          height: 256,
+          r: 8,
+          strokeWidth: 2,
+          // top: 47,
+        });
+      } else if (window.innerWidth < 768) {
+        setChartSize({
+          width: 272,
+          height: 256,
+          r: 8,
+          strokeWidth: 2,
+          // top: 47,
+        });
+      } else if (window.innerWidth < 1440) {
+        setChartSize({
+          width: 608,
+          height: 260,
+          r: 12,
+          strokeWidth: 3,
+          // top: 71,
+        });
+      } else {
+        setChartSize({
+          width: 588,
+          height: 273,
+          r: 12,
+          strokeWidth: 3,
+          // top: 49,
+        });
       }
     };
 
-    handleResize(); // Установить начальный размер
+    handleResize();
     window.addEventListener('resize', handleResize);
 
     return () => window.removeEventListener('resize', handleResize);
@@ -88,9 +106,7 @@ const WeekDiagram = () => {
         width={chartSize.width}
         height={chartSize.height}
         data={data}
-        // margin={{ top: 47, right: 20, left: 20, bottom: 40 }}
         margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
-        // padding={{ top: 0, right: 0, left: 0, bottom: 0 }}
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -144,14 +160,14 @@ const WeekDiagram = () => {
           // dot={<CustomDot data={data} />}
           dot={{
             fill: 'var( --primary-white-color)',
-            r: 7,
-            strokeWidth: 2,
+            r: chartSize.r,
+            strokeWidth: chartSize.strokeWidth,
             stroke: 'var( --hover-green-color)',
           }}
           activeDot={{
             fill: 'var( --primary-white-color)',
-            r: 7,
-            strokeWidth: 2,
+            r: chartSize.r,
+            strokeWidth: chartSize.strokeWidth,
             stroke: 'var( --hover-green-color)',
           }}
         />
@@ -161,3 +177,28 @@ const WeekDiagram = () => {
 };
 
 export default WeekDiagram;
+
+// const CustomDot = props => {
+//   const { cx, cy, index, data } = props;
+//   const dx = index === 0 ? 11 : 0;
+//   const dy = index === 0 ? -11 : 0;
+//   return (
+//     <circle
+//       cx={cx + dx}
+//       cy={cy + dy}
+//       r={7}
+//       fill="var(--primary-white-color)"
+//       strokeWidth={2}
+//       stroke="var(--hover-green-color)"
+//     />
+//   );
+// };
+
+// точки не кастомні
+// {{
+//   fill: 'var( --primary-white-color)',
+//   r: 7,
+//   strokeWidth: 2,
+//   stroke: 'var( --hover-green-color)',
+// }}
+// />
