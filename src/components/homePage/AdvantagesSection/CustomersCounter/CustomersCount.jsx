@@ -11,7 +11,7 @@ const CustomersCounter = () => {
           <img
             className={css.customersPhotoOne}
             // srcSet="../img/Customers@1x-1.webp 1x, ../img/Customers@1x-1.png 1x, ../img/Customers@2x-1.webp 2x, ../img/Customers@2x-1.png 2x"
-            src="/assets/customers/Customers@1x-1.png"
+            src="img/customers/Customers@1x-1.png"
             alt="blonde woman"
           />
         </li>
