@@ -1,0 +1,179 @@
+.wrapper {
+  @media (min-width:768px) {
+    width: 438px;
+  }
+}
+
+.header {
+  display: flex;
+  align-items: start;
+  gap: 40px;
+  font-size: 20px;
+  letter-spacing: -0.2px;
+  line-height: 24px;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.title {
+  font-family: Poppins, sans-serif;
+  margin-top: 20px;
+}
+
+.closeIcon {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 24px;
+  height: 24px;
+}
+
+.correctData {
+  text-align: left;
+  letter-spacing: -0.16px;
+  margin-top: 24px;
+  font: 16px Poppins, sans-serif;
+  font-weight: bold;
+}
+
+.label {
+  color: #2f2f2f;
+  font-family: Poppins, sans-serif;
+  font-weight: 400;
+  line-height: 129%;
+  letter-spacing: -0.14px;
+  margin-top: 16px;
+  text-align: left;
+}
+
+.amountControl {
+  display: flex;
+  margin-top: 8px;
+  padding-right: 80px;
+  gap: 8px;
+  color: #fff;
+  line-height: 129%;
+}
+
+.controlIcon {
+  aspect-ratio: 1;
+  object-fit: auto;
+  object-position: center;
+  width: 40px;
+  stroke-width: 1.5px;
+  stroke: #323f47;
+  border-width: 2px;
+}
+
+.amount {
+  font-family: Poppins, sans-serif;
+  border-radius: 30px;
+  background-color: #323f47;
+  justify-content: center;
+  padding: 11px 20px;
+}
+
+.timeInput {
+  font-family: Poppins, sans-serif;
+  align-items: start;
+  border-radius: 15px;
+  border-color: rgba(47, 47, 47, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 8px;
+  color: #2f2f2f;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: -0.14px;
+  line-height: 129%;
+  justify-content: center;
+  padding: 14px 16px;
+}
+
+.inputLabel {
+  text-align: left;
+  letter-spacing: -0.16px;
+  margin-top: 24px;
+  font: 16px Poppins, sans-serif;
+  font-weight: bold;
+}
+
+.waterInput {
+  font-family: Poppins, sans-serif;
+  font-size: 14px;
+  align-items: start;
+  border-radius: 15px;
+  border-color: rgba(47, 47, 47, 0.15);
+  border-style: solid;
+  border-width: 1px;
+  margin-top: 8px;
+  color: #2f2f2f;
+  font-weight: 400;
+  white-space: nowrap;
+  letter-spacing: -0.14px;
+  line-height: 129%;
+  justify-content: center;
+  padding: 14px 16px;
+}
+
+.saveButton {
+  font-family: Poppins, sans-serif;
+  font-weight: bold;
+  justify-content: center;
+  border-radius: 30px;
+  background-color: var(--Accent, #9be1a0);
+  margin-top: 24px;
+  white-space: nowrap;
+  text-align: center;
+  letter-spacing: -0.14px;
+  line-height: 129%;
+  padding: 14px 40px;
+  width: 116px;
+  height: 46px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.closeButton {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 768px) {
+  .popup {
+    min-width: 518px;
+  }
+
+  .header {
+    gap: 100px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .correctData {
+    font-size: 18px;
+  }
+
+  .label {
+    font-size: 16px;
+  }
+
+  .inputLabel {
+    font-size: 18px;
+  }
+
+  .waterInput {
+    font-size: 16px;
+  }
+
+  .saveButton {
+    font-size: 16px;
+  }
+}
