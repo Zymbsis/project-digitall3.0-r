@@ -1,14 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
 
-// const setToken = token => {
-//   AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${token}`;
-// };
-
-// const clearToken = () => {
-//   AXIOS_INSTANCE.defaults.headers.common.Authorization = null;
-// };
-
 export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
