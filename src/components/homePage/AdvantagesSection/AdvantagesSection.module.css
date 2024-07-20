@@ -68,8 +68,7 @@
 
 .customers {
   display: flex;
-  justify-content: space-between;
-  min-width: 160px;
+  width: 160px;
   height: 48px;
   border-radius: 30px;
   padding: 10px 14px;
@@ -84,7 +83,6 @@
 }
 
 .customersPhotos {
-  display: block;
   position: relative;
   width: 100%;
   height: 100%;
@@ -207,9 +205,13 @@
   margin-left: auto;
 
   @media (min-width: 768px) {
-    margin-top: 64px;
+    margin-top: 53px;
     width: 242px;
     height: 78px;
+  }
+
+  @media (min-width: 1440px) {
+    margin-top: 57px;
   }
 }
 

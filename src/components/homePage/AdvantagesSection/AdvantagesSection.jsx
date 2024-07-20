@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux';
 
 const AdvantagesSection = ({ className }) => {
   const countedUsers = useSelector(selectCountUser);
-  console.log('countedUsers: ', countedUsers);
 
   return (
     <div className={clsx(css.wrapper, css[className])}>
@@ -16,8 +15,8 @@ const AdvantagesSection = ({ className }) => {
           <div className={css.customersPhotoThree}></div>
         </div>
         <p className={css.customersText}>
-          {countedUsers === null ? 0 : countedUsers}{' '}
-          <span className={css.customersSpan}>happy</span> customers
+          {countedUsers} <span className={css.customersSpan}>happy</span>{' '}
+          customers
         </p>
       </div>
       <div className={css.advantages}>
