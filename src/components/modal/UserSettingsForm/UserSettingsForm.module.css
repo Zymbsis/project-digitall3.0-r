@@ -27,21 +27,21 @@
   border: 1px solid rgba(47, 47, 47, 0.15);
 }
 
-.toColumns {
-  display: flex;
-  flex-direction: column;
-  @media (min-width: 1440px) {
-    flex-direction: row;
-    gap: 40px;
-  }
-}
-
 .reqWaterColumns {
   display: flex;
   flex-direction: column;
 
   @media (min-width: 768px) {
     flex-direction: row;
+  }
+}
+
+.toColumns {
+  display: flex;
+  flex-direction: column;
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 40px;
   }
 }
 
