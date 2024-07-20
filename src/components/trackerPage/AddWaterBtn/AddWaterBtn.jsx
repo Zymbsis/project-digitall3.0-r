@@ -4,6 +4,7 @@ import { useModal } from 'context';
 import WaterModal from '../../modal/WaterModal/WaterModal';
 import { useSelector } from 'react-redux';
 import { selectSelectedDate } from '../../../redux/water/selectors';
+import clsx from 'clsx';
 
 const AddWaterBtn = ({ className }) => {
   const { openModal } = useModal();
@@ -15,7 +16,11 @@ const AddWaterBtn = ({ className }) => {
 
   return (
     <div className={css[className]}>
-      <button type="button" className={css.addWaterBtn} onClick={handleClick}>
+      <button
+        type="button"
+        className={clsx(css.addWaterBtn, 'tour-add-water')}
+        onClick={handleClick}
+      >
         <div className={css.iconPlusWrap}>
           <Icon iconId="icon-plus" className={css.iconPlus} />
         </div>
