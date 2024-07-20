@@ -90,40 +90,41 @@ AXIOS_INSTANCE.interceptors.response.use(
     return response;
   },
   async error => {
-    const originalRequest = error.config;
+    try {
+      const originalRequest = error.config;
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-      if (!store.getState().auth.isRefreshing) {
-        try {
-          cancelTokens.forEach(source =>
-            source.cancel('Cancelled due to a session refreshing')
-          );
-          cancelTokens = [];
+      if (error.response.status === 401 && !originalRequest._retry) {
+        originalRequest._retry = true;
 
-          newAccessTokenPromise = store.dispatch(refreshUser());
+        if (!store.getState().auth.isRefreshing) {
+          try {
+            newAccessTokenPromise = store.dispatch(refreshUser());
+            const {
+              payload: { accessToken },
+            } = await newAccessTokenPromise;
 
-          const accessToken = (await newAccessTokenPromise).payload.accessToken;
+            AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
-          AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-
-          console.log('refreshed');
-          return;
-        } catch (refreshError) {
-          return Promise.reject(refreshError);
+            console.log('refreshed');
+            return;
+          } catch (refreshError) {
+            return Promise.reject(refreshError);
+          }
         }
-      }
 
-      originalRequest._retry = true;
-      try {
-        const accessToken = (await newAccessTokenPromise).payload.accessToken;
-        console.log('test');
-        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        return await AXIOS_INSTANCE(originalRequest);
-      } catch (retryError) {
-        return Promise.reject(retryError);
+        // try {
+        //   const {
+        //     payload: { accessToken },
+        //   } = await newAccessTokenPromise;
+
+        //   originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        //   return await AXIOS_INSTANCE(originalRequest);
+        // } catch (retryError) {
+        //   return Promise.reject(retryError);
+        // }
       }
+    } catch (error) {
+      return Promise.reject(error);
     }
-
-    return Promise.reject(error);
   }
 );
