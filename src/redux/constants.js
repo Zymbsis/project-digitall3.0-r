@@ -7,8 +7,8 @@ export const INITIAL_STATE = {
     token: null,
     // isLoggedIn: false,
     isRefreshing: false,
-    loading: false,
-    error: false,
+    isLoading: false,
+    isError: false,
   },
   user: { user: {}, countUser: null, isLoading: false, isError: false },
   water: {
@@ -16,8 +16,8 @@ export const INITIAL_STATE = {
     infoBySelectedDay: [],
     infoByMonth: { date: '', days: [] },
     selectedDate: null,
-    loading: false,
-    error: null,
+    isLoading: false,
+    isError: false,
   },
 };
 
@@ -31,7 +31,6 @@ AXIOS_INSTANCE.interceptors.request.use(
     const {
       auth: { token },
     } = store.getState();
-
     request.headers['Authorization'] = `Bearer ${token}`;
     return request;
   },
@@ -40,32 +39,91 @@ AXIOS_INSTANCE.interceptors.request.use(
   }
 );
 
+// AXIOS_INSTANCE.interceptors.response.use(
+//   function (response) {
+//     return response;
+//   },
+//   async error => {
+//     const originalRequest = error.config;
+
+//     if (error.response.data.status === 401 && !originalRequest._retry) {
+//       originalRequest._retry = true;
+//       console.log('originalRequest', originalRequest);
+//       try {
+//         const result = await store.dispatch(refreshUser());
+
+//         AXIOS_INSTANCE.defaults.headers.common.Authorization =
+//           result.payload.accessToken;
+//         console.log('done refreshing session');
+//         return AXIOS_INSTANCE(originalRequest);
+//       } catch (error) {
+//         return Promise.reject(error);
+//       }
+//     }
+//     return Promise.reject(error);
+//   }
+// );
+
+let cancelTokens = [];
+
+AXIOS_INSTANCE.interceptors.request.use(
+  request => {
+    const {
+      auth: { token },
+    } = store.getState();
+    request.headers['Authorization'] = `Bearer ${token}`;
+
+    const source = axios.CancelToken.source();
+    request.cancelToken = source.token;
+    cancelTokens.push(source);
+    return request;
+  },
+  error => {
+    return Promise.reject(error);
+  }
+);
+
+let newAccessTokenPromise = null;
+
 AXIOS_INSTANCE.interceptors.response.use(
-  function (response) {
+  response => {
     return response;
   },
   async error => {
     const originalRequest = error.config;
-    if (
-      !store.getState().auth.isError &&
-      !store.getState().user.isError &&
-      !store.getState().water.isError
-    ) {
-      return AXIOS_INSTANCE(originalRequest);
-    }
-    if (error.response.data.status === 401 && !originalRequest._retry) {
+
+    if (error.response.status === 401 && !originalRequest._retry) {
+      if (!store.getState().auth.isRefreshing) {
+        try {
+          cancelTokens.forEach(source =>
+            source.cancel('Cancelled due to a session refreshing')
+          );
+          cancelTokens = [];
+
+          newAccessTokenPromise = store.dispatch(refreshUser());
+
+          const accessToken = (await newAccessTokenPromise).payload.accessToken;
+
+          AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+
+          console.log('refreshed');
+          return;
+        } catch (refreshError) {
+          return Promise.reject(refreshError);
+        }
+      }
+
       originalRequest._retry = true;
       try {
-        const result = await store.dispatch(refreshUser());
-
-        AXIOS_INSTANCE.defaults.headers.common.Authorization =
-          result.payload.accessToken;
-        console.log('done refreshing session');
-        return AXIOS_INSTANCE(originalRequest);
-      } catch (error) {
-        return Promise.reject(error);
+        const accessToken = (await newAccessTokenPromise).payload.accessToken;
+        console.log('test');
+        originalRequest.headers.Authorization = `Bearer ${accessToken}`;
+        return await AXIOS_INSTANCE(originalRequest);
+      } catch (retryError) {
+        return Promise.reject(retryError);
       }
     }
+
     return Promise.reject(error);
   }
 );

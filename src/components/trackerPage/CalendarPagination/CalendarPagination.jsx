@@ -9,6 +9,7 @@ import {
 } from 'helpers';
 import { Icon } from 'shared';
 import css from './CalendarPagination.module.css';
+import clsx from 'clsx';
 
 const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   const dispatch = useDispatch();
@@ -61,19 +62,19 @@ const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
       <h2 className={css.title}>Month</h2>
       <div className={css.dateBox}>
         <button
-          className={css.iconBtn}
+          className={clsx(css.iconBtn, css.iconBtnLeft)}
           onClick={handlePrevMonth}
           disabled={hasPrevMonth}
         >
-          <Icon iconId="icon-chevron-left" className={css.logo} />
+          <Icon iconId="icon-chevron-down" className={css.icon} />
         </button>
         <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
         <button
-          className={css.iconBtn}
+          className={clsx(css.iconBtn, css.iconBtnRight)}
           onClick={handleNextMonth}
           disabled={hasNextMonth}
         >
-          <Icon iconId="icon-chevron-right" className={css.logo} />
+          <Icon iconId="icon-chevron-down" className={css.icon} />
         </button>
       </div>
     </div>
