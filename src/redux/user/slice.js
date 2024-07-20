@@ -27,11 +27,12 @@ const userSlice = createSlice({
       // .addCase(updateUser.fulfilled, handleFulfilled)
       .addCase(getUser.fulfilled, (state, action) => {
         handleFulfilled(state, action);
-        toast.success('User profile was loaded!');
+        const messageId = toast.success('User profile was loaded!');
+        console.log('messageId: ', messageId);
       })
       .addCase(updateUser.fulfilled, (state, action) => {
         handleFulfilled(state, action);
-        toast.success('User data was updated!');
+        toast.success('User profile was successfully updated!');
       })
       .addCase(countUsers.fulfilled, (state, action) => {
         state.countUser = action.payload;
