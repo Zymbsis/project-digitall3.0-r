@@ -20,7 +20,7 @@ const WaterMainInfo = () => {
     <div className={css.container}>
       <WaterDailyNorma />
       <WaterProgressBar />
-      <AddWaterBtn className="waterMainInfoStyles" />
+      <AddWaterBtn className="waterMainInfoStyles" date={currentDay} />
     </div>
   );
 };

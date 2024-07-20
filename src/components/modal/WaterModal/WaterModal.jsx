@@ -6,7 +6,6 @@ import { Title } from '../../../shared';
 
 export const getTime = timeString => {
   const dateAndTime = new Date();
-
   const padZero = num => num.toString().padStart(2, '0');
 
   if (timeString) {
@@ -34,7 +33,7 @@ export const getTime = timeString => {
 
   return time;
 };
-const WaterModal = ({ type = 'add' }) => {
+const WaterModal = ({ type = 'add', id, date }) => {
   const [waterAmount, setWaterAmount] = useState(250);
   const [recordingTime, setRecordingTime] = useState(getTime());
 
@@ -59,6 +58,8 @@ const WaterModal = ({ type = 'add' }) => {
         setTime={setRecordingTime}
         value={waterAmount}
         setValue={setWaterAmount}
+        id={id}
+        date={date}
       />
     </div>
   );

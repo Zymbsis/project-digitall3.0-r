@@ -7,6 +7,11 @@ import WaterInput from './WaterInput';
 import styles from '../WaterModal/WaterIntakePopup.module.css';
 import { Button } from '../../../shared';
 import { useModal } from '../../../context';
+import { useDispatch } from 'react-redux';
+import {
+  addWaterIntake,
+  updateWaterIntake,
+} from '../../../redux/water/operations';
 
 // import { useDispatch } from "react-redux";
 const schema = yup.object().shape({
@@ -23,9 +28,10 @@ const WaterForm = ({
   value,
   setValue,
   type = 'add',
-  onClose,
+  id,
+  date,
 }) => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const { closeModal } = useModal();
   const { handleSubmit } = useForm({
     resolver: yupResolver(schema),
@@ -51,7 +57,12 @@ const WaterForm = ({
     // }
     // setTime(data.time);
     // setValue(data.amount);
+
+    type === 'add'
+      ? dispatch(addWaterIntake({ date: date, time: time, volume: value }))
+      : dispatch(updateWaterIntake({ _id: id, time: time, value: value }));
     console.log({ time: time, value: value });
+
     closeModal(e);
   };
 
@@ -61,7 +72,6 @@ const WaterForm = ({
       <WaterInput value={value} setValue={setValue} />
       <Button
         disabled={!time || !value}
-        onClick={closeModal}
         className={styles.saveButton}
         type="submit"
       >
