@@ -1,25 +1,25 @@
-import { useState } from "react";
-import * as yup from "yup";
-import styles from "../WaterModal/WaterIntakePopup.module.css";
+import { useState } from 'react';
+import * as yup from 'yup';
+import styles from '../WaterModal/WaterModal.module.css';
 
 // Define the validation schema
 const schema = yup.object().shape({
-  amount: yup.number().min(1).max(5000).required("Amount is required"),
+  amount: yup.number().min(1).max(5000).required('Amount is required'),
   time: yup
     .string()
-    .matches(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, "Invalid time format")
-    .required("Time is required"),
+    .matches(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format')
+    .required('Time is required'),
 });
 
 const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
   const [errors, setErrors] = useState({});
 
-  const handleTimeChange = (e) => {
+  const handleTimeChange = e => {
     let value = e.target.value;
 
     // Automatically add colon after two digits
-    if (value.length === 2 && !value.includes(":") && !time.includes(":")) {
-      value = value + ":";
+    if (value.length === 2 && !value.includes(':') && !time.includes(':')) {
+      value = value + ':';
     }
 
     // Allow deletion
@@ -30,7 +30,7 @@ const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
     setTime(value);
   };
 
-  const onSubmit = async (evt) => {
+  const onSubmit = async evt => {
     evt.preventDefault();
 
     const form = evt.target;
@@ -51,7 +51,7 @@ const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
     } catch (err) {
       // If validation fails, set the errors
       const validationErrors = {};
-      err.inner.forEach((error) => {
+      err.inner.forEach(error => {
         validationErrors[error.path] = error.message;
       });
       setErrors(validationErrors);
@@ -78,7 +78,7 @@ const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
         type="number"
         name="amount"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={e => setValue(e.target.value)}
         className={styles.waterInput}
       />
       {errors.amount && <p className={styles.error}>{errors.amount}</p>}
