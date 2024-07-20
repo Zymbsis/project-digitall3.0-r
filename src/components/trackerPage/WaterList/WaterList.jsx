@@ -5,7 +5,7 @@ import {
   selectInfoByToday,
   selectSelectedDate,
 } from '../../../redux/water/selectors';
-import { getInfoByDay } from '../../../redux/water/operations';
+import { getInfoByDay } from '../../../redux/water/operations.js';
 import WaterItem from '../WaterItem/WaterItem';
 
 import css from './WaterList.module.css';
