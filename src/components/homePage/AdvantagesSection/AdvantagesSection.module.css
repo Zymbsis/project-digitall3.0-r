@@ -6,36 +6,28 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: 100%;
-  background-image: image-set(
-    url('/public/img/homePage/mobile/background-mobile-@1x.webp') 1x,
-    url('/public/img/homePage/mobile/background-mobile-@1x.png') 1x
-  );
+  background-image: image-set(url('/public/img/homePage/mobile/background-mobile-@1x.webp') 1x,
+      url('/public/img/homePage/mobile/background-mobile-@1x.png') 1x);
 
   @media (min-device-pixel-ratio: 2),
-    (min-resolution: 144dpi),
-    (min-resolution: 2dppx) {
-    background-image: image-set(
-      url('/public/img/homePage/mobile/background-mobile-@2x.webp') 2x,
-      url('/public/img/homePage/mobile/background-mobile-@2x.png') 2x
-    );
+  (min-resolution: 144dpi),
+  (min-resolution: 2dppx) {
+    background-image: image-set(url('/public/img/homePage/mobile/background-mobile-@2x.webp') 2x,
+        url('/public/img/homePage/mobile/background-mobile-@2x.png') 2x);
   }
 
   @media (min-width: 768px) {
     flex-direction: row;
     height: 446px;
     padding: 283px 32px 32px 32px;
-    background-image: image-set(
-      url('/public/img/homePage/tablet/background-tablet-@1x.webp') 1x,
-      url('/public/img/homePage/tablet/background-tablet-@1x.png') 1x
-    );
+    background-image: image-set(url('/public/img/homePage/tablet/background-tablet-@1x.webp') 1x,
+        url('/public/img/homePage/tablet/background-tablet-@1x.png') 1x);
 
     @media (min-device-pixel-ratio: 2),
-      (min-resolution: 144dpi),
-      (min-resolution: 2dppx) {
-      background-image: image-set(
-        url('/public/img/homePage/tablet/background-tablet-@2x.webp') 2x,
-        url('/public/img/homePage/tablet/background-tablet-@2x.png') 2x
-      );
+    (min-resolution: 144dpi),
+    (min-resolution: 2dppx) {
+      background-image: image-set(url('/public/img/homePage/tablet/background-tablet-@2x.webp') 2x,
+          url('/public/img/homePage/tablet/background-tablet-@2x.png') 2x);
     }
   }
 
@@ -43,19 +35,22 @@
     width: calc((100% - 32px) / 2);
     height: 736px;
     padding: 537px 32px 64px 32px;
-    background-image: image-set(
-      url('/public/img/homePage/desktop/background-desktop-@1x.webp') 1x,
-      url('/public/img/homePage/desktop/background-desktop-@1x.png') 1x
-    );
+    background-image: image-set(url('/public/img/homePage/desktop/background-desktop-@1x.webp') 1x,
+        url('/public/img/homePage/desktop/background-desktop-@1x.png') 1x);
 
     @media (min-device-pixel-ratio: 2),
-      (min-resolution: 144dpi),
-      (min-resolution: 2dppx) {
-      background-image: image-set(
-        url('/public/img/homePage/desktop/background-desktop-@2x.webp') 2x,
-        url('/public/img/homePage/desktop/background-desktop-@2x.png') 2x
-      );
+    (min-resolution: 144dpi),
+    (min-resolution: 2dppx) {
+      background-image: image-set(url('/public/img/homePage/desktop/background-desktop-@2x.webp') 2x,
+          url('/public/img/homePage/desktop/background-desktop-@2x.png') 2x);
     }
+  }
+}
+
+.wrapper.signInPage,
+.wrapper.signUpPage {
+  @media (max-width:1439.98px) {
+    display: none;
   }
 }
 
@@ -66,10 +61,8 @@
   padding: 10px 14px;
   background: var(--primary-white-color);
   margin-bottom: 8px;
-  background-image: image-set(
-    url('/public/img/homePage/customers/customers.webp'),
-    url('/public/img/homePage/customers/customers.png')
-  );
+  background-image: image-set(url('/public/img/homePage/customers/customers.webp'),
+      url('/public/img/homePage/customers/customers.png'));
   background-position: center;
   background-repeat: no-repeat;
   background-size: 84%;

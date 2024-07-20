@@ -1,35 +1,26 @@
 import { useModal } from 'context';
-import css from './WaterItem.module.css';
-import Icon from 'shared/components/Icon/Icon';
+import { Icon } from 'shared';
+import { parsedTime } from 'helpers';
 import WaterModal from 'components/modal/WaterModal/WaterModal';
 import DeleteWaterModal from 'components/modal/DeleteWaterModal/DeleteWaterModal';
 
-const WaterItem = ({ item }) => {
+import css from './WaterItem.module.css';
+
+const WaterItem = ({ item: { _id, volume, time } }) => {
   const { openModal } = useModal();
-
-  const onDelete = id => {
-    openModal(<DeleteWaterModal id={item._id} />);
+  const formattedTime = parsedTime(time);
+  const handleDelete = () => {
+    openModal(<DeleteWaterModal id={_id} />);
   };
-  const onEdit = () => {
-    openModal(<WaterModal type={'edit'} />);
+  const handleEdit = () => {
+    openModal(<WaterModal type="edit" id={_id} />);
   };
-
-  const convertTime = time => {
-    let [hours, minutes] = time.split(':').map(Number);
-    const period = hours >= 12 ? 'PM' : 'AM';
-    hours = hours % 12 || 12;
-    minutes = minutes < 10 ? `0${minutes}` : minutes;
-    hours = hours < 10 ? `${hours}` : hours;
-    return `${hours}:${minutes} ${period}`;
-  };
-
-  const formattedTime = convertTime(item.time);
 
   return (
     <div className={css.waterItem}>
       <Icon iconId="icon-Vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
-        <p className={css.waterItemMl}>{`${item.volume} ml`}</p>
+        <p className={css.waterItemMl}>{`${volume} ml`}</p>
         <p className={css.waterItemData}>{formattedTime}</p>
       </div>
       <div className={css.waterItemBtnWrap}>
@@ -37,14 +28,14 @@ const WaterItem = ({ item }) => {
           <Icon
             iconId="icon-edit-2"
             className={css.waterIconBtn}
-            onClick={() => onEdit(item._id)}
+            onClick={handleEdit}
           />
         </button>
         <button type="button" className={css.waterItemBtn}>
           <Icon
             iconId="icon-trash-04"
             className={css.waterIconBtn}
-            onClick={() => onDelete(item._id)}
+            onClick={handleDelete}
           />
         </button>
       </div>

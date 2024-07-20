@@ -14,10 +14,10 @@ import { getUser } from './redux/user/operations.js';
 import { store } from './redux/store.js';
 import { selectCurrentUser } from './redux/user/selectors.js';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
-const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
-const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {

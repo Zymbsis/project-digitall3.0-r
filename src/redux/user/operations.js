@@ -68,3 +68,19 @@ export const updateUser = createAsyncThunk(
     }
   }
 );
+
+export const countUsers = createAsyncThunk(
+  'user/countUsers',
+  async (_, thunkAPI) => {
+    try {
+      const {
+        data: {
+          data: { count },
+        },
+      } = await AXIOS_INSTANCE.get('/users/count');
+      return count;
+    } catch (error) {
+      return thunkAPI.rejectWithValue('count error');
+    }
+  }
+);

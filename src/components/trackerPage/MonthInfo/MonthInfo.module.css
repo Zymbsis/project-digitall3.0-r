@@ -1,0 +1,20 @@
+.container {
+    width: 100%;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-bottom: 16px;
+    background-color: var(--primary-light-grey-color);
+    
+    @media (min-width: 768px) {
+        width: 704px;
+        padding-left: 32px;
+        padding-right: 32px;
+        padding-bottom: 32px;
+    }
+    @media (min-width: 1440px) {
+        width: 672px;
+        padding-left: 32px;
+        padding-right: 32px;
+        padding-bottom: 32px;
+    }
+}
