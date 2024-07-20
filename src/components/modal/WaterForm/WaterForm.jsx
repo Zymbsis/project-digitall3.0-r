@@ -1,96 +1,170 @@
 import { useState } from 'react';
 import * as yup from 'yup';
-import styles from '../WaterModal/WaterModal.module.css';
+import css from './WaterForm.module.css';
 
-// Define the validation schema
-const schema = yup.object().shape({
-  amount: yup.number().min(1).max(5000).required('Amount is required'),
-  time: yup
-    .string()
-    .matches(/^([0-1][0-9]|2[0-3]):[0-5][0-9]$/, 'Invalid time format')
-    .required('Time is required'),
-});
+import { Button } from '../../../shared';
+import WaterAmount from './WaterAmount';
+import { useForm } from 'react-hook-form';
+import { getCurrentTime, parseDayForFetch } from '../../../helpers';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useDispatch } from 'react-redux';
+import {
+  addWaterIntake,
+  updateWaterIntake,
+} from '../../../redux/water/operations';
+import { useModal } from '../../../context';
+import clsx from 'clsx';
 
-const WaterForm = ({ time, setTime, value, setValue, onClose }) => {
-  const [errors, setErrors] = useState({});
+const waterModalSchema = yup
+  .object({
+    timeInput: yup
+      .string()
+      .matches(
+        /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/,
+        'invalid time format. Must be "HH:MM"'
+      )
+      .required('Time is required'),
+    waterInput: yup
+      .number('the minimum is 50ml')
+      .min(50, 'the minimum is 50ml')
+      .max(1000)
+      .required('amount is required'),
+  })
+  .required();
 
-  const handleTimeChange = e => {
-    let value = e.target.value;
+// export const getTime = timeString => {
+//   const dateAndTime = new Date();
+//   const padZero = num => num.toString().padStart(2, '0');
+//   if (timeString) {
+//     const [hoursStr, minutesStr] = timeString.split(':');
+//     const hours = parseInt(hoursStr.slice(0, 2), 10);
+//     const minutes = parseInt(minutesStr.slice(0, 2), 10);
+//     if (!isNaN(hours) && hours >= 0 && hours < 24) {
+//       dateAndTime.setHours(hours);
+//     }
+//     if (!isNaN(minutes) && minutes >= 0 && minutes < 60) {
+//       dateAndTime.setMinutes(minutes);
+//     } else {
+//       dateAndTime.setMinutes(0);
+//     }
+//   }
+//   const currentHours = dateAndTime.getHours();
+//   const currentMinutes = dateAndTime.getMinutes();
+//   const time = `${currentHours}:${padZero(currentMinutes)}`;
 
-    // Automatically add colon after two digits
-    if (value.length === 2 && !value.includes(':') && !time.includes(':')) {
-      value = value + ':';
+//   return time;
+// };
+
+const WaterForm = ({ type, id, date }) => {
+  const dispatch = useDispatch();
+  const { closeModal } = useModal();
+  const currentTime = getCurrentTime(new Date());
+  const currentDate = parseDayForFetch(new Date());
+
+  const [waterAmount, setWaterAmount] = useState(50);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(waterModalSchema),
+    defaultValues: {
+      timeInput: currentTime,
+      waterInput: 50,
+    },
+  });
+
+  console.log(errors.waterInput);
+  const onSubmit = (data, e) => {
+    if (type === 'add') {
+      const payload = {
+        date: date ? date : currentDate,
+        time: data.timeInput,
+        volume: data.waterInput,
+      };
+      dispatch(addWaterIntake(payload));
     }
-
-    // Allow deletion
-    if (time.length === 3 && value.length === 2) {
-      value = value.slice(0, -1);
+    if (type === 'edit') {
+      const payload = {
+        _id: id,
+        time: data.timeInput,
+        volume: data.waterInput,
+      };
+      dispatch(updateWaterIntake(payload));
     }
-
-    setTime(value);
+    closeModal(e);
   };
 
-  const onSubmit = async evt => {
-    evt.preventDefault();
+  const handleIncrease = () => {
+    if (+waterAmount >= 1000) return;
+    if (+waterAmount > 950 && +waterAmount < 1000) {
+      setWaterAmount(1000);
+      return;
+    }
+    setWaterAmount(+waterAmount + 50);
+  };
 
-    const form = evt.target;
-    const amount = form.amount.value;
-    const time = form.time.value;
+  const handleDecrease = () => {
+    if (+waterAmount === 50) return;
+    setWaterAmount(+waterAmount - 50);
+  };
 
-    try {
-      // Validate the form data against the schema
-      await schema.validate({ amount, time }, { abortEarly: false });
-
-      // If validation passes, set the values and close the form
-      console.log({ amount, time });
-      setValue(amount);
-      setTime(time);
-
-      // Additional logic here, like making API calls or updating the state
-      onClose();
-    } catch (err) {
-      // If validation fails, set the errors
-      const validationErrors = {};
-      err.inner.forEach(error => {
-        validationErrors[error.path] = error.message;
-      });
-      setErrors(validationErrors);
+  const handleWaterInputChange = e => {
+    if (e.target.value.match(/^\d+$/) || e.target.value === '') {
+      setWaterAmount(e.target.value);
+    }
+    if (+e.target.value > 1000) {
+      setWaterAmount(1000);
     }
   };
 
   return (
-    <form onSubmit={onSubmit} className={styles.form}>
-      <div className={styles.label}>Recording time:</div>
-      <input
-        type="text"
-        name="time"
-        value={time}
-        onChange={handleTimeChange}
-        placeholder="HH:MM"
-        className={styles.timeInput}
+    <>
+      <WaterAmount
+        amount={waterAmount}
+        handleIncrease={handleIncrease}
+        handleDecrease={handleDecrease}
       />
-      {errors.time && <p className={styles.error}>{errors.time}</p>}
+      <form onSubmit={handleSubmit(onSubmit)} className={css.form}>
+        <label
+          className={clsx(css.timeLabel, {
+            [css.errorLabel]: errors.timeInput,
+          })}
+        >
+          Recording time:
+          <input
+            className={css.timeInput}
+            {...register('timeInput')}
+            maxLength={5}
+          />
+        </label>
+        {errors.timeInput && (
+          <p className={css.errorMessage}>{errors.timeInput?.message}</p>
+        )}
 
-      <div className={styles.inputLabel}>
-        Enter the value of the water used:
-      </div>
-      <input
-        type="number"
-        name="amount"
-        value={value}
-        onChange={e => setValue(e.target.value)}
-        className={styles.waterInput}
-      />
-      {errors.amount && <p className={styles.error}>{errors.amount}</p>}
+        <label
+          className={clsx(css.waterLabel, {
+            [css.errorLabel]: errors.waterInput,
+          })}
+        >
+          Enter the value of the water used:
+          <input
+            className={css.waterInput}
+            {...register('waterInput')}
+            onChange={handleWaterInputChange}
+            value={waterAmount}
+            maxLength={4}
+          />
+        </label>
+        {errors.waterInput && (
+          <p className={css.errorMessage}>the minimum is 50ml</p>
+        )}
 
-      <button
-        disabled={!time || !value}
-        className={styles.saveButton}
-        type="submit"
-      >
-        Save
-      </button>
-    </form>
+        <Button className={css.saveButton} type="submit">
+          Save
+        </Button>
+      </form>
+    </>
   );
 };
 

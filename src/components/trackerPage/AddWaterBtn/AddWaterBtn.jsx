@@ -2,11 +2,15 @@ import { Icon } from 'shared';
 import css from './AddWaterBtn.module.css';
 import { useModal } from 'context';
 import WaterModal from '../../modal/WaterModal/WaterModal';
+import { useSelector } from 'react-redux';
+import { selectSelectedDate } from '../../../redux/water/selectors';
 
 const AddWaterBtn = ({ className }) => {
   const { openModal } = useModal();
+  const selectedDate = useSelector(selectSelectedDate);
+
   const handleClick = () => {
-    openModal(<WaterModal type={'add'} />);
+    openModal(<WaterModal date={selectedDate} />);
   };
 
   return (
