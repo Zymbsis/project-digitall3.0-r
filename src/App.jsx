@@ -13,6 +13,12 @@ import { refreshUser } from './redux/auth/operations';
 import { getUser } from './redux/user/operations.js';
 import { store } from './redux/store.js';
 import { selectCurrentUser } from './redux/user/selectors.js';
+import { useTour } from '@reactour/tour';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CustomToast, {
+  toastStyles,
+} from 'components/trackerPage/CustomToast/CustomToast';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -34,6 +40,21 @@ const App = () => {
   //     dispatch(getUser());
   //   }
   // }, [dispatch]);
+  const { setIsOpen } = useTour();
+
+  const notify = () => {
+    toast(<CustomToast setIsOpen={setIsOpen} />, {
+      ...toastStyles,
+    });
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      notify();
+    }, 5000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -79,6 +100,17 @@ const App = () => {
           </Routes>
         </SharedLayout>
       )}
+      <ToastContainer
+        position="top-right"
+        autoClose={10000}
+        hideProgressBar={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </>
   );
 };
