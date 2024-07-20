@@ -88,7 +88,7 @@
   height: 100%;
 }
 
-.customersPhotoOne {
+/* .customersPhotoOne {
   position: absolute;
   z-index: 3;
   left: 0;
@@ -175,7 +175,7 @@
     height: 47px;
     left: 60px;
   }
-}
+} */
 
 .customersText {
   min-width: 67px;
