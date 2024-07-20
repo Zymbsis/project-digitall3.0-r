@@ -1,27 +1,20 @@
+import { Icon } from 'shared';
 import css from './WaterAmount.module.css';
 
-const WaterAmount = ({ amount, setAmount, decrease, increase }) => {
+const WaterAmount = ({ amount, decrease, increase }) => {
   return (
-    <>
-      <div className={css.label}>Amount of water:</div>
+    <div className={css.amountWrapper}>
+      <p className={css.label}>Amount of water:</p>
       <div className={css.amountControl}>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/9d85fa297711f867f0e010e82bb34b232df531bd7f213baaf6d4f825ff60a62a?apiKey=6ca973d5a2ad4e4094edfc4eea487097&"
-          className={css.controlIcon}
-          onClick={decrease}
-          alt="Decrease"
-        />
+        <button onClick={decrease} type="button" className={css.controlBtn}>
+          <Icon iconId="icon-water-decrease" className={css.icon} />
+        </button>
         <div className={css.amount}>{amount} ml</div>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/4dd1945f9b996e8bb3a210e4c74f76cef91ea84e230045d4c1cd94772b5cfe6e?apiKey=6ca973d5a2ad4e4094edfc4eea487097&"
-          className={css.controlIcon}
-          onClick={increase}
-          alt="Increase"
-        />
+        <button onClick={increase} type="button" className={css.controlBtn}>
+          <Icon iconId="icon-water-increase" className={css.icon} />
+        </button>
       </div>
-    </>
+    </div>
   );
 };
 
