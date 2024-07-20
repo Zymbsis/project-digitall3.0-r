@@ -45,14 +45,15 @@ const authSlice = createSlice({
         state.isError = true;
       }),
 });
-export const { clearToken } = authSlice.actions;
+
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
+
 const authReducer = authSlice.reducer;
-export const { setIsRefreshing } = authSlice.actions;
+
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer

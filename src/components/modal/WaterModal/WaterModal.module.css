@@ -1,12 +1,12 @@
 .wrapper {
-  @media (min-width:768px) {
+  @media (min-width: 768px) {
     width: 438px;
   }
 }
 
 .header {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 40px;
   font-size: 20px;
   letter-spacing: -0.2px;

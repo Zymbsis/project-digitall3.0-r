@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { store } from './store.js';
-import { logOut, refreshUser } from './auth/operations.js';
+import { refreshUser } from './auth/operations.js';
 
 export const INITIAL_STATE = {
   auth: {
@@ -27,64 +27,27 @@ export const AXIOS_INSTANCE = axios.create({
   withCredentials: true,
 });
 
-// AXIOS_INSTANCE.interceptors.request.use(
-//   request => {
-//     const {
-//       auth: { token },
-//     } = store.getState();
-//     request.headers['Authorization'] = `Bearer ${token}`;
-//     return request;
-//   },
-//   error => {
-//     return Promise.reject(error);
-//   }
-// );
-
-// AXIOS_INSTANCE.interceptors.response.use(
-//   function (response) {
-//     return response;
-//   },
-//   async error => {
-//     const originalRequest = error.config;
-
-//     if (error.response.data.status === 401 && !originalRequest._retry) {
-//       originalRequest._retry = true;
-//       console.log('originalRequest', originalRequest);
-//       try {
-//         const result = await store.dispatch(refreshUser());
-
-//         AXIOS_INSTANCE.defaults.headers.common.Authorization =
-//           result.payload.accessToken;
-//         console.log('done refreshing session');
-//         return AXIOS_INSTANCE(originalRequest);
-//       } catch (error) {
-//         return Promise.reject(error);
-//       }
-//     }
-//     return Promise.reject(error);
-//   }
-// );
-
 let cancelTokens = [];
 
 AXIOS_INSTANCE.interceptors.request.use(
   request => {
-    const {
-      auth: { token },
-    } = store.getState();
-    request.headers['Authorization'] = `Bearer ${token}`;
+    if (!request.url.includes('register') && !request.url.includes('signin')) {
+      const {
+        auth: { token },
+      } = store.getState();
 
-    const source = axios.CancelToken.source();
-    request.cancelToken = source.token;
-    cancelTokens.push(source);
-    return request;
+      request.headers.Authorization = `Bearer ${token}`;
+
+      const source = axios.CancelToken.source();
+      request.cancelToken = source.token;
+      cancelTokens.push(source);
+      return request;
+    }
   },
   error => {
     return Promise.reject(error);
   }
 );
-
-let newAccessTokenPromise = null;
 
 AXIOS_INSTANCE.interceptors.response.use(
   response => {
@@ -104,29 +67,13 @@ AXIOS_INSTANCE.interceptors.response.use(
             });
             cancelTokens = [];
 
-            newAccessTokenPromise = store.dispatch(refreshUser());
-            const {
-              payload: { accessToken },
-            } = await newAccessTokenPromise;
+            await store.dispatch(refreshUser());
 
-            AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
-
-            return;
+            return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
             return Promise.reject(refreshError);
           }
         }
-
-        // try {
-        //   const {
-        //     payload: { accessToken },
-        //   } = await newAccessTokenPromise;
-
-        //   originalRequest.headers.Authorization = `Bearer ${accessToken}`;
-        //   return await AXIOS_INSTANCE(originalRequest);
-        // } catch (retryError) {
-        //   return Promise.reject(retryError);
-        // }
       }
     } catch (error) {
       return Promise.reject(error);
