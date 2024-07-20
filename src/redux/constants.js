@@ -22,22 +22,23 @@ export const INITIAL_STATE = {
 };
 
 export const AXIOS_INSTANCE = axios.create({
-  baseURL: 'https://aquatracker-node.onrender.com',
+  // baseURL: 'https://aquatracker-node.onrender.com',
+  baseURL: 'https://project-digitall3-0-n.onrender.com',
   withCredentials: true,
 });
 
-AXIOS_INSTANCE.interceptors.request.use(
-  request => {
-    const {
-      auth: { token },
-    } = store.getState();
-    request.headers['Authorization'] = `Bearer ${token}`;
-    return request;
-  },
-  error => {
-    return Promise.reject(error);
-  }
-);
+// AXIOS_INSTANCE.interceptors.request.use(
+//   request => {
+//     const {
+//       auth: { token },
+//     } = store.getState();
+//     request.headers['Authorization'] = `Bearer ${token}`;
+//     return request;
+//   },
+//   error => {
+//     return Promise.reject(error);
+//   }
+// );
 
 // AXIOS_INSTANCE.interceptors.response.use(
 //   function (response) {
@@ -98,6 +99,11 @@ AXIOS_INSTANCE.interceptors.response.use(
 
         if (!store.getState().auth.isRefreshing) {
           try {
+            cancelTokens.forEach(source => {
+              source.cancel();
+            });
+            cancelTokens = [];
+
             newAccessTokenPromise = store.dispatch(refreshUser());
             const {
               payload: { accessToken },
@@ -105,7 +111,6 @@ AXIOS_INSTANCE.interceptors.response.use(
 
             AXIOS_INSTANCE.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
 
-            console.log('refreshed');
             return;
           } catch (refreshError) {
             return Promise.reject(refreshError);
