@@ -1,0 +1,49 @@
+.amountWrapper {
+  margin-bottom: 16px;
+}
+
+.label {
+  line-height: 1.29;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.amountControl {
+  display: flex;
+  gap: 8px;
+}
+
+.controlBtn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--primary-dark-grey-color);
+  border-radius: 30px;
+}
+
+.icon {
+  width: 100%;
+  height: 100%;
+  stroke: var(--primary-dark-grey-color);
+  fill: var(--primary-white-color);
+}
+
+.amount {
+  width: 89px;
+  line-height: 1.28;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+  background-color: var(--primary-dark-grey-color);
+  color: var(--primary-white-color);
+  font-weight: 700;
+
+  @media (min-width:768px) {
+    font-size: 15px;
+    line-height: 1.49;
+  }
+}
