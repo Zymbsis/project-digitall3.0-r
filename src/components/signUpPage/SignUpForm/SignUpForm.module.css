@@ -1,6 +1,6 @@
 .layout {
   @media (min-width:1400px) {
-    align-items: start;
+    align-items: flex-start;
     padding-top: 130px;
   }
 }
