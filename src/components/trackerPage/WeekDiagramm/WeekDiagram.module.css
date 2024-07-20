@@ -1,0 +1,38 @@
+.container {
+  height: 256px;
+  min-width: 303px;
+  background: var(--primary-light-grey-color);
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  /* padding: 24px 16px; */
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  /* padding-bottom: 40px; */
+  position: relative;
+  display: flex;
+  background-repeat: no-repeat;
+  background-size: 262px 335px;
+  background-position: center;
+
+  @media (min-width: 768px) {
+    /* height: 608px; */
+    width: 608px;
+    height: 260px;
+    margin-left: 42px;
+    margin-right: 54px;
+    margin-bottom: 40px;
+    margin-top: 20px;
+
+    padding: 32px 32px;
+  }
+}
+
+.areaChartWrapper {
+  width: 303px;
+  height: 256px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
