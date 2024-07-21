@@ -21,13 +21,7 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
       //dispatch(updateUser(formData));
       const promise = dispatch(updateUser(formData)).unwrap();
       toast.promise(promise, {
-        //pending: 'Updating your avatar...',
-        pending: {
-          render() {
-            return <b>Updating your avatar...</b>;
-          },
-          icon: true,
-        },
+        pending: 'Updating your avatar...',
         success: <b>Your avatar is successfully updated</b>,
         error: <b>Could not update your avatar. ({currentError}).</b>,
       });
