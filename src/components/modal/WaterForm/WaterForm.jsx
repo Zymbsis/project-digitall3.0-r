@@ -101,17 +101,17 @@ const WaterForm = ({ type, id, date, time, volume }) => {
     if (+waterAmount >= 1000) return;
     if (+waterAmount > 950 && +waterAmount < 1000) {
       setWaterAmount(1000);
-      setValue('waterInput', waterAmount);
+      setValue('waterInput', 1000);
       return;
     }
     setWaterAmount(+waterAmount + 50);
-    setValue('waterInput', waterAmount);
+    setValue('waterInput', +waterAmount + 50);
   };
 
   const handleDecrease = () => {
     if (+waterAmount === 50) return;
     setWaterAmount(+waterAmount - 50);
-    setValue('waterInput', waterAmount);
+    setValue('waterInput', +waterAmount - 50);
   };
 
   const handleWaterInputChange = e => {
