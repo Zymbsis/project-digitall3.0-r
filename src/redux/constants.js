@@ -61,7 +61,6 @@ AXIOS_INSTANCE.interceptors.response.use(
 
       if (error.response.status === 401 && !originalRequest._retry) {
         originalRequest._retry = true;
-
         if (!store.getState().auth.isRefreshing) {
           try {
             abortControllers.forEach(controller => {
