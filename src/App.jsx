@@ -1,9 +1,6 @@
 import { lazy } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-
->>>>>>> a82a836100a1e82437def253662c8f70197e98b1
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -11,7 +8,6 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import { useSelector } from 'react-redux';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));

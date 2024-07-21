@@ -7,6 +7,7 @@ import WaterDailyNorma from '../WaterDailyNorma/WaterDailyNorma';
 import WaterProgressBar from '../WaterProgressBar/WaterProgressBar';
 
 import css from './WaterMainInfo.module.css';
+import clsx from 'clsx';
 
 const WaterMainInfo = () => {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const WaterMainInfo = () => {
   }, [currentDay, dispatch]);
 
   return (
-    <div className={css.container}>
+    <div className={clsx(css.container, 'tour-water-main-info')}>
       <WaterDailyNorma />
       <WaterProgressBar />
       <AddWaterBtn className="waterMainInfoStyles" />

@@ -7,17 +7,24 @@ import persistReducer from 'redux-persist/es/persistReducer';
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE.auth,
+  reducers: {
+    showOnboarding: (state, action) => {
+      state.showOnboardingTour = false;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.accessToken;
+        // state.showOnboardingTour = true;
         // state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         // state.isLoggedIn = true;
         state.isLoading = false;
+        state.showOnboardingTour = true; //перенести в кейс реєстрації, зараз реєстрація не працює
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
@@ -49,11 +56,11 @@ const authSlice = createSlice({
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'showOnboardingTour'],
 };
 
 const authReducer = authSlice.reducer;
-
+export const { showOnboarding } = authSlice.actions;
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer

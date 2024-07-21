@@ -55,13 +55,15 @@ const waterModalSchema = yup
 //   return time;
 // };
 
-const WaterForm = ({ type, id, date }) => {
+const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const currentTime = getCurrentTime(new Date());
+  const defaultTime = type === 'add' ? currentTime : time;
+  const defaultVolume = type === 'add' ? 50 : volume;
   const currentDate = parseDayForFetch(new Date());
 
-  const [waterAmount, setWaterAmount] = useState(50);
+  const [waterAmount, setWaterAmount] = useState(defaultVolume);
   const {
     register,
     handleSubmit,
@@ -69,8 +71,8 @@ const WaterForm = ({ type, id, date }) => {
   } = useForm({
     resolver: yupResolver(waterModalSchema),
     defaultValues: {
-      timeInput: currentTime,
-      waterInput: 50,
+      timeInput: defaultTime,
+      waterInput: defaultVolume,
     },
   });
 
