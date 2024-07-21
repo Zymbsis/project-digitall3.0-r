@@ -4,12 +4,13 @@ import { Loader } from 'components';
 import { Suspense, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectShowOnboardingTour } from '../../redux/auth/selectors';
-import { ToastContainer, toast } from 'react-toastify';
+
 import CustomToast, {
   toastStyles,
 } from '../trackerPage/CustomToast/CustomToast';
-import 'react-toastify/dist/ReactToastify.css';
 import { showOnboarding } from '../../redux/auth/slice';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SharedLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -27,7 +28,7 @@ const SharedLayout = ({ children }) => {
       const timer = setTimeout(() => {
         notify();
         dispatch(showOnboarding());
-      }, 2000);
+      }, 1500);
       return () => clearTimeout(timer);
     }
   }, [dispatch, notify, showTour]);
