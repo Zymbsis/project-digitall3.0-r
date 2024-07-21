@@ -1,4 +1,4 @@
-import { lazy, useEffect } from 'react';
+import { lazy } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import {
@@ -7,14 +7,7 @@ import {
   SharedLayout,
   Loader,
 } from 'components';
-import { selectIsLoggedIn, selectIsRefreshing } from './redux/auth/selectors';
-
-import { useTour } from '@reactour/tour';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import CustomToast, {
-  toastStyles,
-} from 'components/trackerPage/CustomToast/CustomToast';
+import { selectIsRefreshing } from './redux/auth/selectors';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -24,24 +17,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  const { setIsOpen } = useTour();
-  const isLogged = useSelector(selectIsLoggedIn);
-
-  useEffect(() => {
-    const notify = () => {
-      toast(<CustomToast setIsOpen={setIsOpen} />, {
-        ...toastStyles,
-      });
-    };
-    if (isLogged) {
-      const timer = setTimeout(() => {
-        notify();
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, [isLogged, setIsOpen]);
 
   return (
     <>
@@ -87,17 +62,6 @@ const App = () => {
           </Routes>
         </SharedLayout>
       )}
-      <ToastContainer
-        position="top-right"
-        autoClose={10000}
-        hideProgressBar={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
     </>
   );
 };

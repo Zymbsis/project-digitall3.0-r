@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
     token: null,
     // isLoggedIn: false,
     isRefreshing: false,
+    showOnboardingTour: false,
     isLoading: false,
     isError: false,
   },
