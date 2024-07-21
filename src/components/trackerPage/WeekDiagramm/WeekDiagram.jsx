@@ -24,25 +24,50 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+// const transformedData = [
+//   { name: '12', uv: 1200 },
+//   { name: '13', uv: 1500 },
+//   { name: '14', uv: 700 },
+//   { name: '15', uv: 2000 },
+//   { name: '16', uv: 1200 },
+// ];
+
 const WeekDiagram = () => {
   const getWaterDataForLast7Days = waterData => {
     const today = new Date();
     let daysArray = [];
 
-    for (let i = 6; i >= 0; i--) {
-      const date = new Date();
-      date.setDate(today.getDate() - i);
-      const day = date.getDate().toString().padStart(2, '0');
+    if (today.getDate() < 7) {
+      for (let i = 0; i < today.getDate(); i += 1) {
+        const date = new Date();
+        date.setDate(i + 1);
+        const day = date.getDate().toString().padStart(2, '0');
 
-      const dayData = waterData.find(water => water.day === day) || {
-        portions: [],
-      };
-      console.log(waterData);
-      const volume = dayData.portions.reduce(
-        (total, portion) => total + portion.volume,
-        0
-      );
-      daysArray.push({ name: day, uv: volume });
+        const dayData = waterData.find(water => water.day === day) || {
+          portions: [],
+        };
+        const volume = dayData.portions.reduce(
+          (total, portion) => total + portion.volume,
+          0
+        );
+
+        daysArray.push({ name: day, uv: volume });
+      }
+    } else {
+      for (let i = 6; i >= 0; i -= 1) {
+        const date = new Date();
+        date.setDate(today.getDate() - i);
+        const day = date.getDate().toString().padStart(2, '0');
+
+        const dayData = waterData.find(water => water.day === day) || {
+          portions: [],
+        };
+        const volume = dayData.portions.reduce(
+          (total, portion) => total + portion.volume,
+          0
+        );
+        daysArray.push({ name: day, uv: volume });
+      }
     }
 
     return daysArray;
@@ -222,16 +247,6 @@ export default WeekDiagram;
 //   stroke: 'var( --hover-green-color)',
 // }}
 // />
-
-// const transformonmData = [
-//   { name: '12', uv: 1200 },
-//   { name: '13', uv: 1500 },
-//   { name: '14', uv: 700 },
-//   { name: '15', uv: 2000 },
-//   { name: '16', uv: 1200 },
-//   { name: '17', uv: 1000 },
-//   { name: '18', uv: 1800 },
-// ];
 
 // const monthInfo = {
 //   date: '2024-07',
