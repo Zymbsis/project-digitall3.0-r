@@ -124,16 +124,12 @@
 }
 
 .showPasswordBtn {
-  display: none;
-
-  @media screen and (min-width: 768px) {
-    display: block;
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    right: 20px;
-    top: 18px;
-  }
+  display: block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 18px;
 }
 
 .icon {

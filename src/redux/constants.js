@@ -5,7 +5,6 @@ import { refreshUser } from './auth/operations.js';
 export const INITIAL_STATE = {
   auth: {
     token: null,
-    // isLoggedIn: false,
     isRefreshing: false,
     showOnboardingTour: false,
     isLoading: false,
@@ -28,18 +27,26 @@ export const AXIOS_INSTANCE = axios.create({
   withCredentials: true,
 });
 
-let cancelTokens = [];
+let abortControllers = [];
 
 AXIOS_INSTANCE.interceptors.request.use(
   request => {
-    if (!request.url.includes('register') && !request.url.includes('signin')) {
+    if (
+      !request.url.includes('register') &&
+      !request.url.includes('signin') &&
+      !request.url.includes('count') &&
+      !request.url.includes('activate')
+    ) {
       const {
         auth: { token },
       } = store.getState();
       request.headers.Authorization = `Bearer ${token}`;
-      const source = axios.CancelToken.source();
-      request.cancelToken = source.token;
-      cancelTokens.push(source);
+
+      const controller = new AbortController();
+      request.signal = controller.signal;
+      abortControllers.push(controller);
+      return request;
+    } else {
       return request;
     }
   },
@@ -55,16 +62,20 @@ AXIOS_INSTANCE.interceptors.response.use(
   async error => {
     try {
       const originalRequest = error.config;
-
-      if (error.response.status === 401 && !originalRequest._retry) {
+      // console.log('error :>> ', error);
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        error.response.data.data.message.includes('Access token expired') &&
+        !originalRequest._retry
+      ) {
         originalRequest._retry = true;
-
         if (!store.getState().auth.isRefreshing) {
           try {
-            cancelTokens.forEach(source => {
-              source.cancel();
-            });
-            cancelTokens = [];
+            // abortControllers.forEach(controller => {
+            //   controller.abort();
+            // });
+            // abortControllers = [];
             await store.dispatch(refreshUser());
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
@@ -72,6 +83,10 @@ AXIOS_INSTANCE.interceptors.response.use(
           }
         }
       }
+      if (error.response.data) {
+        throw error.response.data;
+      }
+      throw error;
     } catch (error) {
       return Promise.reject(error);
     }

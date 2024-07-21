@@ -8,12 +8,12 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
+// import { ActivationPage } from 'pages/index.js';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
 const SignInPage = lazy(() => import('./pages/SignInPage'));
 const TrackerPage = lazy(() => import('./pages/TrackerPage'));
-const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
@@ -25,6 +25,7 @@ const App = () => {
       ) : (
         <SharedLayout>
           <Routes>
+            {/* <Route path="/activation" element={<ActivationPage />} /> */}
             <Route
               path="/"
               element={
@@ -58,7 +59,6 @@ const App = () => {
                 <PrivateRoutes redirectTo="/" component={<TrackerPage />} />
               }
             />
-            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </SharedLayout>
       )}

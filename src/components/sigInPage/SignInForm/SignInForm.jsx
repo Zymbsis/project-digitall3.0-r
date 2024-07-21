@@ -33,7 +33,9 @@ const SignInForm = () => {
   };
 
   const onSubmit = data => {
-    dispatch(logIn(data));
+    const { email, password } = data;
+    const newEmail = email.toLowerCase();
+    dispatch(logIn({ email: newEmail, password }));
     reset();
   };
 

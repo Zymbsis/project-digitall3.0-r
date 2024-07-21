@@ -3,7 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from 'context';
 import { updateUser } from '../../../redux/user/operations.js';
-import { selectCurrentUser } from '../../../redux/user/selectors.js';
+import {
+  selectCurrentUser,
+  selectIsError,
+} from '../../../redux/user/selectors.js';
 import { userSettingsFormSchema } from 'validationSchemas';
 import { Button } from 'shared/index.js';
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
@@ -16,6 +19,7 @@ const UserSettingsForm = () => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
+  const isError = useSelector(selectIsError);
   const usersDailyNorma = user.dailyNorma / 1000;
   const defaultValues = { ...user, dailyNorma: usersDailyNorma };
   delete defaultValues.createdAt;
@@ -35,7 +39,6 @@ const UserSettingsForm = () => {
 
   const handleFieldChange = evt => {
     const { name, value } = evt.target;
-    // console.log('name, value: ', name, value);
     clearErrors(name);
     if (name === 'dailyNorma') {
       const newValue = value.replace(',', '.');
@@ -53,26 +56,15 @@ const UserSettingsForm = () => {
     setValue(name, value);
   };
 
-  const onSubmit = (originalData, evt) => {
-    const data = { ...originalData };
+  const onSubmit = (originalFormData, evt) => {
+    const data = { ...originalFormData };
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
-    // console.log('data to dispatch: ', data);
     dispatch(updateUser(data));
 
-    //object FofmData for sending to backend (as insisted by the project task)
-    // const formData = new FormData();
-    // for (const key in data) {
-    //   if (data.hasOwnProperty(key)) {
-    //     formData.append(key, data[key]);
-    //   }
-    // }
-    //to check if data in FormData object is correct
-    // console.log('formData to dispatch: ', formData);
-    // for (let [key, value] of formData.entries()) {
-    //   console.log(`${key}:`, value);
-    // }
-    closeModal(evt);
+    if (!isError) {
+      closeModal(evt);
+    }
   };
 
   const handleKeyDown = event => {
