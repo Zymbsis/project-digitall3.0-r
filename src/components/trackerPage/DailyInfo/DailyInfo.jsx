@@ -9,9 +9,6 @@ import { parseDayForFetch } from '../../../helpers';
 const DailyInfo = () => {
   const selectedDate = useSelector(selectSelectedDate);
   const currentDate = parseDayForFetch(new Date());
-  console.log(selectedDate);
-
-  console.log(currentDate);
   return (
     <div className={css.dailyInfoContainer}>
       <div className={css.wrapperTop}>

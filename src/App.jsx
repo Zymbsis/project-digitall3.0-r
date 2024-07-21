@@ -1,7 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -9,10 +8,7 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import { refreshUser } from './redux/auth/operations';
-import { getUser } from './redux/user/operations.js';
-import { store } from './redux/store.js';
-import { selectCurrentUser } from './redux/user/selectors.js';
+import { useSelector } from 'react-redux';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -22,18 +18,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  // const dispatch = useDispatch();
-  // const {
-  //   auth: { token: accessToken },
-  // } = store.getState();
-  // const user = useSelector(selectCurrentUser);
-
-  // useEffect(() => {
-  //   if (!user.name && accessToken) {
-  //     dispatch(getUser());
-  //   }
-  // }, [dispatch]);
 
   return (
     <>
