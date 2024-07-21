@@ -56,8 +56,9 @@ AXIOS_INSTANCE.interceptors.response.use(
   async error => {
     try {
       const originalRequest = error.config;
-
+      console.log('error :>> ', error);
       if (
+        error.response &&
         error.response.status === 401 &&
         error.response.data.data.message.includes('Access token expired') &&
         !originalRequest._retry
