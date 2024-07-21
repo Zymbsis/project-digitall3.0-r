@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-
-import css from './WeekDiagram.module.css';
-import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
 import { selectInfoByMonth } from '../../../redux/water/selectors.js';
+import css from './WeekDiagram.module.css';
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
