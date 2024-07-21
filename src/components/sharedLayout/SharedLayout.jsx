@@ -1,5 +1,4 @@
 import { useTour } from '@reactour/tour';
-import css from './SharedLayout.module.css';
 import { Loader } from 'components';
 import { Suspense, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,6 +10,7 @@ import CustomToast, {
 import { showOnboarding } from '../../redux/auth/slice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import css from './SharedLayout.module.css';
 
 const SharedLayout = ({ children }) => {
   const dispatch = useDispatch();

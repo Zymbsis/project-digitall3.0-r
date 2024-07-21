@@ -41,6 +41,8 @@ AXIOS_INSTANCE.interceptors.request.use(
       request.cancelToken = source.token;
       cancelTokens.push(source);
       return request;
+    } else {
+      return request;
     }
   },
   error => {

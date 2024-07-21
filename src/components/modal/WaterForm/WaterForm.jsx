@@ -67,6 +67,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(waterModalSchema),
@@ -100,14 +101,17 @@ const WaterForm = ({ type, id, date, time, volume }) => {
     if (+waterAmount >= 1000) return;
     if (+waterAmount > 950 && +waterAmount < 1000) {
       setWaterAmount(1000);
+      setValue('waterInput', waterAmount);
       return;
     }
     setWaterAmount(+waterAmount + 50);
+    setValue('waterInput', waterAmount);
   };
 
   const handleDecrease = () => {
     if (+waterAmount === 50) return;
     setWaterAmount(+waterAmount - 50);
+    setValue('waterInput', waterAmount);
   };
 
   const handleWaterInputChange = e => {

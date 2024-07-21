@@ -27,8 +27,6 @@ const SignUpForm = () => {
   const onSubmit = data => {
     const { email, password } = data;
     dispatch(register({ email, password }));
-
-    reset();
   };
 
   const handleClickShowPassword = () => {
