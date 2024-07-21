@@ -39,13 +39,11 @@ const UserBar = () => {
     <div className={clsx(css.userBarContainer, 'tour-user-info')}>
       <div className={css.userBarWrapper}>
         <span className={css.userName}>{name}</span>
-
         <div className={css.avatarWrapper}>
           {avatar && (
             <img src={avatar} alt="User Avatar" className={css.avatar} />
           )}
         </div>
-
         <button
           ref={buttonRef}
           className={clsx(css.userBarButton, { [css.openPopover]: isVisible })}
