@@ -1,5 +1,6 @@
 import clsx from 'clsx';
-import css from './UserSettingsForm.module.css';
+
+import css from './UserSettingsFormColumns.module.css';
 
 const countNorma = userData => {
   const { gender, weight, activeHours } = userData;

@@ -9,7 +9,7 @@
   padding: 18px 14px;
   border-radius: 15px;
 
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     gap: 19px;
     background-color: white;
     border-radius: 15px;
