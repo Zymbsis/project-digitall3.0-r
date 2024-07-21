@@ -5,7 +5,7 @@ import React, { useEffect } from 'react';
 import css from './StatisticSection.module.css';
 import { useDispatch } from 'react-redux';
 import { parseMonthForFetch } from 'helpers';
-import { getInfoByMonth } from '../../redux/water/operations.js';
+import { getInfoByMonth } from '../../../redux/water/operations.js';
 
 const StatisticSection = () => {
   const dispatch = useDispatch();

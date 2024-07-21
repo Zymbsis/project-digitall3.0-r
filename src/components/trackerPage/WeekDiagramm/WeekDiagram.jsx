@@ -4,25 +4,8 @@ import css from './WeekDiagram.module.css';
 import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
 import { useSelector } from 'react-redux';
 import { selectInfoByMonth } from '../../../redux/water/selectors.js';
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div
-        style={{
-          backgroundColor: 'white',
-          padding: '5px',
-          border: '1px solid #ccc',
-          borderRadius: '5px',
-        }}
-      >
-        <p>{`${payload[0].value} ml`}</p>
-      </div>
-    );
-  }
-
-  return null;
-};
+import getWaterDataForLast7Days from 'helpers/getWaterDataForLast7Days';
+import CustomTooltip from 'components/trackerPage/CustomTooltip/CustomTooltip';
 
 // const transformedData = [
 //   { name: '12', uv: 1200 },
@@ -34,46 +17,6 @@ const CustomTooltip = ({ active, payload }) => {
 
 const WeekDiagram = () => {
   const { days: waterData } = useSelector(selectInfoByMonth);
-
-  const getWaterDataForLast7Days = waterData => {
-    const today = new Date();
-    let daysArray = [];
-
-    if (today.getDate() < 7) {
-      for (let i = 0; i < today.getDate(); i += 1) {
-        const date = new Date();
-        date.setDate(i + 1);
-        const day = date.getDate().toString().padStart(2, '0');
-
-        const dayData = waterData.find(water => water.day === day) || {
-          portions: [],
-        };
-        const volume = dayData.portions.reduce(
-          (total, portion) => total + portion.volume,
-          0
-        );
-
-        daysArray.push({ name: day, uv: volume });
-      }
-    } else {
-      for (let i = 6; i >= 0; i -= 1) {
-        const date = new Date();
-        date.setDate(today.getDate() - i);
-        const day = date.getDate().toString().padStart(2, '0');
-
-        const dayData = waterData.find(water => water.day === day) || {
-          portions: [],
-        };
-        const volume = dayData.portions.reduce(
-          (total, portion) => total + portion.volume,
-          0
-        );
-        daysArray.push({ name: day, uv: volume });
-      }
-    }
-
-    return daysArray;
-  };
 
   const transformedData = getWaterDataForLast7Days(waterData);
   console.log(transformedData);
@@ -148,6 +91,7 @@ const WeekDiagram = () => {
         height={chartSize.height}
         data={transformedData}
         margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
+        padding={{ top: 0, right: -20, left: -20, bottom: 0 }}
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -188,7 +132,7 @@ const WeekDiagram = () => {
 
         <Tooltip
           content={<CustomTooltip />}
-          cursor={{ stroke: 'none', pointer: 'none' }}
+          cursor={{ stroke: 'none' }}
           offset={-50}
         />
 
