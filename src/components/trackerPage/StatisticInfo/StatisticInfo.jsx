@@ -9,21 +9,21 @@ const StatisticInfo = ({ selectedDate }) => {
     <div className={css.container}>
       <h2 className={css.title}>Statistic</h2>
       <div className={css.dateBox}>
-        <div
+        <button
           className={css.iconBtn}
           // onClick={handlePrevMonth}
           // disabled={hasPrevMonth}
         >
-          <Icon iconId="icon-chevron-down" className={css.logo} />
-        </div>
-        <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
-        <div
+          <Icon iconId="icon-chevron-down" className={css.logoright} />
+        </button>
+        <p className={css.month}>{parseSelectedMonth(selectedDate)}</p>
+        <button
           className={css.iconBtn}
           // onClick={handleNextMonth}
           // disabled={hasNextMonth}
         >
           <Icon iconId="icon-chevron-down" className={css.logoleft} />
-        </div>
+        </button>
         <button
           className={css.iconBtn}
           // onClick={handleNextMonth}

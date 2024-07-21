@@ -32,23 +32,24 @@
   gap: 8px;
 }
 
-.date {
+.month {
   display: flex;
   justify-content: center;
-  width: 120px;
   color: var(--primary-dark-grey-color);
   font-weight: 700;
+  font-size: 14px;
   line-height: 1.29;
   letter-spacing: -0.14px;
 
   @media (min-width: 768px) {
     width: 140px;
+    font-size: 17px;
     line-height: 1.5;
     letter-spacing: -0.16px;
   }
 }
 
-.logo {
+.logoright {
   width: 18px;
   height: 18px;
   fill: none;
@@ -63,9 +64,14 @@
   transform: rotate(-90deg);
 }
 .logopiechart {
-  width: 18px;
-  height: 18px;
+  width: 20px;
+  height: 20px;
   fill: none;
+
+  @media (min-width: 768px) {
+    width: 24px;
+    height: 24px;
+  }
 }
 
 /* button:disabled .logo {
@@ -75,7 +81,7 @@
 .iconBtn {
   background: none;
   border: none;
-  cursor: pointer;
+  /* cursor: pointer; */
   padding: 0;
   width: auto;
 }

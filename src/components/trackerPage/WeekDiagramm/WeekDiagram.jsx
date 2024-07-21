@@ -79,7 +79,7 @@ const WeekDiagram = () => {
   console.log(transformedData);
 
   const [chartSize, setChartSize] = useState({
-    width: 244,
+    width: 303,
     height: 256,
     r: 7,
     strokeWidth: 2,
@@ -87,13 +87,15 @@ const WeekDiagram = () => {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth < 370) {
+      if (window.innerWidth < 375) {
+        const flexWind = Math.min(window.innerWidth - 32, 374);
+        const newHeight = flexWind * 0.85;
+        const newWidth = flexWind * 0.85;
         setChartSize({
-          width: 244,
-          height: 256,
+          width: newWidth,
+          height: newHeight,
           r: 8,
           strokeWidth: 2,
-          // top: 47,
         });
       } else if (window.innerWidth < 767) {
         setChartSize({
@@ -101,7 +103,6 @@ const WeekDiagram = () => {
           height: 256,
           r: 8,
           strokeWidth: 2,
-          // top: 47,
         });
       } else if (window.innerWidth < 768) {
         setChartSize({
@@ -109,7 +110,6 @@ const WeekDiagram = () => {
           height: 256,
           r: 8,
           strokeWidth: 2,
-          // top: 47,
         });
       } else if (window.innerWidth < 1440) {
         setChartSize({
@@ -117,7 +117,6 @@ const WeekDiagram = () => {
           height: 260,
           r: 12,
           strokeWidth: 3,
-          // top: 71,
         });
       } else {
         setChartSize({
@@ -125,7 +124,6 @@ const WeekDiagram = () => {
           height: 273,
           r: 12,
           strokeWidth: 3,
-          // top: 49,
         });
       }
     };
@@ -144,10 +142,8 @@ const WeekDiagram = () => {
   };
 
   return (
-    // <div>
     <div className={css.container}>
       <AreaChart
-        // className={css.areaChartWrapper}
         width={chartSize.width}
         height={chartSize.height}
         data={transformedData}
