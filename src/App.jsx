@@ -8,6 +8,7 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
+import { ActivationPage } from 'pages/index.js';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -25,6 +26,7 @@ const App = () => {
       ) : (
         <SharedLayout>
           <Routes>
+            <Route path="/activation" element={<ActivationPage />} />
             <Route
               path="/"
               element={

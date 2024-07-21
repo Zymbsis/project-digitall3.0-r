@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { countUsers, getUser, updateUser } from './operations';
+import { activateUser, countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
 const handlePending = state => {
