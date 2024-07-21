@@ -1,10 +1,6 @@
 import { lazy, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-
->>>>>>> a82a836100a1e82437def253662c8f70197e98b1
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -12,10 +8,7 @@ import {
   Loader,
 } from 'components';
 import { selectIsLoggedIn, selectIsRefreshing } from './redux/auth/selectors';
-import { refreshUser } from './redux/auth/operations';
-import { getUser } from './redux/user/operations.js';
-import { store } from './redux/store.js';
-import { selectCurrentUser } from './redux/user/selectors.js';
+
 import { useTour } from '@reactour/tour';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -32,27 +25,15 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  // const dispatch = useDispatch();
-  // const {
-  //   auth: { token: accessToken },
-  // } = store.getState();
-  // const user = useSelector(selectCurrentUser);
-
-  // useEffect(() => {
-  //   if (!user.name && accessToken) {
-  //     dispatch(getUser());
-  //   }
-  // }, [dispatch]);
   const { setIsOpen } = useTour();
   const isLogged = useSelector(selectIsLoggedIn);
 
-  const notify = () => {
-    toast(<CustomToast setIsOpen={setIsOpen} />, {
-      ...toastStyles,
-    });
-  };
-
   useEffect(() => {
+    const notify = () => {
+      toast(<CustomToast setIsOpen={setIsOpen} />, {
+        ...toastStyles,
+      });
+    };
     if (isLogged) {
       const timer = setTimeout(() => {
         notify();
@@ -60,7 +41,7 @@ const App = () => {
 
       return () => clearTimeout(timer);
     }
-  }, [isLogged]);
+  }, [isLogged, setIsOpen]);
 
   return (
     <>
