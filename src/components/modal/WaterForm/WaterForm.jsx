@@ -1,63 +1,26 @@
 import { useState } from 'react';
-import * as yup from 'yup';
-import css from './WaterForm.module.css';
-
-import { Button } from '../../../shared';
-import WaterAmount from './WaterAmount';
 import { useForm } from 'react-hook-form';
-import { getCurrentTime, parseDayForFetch } from '../../../helpers';
+import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+import { getCurrentTime, parseDayForFetch } from 'helpers';
+import { waterFormSchema } from 'validationSchemas';
 import {
   addWaterIntake,
   updateWaterIntake,
 } from '../../../redux/water/operations';
-import { useModal } from '../../../context';
+import { selectIsError } from '../../../redux/water/selectors';
+import { useModal } from 'context';
+import { Button } from 'shared';
+import WaterAmount from './WaterAmount';
+
 import clsx from 'clsx';
-
-const waterModalSchema = yup
-  .object({
-    timeInput: yup
-      .string()
-      .matches(
-        /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/,
-        'invalid time format. Must be "HH:MM"'
-      )
-      .required('Time is required'),
-    waterInput: yup
-      .number('the minimum is 50ml')
-      .min(50, 'the minimum is 50ml')
-      .max(1000)
-      .required('amount is required'),
-  })
-  .required();
-
-// export const getTime = timeString => {
-//   const dateAndTime = new Date();
-//   const padZero = num => num.toString().padStart(2, '0');
-//   if (timeString) {
-//     const [hoursStr, minutesStr] = timeString.split(':');
-//     const hours = parseInt(hoursStr.slice(0, 2), 10);
-//     const minutes = parseInt(minutesStr.slice(0, 2), 10);
-//     if (!isNaN(hours) && hours >= 0 && hours < 24) {
-//       dateAndTime.setHours(hours);
-//     }
-//     if (!isNaN(minutes) && minutes >= 0 && minutes < 60) {
-//       dateAndTime.setMinutes(minutes);
-//     } else {
-//       dateAndTime.setMinutes(0);
-//     }
-//   }
-//   const currentHours = dateAndTime.getHours();
-//   const currentMinutes = dateAndTime.getMinutes();
-//   const time = `${currentHours}:${padZero(currentMinutes)}`;
-
-//   return time;
-// };
+import css from './WaterForm.module.css';
 
 const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const isError = useSelector(selectIsError);
+
   const currentTime = getCurrentTime(new Date());
   const defaultTime = type === 'add' ? currentTime : time;
   const defaultVolume = type === 'add' ? 50 : volume;
@@ -70,7 +33,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(waterModalSchema),
+    resolver: yupResolver(waterFormSchema),
     defaultValues: {
       timeInput: defaultTime,
       waterInput: defaultVolume,
@@ -94,24 +57,26 @@ const WaterForm = ({ type, id, date, time, volume }) => {
       };
       dispatch(updateWaterIntake(payload));
     }
-    closeModal(e);
+    if (!isError) {
+      closeModal(e);
+    }
   };
 
   const handleIncrease = () => {
     if (+waterAmount >= 1000) return;
     if (+waterAmount > 950 && +waterAmount < 1000) {
       setWaterAmount(1000);
-      setValue('waterInput', waterAmount);
+      setValue('waterInput', 1000);
       return;
     }
     setWaterAmount(+waterAmount + 50);
-    setValue('waterInput', waterAmount);
+    setValue('waterInput', +waterAmount + 50);
   };
 
   const handleDecrease = () => {
     if (+waterAmount === 50) return;
     setWaterAmount(+waterAmount - 50);
-    setValue('waterInput', waterAmount);
+    setValue('waterInput', +waterAmount - 50);
   };
 
   const handleWaterInputChange = e => {

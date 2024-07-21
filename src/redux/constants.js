@@ -5,7 +5,6 @@ import { refreshUser } from './auth/operations.js';
 export const INITIAL_STATE = {
   auth: {
     token: null,
-    // isLoggedIn: false,
     isRefreshing: false,
     showOnboardingTour: false,
     isLoading: false,
@@ -64,6 +63,7 @@ AXIOS_INSTANCE.interceptors.response.use(
   async error => {
     try {
       const originalRequest = error.config;
+
       if (
         error.response &&
         error.response.status === 401 &&
@@ -85,11 +85,12 @@ AXIOS_INSTANCE.interceptors.response.use(
             return Promise.reject(refreshError);
           }
         }
-        if (error.response.data) {
+        
+      }
+     if (error.response.data) {
           throw error.response.data;
         }
         throw error;
-      }
     } catch (error) {
       return Promise.reject(error);
     }
