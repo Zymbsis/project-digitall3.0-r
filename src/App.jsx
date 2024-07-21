@@ -1,4 +1,5 @@
 import { lazy, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import {
   PrivateRoutes,
@@ -17,8 +18,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import CustomToast, {
   toastStyles,
 } from 'components/trackerPage/CustomToast/CustomToast';
-
-import { useSelector } from 'react-redux';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
