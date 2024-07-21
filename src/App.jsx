@@ -1,9 +1,5 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-<<<<<<< HEAD
-=======
-
->>>>>>> a82a836100a1e82437def253662c8f70197e98b1
 import {
   PrivateRoutes,
   RestrictedRoutes,
