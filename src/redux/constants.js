@@ -23,7 +23,8 @@ export const INITIAL_STATE = {
 };
 
 export const AXIOS_INSTANCE = axios.create({
-  baseURL: 'https://aquatracker-node.onrender.com',
+  // baseURL: 'https://aquatracker-node.onrender.com',
+  baseURL: 'http://localhost:3001',
   // baseURL: 'https://project-digitall3-0-n.onrender.com',
   withCredentials: true,
 });
@@ -32,9 +33,14 @@ let abortControllers = [];
 
 AXIOS_INSTANCE.interceptors.request.use(
   request => {
-    if (!request.url.includes('register') && !request.url.includes('signin')) {
+    if (
+      !request.url.includes('register') &&
+      !request.url.includes('signin') &&
+      !request.url.includes('count') &&
+      !request.url.includes('activate')
+    ) {
       const {
-        auth: { token, isError },
+        auth: { token },
       } = store.getState();
       request.headers.Authorization = `Bearer ${token}`;
 
@@ -58,8 +64,12 @@ AXIOS_INSTANCE.interceptors.response.use(
   async error => {
     try {
       const originalRequest = error.config;
-
-      if (error.response.status === 401 && !originalRequest._retry) {
+      if (
+        error.response &&
+        error.response.status === 401 &&
+        error.response.data.data.message.includes('Access token expired') &&
+        !originalRequest._retry
+      ) {
         originalRequest._retry = true;
         if (!store.getState().auth.isRefreshing) {
           try {
@@ -69,11 +79,16 @@ AXIOS_INSTANCE.interceptors.response.use(
             abortControllers = [];
 
             await store.dispatch(refreshUser());
+
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
             return Promise.reject(refreshError);
           }
         }
+        if (error.response.data) {
+          throw error.response.data;
+        }
+        throw error;
       }
     } catch (error) {
       return Promise.reject(error);

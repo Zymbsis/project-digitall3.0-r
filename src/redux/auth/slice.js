@@ -1,5 +1,11 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { register, logIn, logOut, refreshUser } from './operations';
+import {
+  register,
+  logIn,
+  logOut,
+  refreshUser,
+  activateUser,
+} from './operations';
 import { INITIAL_STATE } from '../constants';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
@@ -19,6 +25,18 @@ const authSlice = createSlice({
         state.token = action.payload.accessToken;
         state.showOnboardingTour = true;
         // state.isLoggedIn = true;
+      })
+      .addCase(activateUser.fulfilled, (state, action) => {
+        state.token = action.payload.accessToken;
+        state.isLoading = false;
+      })
+      .addCase(activateUser.pending, state => {
+        state.isError = false;
+        state.isLoading = true;
+      })
+      .addCase(activateUser.rejected, state => {
+        state.isError = true;
+        state.isLoading = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;

@@ -26,7 +26,7 @@ const App = () => {
       ) : (
         <SharedLayout>
           <Routes>
-            <Route path="/activation/*" component={<ActivationPage />}></Route>
+            <Route path="/activation" element={<ActivationPage />} />
             <Route
               path="/"
               element={
