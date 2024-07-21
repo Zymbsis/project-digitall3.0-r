@@ -5,7 +5,7 @@ const Logo = ({ className }) => {
   return (
     <a
       href="/project-digitall3.0-r/"
-      className={clsx(css.logo, { [className]: className })}
+      className={clsx(css.logo, { [className]: className }, 'tour-logo')}
     >
       AquaTrack
     </a>
