@@ -24,7 +24,7 @@ const ActivationPage = () => {
       setIsActivating(false);
       setIsError(true);
     }
-  }, [activationToken, navigate]);
+  }, [activationToken, navigate, dispatch]);
   return (
     <>
       {isActivating && <Loader></Loader>}
