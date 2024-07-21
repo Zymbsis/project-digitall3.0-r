@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
-import { parseDayForFetch } from '../../helpers';
+import { parseDayForFetch } from 'helpers';
+import toast from 'react-hot-toast';
 
 export const getInfoByDay = createAsyncThunk(
   'water/getInfoByDay',
@@ -11,7 +12,7 @@ export const getInfoByDay = createAsyncThunk(
       } = await AXIOS_INSTANCE.get(`/water/day/${date}`);
       return data;
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      return rejectWithValue(error);
     }
   }
   // Example: getInfoByDay('2024-07-02')
@@ -24,7 +25,7 @@ export const getInfoByMonth = createAsyncThunk(
       const { data } = await AXIOS_INSTANCE.get(`/water/month/${month}`);
       return data.data;
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      return rejectWithValue(error);
     }
   }
   // Example: getInfoByMonth('2024-07')
@@ -52,7 +53,8 @@ export const addWaterIntake = createAsyncThunk(
       }
       return { data, infoByMonth, infoByToday };
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      toast.error(<b>{error.data.message}</b>);
+      return rejectWithValue(error);
     }
   }
   // Example: addWaterIntake({
@@ -87,7 +89,8 @@ export const updateWaterIntake = createAsyncThunk(
       }
       return { data, infoByMonth, infoByToday };
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      toast.error(<b>{error.data.message}</b>);
+      return rejectWithValue(error);
     }
   }
   //Example: updateWaterIntake({
@@ -118,7 +121,8 @@ export const deleteWaterIntake = createAsyncThunk(
       );
       return { infoByDay, infoByMonth };
     } catch (error) {
-      return rejectWithValue(error.response.data.message);
+      toast.error(<b>{error.data.message}</b>);
+      return rejectWithValue(error);
     }
   }
   // Example: deleteWaterIntake('669659783a9e3788a6f21a13')

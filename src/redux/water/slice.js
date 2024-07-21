@@ -69,7 +69,7 @@ const waterSlice = createSlice({
         ),
         state => {
           state.isLoading = true;
-          state.isError = null;
+          state.isError = false;
         }
       )
       .addMatcher(
@@ -80,9 +80,9 @@ const waterSlice = createSlice({
           updateWaterIntake.rejected,
           deleteWaterIntake.rejected
         ),
-        (state, action) => {
+        state => {
           state.isLoading = false;
-          state.isError = action.payload;
+          state.isError = true;
         }
       );
   },
