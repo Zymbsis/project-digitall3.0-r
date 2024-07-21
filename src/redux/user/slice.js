@@ -6,10 +6,12 @@ const handlePending = state => {
   state.isError = false;
   state.isLoading = true;
 };
+
 const handleRejected = state => {
   state.isLoading = false;
   state.isError = true;
 };
+
 const handleFulfilled = (state, action) => {
   state.isLoading = false;
   state.user = action.payload;

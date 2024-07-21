@@ -1,16 +1,16 @@
 import { useTour } from '@reactour/tour';
-import css from './SharedLayout.module.css';
 import { Loader } from 'components';
+import { Toaster } from 'react-hot-toast';
 import { Suspense, useCallback, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectShowOnboardingTour } from '../../redux/auth/selectors';
-
 import CustomToast, {
   toastStyles,
 } from '../trackerPage/CustomToast/CustomToast';
 import { showOnboarding } from '../../redux/auth/slice';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import css from './SharedLayout.module.css';
 
 const SharedLayout = ({ children }) => {
   const dispatch = useDispatch();
@@ -35,6 +35,11 @@ const SharedLayout = ({ children }) => {
 
   return (
     <>
+      <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+        toastOptions={{ duration: 6000 }}
+      />
       <main className={css.mainContainer}>
         <Suspense fallback={<Loader />}>{children}</Suspense>
       </main>

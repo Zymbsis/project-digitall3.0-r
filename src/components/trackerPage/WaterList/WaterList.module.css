@@ -14,9 +14,13 @@
   gap: 8px;
   margin-bottom: 24px;
 
-  @media screen and (min-width: 768px) {
+  @media (min-width: 768px) {
     height: 86px;
     gap: 32px;
+  }
+
+  @media (min-width: 1440px) {
+    gap: 16px;
   }
 }
 

@@ -26,8 +26,8 @@ const SignUpForm = () => {
 
   const onSubmit = data => {
     const { email, password } = data;
-    dispatch(register({ email, password }));
-
+    const newEmail = email.toLowerCase();
+    dispatch(register({ email: newEmail, password }));
     reset();
   };
 

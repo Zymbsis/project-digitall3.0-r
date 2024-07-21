@@ -3,13 +3,22 @@ import { useDispatch } from 'react-redux';
 import { Button, Title } from 'shared';
 import { useModal } from 'context';
 import { deleteWaterIntake } from '../../../redux/water/operations';
+import toast from 'react-hot-toast';
 
 const DeleteWaterModal = ({ id }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleDelete = e => {
-    dispatch(deleteWaterIntake(id));
+    // dispatch(deleteWaterIntake(id));
+    const promise = dispatch(deleteWaterIntake(id)).unwrap();
+
+    toast.promise(promise, {
+      pending: 'The data is deleted...',
+      success: <b>Water portion successfully deleted</b>,
+      error: <b>Something went wrong...</b>,
+    });
+
     closeModal(e);
   };
   const handleCancel = e => {
