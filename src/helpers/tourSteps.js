@@ -32,11 +32,12 @@ export const tourStyles = {
   popover: base => ({
     ...base,
     '--reactour-accent': '#87d28d',
-    borderRadius: '20px',
+    borderRadius: '15px',
     fontFamily: 'Poppins',
     fontSize: '20px',
     textAlign: 'center',
     backgroundColor: '#f0eff4',
+    padding: '25px',
   }),
 
   badge: base => ({
@@ -46,17 +47,21 @@ export const tourStyles = {
   }),
   controls: base => ({
     ...base,
-    marginTop: 100,
+    marginTop: 30,
   }),
-  content: base => ({ ...base, padding: '15px' }),
+  content: base => ({
+    ...base,
+    margin: '10px',
+    color: '#323F47',
+  }),
   arrow: base => ({ ...base, color: '#87d28d' }),
   close: base => ({
     ...base,
     left: 'auto',
-    right: 15,
-    top: 15,
-    width: '10px',
-    height: '10px',
+    right: 12,
+    top: 12,
+    width: '12px',
+    height: '12px',
     color: '#87d28d',
   }),
 };
