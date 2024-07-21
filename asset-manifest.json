@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/project-digitall3.0-r/static/css/main.c10c6f20.css",
-    "main.js": "/project-digitall3.0-r/static/js/main.68d91402.js",
+    "main.js": "/project-digitall3.0-r/static/js/main.f61b6735.js",
     "static/js/983.686364aa.chunk.js": "/project-digitall3.0-r/static/js/983.686364aa.chunk.js",
     "static/css/877.51565892.chunk.css": "/project-digitall3.0-r/static/css/877.51565892.chunk.css",
     "static/js/877.b2574d4d.chunk.js": "/project-digitall3.0-r/static/js/877.b2574d4d.chunk.js",
@@ -26,7 +26,7 @@
     "static/media/bottle-mob-@2x.webp": "/project-digitall3.0-r/static/media/bottle-mob-@2x.f74b16c51283dff5f16c.webp",
     "static/media/background-mobile-@2x.webp": "/project-digitall3.0-r/static/media/background-mobile-@2x.a0942e938ac9cb9ad95f.webp",
     "static/media/background-desktop-@1x.webp": "/project-digitall3.0-r/static/media/background-desktop-@1x.148a66e506e1baa23acf.webp",
-    "static/media/sprite.svg": "/project-digitall3.0-r/static/media/sprite.049f0ae61e8144e3141c81e8edcf5094.svg",
+    "static/media/sprite.svg": "/project-digitall3.0-r/static/media/sprite.7a0a6a2fe741e385346944aa16e0db57.svg",
     "static/media/background-tablet-@1x.webp": "/project-digitall3.0-r/static/media/background-tablet-@1x.1e263af766adeed3e524.webp",
     "static/media/bottle-mob-@1x.webp": "/project-digitall3.0-r/static/media/bottle-mob-@1x.8ed0eec373ae43523539.webp",
     "static/media/background-mobile-@1x.webp": "/project-digitall3.0-r/static/media/background-mobile-@1x.6eeb4bc49107a1a4ece8.webp",
@@ -38,7 +38,7 @@
     "static/media/customers@1x-1.webp": "/project-digitall3.0-r/static/media/customers@1x-1.006fb3f80c9b3f3b0400.webp",
     "static/media/customers@1x-2.webp": "/project-digitall3.0-r/static/media/customers@1x-2.44889609984dd0cb5fd7.webp",
     "main.c10c6f20.css.map": "/project-digitall3.0-r/static/css/main.c10c6f20.css.map",
-    "main.68d91402.js.map": "/project-digitall3.0-r/static/js/main.68d91402.js.map",
+    "main.f61b6735.js.map": "/project-digitall3.0-r/static/js/main.f61b6735.js.map",
     "983.686364aa.chunk.js.map": "/project-digitall3.0-r/static/js/983.686364aa.chunk.js.map",
     "877.51565892.chunk.css.map": "/project-digitall3.0-r/static/css/877.51565892.chunk.css.map",
     "877.b2574d4d.chunk.js.map": "/project-digitall3.0-r/static/js/877.b2574d4d.chunk.js.map",
@@ -50,6 +50,6 @@
   },
   "entrypoints": [
     "static/css/main.c10c6f20.css",
-    "static/js/main.68d91402.js"
+    "static/js/main.f61b6735.js"
   ]
 }
