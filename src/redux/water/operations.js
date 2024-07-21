@@ -53,7 +53,9 @@ export const addWaterIntake = createAsyncThunk(
       }
       return { data, infoByMonth, infoByToday };
     } catch (error) {
-      toast.error(<b>{error.data.message}</b>);
+      error.data.message === 'Bad Request'
+        ? toast.error(<b>{'Something went wrong. Please, try again'}</b>)
+        : toast.error(<b>{error.data.message}</b>);
       return rejectWithValue(error);
     }
   }
@@ -89,7 +91,9 @@ export const updateWaterIntake = createAsyncThunk(
       }
       return { data, infoByMonth, infoByToday };
     } catch (error) {
-      toast.error(<b>{error.data.message}</b>);
+      error.data.message === 'Bad Request'
+        ? toast.error(<b>{'Something went wrong. Please, try again'}</b>)
+        : toast.error(<b>{error.data.message}</b>);
       return rejectWithValue(error);
     }
   }
@@ -121,7 +125,9 @@ export const deleteWaterIntake = createAsyncThunk(
       );
       return { infoByDay, infoByMonth };
     } catch (error) {
-      toast.error(<b>{error.data.message}</b>);
+      error.data.message === 'Bad Request'
+        ? toast.error(<b>{'Something went wrong. Please, try again'}</b>)
+        : toast.error(<b>{error.data.message}</b>);
       return rejectWithValue(error);
     }
   }
