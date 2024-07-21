@@ -35,9 +35,7 @@ AXIOS_INSTANCE.interceptors.request.use(
       const {
         auth: { token },
       } = store.getState();
-
       request.headers.Authorization = `Bearer ${token}`;
-
       const source = axios.CancelToken.source();
       request.cancelToken = source.token;
       cancelTokens.push(source);
@@ -66,9 +64,7 @@ AXIOS_INSTANCE.interceptors.response.use(
               source.cancel();
             });
             cancelTokens = [];
-
             await store.dispatch(refreshUser());
-
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
             return Promise.reject(refreshError);
