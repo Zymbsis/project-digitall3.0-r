@@ -9,10 +9,7 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import { refreshUser } from './redux/auth/operations';
-import { getUser } from './redux/user/operations.js';
-import { store } from './redux/store.js';
-import { selectCurrentUser } from './redux/user/selectors.js';
+import { ActivationPage } from 'pages/index.js';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -42,6 +39,7 @@ const App = () => {
       ) : (
         <SharedLayout>
           <Routes>
+            <Route path="/activation/*" component={<ActivationPage />}></Route>
             <Route
               path="/"
               element={

@@ -27,20 +27,22 @@ export const AXIOS_INSTANCE = axios.create({
   withCredentials: true,
 });
 
-let cancelTokens = [];
+let abortControllers = [];
 
 AXIOS_INSTANCE.interceptors.request.use(
   request => {
     if (!request.url.includes('register') && !request.url.includes('signin')) {
       const {
-        auth: { token },
+        auth: { token, isError },
       } = store.getState();
 
       request.headers.Authorization = `Bearer ${token}`;
 
-      const source = axios.CancelToken.source();
-      request.cancelToken = source.token;
-      cancelTokens.push(source);
+      const controller = new AbortController();
+      request.signal = controller.signal;
+      abortControllers.push(controller);
+      return request;
+    } else {
       return request;
     }
   },
@@ -62,10 +64,10 @@ AXIOS_INSTANCE.interceptors.response.use(
 
         if (!store.getState().auth.isRefreshing) {
           try {
-            cancelTokens.forEach(source => {
-              source.cancel();
+            abortControllers.forEach(controller => {
+              controller.abort();
             });
-            cancelTokens = [];
+            abortControllers = [];
 
             await store.dispatch(refreshUser());
 
