@@ -7,35 +7,34 @@ import persistReducer from 'redux-persist/es/persistReducer';
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE.auth,
-
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isLoading = false;
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
-        state.isLoggedIn = false;
+        // state.isLoggedIn = false;
         state.isLoading = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        // state.isLoggedIn = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;
@@ -46,12 +45,15 @@ const authSlice = createSlice({
         state.isError = true;
       }),
 });
+
 const authPersistConfig = {
   key: 'auth',
   storage,
   whitelist: ['token'],
 };
+
 const authReducer = authSlice.reducer;
+
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer

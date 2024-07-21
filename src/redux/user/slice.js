@@ -2,11 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
-const handlePending = (state, action) => {
+const handlePending = state => {
   state.isError = false;
   state.isLoading = true;
 };
-const handleRejected = (state, action) => {
+const handleRejected = state => {
   state.isLoading = false;
   state.isError = true;
 };

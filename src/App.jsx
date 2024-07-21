@@ -10,6 +10,9 @@ import {
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
 import { refreshUser } from './redux/auth/operations';
+import { getUser } from './redux/user/operations.js';
+import { store } from './redux/store.js';
+import { selectCurrentUser } from './redux/user/selectors.js';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -18,12 +21,19 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
-  const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
 
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+  // const dispatch = useDispatch();
+  // const {
+  //   auth: { token: accessToken },
+  // } = store.getState();
+  // const user = useSelector(selectCurrentUser);
+
+  // useEffect(() => {
+  //   if (!user.name && accessToken) {
+  //     dispatch(getUser());
+  //   }
+  // }, [dispatch]);
 
   return (
     <>
