@@ -5,6 +5,7 @@ import { selectError } from '../../../redux/user/selectors.js';
 import { updateUser } from '../../../redux/user/operations.js';
 import { Icon } from 'shared/index.js';
 import avatarDefault from './avatar_default.png';
+
 import css from './UserSettingsFormColumns.module.css';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
@@ -18,7 +19,6 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
       const formData = new FormData();
       formData.append('avatar', file);
 
-      //dispatch(updateUser(formData));
       const promise = dispatch(updateUser(formData)).unwrap();
       toast.promise(promise, {
         pending: 'Updating your avatar...',
