@@ -41,7 +41,7 @@
   line-height: 1.28;
   border-radius: 30px;
   color: var(--primary-white-color);
-  background-color: var(--primary-black-color);
+  background-color: var(--primary-dark-grey-color);
 
   @media (min-width: 768px) {
     line-height: 1.5;
@@ -92,7 +92,6 @@
 .dailyInfoStyles .iconPlus {
   width: 16px;
   height: 16px;
-  padding-left: 2px;
   stroke: var(--primary-dark-grey-color);
 }
 

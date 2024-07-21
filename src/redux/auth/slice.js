@@ -7,51 +7,60 @@ import persistReducer from 'redux-persist/es/persistReducer';
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE.auth,
-
+  reducers: {
+    showOnboarding: (state, action) => {
+      state.showOnboardingTour = false;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.showOnboardingTour = true;
+        // state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-        state.loading = false;
+        // state.isLoggedIn = true;
+        state.isLoading = false;
+        state.showOnboardingTour = true; //перенести в кейс реєстрації, зараз реєстрація не працює
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
-        state.isLoggedIn = false;
-        state.loading = false;
+        // state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, state => {
         state.isRefreshing = false;
+        // state.isLoggedIn = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
-        state.loading = true;
-        state.error = false;
+        state.isLoading = true;
+        state.isError = false;
       })
       .addMatcher(isAnyOf(register.rejected, logIn.rejected), state => {
-        state.loading = false;
-        state.error = true;
+        state.isLoading = false;
+        state.isError = true;
       }),
 });
+
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'showOnboardingTour'],
 };
+
 const authReducer = authSlice.reducer;
+export const { showOnboarding } = authSlice.actions;
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer

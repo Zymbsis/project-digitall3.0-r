@@ -1,0 +1,26 @@
+.wrapper {
+  @media (min-width: 768px) {
+    width: 438px;
+  }
+}
+
+.title {
+  margin-bottom: 24px;
+
+  @media (min-width: 768px) {
+    width: 347px;
+  }
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.25;
+  margin-bottom: 20px;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.33;
+  }
+}

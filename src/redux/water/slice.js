@@ -19,7 +19,7 @@ const waterSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getInfoByDay.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         if (state.selectedDate === action.payload.date) {
           state.infoBySelectedDay = action.payload.portions;
         } else {
@@ -27,22 +27,22 @@ const waterSlice = createSlice({
         }
       })
       .addCase(getInfoByMonth.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.infoByMonth = action.payload;
       })
       .addCase(addWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         if (state.selectedDate === action.payload.data.date) {
-          state.infoBySelectedDay.push(action.payload);
+          state.infoBySelectedDay.push(action.payload.data);
         } else {
           state.infoByToday = action.payload.infoByToday;
         }
         state.infoByMonth = action.payload.infoByMonth;
       })
       .addCase(updateWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         if (state.selectedDate) {
-          state.infoBySelectedDay.map(item =>
+          state.infoBySelectedDay = state.infoBySelectedDay.map(item =>
             item._id === action.payload.data._id ? action.payload.data : item
           );
         } else {
@@ -51,7 +51,7 @@ const waterSlice = createSlice({
         state.infoByMonth = action.payload.infoByMonth;
       })
       .addCase(deleteWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         if (state.selectedDate) {
           state.infoBySelectedDay = action.payload.infoByDay.portions;
         } else {
@@ -68,8 +68,8 @@ const waterSlice = createSlice({
           deleteWaterIntake.pending
         ),
         state => {
-          state.loading = true;
-          state.error = null;
+          state.isLoading = true;
+          state.isError = null;
         }
       )
       .addMatcher(
@@ -81,8 +81,8 @@ const waterSlice = createSlice({
           deleteWaterIntake.rejected
         ),
         (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
+          state.isLoading = false;
+          state.isError = action.payload;
         }
       );
   },

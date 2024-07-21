@@ -1,7 +1,6 @@
 import { lazy } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -9,7 +8,6 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import { refreshUser } from './redux/auth/operations';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
 const SignUpPage = lazy(() => import('./pages/SignUpPage'));
@@ -18,12 +16,7 @@ const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
-  const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
 
   return (
     <>
