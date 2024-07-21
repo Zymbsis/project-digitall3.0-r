@@ -17,14 +17,13 @@ const authSlice = createSlice({
       .addCase(register.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.accessToken;
-        // state.showOnboardingTour = true;
+        state.showOnboardingTour = true;
         // state.isLoggedIn = true;
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
         // state.isLoggedIn = true;
         state.isLoading = false;
-        state.showOnboardingTour = true; //перенести в кейс реєстрації, зараз реєстрація не працює
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
