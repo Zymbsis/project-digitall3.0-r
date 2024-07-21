@@ -12,10 +12,10 @@ import {
 } from 'helpers';
 import { Icon } from 'shared';
 
-const StatisticInfo = ({ selectedDate, setSelectedDate }) => {
-  const dispatch = useDispatch();
+const StatisticInfo = ({ selectedDate }) => {
+  // const dispatch = useDispatch();
 
-  const { createdAt } = useSelector(selectCurrentUser);
+  // const { createdAt } = useSelector(selectCurrentUser);
   // const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   // const limitDate = new Date();
   // const currentDay = parseDayForFetch(new Date());
@@ -62,13 +62,13 @@ const StatisticInfo = ({ selectedDate, setSelectedDate }) => {
     <div className={css.container}>
       <h2 className={css.title}>Statistic</h2>
       <div className={css.dateBox}>
-        <button
+        <div
           className={css.iconBtn}
           // onClick={handlePrevMonth}
           // disabled={hasPrevMonth}
         >
           <Icon iconId="icon-chevron-left" className={css.logo} />
-        </button>
+        </div>
         <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
         <button
           className={css.iconBtn}

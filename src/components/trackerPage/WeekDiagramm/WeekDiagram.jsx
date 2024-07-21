@@ -33,6 +33,8 @@ const CustomTooltip = ({ active, payload }) => {
 // ];
 
 const WeekDiagram = () => {
+  const { days: waterData } = useSelector(selectInfoByMonth);
+
   const getWaterDataForLast7Days = waterData => {
     const today = new Date();
     let daysArray = [];
@@ -72,8 +74,6 @@ const WeekDiagram = () => {
 
     return daysArray;
   };
-
-  const { days: waterData } = useSelector(selectInfoByMonth);
 
   const transformedData = getWaterDataForLast7Days(waterData);
   console.log(transformedData);
