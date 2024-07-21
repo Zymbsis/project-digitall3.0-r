@@ -9,11 +9,12 @@ import css from './WaterItem.module.css';
 const WaterItem = ({ item: { _id, volume, time } }) => {
   const { openModal } = useModal();
   const formattedTime = parsedTime(time);
+
   const handleDelete = () => {
     openModal(<DeleteWaterModal id={_id} />);
   };
   const handleEdit = () => {
-    openModal(<WaterModal type="edit" id={_id} />);
+    openModal(<WaterModal type="edit" id={_id} time={time} volume={volume} />);
   };
 
   return (
