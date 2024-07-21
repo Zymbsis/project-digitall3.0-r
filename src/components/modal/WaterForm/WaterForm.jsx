@@ -74,7 +74,6 @@ const WaterForm = ({ type, id, date }) => {
     },
   });
 
-  console.log(errors.waterInput);
   const onSubmit = (data, e) => {
     if (type === 'add') {
       const payload = {

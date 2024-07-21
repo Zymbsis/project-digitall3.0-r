@@ -26,7 +26,7 @@ const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
       selectedDate.getMonth() <= userCreatedDate.getMonth());
 
   const hasNextMonth =
-    selectedDate.getFullYear > limitDate.getFullYear() ||
+    selectedDate.getFullYear() > limitDate.getFullYear() ||
     (selectedDate.getFullYear() === limitDate.getFullYear() &&
       selectedDate.getMonth() >= limitDate.getMonth());
 
