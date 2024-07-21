@@ -1,11 +1,12 @@
-import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from 'context';
 import { updateUser } from '../../../redux/user/operations.js';
-import { selectCurrentUser } from '../../../redux/user/selectors.js';
-import { selectError } from '../../../redux/user/selectors.js';
+import {
+  selectCurrentUser,
+  selectIsError,
+} from '../../../redux/user/selectors.js';
 import { userSettingsFormSchema } from 'validationSchemas';
 import { Button } from 'shared/index.js';
 import UserSettingsFormAvatar from './UserSettingsFormAvatar.jsx';
@@ -18,7 +19,7 @@ const UserSettingsForm = () => {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
   const user = useSelector(selectCurrentUser);
-  const currentError = useSelector(selectError);
+  const isError = useSelector(selectIsError);
   const usersDailyNorma = user.dailyNorma / 1000;
   const defaultValues = { ...user, dailyNorma: usersDailyNorma };
   delete defaultValues.createdAt;
@@ -59,15 +60,11 @@ const UserSettingsForm = () => {
     const data = { ...originalFormData };
     delete data.avatar;
     data.dailyNorma = data.dailyNorma * 1000;
+    dispatch(updateUser(data));
 
-    const promise = dispatch(updateUser(data)).unwrap();
-    toast.promise(promise, {
-      pending: <b>'Saving...'</b>,
-      success: <b>Settings are saved!</b>,
-      error: <b>Could not save your settings.({currentError}).</b>,
-    });
-
-    closeModal(evt);
+    if (!isError) {
+      closeModal(evt);
+    }
   };
 
   const handleKeyDown = event => {

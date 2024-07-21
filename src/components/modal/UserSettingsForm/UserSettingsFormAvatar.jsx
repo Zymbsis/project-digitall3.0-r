@@ -1,14 +1,10 @@
-import toast from 'react-hot-toast';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { selectError } from '../../../redux/user/selectors.js';
+import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/user/operations.js';
-import { Icon } from 'shared/index.js';
+import { Icon } from 'shared';
 
 import css from './UserSettingsFormColumns.module.css';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
-  const currentError = useSelector(selectError);
   const dispatch = useDispatch();
   const handleFileChange = evt => {
     const file = evt.target.files[0];
@@ -17,13 +13,7 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
       setValue('avatar', file);
       const formData = new FormData();
       formData.append('avatar', file);
-
-      const promise = dispatch(updateUser(formData)).unwrap();
-      toast.promise(promise, {
-        pending: 'Updating your avatar...',
-        success: <b>Your avatar is successfully updated</b>,
-        error: <b>Could not update your avatar. ({currentError}).</b>,
-      });
+      dispatch(updateUser(formData));
     }
   };
 
@@ -33,7 +23,6 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
     } else if (typeof avatar === 'object' && avatar.length !== 0) {
       return URL.createObjectURL(avatar);
     }
-
     return '';
   };
 

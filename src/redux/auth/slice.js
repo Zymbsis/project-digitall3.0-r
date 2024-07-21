@@ -1,5 +1,4 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { toast } from 'react-hot-toast';
 import { register, logIn, logOut, refreshUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 import storage from 'redux-persist/lib/storage';
@@ -19,31 +18,19 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.token = action.payload.accessToken;
         state.showOnboardingTour = true;
-        // state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
-        let errorMessage = action.payload;
-        if (errorMessage.includes('409')) {
-          errorMessage = 'User with this email already exists';
-        }
         state.isLoading = false;
-        state.isError = action.payload;
-
-        toast.error(<b>{errorMessage}</b>);
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        // state.isLoggedIn = true;
         state.isLoading = false;
       })
-      .addCase(logIn.rejected, state => {
+      .addCase(logIn.rejected, (state, action) => {
         state.isLoading = false;
-        state.isError = true;
-        toast.error(<b>User login is failed!'</b>);
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
-        // state.isLoggedIn = false;
         state.isLoading = false;
       })
       .addCase(refreshUser.pending, state => {
@@ -51,40 +38,19 @@ const authSlice = createSlice({
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        // state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
         state.isRefreshing = false;
-        state.isError = action.payload;
-        const payloadError = action.payload;
-        const stateError = state.isError;
-        let toastId = null;
-        if (action.payload.includes('401')) {
-          toastId = toast.error(
-            <b>Refresh authorization expired!, please log in again</b>
-          );
-        } else {
-          toastId = toast.error(<b>{action.payload}</b>);
-        }
-
-        if (stateError !== payloadError) {
-          toast.dismiss(toastId);
-        }
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;
-        state.isError = false;
-
-        // state.isLoggedIn = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;
-        state.isError = false;
       })
       .addMatcher(isAnyOf(register.rejected, logIn.rejected), state => {
         state.isLoading = false;
-        state.isError = true;
       }),
 });
 

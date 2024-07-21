@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getCurrentTime, parseDayForFetch } from 'helpers';
 import { waterFormSchema } from 'validationSchemas';
@@ -9,6 +8,7 @@ import {
   addWaterIntake,
   updateWaterIntake,
 } from '../../../redux/water/operations';
+import { selectIsError } from '../../../redux/water/selectors';
 import { useModal } from 'context';
 import { Button } from 'shared';
 import WaterAmount from './WaterAmount';
@@ -19,6 +19,8 @@ import css from './WaterForm.module.css';
 const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+  const isError = useSelector(selectIsError);
+
   const currentTime = getCurrentTime(new Date());
   const defaultTime = type === 'add' ? currentTime : time;
   const defaultVolume = type === 'add' ? 50 : volume;
@@ -45,14 +47,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
         time: data.timeInput,
         volume: data.waterInput,
       };
-      // dispatch(addWaterIntake(payload));
-      const promise = dispatch(addWaterIntake(payload)).unwrap();
-
-      toast.promise(promise, {
-        pending: 'The water is flowing...',
-        success: <b>New water portion added successfully</b>,
-        error: <b>Something went wrong...</b>,
-      });
+      dispatch(addWaterIntake(payload));
     }
     if (type === 'edit') {
       const payload = {
@@ -60,16 +55,11 @@ const WaterForm = ({ type, id, date, time, volume }) => {
         time: data.timeInput,
         volume: data.waterInput,
       };
-      // dispatch(updateWaterIntake(payload));
-      const promise = dispatch(updateWaterIntake(payload)).unwrap();
-
-      toast.promise(promise, {
-        pending: 'The data is updated...',
-        success: <b>Water portion changed hastily</b>,
-        error: <b>Something went wrong...</b>,
-      });
+      dispatch(updateWaterIntake(payload));
     }
-    closeModal(e);
+    if (!isError) {
+      closeModal(e);
+    }
   };
 
   const handleIncrease = () => {

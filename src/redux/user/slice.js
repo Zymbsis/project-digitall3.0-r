@@ -1,20 +1,19 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { toast } from 'react-hot-toast';
 import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
 const handlePending = state => {
-  state.error = false;
-  state.loading = true;
+  state.isError = false;
+  state.isLoading = true;
 };
 
-const handleRejected = (state, action) => {
-  state.loading = false;
-  state.error = action.payload;
+const handleRejected = state => {
+  state.isLoading = false;
+  state.isError = true;
 };
 
 const handleFulfilled = (state, action) => {
-  state.loading = false;
+  state.isLoading = false;
   state.user = action.payload;
 };
 
@@ -31,15 +30,8 @@ const userSlice = createSlice({
       .addCase(getUser.pending, handlePending)
       .addCase(updateUser.pending, handlePending)
       .addCase(countUsers.pending, handlePending)
-      .addCase(getUser.rejected, (state, action) => {
-        handleRejected(state, action);
-        toast.error(<b>User profile was not loaded!</b>);
-      })
-      .addCase(updateUser.rejected, (state, action) => {
-        handleRejected(state, action);
-        //mistake handled over toast.promise, example in UserSettingsFormAvatar
-        toast.error(<b>{action.payload}</b>);
-      })
+      .addCase(getUser.rejected, handleRejected)
+      .addCase(updateUser.rejected, handleRejected)
       .addCase(countUsers.rejected, handleRejected);
   },
 });

@@ -5,13 +5,12 @@ import { refreshUser } from './auth/operations.js';
 export const INITIAL_STATE = {
   auth: {
     token: null,
-    // isLoggedIn: false,
     isRefreshing: false,
     showOnboardingTour: false,
     isLoading: false,
     isError: false,
   },
-  user: { user: {}, countUser: null, loading: false, error: false },
+  user: { user: {}, countUser: null, isLoading: false, isError: false },
   water: {
     infoByToday: { portions: [], completionRate: null },
     infoBySelectedDay: [],
@@ -58,7 +57,11 @@ AXIOS_INSTANCE.interceptors.response.use(
     try {
       const originalRequest = error.config;
 
-      if (error.response.status === 401 && !originalRequest._retry) {
+      if (
+        error.response.status === 401 &&
+        error.response.data.data.message.includes('Access token expired') &&
+        !originalRequest._retry
+      ) {
         originalRequest._retry = true;
 
         if (!store.getState().auth.isRefreshing) {
@@ -74,6 +77,7 @@ AXIOS_INSTANCE.interceptors.response.use(
           }
         }
       }
+      throw error.response.data;
     } catch (error) {
       return Promise.reject(error);
     }

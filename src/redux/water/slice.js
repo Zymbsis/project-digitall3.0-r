@@ -1,5 +1,4 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
-import { toast } from 'react-hot-toast';
 import {
   getInfoByMonth,
   addWaterIntake,
@@ -70,7 +69,7 @@ const waterSlice = createSlice({
         ),
         state => {
           state.isLoading = true;
-          state.isError = null;
+          state.isError = false;
         }
       )
       .addMatcher(
@@ -81,11 +80,9 @@ const waterSlice = createSlice({
           updateWaterIntake.rejected,
           deleteWaterIntake.rejected
         ),
-        (state, action) => {
+        state => {
           state.isLoading = false;
-          state.isError = action.payload;
-          toast.error(<b>{action.error.message}</b>);
-          // state.isError = action.error.message;
+          state.isError = true;
         }
       );
   },
