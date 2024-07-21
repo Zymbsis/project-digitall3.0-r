@@ -14,12 +14,12 @@ const WaterItem = ({ item: { _id, volume, time } }) => {
     openModal(<DeleteWaterModal id={_id} />);
   };
   const handleEdit = () => {
-    openModal(<WaterModal type="edit" id={_id} />);
+    openModal(<WaterModal type="edit" id={_id} time={time} volume={volume} />);
   };
 
   return (
     <div className={css.waterItem}>
-      <Icon iconId="icon-Vector" className={css.waterIcon} />
+      <Icon iconId="icon-vector" className={css.waterIcon} />
       <div className={css.waterItemWrap}>
         <p className={css.waterItemMl}>{`${volume} ml`}</p>
         <p className={css.waterItemData}>{formattedTime}</p>
@@ -34,7 +34,7 @@ const WaterItem = ({ item: { _id, volume, time } }) => {
         </button>
         <button type="button" className={css.waterItemBtn}>
           <Icon
-            iconId="icon-trash-04"
+            iconId="icon-trash"
             className={css.waterIconBtn}
             onClick={handleDelete}
           />

@@ -1,7 +1,6 @@
 import { lazy } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -9,25 +8,15 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
-import { refreshUser } from './redux/auth/operations';
-import { selectInfoByToday } from './redux/water/selectors';
 
-const HomePage = lazy(() => import('./pages/HomePage/HomePage'));
-const SignUpPage = lazy(() => import('./pages/SignUpPage/SignUpPage'));
-const SignInPage = lazy(() => import('./pages/SignInPage/SignInPage'));
-const TrackerPage = lazy(() => import('./pages/TrackerPage/TrackerPage'));
+const HomePage = lazy(() => import('./pages/HomePage'));
+const SignUpPage = lazy(() => import('./pages/SignUpPage'));
+const SignInPage = lazy(() => import('./pages/SignInPage'));
+const TrackerPage = lazy(() => import('./pages/TrackerPage'));
 const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
-  const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  const waterList = useSelector(selectInfoByToday);
-  console.log(waterList);
 
   return (
     <>

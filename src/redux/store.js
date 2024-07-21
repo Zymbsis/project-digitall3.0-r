@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { persistedAuthReducer } from './auth/slice';
-import { persistedWaterReducer } from './water/slice';
+import { waterReducer } from './water/slice';
 import { userReducer } from './user/slice';
 
 import {
@@ -16,7 +16,7 @@ import {
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    water: persistedWaterReducer,
+    water: waterReducer,
     user: userReducer,
   },
   middleware: getDefaultMiddleware =>

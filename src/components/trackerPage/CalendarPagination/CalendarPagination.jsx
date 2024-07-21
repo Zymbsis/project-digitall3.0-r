@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectCurrentUser } from '../../../redux/user/selectors';
 import { getInfoByMonth } from '../../../redux/water/operations';
@@ -9,10 +9,11 @@ import {
 } from 'helpers';
 import { Icon } from 'shared';
 import css from './CalendarPagination.module.css';
+import clsx from 'clsx';
 
-const CalendarPagination = () => {
+const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   const dispatch = useDispatch();
-  const [selectedDate, setSelectedDate] = useState(new Date());
+
   const { createdAt } = useSelector(selectCurrentUser);
   const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   const limitDate = new Date();
@@ -25,7 +26,7 @@ const CalendarPagination = () => {
       selectedDate.getMonth() <= userCreatedDate.getMonth());
 
   const hasNextMonth =
-    selectedDate.getFullYear > limitDate.getFullYear() ||
+    selectedDate.getFullYear() > limitDate.getFullYear() ||
     (selectedDate.getFullYear() === limitDate.getFullYear() &&
       selectedDate.getMonth() >= limitDate.getMonth());
 
@@ -61,19 +62,19 @@ const CalendarPagination = () => {
       <h2 className={css.title}>Month</h2>
       <div className={css.dateBox}>
         <button
-          className={css.iconBtn}
+          className={clsx(css.iconBtn, css.iconBtnLeft)}
           onClick={handlePrevMonth}
           disabled={hasPrevMonth}
         >
-          <Icon iconId="icon-chevron-left" className={css.logo} />
+          <Icon iconId="icon-chevron-down" className={css.icon} />
         </button>
         <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
         <button
-          className={css.iconBtn}
+          className={clsx(css.iconBtn, css.iconBtnRight)}
           onClick={handleNextMonth}
           disabled={hasNextMonth}
         >
-          <Icon iconId="icon-chevron-right" className={css.logo} />
+          <Icon iconId="icon-chevron-down" className={css.icon} />
         </button>
       </div>
     </div>

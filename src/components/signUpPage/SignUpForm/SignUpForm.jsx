@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { register } from '../../../redux/auth/operations';
 import { signUpFormSchema } from 'validationSchemas';
-import { Icon, Logo } from 'shared';
+import { AuthFormLayout, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignUpForm.module.css';
@@ -27,7 +27,6 @@ const SignUpForm = () => {
   const onSubmit = data => {
     const { email, password } = data;
     dispatch(register({ email, password }));
-    console.log({ email, password });
 
     reset();
   };
@@ -37,9 +36,7 @@ const SignUpForm = () => {
   };
 
   return (
-    <div className={css.wrapper}>
-      <Logo className={css.singUpLogo} />
-
+    <AuthFormLayout className={css.layout}>
       <div className={css.registerContainer}>
         <h2 className={css.title}>Sign Up</h2>
         <form className={css.form} onSubmit={handleSubmit(onSubmit)}>
@@ -126,7 +123,7 @@ const SignUpForm = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </AuthFormLayout>
   );
 };
 

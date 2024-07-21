@@ -1,0 +1,25 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  font-family: var(--primary-font-family);
+  font-size: 16px;
+  font-weight: 600;
+}
+.text {
+  text-align: center;
+}
+.btn {
+  transition: var(--transition-timing-function), var(--transition-duration);
+}
+.btn:hover {
+  color: #323f47;
+  background-color: #87d28d;
+}
+.toast_body {
+  border-radius: 30px;
+  padding: 8px;
+  background-color: var(--primary-light-grey-color);
+}

@@ -21,7 +21,7 @@ export const ModalProvider = ({ children }) => {
     if (
       e.target === e.currentTarget ||
       e.code === 'Escape' ||
-      e.target.nodeName === 'FORM'
+      e.type === 'submit'
     ) {
       document.body.style.overflow = 'visible';
       backdropRef.current.style.opacity = 0;

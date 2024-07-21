@@ -17,6 +17,7 @@ export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
         },
       },
     } = await AXIOS_INSTANCE.get('/users/current');
+
     // console.log({
     //   email,
     //   name,
@@ -61,6 +62,7 @@ export const updateUser = createAsyncThunk(
           },
         },
       } = await AXIOS_INSTANCE.patch('/users/update', payload);
+
       return {
         email,
         name,

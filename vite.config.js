@@ -13,6 +13,7 @@ export default defineConfig({
       context: '/src/context',
       helpers: '/src/helpers',
       icons: '/src/icons',
+      image: '/src/image',
       pages: '/src/pages',
       '@redux': '/src/redux',
       services: '/src/services',

@@ -6,6 +6,7 @@ import css from './ChooseDate.module.css';
 
 const ChooseDate = () => {
   const selectedDate = useSelector(selectSelectedDate);
+
   const parsedDate = parseSelectedDay(selectedDate);
 
   return (

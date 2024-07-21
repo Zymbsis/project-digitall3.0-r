@@ -5,7 +5,7 @@ import {
   selectInfoByToday,
   selectSelectedDate,
 } from '../../../redux/water/selectors';
-import { getInfoBySelectedDay } from '../../../redux/water/operations';
+import { getInfoByDay } from '../../../redux/water/operations';
 import WaterItem from '../WaterItem/WaterItem';
 
 import css from './WaterList.module.css';
@@ -14,13 +14,11 @@ const WaterList = () => {
   const dispatch = useDispatch();
   const selectedDate = useSelector(selectSelectedDate);
   const { portions: todayWaterList } = useSelector(selectInfoByToday);
-  const { portions: selectedDayWaterList } = useSelector(
-    selectInfoBySelectedDay
-  );
+  const selectedDayWaterList = useSelector(selectInfoBySelectedDay);
 
   useEffect(() => {
     if (!selectedDate) return;
-    dispatch(getInfoBySelectedDay(selectedDate));
+    dispatch(getInfoByDay(selectedDate));
   }, [dispatch, selectedDate]);
   const currentWaterList = selectedDate ? selectedDayWaterList : todayWaterList;
 
@@ -28,11 +26,9 @@ const WaterList = () => {
     <div className={css.waterListWrap}>
       <ul className={css.waterList}>
         {Array.isArray(currentWaterList) && currentWaterList.length === 0 && (
-          <li>
-            <p className={css.paragraph}>
-              There are no daily water intakes here yet.
-            </p>
-          </li>
+          <p className={css.paragraph}>
+            There are no daily water intakes here yet.
+          </p>
         )}
         {Array.isArray(currentWaterList) &&
           currentWaterList.length !== 0 &&

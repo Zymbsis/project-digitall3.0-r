@@ -1,16 +1,13 @@
 import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import { toast } from 'react-hot-toast';
 import {
-  getInfoByToday,
-  getInfoBySelectedDay,
   getInfoByMonth,
   addWaterIntake,
   updateWaterIntake,
   deleteWaterIntake,
+  getInfoByDay,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
-import storage from 'redux-persist/lib/storage';
-import persistReducer from 'redux-persist/es/persistReducer';
 
 const waterSlice = createSlice({
   name: 'water',
@@ -22,96 +19,75 @@ const waterSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(getInfoByToday.fulfilled, (state, action) => {
-        state.loading = false;
-        state.infoByToday = action.payload;
-      })
-      .addCase(getInfoBySelectedDay.fulfilled, (state, action) => {
-        state.loading = false;
-        state.infoBySelectedDay = action.payload;
-      })
-      .addCase(getInfoByMonth.fulfilled, (state, action) => {
-        state.loading = false;
-        state.infoByMonth = action.payload;
-      })
-      .addCase(addWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
-        if (!setSelectedDay) {
-          state.infoByToday = {
-            ...state.infoByToday,
-            portions: state.infoByToday.portions.push(action.payload),
-            completionRate: action.payload.completionRate,
-          };
-        }
-      })
-      .addCase(updateWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
-        if (state.selectedDate) {
-          state.infoBySelectedDay = {
-            ...state.infoBySelectedDay,
-            portions: state.infoBySelectedDay.portions.map(item =>
-              item._id === action.payload._id ? action.payload : item
-            ),
-            completionRate: action.payload.completionRate,
-          };
-        } else {
-          state.infoByToday = {
-            ...state.infoByToday,
-            portions: state.infoByToday.portions.map(item =>
-              item._id === action.payload._id ? action.payload : item
-            ),
-            completionRate: action.payload.completionRate,
-          };
-        }
-      })
-      .addCase(deleteWaterIntake.fulfilled, (state, action) => {
-        state.loading = false;
-        if (state.selectedDate) {
-          state.infoBySelectedDay = action.payload;
+      .addCase(getInfoByDay.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.selectedDate === action.payload.date) {
+          state.infoBySelectedDay = action.payload.portions;
         } else {
           state.infoByToday = action.payload;
         }
       })
+      .addCase(getInfoByMonth.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.infoByMonth = action.payload;
+      })
+      .addCase(addWaterIntake.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.selectedDate === action.payload.data.date) {
+          state.infoBySelectedDay.push(action.payload.data);
+        } else {
+          state.infoByToday = action.payload.infoByToday;
+        }
+        state.infoByMonth = action.payload.infoByMonth;
+      })
+      .addCase(updateWaterIntake.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.selectedDate) {
+          state.infoBySelectedDay = state.infoBySelectedDay.map(item =>
+            item._id === action.payload.data._id ? action.payload.data : item
+          );
+        } else {
+          state.infoByToday = action.payload.infoByToday;
+        }
+        state.infoByMonth = action.payload.infoByMonth;
+      })
+      .addCase(deleteWaterIntake.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.selectedDate) {
+          state.infoBySelectedDay = action.payload.infoByDay.portions;
+        } else {
+          state.infoByToday = action.payload.infoByDay;
+        }
+        state.infoByMonth = action.payload.infoByMonth;
+      })
       .addMatcher(
         isAnyOf(
-          getInfoByToday.pending,
-          getInfoBySelectedDay.pending,
+          getInfoByDay.pending,
           getInfoByMonth.pending,
           addWaterIntake.pending,
           updateWaterIntake.pending,
           deleteWaterIntake.pending
         ),
         state => {
-          state.loading = true;
-          state.error = null;
+          state.isLoading = true;
+          state.isError = null;
         }
       )
       .addMatcher(
         isAnyOf(
-          getInfoByToday.rejected,
-          getInfoBySelectedDay.rejected,
+          getInfoByDay.rejected,
           getInfoByMonth.rejected,
           addWaterIntake.rejected,
           updateWaterIntake.rejected,
           deleteWaterIntake.rejected
         ),
         (state, action) => {
-          state.loading = false;
-          state.error = action.payload;
+          state.isLoading = false;
+          state.isError = action.payload;
           toast.error(<b>{action.payload}</b>);
         }
       );
   },
 });
 export const { setSelectedDay } = waterSlice.actions;
-const waterReducer = waterSlice.reducer;
-const waterPersistConfig = {
-  key: 'water',
-  storage,
-  whitelist: ['selectedDate'],
-};
-
-export const persistedWaterReducer = persistReducer(
-  waterPersistConfig,
-  waterReducer
-);
+export const waterReducer = waterSlice.reducer;

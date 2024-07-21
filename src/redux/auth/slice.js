@@ -8,13 +8,18 @@ import persistReducer from 'redux-persist/es/persistReducer';
 const authSlice = createSlice({
   name: 'auth',
   initialState: INITIAL_STATE.auth,
-
+  reducers: {
+    showOnboarding: (state, action) => {
+      state.showOnboardingTour = false;
+    },
+  },
   extraReducers: builder =>
     builder
       .addCase(register.fulfilled, (state, action) => {
-        state.loading = false;
+        state.isLoading = false;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        state.showOnboardingTour = true;
+        // state.isLoggedIn = true;
       })
       .addCase(register.rejected, (state, action) => {
         let errorMessage = action.payload;
@@ -28,8 +33,8 @@ const authSlice = createSlice({
       })
       .addCase(logIn.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
-        state.loading = false;
+        // state.isLoggedIn = true;
+        state.isLoading = false;
       })
       .addCase(logIn.rejected, state => {
         state.loading = false;
@@ -38,16 +43,15 @@ const authSlice = createSlice({
       })
       .addCase(logOut.fulfilled, state => {
         state.token = null;
-        state.isLoggedIn = false;
-        state.loading = false;
+        // state.isLoggedIn = false;
+        state.isLoading = false;
       })
       .addCase(refreshUser.pending, state => {
         state.isRefreshing = true;
       })
       .addCase(refreshUser.fulfilled, (state, action) => {
-        state.user = action.payload;
         state.token = action.payload.accessToken;
-        state.isLoggedIn = true;
+        // state.isLoggedIn = true;
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
@@ -70,14 +74,27 @@ const authSlice = createSlice({
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.loading = true;
         state.error = false;
+
+        // state.isLoggedIn = false;
+      })
+      .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
+        state.isLoading = true;
+        state.isError = false;
+      })
+      .addMatcher(isAnyOf(register.rejected, logIn.rejected), state => {
+        state.isLoading = false;
+        state.isError = true;
       }),
 });
+
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'showOnboardingTour'],
 };
+
 const authReducer = authSlice.reducer;
+export const { showOnboarding } = authSlice.actions;
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer
