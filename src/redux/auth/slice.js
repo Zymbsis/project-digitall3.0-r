@@ -26,8 +26,8 @@ const authSlice = createSlice({
         if (errorMessage.includes('409')) {
           errorMessage = 'User with this email already exists';
         }
-        state.loading = false;
-        state.error = action.payload;
+        state.isLoading = false;
+        state.isError = action.payload;
 
         toast.error(<b>{errorMessage}</b>);
       })
@@ -37,8 +37,8 @@ const authSlice = createSlice({
         state.isLoading = false;
       })
       .addCase(logIn.rejected, state => {
-        state.loading = false;
-        state.error = true;
+        state.isLoading = false;
+        state.isError = true;
         toast.error(<b>User login is failed!'</b>);
       })
       .addCase(logOut.fulfilled, state => {
@@ -55,8 +55,11 @@ const authSlice = createSlice({
         state.isRefreshing = false;
       })
       .addCase(refreshUser.rejected, (state, action) => {
+        state.isRefreshing = false;
+        state.isError = action.payload;
+
         const payloadError = action.payload;
-        const stateError = state.error;
+        const stateError = state.isError;
         const toastId = toast.error();
         toast.dismiss(toastId);
         if (stateError !== payloadError) {
@@ -68,12 +71,10 @@ const authSlice = createSlice({
             toast.error(<b>{action.payload}</b>);
           }
         }
-        state.isRefreshing = false;
-        state.error = action.payload;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
-        state.loading = true;
-        state.error = false;
+        state.isLoading = true;
+        state.isError = false;
 
         // state.isLoggedIn = false;
       })

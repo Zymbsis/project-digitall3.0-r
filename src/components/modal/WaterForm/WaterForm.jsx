@@ -7,13 +7,15 @@ import WaterAmount from './WaterAmount';
 import { useForm } from 'react-hook-form';
 import { getCurrentTime, parseDayForFetch } from '../../../helpers';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   addWaterIntake,
   updateWaterIntake,
 } from '../../../redux/water/operations';
 import { useModal } from '../../../context';
 import clsx from 'clsx';
+import toast from 'react-hot-toast';
+import { selectError } from '../../../redux/water/selectors';
 
 const waterModalSchema = yup
   .object({
@@ -57,6 +59,7 @@ const waterModalSchema = yup
 
 const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
+  const currentError = useSelector(selectError);
   const { closeModal } = useModal();
   const currentTime = getCurrentTime(new Date());
   const defaultTime = type === 'add' ? currentTime : time;
@@ -84,7 +87,14 @@ const WaterForm = ({ type, id, date, time, volume }) => {
         time: data.timeInput,
         volume: data.waterInput,
       };
-      dispatch(addWaterIntake(payload));
+      // dispatch(addWaterIntake(payload));
+      const promise = dispatch(addWaterIntake(payload)).unwrap();
+
+      toast.promise(promise, {
+        pending: 'The water is flowing...',
+        success: <b>New water portion added successfully</b>,
+        error: <b>Something went wrong. ({currentError}).</b>,
+      });
     }
     if (type === 'edit') {
       const payload = {
@@ -92,7 +102,14 @@ const WaterForm = ({ type, id, date, time, volume }) => {
         time: data.timeInput,
         volume: data.waterInput,
       };
-      dispatch(updateWaterIntake(payload));
+      // dispatch(updateWaterIntake(payload));
+      const promise = dispatch(updateWaterIntake(payload)).unwrap();
+
+      toast.promise(promise, {
+        pending: 'The data is updated...',
+        success: <b>Water portion changed hastily</b>,
+        error: <b>Something went wrong. ({currentError}).</b>,
+      });
     }
     closeModal(e);
   };

@@ -4,8 +4,8 @@ import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
 
 const handlePending = state => {
-  state.isError = false;
-  state.isLoading = true;
+  state.error = false;
+  state.loading = true;
 };
 
 const handleRejected = (state, action) => {
@@ -14,7 +14,7 @@ const handleRejected = (state, action) => {
 };
 
 const handleFulfilled = (state, action) => {
-  state.isLoading = false;
+  state.loading = false;
   state.user = action.payload;
 };
 
@@ -38,7 +38,7 @@ const userSlice = createSlice({
       .addCase(updateUser.rejected, (state, action) => {
         handleRejected(state, action);
         //mistake handled over toast.promise, example in UserSettingsFormAvatar
-        // toast.error(<b>{action.payload}</b>);
+        toast.error(<b>{action.payload}</b>);
       })
       .addCase(countUsers.rejected, handleRejected);
   },
