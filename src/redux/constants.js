@@ -22,9 +22,7 @@ export const INITIAL_STATE = {
 };
 
 export const AXIOS_INSTANCE = axios.create({
-  // baseURL: 'https://aquatracker-node.onrender.com',
-  baseURL: 'http://localhost:3001',
-  // baseURL: 'https://project-digitall3-0-n.onrender.com',
+  baseURL: 'https://aquatracker-node.onrender.com',
   withCredentials: true,
 });
 
@@ -85,12 +83,11 @@ AXIOS_INSTANCE.interceptors.response.use(
             return Promise.reject(refreshError);
           }
         }
-        
       }
-     if (error.response.data) {
-          throw error.response.data;
-        }
-        throw error;
+      if (error.response.data) {
+        throw error.response.data;
+      }
+      throw error;
     } catch (error) {
       return Promise.reject(error);
     }
