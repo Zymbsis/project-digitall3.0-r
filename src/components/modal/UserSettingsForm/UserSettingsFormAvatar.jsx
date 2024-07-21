@@ -1,7 +1,8 @@
-import { Icon } from 'shared/index.js';
-import css from './UserSettingsForm.module.css';
 import { useDispatch } from 'react-redux';
 import { updateUser } from '../../../redux/user/operations.js';
+import { Icon } from 'shared';
+
+import css from './UserSettingsFormColumns.module.css';
 
 const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   const dispatch = useDispatch();
@@ -17,18 +18,12 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
   };
 
   const getSrcForAvatar = avatar => {
-    // console.log(
-    //   'avatar before src -  typeof: ',
-    //   typeof avatar,
-    //   ', avdata:',
-    //   avatar
-    // );
     if (typeof avatar === 'string' && avatar.length !== 0) {
       return avatar;
     } else if (typeof avatar === 'object' && avatar.length !== 0) {
       return URL.createObjectURL(avatar);
     }
-    return '/public/img/userSettingsForm/avatar_default.png';
+    return '';
   };
 
   return (
@@ -49,7 +44,6 @@ const UserSettingsFormAvatar = ({ register, errors, setValue, watch }) => {
             {...register('avatar', { required: true })}
             onChange={handleFileChange}
           />
-          {/* {errors.avatar && <span>Avatar image file is required</span>} */}
         </div>
         <label htmlFor="avatar" className={css.uploadButton}>
           {<Icon className={css.uploadIcon} iconId="icon-upload" />}Upload a

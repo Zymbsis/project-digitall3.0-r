@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AXIOS_INSTANCE } from '../constants';
+import toast from 'react-hot-toast';
 
 export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
   try {
@@ -29,7 +30,7 @@ export const getUser = createAsyncThunk('user/getUser', async (_, thunkAPI) => {
       createdAt,
     };
   } catch (error) {
-    return thunkAPI.rejectWithValue('fetch error');
+    return thunkAPI.rejectWithValue(error);
   }
 });
 
@@ -63,7 +64,8 @@ export const updateUser = createAsyncThunk(
         createdAt,
       };
     } catch (error) {
-      return thunkAPI.rejectWithValue('update error');
+      toast.error(<b>{error.data.message}</b>);
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -79,7 +81,7 @@ export const countUsers = createAsyncThunk(
       } = await AXIOS_INSTANCE.get('/users/count');
       return count;
     } catch (error) {
-      return thunkAPI.rejectWithValue('count error');
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );
