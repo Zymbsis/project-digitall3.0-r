@@ -84,7 +84,7 @@ AXIOS_INSTANCE.interceptors.response.use(
           }
         }
       }
-      if (error.response.data) {
+      if (error?.response?.data) {
         throw error.response.data;
       }
       throw error;
