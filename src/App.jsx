@@ -1,7 +1,6 @@
 import { lazy } from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import {
   PrivateRoutes,
   RestrictedRoutes,
@@ -19,18 +18,6 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'));
 
 const App = () => {
   const isRefreshing = useSelector(selectIsRefreshing);
-
-  // const dispatch = useDispatch();
-  // const {
-  //   auth: { token: accessToken },
-  // } = store.getState();
-  // const user = useSelector(selectCurrentUser);
-
-  // useEffect(() => {
-  //   if (!user.name && accessToken) {
-  //     dispatch(getUser());
-  //   }
-  // }, [dispatch]);
 
   return (
     <>

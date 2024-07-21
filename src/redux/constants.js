@@ -7,6 +7,7 @@ export const INITIAL_STATE = {
     token: null,
     // isLoggedIn: false,
     isRefreshing: false,
+    showOnboardingTour: false,
     isLoading: false,
     isError: false,
   },
@@ -22,8 +23,8 @@ export const INITIAL_STATE = {
 };
 
 export const AXIOS_INSTANCE = axios.create({
-  // baseURL: 'https://aquatracker-node.onrender.com',
-  baseURL: 'https://project-digitall3-0-n.onrender.com',
+  baseURL: 'https://aquatracker-node.onrender.com',
+  // baseURL: 'https://project-digitall3-0-n.onrender.com',
   withCredentials: true,
 });
 
@@ -35,7 +36,6 @@ AXIOS_INSTANCE.interceptors.request.use(
       const {
         auth: { token, isError },
       } = store.getState();
-
       request.headers.Authorization = `Bearer ${token}`;
 
       const controller = new AbortController();
@@ -69,7 +69,6 @@ AXIOS_INSTANCE.interceptors.response.use(
             abortControllers = [];
 
             await store.dispatch(refreshUser());
-
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
             return Promise.reject(refreshError);

@@ -55,26 +55,28 @@ const waterModalSchema = yup
 //   return time;
 // };
 
-const WaterForm = ({ type, id, date }) => {
+const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const currentTime = getCurrentTime(new Date());
+  const defaultTime = type === 'add' ? currentTime : time;
+  const defaultVolume = type === 'add' ? 50 : volume;
   const currentDate = parseDayForFetch(new Date());
 
-  const [waterAmount, setWaterAmount] = useState(50);
+  const [waterAmount, setWaterAmount] = useState(defaultVolume);
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(waterModalSchema),
     defaultValues: {
-      timeInput: currentTime,
-      waterInput: 50,
+      timeInput: defaultTime,
+      waterInput: defaultVolume,
     },
   });
 
-  console.log(errors.waterInput);
   const onSubmit = (data, e) => {
     if (type === 'add') {
       const payload = {
@@ -99,14 +101,17 @@ const WaterForm = ({ type, id, date }) => {
     if (+waterAmount >= 1000) return;
     if (+waterAmount > 950 && +waterAmount < 1000) {
       setWaterAmount(1000);
+      setValue('waterInput', waterAmount);
       return;
     }
     setWaterAmount(+waterAmount + 50);
+    setValue('waterInput', waterAmount);
   };
 
   const handleDecrease = () => {
     if (+waterAmount === 50) return;
     setWaterAmount(+waterAmount - 50);
+    setValue('waterInput', waterAmount);
   };
 
   const handleWaterInputChange = e => {
