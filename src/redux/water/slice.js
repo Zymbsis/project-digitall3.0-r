@@ -84,7 +84,8 @@ const waterSlice = createSlice({
         (state, action) => {
           state.isLoading = false;
           state.isError = action.payload;
-          toast.error(<b>{action.payload}</b>);
+          toast.error(<b>{action.error.message}</b>);
+          // state.isError = action.error.message;
         }
       );
   },

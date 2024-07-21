@@ -59,7 +59,6 @@ const waterModalSchema = yup
 
 const WaterForm = ({ type, id, date, time, volume }) => {
   const dispatch = useDispatch();
-  const currentError = useSelector(selectError);
   const { closeModal } = useModal();
   const currentTime = getCurrentTime(new Date());
   const defaultTime = type === 'add' ? currentTime : time;
@@ -93,7 +92,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
       toast.promise(promise, {
         pending: 'The water is flowing...',
         success: <b>New water portion added successfully</b>,
-        error: <b>Something went wrong. ({currentError}).</b>,
+        error: <b>Something went wrong...</b>,
       });
     }
     if (type === 'edit') {
@@ -108,7 +107,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
       toast.promise(promise, {
         pending: 'The data is updated...',
         success: <b>Water portion changed hastily</b>,
-        error: <b>Something went wrong. ({currentError}).</b>,
+        error: <b>Something went wrong...</b>,
       });
     }
     closeModal(e);

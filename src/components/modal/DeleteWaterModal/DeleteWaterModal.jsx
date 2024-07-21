@@ -1,14 +1,12 @@
 import css from './DeleteWaterModal.module.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Title } from 'shared';
 import { useModal } from 'context';
 import { deleteWaterIntake } from '../../../redux/water/operations';
-import { selectError } from '../../../redux/water/selectors';
 import toast from 'react-hot-toast';
 
 const DeleteWaterModal = ({ id }) => {
   const dispatch = useDispatch();
-  const currentError = useSelector(selectError);
   const { closeModal } = useModal();
 
   const handleDelete = e => {
@@ -18,7 +16,7 @@ const DeleteWaterModal = ({ id }) => {
     toast.promise(promise, {
       pending: 'The data is deleted...',
       success: <b>Water portion successfully deleted</b>,
-      error: <b>Something went wrong. ({currentError}).</b>,
+      error: <b>Something went wrong...</b>,
     });
 
     closeModal(e);
