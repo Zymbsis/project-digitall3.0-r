@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-const waterModalSchema = yup
+export const waterFormSchema = yup
   .object({
     timeInput: yup
       .string()

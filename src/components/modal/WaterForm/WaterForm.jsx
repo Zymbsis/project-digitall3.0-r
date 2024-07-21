@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { getCurrentTime, parseDayForFetch } from 'helpers';
-import { waterModalSchema } from 'validationSchemas';
+import { waterFormSchema } from 'validationSchemas';
 import {
   addWaterIntake,
   updateWaterIntake,
@@ -30,7 +30,7 @@ const WaterForm = ({ type, id, date, time, volume }) => {
     setValue,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(waterModalSchema),
+    resolver: yupResolver(waterFormSchema),
     defaultValues: {
       timeInput: defaultTime,
       waterInput: defaultVolume,
