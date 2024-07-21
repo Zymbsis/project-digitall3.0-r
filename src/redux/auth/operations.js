@@ -64,8 +64,8 @@ export const refreshUser = createAsyncThunk(
     }
 
     try {
-      const { data } = await AXIOS_INSTANCE.post('/users/refresh');
-      return data.data;
+      const response = await AXIOS_INSTANCE.post('/users/refresh');
+      return response.data.data;
     } catch (error) {
       thunkAPI.dispatch(logOut());
       return thunkAPI.rejectWithValue(error);

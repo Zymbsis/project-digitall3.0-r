@@ -71,10 +71,10 @@ AXIOS_INSTANCE.interceptors.response.use(
         originalRequest._retry = true;
         if (!store.getState().auth.isRefreshing) {
           try {
-            // abortControllers.forEach(controller => {
-            //   controller.abort();
-            // });
-            // abortControllers = [];
+            abortControllers.forEach(controller => {
+              controller.abort();
+            });
+            abortControllers = [];
             await store.dispatch(refreshUser());
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
