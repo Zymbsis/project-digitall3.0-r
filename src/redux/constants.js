@@ -61,7 +61,7 @@ AXIOS_INSTANCE.interceptors.response.use(
   async error => {
     try {
       const originalRequest = error.config;
-      console.log('error :>> ', error);
+      // console.log('error :>> ', error);
       if (
         error.response &&
         error.response.status === 401 &&
@@ -71,20 +71,18 @@ AXIOS_INSTANCE.interceptors.response.use(
         originalRequest._retry = true;
         if (!store.getState().auth.isRefreshing) {
           try {
-            abortControllers.forEach(controller => {
-              controller.abort();
-            });
-            abortControllers = [];
-
+            // abortControllers.forEach(controller => {
+            //   controller.abort();
+            // });
+            // abortControllers = [];
             await store.dispatch(refreshUser());
-
             return await AXIOS_INSTANCE(originalRequest);
           } catch (refreshError) {
             return Promise.reject(refreshError);
           }
         }
       }
-      if (error?.response?.data) {
+      if (error.response.data) {
         throw error.response.data;
       }
       throw error;
