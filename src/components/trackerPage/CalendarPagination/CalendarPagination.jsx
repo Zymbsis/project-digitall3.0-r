@@ -20,6 +20,7 @@ const CalendarPagination = ({
   const dispatch = useDispatch();
 
   const { createdAt } = useSelector(selectCurrentUser);
+  const { dailyNorma } = useSelector(selectCurrentUser);
   const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   const limitDate = new Date();
   const currentDay = parseDayForFetch(new Date());
@@ -38,7 +39,7 @@ const CalendarPagination = ({
   useEffect(() => {
     const dateForFetch = parseMonthForFetch(selectedDate, currentDay);
     dispatch(getInfoByMonth(dateForFetch));
-  }, [selectedDate, currentDay, dispatch]);
+  }, [selectedDate, currentDay, dispatch, dailyNorma]);
 
   const handlePrevMonth = () => {
     setSelectedDate(prevDate => {
