@@ -11,10 +11,16 @@ import { Icon } from 'shared';
 import css from './CalendarPagination.module.css';
 import clsx from 'clsx';
 
-const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
+const CalendarPagination = ({
+  selectedDate,
+  setSelectedDate,
+  showStatistics,
+  handleClick,
+}) => {
   const dispatch = useDispatch();
 
   const { createdAt } = useSelector(selectCurrentUser);
+  const { dailyNorma } = useSelector(selectCurrentUser);
   const userCreatedDate = createdAt ? new Date(createdAt) : new Date();
   const limitDate = new Date();
   const currentDay = parseDayForFetch(new Date());
@@ -33,7 +39,7 @@ const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
   useEffect(() => {
     const dateForFetch = parseMonthForFetch(selectedDate, currentDay);
     dispatch(getInfoByMonth(dateForFetch));
-  }, [selectedDate, currentDay, dispatch]);
+  }, [selectedDate, currentDay, dispatch, dailyNorma]);
 
   const handlePrevMonth = () => {
     setSelectedDate(prevDate => {
@@ -59,22 +65,27 @@ const CalendarPagination = ({ selectedDate, setSelectedDate }) => {
 
   return (
     <div className={css.container}>
-      <h2 className={css.title}>Month</h2>
-      <div className={css.dateBox}>
-        <button
-          className={clsx(css.iconBtn, css.iconBtnLeft)}
-          onClick={handlePrevMonth}
-          disabled={hasPrevMonth}
-        >
-          <Icon iconId="icon-chevron-down" className={css.icon} />
-        </button>
-        <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
-        <button
-          className={clsx(css.iconBtn, css.iconBtnRight)}
-          onClick={handleNextMonth}
-          disabled={hasNextMonth}
-        >
-          <Icon iconId="icon-chevron-down" className={css.icon} />
+      <h2 className={css.title}>{showStatistics ? 'Statistics' : 'Month'}</h2>
+      <div className={css.buttonWrapper}>
+        <div className={css.dateBox}>
+          <button
+            className={clsx(css.iconBtn, css.iconBtnLeft)}
+            onClick={handlePrevMonth}
+            disabled={hasPrevMonth}
+          >
+            <Icon iconId="icon-chevron-down" className={css.icon} />
+          </button>
+          <p className={css.date}>{parseSelectedMonth(selectedDate)}</p>
+          <button
+            className={clsx(css.iconBtn, css.iconBtnRight)}
+            onClick={handleNextMonth}
+            disabled={hasNextMonth}
+          >
+            <Icon iconId="icon-chevron-down" className={css.icon} />
+          </button>
+        </div>
+        <button className={css.statisticsBtn} onClick={handleClick}>
+          <Icon iconId="icon-pie-chart-02" className={css.statisticsIcon} />
         </button>
       </div>
     </div>
