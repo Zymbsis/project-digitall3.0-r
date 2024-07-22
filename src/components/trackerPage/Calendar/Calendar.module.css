@@ -1,4 +1,8 @@
 .container {
+  @media (max-width:374.98px) {
+    height: 100%;
+  }
+
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
