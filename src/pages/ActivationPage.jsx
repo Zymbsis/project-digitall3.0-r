@@ -1,45 +1,53 @@
-// import { Loader } from 'components/index.js';
-// import  { useEffect, useState } from 'react';
-// import { useDispatch } from 'react-redux';
-// import { useNavigate, useSearchParams } from 'react-router-dom';
-
-// import { activateUser } from '../redux/auth/operations.js';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useSearchParams } from 'react-router-dom';
+import { activateUser, requestActivationEmail } from '../redux/auth/operations';
+import { Loader, SuccessfullySendEmail } from 'components';
+import { Button, Container, Section } from 'shared';
+import { selectIsError } from '../redux/auth/selectors';
+import css from './ActivationPage.module.css';
+import { useModal } from '../context';
 
 const ActivationPage = () => {
-  // const dispatch = useDispatch();
-  // const [searchParams] = useSearchParams();
-  // const navigate = useNavigate();
-  // const [isActivating, setIsActivating] = useState(false);
-  // const [isError, setIsError] = useState(false);
-  // const activationToken = searchParams.get('token');
+  const dispatch = useDispatch();
+  const { openModal } = useModal();
+  const [searchParams] = useSearchParams();
+  const activationToken = searchParams.get('token');
+  const { message } = useSelector(selectIsError);
 
-  // useEffect(() => {
-  //   try {
-  //     setIsError(false);
-  //     setIsActivating(true);
-  //     dispatch(activateUser(activationToken));
-  //     setIsActivating(false);
-  //     navigate('/tracker');
-  //   } catch (error) {
-  //     setIsActivating(false);
-  //     setIsError(true);
-  //   }
-  // }, [activationToken, navigate, dispatch]);
+  useEffect(() => {
+    if (!activationToken) return;
+    dispatch(activateUser(activationToken));
+  }, [activationToken, dispatch]);
+
   return (
-    <>
-      {/* {isActivating && <Loader></Loader>}
-      {isError && (
-        <div>
-          <p>Activation token expired</p>
-          <button
-            type="button"
-            onClick={console.log('requesting new activation email handler')}
-          >
-            Resend
-          </button>
-        </div>
-      )} */}
-    </>
+    <Section>
+      <Container>
+        {!message && <Loader />}
+        {message === 'Account has already been activated. Please, sign in' && (
+          <div className={css.container}>
+            <p>{message}</p>
+            <NavLink to="/signin" className={css.buttonSignIn}>
+              Sign In
+            </NavLink>
+          </div>
+        )}
+        {message === 'Activation token expired or invalid' && (
+          <div className={css.container}>
+            <p>{message}</p>
+            <Button
+              className={css.buttonResendMail}
+              onClick={() => {
+                dispatch(requestActivationEmail(activationToken));
+                openModal(<SuccessfullySendEmail email={''} />);
+              }}
+            >
+              Send again
+            </Button>
+          </div>
+        )}
+      </Container>
+    </Section>
   );
 };
 

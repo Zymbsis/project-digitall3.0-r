@@ -9,6 +9,8 @@ import {
 import { createPortal } from 'react-dom';
 import { Modal } from '../components';
 import css from './modal.module.css';
+import { useSelector } from 'react-redux';
+import { selectIsError } from '../redux/auth/selectors';
 
 const modalContext = createContext();
 export const useModal = () => useContext(modalContext);
@@ -16,7 +18,7 @@ export const useModal = () => useContext(modalContext);
 export const ModalProvider = ({ children }) => {
   const [modalContent, setModalContent] = useState(null);
   const backdropRef = useRef(null);
-
+  const isError = useSelector(selectIsError);
   const closeModal = useCallback(e => {
     if (
       e.target === e.currentTarget ||
@@ -55,6 +57,7 @@ export const ModalProvider = ({ children }) => {
     <modalContext.Provider value={{ modalContent, openModal, closeModal }}>
       {children}
       {modalContent &&
+        !isError &&
         createPortal(
           <div className={css.modalBackdrop} ref={backdropRef}>
             <Modal>{modalContent}</Modal>
