@@ -1,18 +1,20 @@
 .container {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    align-content: flex-start; 
-    row-gap: 20px;
-    column-gap: 17px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  align-content: flex-start;
+  row-gap: 20px;
+  column-gap: 17px;
+  height: 303px;
 
-    @media (min-width: 768px) {
+  @media (min-width: 768px) {
     row-gap: 15px;
     column-gap: 48px;
-    }
+    height: 305px;
+  }
 
-    @media (min-width: 1440px) {
-        row-gap: 15px;
-        column-gap: 43px;
-        }
+  @media (min-width: 1440px) {
+    row-gap: 15px;
+    column-gap: 43px;
+  }
 }

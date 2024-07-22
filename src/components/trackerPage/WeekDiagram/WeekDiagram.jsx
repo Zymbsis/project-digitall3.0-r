@@ -4,6 +4,7 @@ import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
 import { selectInfoByMonth } from '../../../redux/water/selectors.js';
 import getWaterDataForLast7Days from 'helpers/getWaterDataForLast7Days';
 import CustomTooltip from 'components/trackerPage/CustomTooltip/CustomTooltip';
+import css from './WeekDiagram.module.css';
 
 // const transformedData = [
 //   { name: '12', uv: 1200 },
@@ -15,9 +16,8 @@ import CustomTooltip from 'components/trackerPage/CustomTooltip/CustomTooltip';
 
 const WeekDiagram = () => {
   const { days: waterData } = useSelector(selectInfoByMonth);
-
   const transformedData = getWaterDataForLast7Days(waterData);
-  console.log(transformedData);
+  // console.log(transformedData);
 
   const [chartSize, setChartSize] = useState({
     width: 303,
@@ -41,21 +41,21 @@ const WeekDiagram = () => {
       } else if (window.innerWidth < 767) {
         setChartSize({
           width: 303,
-          height: 256,
+          height: 303,
           r: 8,
           strokeWidth: 2,
         });
       } else if (window.innerWidth < 768) {
         setChartSize({
           width: 272,
-          height: 256,
+          height: 305,
           r: 8,
           strokeWidth: 2,
         });
       } else if (window.innerWidth < 1440) {
         setChartSize({
           width: 608,
-          height: 260,
+          height: 305,
           r: 12,
           strokeWidth: 3,
         });
@@ -83,7 +83,7 @@ const WeekDiagram = () => {
   };
 
   return (
-    <div className={css.container}>
+    <div className={css.wrapper}>
       <AreaChart
         width={chartSize.width}
         height={chartSize.height}
