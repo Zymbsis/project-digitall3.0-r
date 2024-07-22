@@ -83,7 +83,7 @@ const WeekDiagram = () => {
   };
 
   return (
-    <div className={css.container}>
+    <div>
       <AreaChart
         width={chartSize.width}
         height={chartSize.height}
