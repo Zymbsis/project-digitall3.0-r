@@ -79,7 +79,7 @@ const CalendarPagination = ({
           <button
             className={clsx(css.iconBtn, css.iconBtnRight)}
             onClick={handleNextMonth}
-            disabled={hasNextMonth}
+            disabled={hasNextMonth || showStatistics}
           >
             <Icon iconId="icon-chevron-down" className={css.icon} />
           </button>

@@ -1,9 +1,9 @@
-import { Loader } from 'components/index.js';
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate, useSearchParams } from 'react-router-dom';
+// import { Loader } from 'components/index.js';
+// import  { useEffect, useState } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import { activateUser } from '../redux/auth/operations.js';
+// import { activateUser } from '../redux/auth/operations.js';
 
 const ActivationPage = () => {
   // const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const ActivationPage = () => {
   // }, [activationToken, navigate, dispatch]);
   return (
     <>
-      {isActivating && <Loader></Loader>}
+      {/* {isActivating && <Loader></Loader>}
       {isError && (
         <div>
           <p>Activation token expired</p>
@@ -38,7 +38,7 @@ const ActivationPage = () => {
             Resend
           </button>
         </div>
-      )}
+      )} */}
     </>
   );
 };
