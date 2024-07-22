@@ -1,18 +1,41 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FcGoogle } from 'react-icons/fc';
 import { register } from '../../../redux/auth/operations';
 import { signUpFormSchema } from 'validationSchemas';
-import { AuthFormLayout, Icon } from 'shared';
+import { AuthFormLayout, Button, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignUpForm.module.css';
+import { AXIOS_INSTANCE } from '../../../redux/constants';
+import toast from 'react-hot-toast';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const handleOAuthCallback = async () => {
+      const code = new URLSearchParams(location.search).get('code');
+      if (code) {
+        try {
+          const response = await AXIOS_INSTANCE.post('users/confirm-oauth', {
+            code,
+          });
+          const { accessToken } = response.data.data;
+          console.log(accessToken);
+        } catch (error) {
+          toast.error('Error confirming Google OAuth');
+        }
+      }
+    };
+
+    handleOAuthCallback();
+  }, [location]);
 
   const {
     register: registerField,
@@ -33,6 +56,16 @@ const SignUpForm = () => {
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
+  };
+  // google
+  const handleGoogleSignIn = async () => {
+    try {
+      const response = await AXIOS_INSTANCE.get('users/get-oauth-url');
+      const { url } = response.data.data;
+      window.location.href = url;
+    } catch (error) {
+      toast.error('Error getting Google OAuth URL');
+    }
   };
 
   return (
@@ -116,6 +149,11 @@ const SignUpForm = () => {
 
           <input className={css.submit} type="submit" value="Sign Up" />
         </form>
+        <Button className={css.google_btn} onClick={handleGoogleSignIn}>
+          <FcGoogle className={css.icon_google} />
+          Sign Up with Google
+        </Button>
+
         <div className={css.inviteOnLogIn}>
           <p className={css.inviteText}>Already have account?</p>
           <Link className={css.link} to="/signin">
