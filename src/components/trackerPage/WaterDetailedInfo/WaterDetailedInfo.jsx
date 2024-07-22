@@ -6,6 +6,8 @@ import MonthInfo from '../MonthInfo/MonthInfo';
 import UserPanel from '../UserPanel/UserPanel';
 import css from './WaterDetailedInfo.module.css';
 
+import StatisticSection from 'components/trackerPage/StatisticSection/StatisticSection';
+
 const WaterDetailedInfo = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -16,7 +18,8 @@ const WaterDetailedInfo = () => {
     <div className={css.wrapper}>
       <UserPanel />
       <DailyInfo />
-      <MonthInfo />
+      {/* <MonthInfo /> */}
+      <StatisticSection />
     </div>
   );
 };

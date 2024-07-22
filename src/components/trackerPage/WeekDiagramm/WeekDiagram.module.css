@@ -1,0 +1,15 @@
+.wrapper {
+  max-width: 303px;
+  height: 256px;
+  display: block;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    padding: 32px;
+  }
+
+  @media (min-width: 1440px) {
+    height: 736px;
+    width: calc((100% - 32px) / 2);
+  }
+}
