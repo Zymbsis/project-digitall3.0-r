@@ -15,8 +15,9 @@ import css from './WeekDiagram.module.css';
 // ];
 
 const WeekDiagram = () => {
-  const { days: waterData } = useSelector(selectInfoByMonth);
-  const transformedData = getWaterDataForLast7Days(waterData);
+  const { days: waterData, date: month } = useSelector(selectInfoByMonth);
+
+  const transformedData = getWaterDataForLast7Days(waterData, month);
   // console.log(transformedData);
 
   const [chartSize, setChartSize] = useState({
