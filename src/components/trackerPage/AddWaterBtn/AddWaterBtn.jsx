@@ -1,10 +1,10 @@
-import { Icon } from 'shared';
-import css from './AddWaterBtn.module.css';
-import { useModal } from 'context';
-import WaterModal from '../../modal/WaterModal/WaterModal';
 import { useSelector } from 'react-redux';
-import { selectSelectedDate } from '../../../redux/water/selectors';
+import { useModal } from 'context';
+import { selectSelectedDate } from '../../../redux/water/selectors.js';
+import { Icon } from 'shared';
+import WaterModal from '../../modal/WaterModal/WaterModal';
 import clsx from 'clsx';
+import css from './AddWaterBtn.module.css';
 
 const AddWaterBtn = ({ className }) => {
   const { openModal } = useModal();
