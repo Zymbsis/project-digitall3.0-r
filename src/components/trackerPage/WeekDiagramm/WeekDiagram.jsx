@@ -1,8 +1,6 @@
-import React, { useEffect, useState } from 'react';
-
-import css from './WeekDiagram.module.css';
-import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
 import { selectInfoByMonth } from '../../../redux/water/selectors.js';
 import getWaterDataForLast7Days from 'helpers/getWaterDataForLast7Days';
 import CustomTooltip from 'components/trackerPage/CustomTooltip/CustomTooltip';

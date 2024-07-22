@@ -92,6 +92,7 @@
 .dailyInfoStyles .iconPlus {
   width: 16px;
   height: 16px;
+  padding-left: 2px;
   stroke: var(--primary-dark-grey-color);
 }
 
