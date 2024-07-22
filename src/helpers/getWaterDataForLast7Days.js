@@ -31,15 +31,15 @@ const getWaterDataForLast7Days = (waterData, month) => {
     } else {
       for (let i = 6; i >= 0; i -= 1) {
         const date = new Date();
-        // console.log('date:', date);
+
         date.setDate(today.getDate() - i);
 
         const day = date.getDate().toString().padStart(2, '0');
-        // console.log('day:', day);
+
         const dayData = waterData.find(water => water.day === day) || {
           portions: [],
         };
-        // console.log('dayData:', dayData);
+
         const volume = dayData.portions.reduce(
           (total, portion) => total + portion.volume,
           0
