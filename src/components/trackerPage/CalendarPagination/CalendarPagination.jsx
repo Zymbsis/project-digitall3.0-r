@@ -84,8 +84,14 @@ const CalendarPagination = ({
             <Icon iconId="icon-chevron-down" className={css.icon} />
           </button>
         </div>
+
         <button className={css.statisticsBtn} onClick={handleClick}>
-          <Icon iconId="icon-pie-chart-02" className={css.statisticsIcon} />
+          <Icon
+            iconId="icon-pie-chart-02"
+            className={clsx(css.statisticsIcon, {
+              [css.statisticsIconActive]: showStatistics,
+            })}
+          />
         </button>
       </div>
     </div>

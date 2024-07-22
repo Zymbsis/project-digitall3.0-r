@@ -26,7 +26,7 @@ const getWaterDataForLast7Days = (waterData, month) => {
           0
         );
 
-        daysArray.push({ name: day, uv: volume });
+        daysArray.push({ name: Number(day), uv: volume });
       }
     } else {
       for (let i = 6; i >= 0; i -= 1) {
@@ -44,7 +44,7 @@ const getWaterDataForLast7Days = (waterData, month) => {
           (total, portion) => total + portion.volume,
           0
         );
-        daysArray.push({ name: day, uv: volume });
+        daysArray.push({ name: Number(day), uv: volume });
       }
     }
   }
@@ -59,7 +59,7 @@ const getWaterDataForLast7Days = (waterData, month) => {
         (total, portion) => total + portion.volume,
         0
       );
-      daysArray.push({ name: day, uv: volume });
+      daysArray.push({ name: Number(day), uv: volume });
     }
   }
 
