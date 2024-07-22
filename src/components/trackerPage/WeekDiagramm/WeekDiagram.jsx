@@ -91,7 +91,6 @@ const WeekDiagram = () => {
         height={chartSize.height}
         data={transformedData}
         margin={{ top: 20, right: 0, left: 0, bottom: 20 }}
-        padding={{ top: 0, right: -20, left: -20, bottom: 0 }}
       >
         <defs>
           <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
@@ -142,7 +141,7 @@ const WeekDiagram = () => {
           strokeWidth="2"
           fillOpacity={1}
           fill="url(#colorUv)"
-          // dot={<CustomDot data={data} />}
+          // dot={<CustomDot data={transformedData} />}
           dot={{
             fill: 'var( --primary-white-color)',
             r: chartSize.r,

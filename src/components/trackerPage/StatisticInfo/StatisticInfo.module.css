@@ -5,10 +5,6 @@
   margin-bottom: 47px;
 
   @media (min-width: 768px) {
-    margin-bottom: 71px;
-  }
-
-  @media (min-width: 1440) {
     margin-bottom: 49px;
   }
 }
