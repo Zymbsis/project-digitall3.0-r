@@ -10,7 +10,6 @@ import {
 import { INITIAL_STATE } from '../constants';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
-import { act } from 'react';
 
 const authSlice = createSlice({
   name: 'auth',
