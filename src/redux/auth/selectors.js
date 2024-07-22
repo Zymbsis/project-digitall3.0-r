@@ -1,5 +1,3 @@
-// export const selectIsLoggedIn = state => state.auth.isLoggedIn;
-
 export const selectIsLoggedIn = state => Boolean(state.auth.token);
 
 export const selectIsRefreshing = state => state.auth.isRefreshing;

@@ -19,6 +19,7 @@
   border-radius: 15px;
   padding: 40px 14px;
   margin: 0 auto;
+  max-width: 343px;
 
   @media(min-width:768px) {
     padding: 40px;

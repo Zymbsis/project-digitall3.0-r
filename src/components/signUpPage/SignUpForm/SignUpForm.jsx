@@ -1,19 +1,23 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { register } from '../../../redux/auth/operations';
 import { signUpFormSchema } from 'validationSchemas';
 import { AuthFormLayout, Icon } from 'shared';
+import { useModal } from 'context';
 
 import clsx from 'clsx';
 import css from './SignUpForm.module.css';
+import { selectIsError } from '../../../redux/auth/selectors';
+import { SuccessfullySendEmail } from '../..';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
+  const { openModal } = useModal();
   const [showPassword, setShowPassword] = useState(false);
-
+  const isError = useSelector(selectIsError);
   const {
     register: registerField,
     handleSubmit,
@@ -23,12 +27,14 @@ const SignUpForm = () => {
     resolver: yupResolver(signUpFormSchema),
     mode: 'onSubmit',
   });
+  console.log(isError);
 
   const onSubmit = data => {
     const { email, password } = data;
     const newEmail = email.toLowerCase();
     dispatch(register({ email: newEmail, password }));
     reset();
+    openModal(<SuccessfullySendEmail email={email} />);
   };
 
   const handleClickShowPassword = () => {

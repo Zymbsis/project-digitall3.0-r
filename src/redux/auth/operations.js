@@ -6,8 +6,10 @@ export const register = createAsyncThunk(
   'auth/register',
   async (credentials, thunkAPI) => {
     try {
-      await AXIOS_INSTANCE.post('/users/register', credentials);
-      const { data } = await AXIOS_INSTANCE.post('/users/login', credentials);
+      const { data } = await AXIOS_INSTANCE.post(
+        '/users/register',
+        credentials
+      );
       return data.data;
     } catch (error) {
       toast.error(<b>{error.data.message}</b>);
@@ -20,12 +22,26 @@ export const activateUser = createAsyncThunk(
   'auth/activateUser',
   async (activationToken, thunkAPI) => {
     try {
-      const response = await AXIOS_INSTANCE.post('/users/activate', {
+      const { data } = await AXIOS_INSTANCE.post('/users/activate', {
         activationToken,
       });
-      return response.data.data;
+      return data.data;
     } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const requestActivationEmail = createAsyncThunk(
+  'auth/requestActivationEmail',
+  async (activationToken, thunkAPI) => {
+    try {
+      const { data } = await AXIOS_INSTANCE.post('/users/request-activation', {
+        activationToken,
+      });
+      return data.data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
     }
   }
 );

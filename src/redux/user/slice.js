@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
+import { register } from '../auth/operations';
 
 const handlePending = state => {
   state.isError = false;
@@ -22,6 +23,9 @@ const userSlice = createSlice({
   initialState: INITIAL_STATE.user,
   extraReducers: builder => {
     builder
+      // .addCase(register.fulfilled, (state, action) => {
+      //   state.user = action.payload;
+      // })
       .addCase(getUser.fulfilled, handleFulfilled)
       .addCase(updateUser.fulfilled, handleFulfilled)
       .addCase(countUsers.fulfilled, (state, action) => {

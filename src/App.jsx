@@ -26,7 +26,6 @@ const App = () => {
       ) : (
         <SharedLayout>
           <Routes>
-            {/* <Route path="/activation" element={<ActivationPage />} /> */}
             <Route
               path="/"
               element={
@@ -40,7 +39,7 @@ const App = () => {
               path="/signup"
               element={
                 <RestrictedRoutes
-                  redirectTo="/tracker"
+                  redirectTo="/activation"
                   component={<SignUpPage />}
                 />
               }
@@ -55,7 +54,7 @@ const App = () => {
               }
             />
             <Route
-              path="/activate"
+              path="/activation"
               element={
                 <RestrictedRoutes
                   redirectTo="/tracker"
