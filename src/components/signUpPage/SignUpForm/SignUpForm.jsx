@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
@@ -10,29 +10,12 @@ import { AuthFormLayout, Button, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignUpForm.module.css';
-import { AXIOS_INSTANCE } from '../../../redux/constants';
-import toast from 'react-hot-toast';
+import { handleGoogleSignUp } from 'helpers/handleGoogleSignUp';
+import GoogleBtn from 'shared/components/GoogleBtn/GoogleBtn';
 
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-
-  // useEffect(() => {
-  //   // const handleOAuthCallback = async () => {
-  //   //   if (code) {
-  //   //     try {
-  //   //       const response = await AXIOS_INSTANCE.post('users/confirm-oauth', {
-  //   //         code,
-  //   //       });
-  //   //       const { accessToken } = response.data.data;
-  //   //       console.log(accessToken);
-  //   //     } catch (error) {
-  //   //       toast.error('Error confirming Google OAuth');
-  //   //     }
-  //   //   }
-  //   // };
-  //   // handleOAuthCallback();
-  // }, []);
 
   const {
     register: registerField,
@@ -53,16 +36,6 @@ const SignUpForm = () => {
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
-  };
-  // google
-  const handleGoogleSignUp = async () => {
-    try {
-      const response = await AXIOS_INSTANCE.get('users/get-oauth-url');
-      const { url } = response.data.data;
-      window.location.href = url;
-    } catch (error) {
-      toast.error('Error getting Google OAuth URL');
-    }
   };
 
   return (
@@ -150,6 +123,11 @@ const SignUpForm = () => {
           <FcGoogle className={css.icon_google} />
           Sign Up with Google
         </Button>
+
+        {/* <GoogleBtn
+          context={'Sign Up with Google'}
+          onClick={handleGoogleSignUp}
+        /> */}
 
         <div className={css.inviteOnLogIn}>
           <p className={css.inviteText}>Already have account?</p>

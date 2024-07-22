@@ -10,8 +10,7 @@ import { AuthFormLayout, Button, Icon } from 'shared';
 import clsx from 'clsx';
 import css from './SignInForm.module.css';
 import { FcGoogle } from 'react-icons/fc';
-import { AXIOS_INSTANCE } from '../../../redux/constants';
-import toast from 'react-hot-toast';
+import { handleGoogleSignUp } from 'helpers/handleGoogleSignUp';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -40,15 +39,6 @@ const SignInForm = () => {
     const newEmail = email.toLowerCase();
     dispatch(logIn({ email: newEmail, password }));
     reset();
-  };
-  const handleGoogleSignIn = async () => {
-    try {
-      const response = await AXIOS_INSTANCE.get('users/get-oauth-url');
-      const { url } = response.data.data;
-      window.location.href = url;
-    } catch (error) {
-      toast.error('Error getting Google OAuth URL');
-    }
   };
 
   return (
@@ -95,7 +85,7 @@ const SignInForm = () => {
             Sign in
           </button>
         </form>
-        <Button className={css.google_btn} onClick={handleGoogleSignIn}>
+        <Button className={css.google_btn} onClick={handleGoogleSignUp}>
           <FcGoogle className={css.icon_google} />
           Sign Up with Google
         </Button>
