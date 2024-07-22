@@ -119,15 +119,11 @@ const SignUpForm = () => {
 
           <input className={css.submit} type="submit" value="Sign Up" />
         </form>
-        <Button className={css.google_btn} onClick={handleGoogleSignUp}>
-          <FcGoogle className={css.icon_google} />
-          Sign Up with Google
-        </Button>
 
-        {/* <GoogleBtn
+        <GoogleBtn
           context={'Sign Up with Google'}
           onClick={handleGoogleSignUp}
-        /> */}
+        />
 
         <div className={css.inviteOnLogIn}>
           <p className={css.inviteText}>Already have account?</p>

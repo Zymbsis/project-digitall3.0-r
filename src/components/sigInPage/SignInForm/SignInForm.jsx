@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import css from './SignInForm.module.css';
 import { FcGoogle } from 'react-icons/fc';
 import { handleGoogleSignUp } from 'helpers/handleGoogleSignUp';
+import GoogleBtn from 'shared/components/GoogleBtn/GoogleBtn';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -85,10 +86,11 @@ const SignInForm = () => {
             Sign in
           </button>
         </form>
-        <Button className={css.google_btn} onClick={handleGoogleSignUp}>
-          <FcGoogle className={css.icon_google} />
-          Sign Up with Google
-        </Button>
+
+        <GoogleBtn
+          context={'Sign In with Google'}
+          onClick={handleGoogleSignUp}
+        />
         <p className={css.signUpText}>
           Don't have an account?{' '}
           <NavLink to="/signup" className={css.signUpLink}>
