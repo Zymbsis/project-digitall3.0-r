@@ -1,0 +1,21 @@
+.wrapper {
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+
+  @media (min-width: 768px) {
+    width: 438px;
+  }
+}
+
+.text {
+  font-size: 20px;
+}
+
+.text span {
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

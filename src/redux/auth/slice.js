@@ -5,10 +5,12 @@ import {
   logOut,
   refreshUser,
   activateUser,
+  requestActivationEmail,
 } from './operations';
 import { INITIAL_STATE } from '../constants';
 import storage from 'redux-persist/lib/storage';
 import persistReducer from 'redux-persist/es/persistReducer';
+import { act } from 'react';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -20,24 +22,27 @@ const authSlice = createSlice({
   },
   extraReducers: builder =>
     builder
-      .addCase(register.fulfilled, (state, action) => {
-        state.isLoading = false;
-        state.token = action.payload.accessToken;
-        state.showOnboardingTour = true;
-      })
       .addCase(register.rejected, (state, action) => {
         state.isLoading = false;
+        state.isError = true;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.isError = false;
       })
       .addCase(activateUser.fulfilled, (state, action) => {
         state.token = action.payload.accessToken;
+        state.showOnboardingTour = true;
         state.isLoading = false;
+      })
+      .addCase(requestActivationEmail.fulfilled, (state, action) => {
+        state.token = action.payload.accessToken;
       })
       .addCase(activateUser.pending, state => {
         state.isError = false;
         state.isLoading = true;
       })
-      .addCase(activateUser.rejected, state => {
-        state.isError = true;
+      .addCase(activateUser.rejected, (state, action) => {
+        state.isError = action.payload.data;
         state.isLoading = false;
       })
       .addCase(logIn.fulfilled, (state, action) => {
@@ -63,6 +68,7 @@ const authSlice = createSlice({
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;
+        state.isError = false;
       })
       .addMatcher(isAnyOf(register.pending, logIn.pending), state => {
         state.isLoading = true;
