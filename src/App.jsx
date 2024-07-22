@@ -8,6 +8,7 @@ import {
   Loader,
 } from 'components';
 import { selectIsRefreshing } from './redux/auth/selectors';
+import ActivationPage from './pages/ActivationPage';
 // import { ActivationPage } from 'pages/index.js';
 
 const HomePage = lazy(() => import('./pages/HomePage'));
@@ -50,6 +51,15 @@ const App = () => {
                 <RestrictedRoutes
                   redirectTo="/tracker"
                   component={<SignInPage />}
+                />
+              }
+            />
+            <Route
+              path="/activate"
+              element={
+                <RestrictedRoutes
+                  redirectTo="/tracker"
+                  component={<ActivationPage />}
                 />
               }
             />
