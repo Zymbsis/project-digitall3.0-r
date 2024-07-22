@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -16,26 +16,23 @@ import toast from 'react-hot-toast';
 const SignUpForm = () => {
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  const location = useLocation();
 
-  useEffect(() => {
-    const handleOAuthCallback = async () => {
-      const code = new URLSearchParams(location.search).get('code');
-      if (code) {
-        try {
-          const response = await AXIOS_INSTANCE.post('users/confirm-oauth', {
-            code,
-          });
-          const { accessToken } = response.data.data;
-          console.log(accessToken);
-        } catch (error) {
-          toast.error('Error confirming Google OAuth');
-        }
-      }
-    };
-
-    handleOAuthCallback();
-  }, [location]);
+  // useEffect(() => {
+  //   // const handleOAuthCallback = async () => {
+  //   //   if (code) {
+  //   //     try {
+  //   //       const response = await AXIOS_INSTANCE.post('users/confirm-oauth', {
+  //   //         code,
+  //   //       });
+  //   //       const { accessToken } = response.data.data;
+  //   //       console.log(accessToken);
+  //   //     } catch (error) {
+  //   //       toast.error('Error confirming Google OAuth');
+  //   //     }
+  //   //   }
+  //   // };
+  //   // handleOAuthCallback();
+  // }, []);
 
   const {
     register: registerField,
@@ -58,7 +55,7 @@ const SignUpForm = () => {
     setShowPassword(!showPassword);
   };
   // google
-  const handleGoogleSignIn = async () => {
+  const handleGoogleSignUp = async () => {
     try {
       const response = await AXIOS_INSTANCE.get('users/get-oauth-url');
       const { url } = response.data.data;
@@ -149,7 +146,7 @@ const SignUpForm = () => {
 
           <input className={css.submit} type="submit" value="Sign Up" />
         </form>
-        <Button className={css.google_btn} onClick={handleGoogleSignIn}>
+        <Button className={css.google_btn} onClick={handleGoogleSignUp}>
           <FcGoogle className={css.icon_google} />
           Sign Up with Google
         </Button>

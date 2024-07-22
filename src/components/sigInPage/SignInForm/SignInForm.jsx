@@ -5,10 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/auth/operations';
 import { signInFormSchema } from 'validationSchemas';
-import { AuthFormLayout, Icon } from 'shared';
+import { AuthFormLayout, Button, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignInForm.module.css';
+import { FcGoogle } from 'react-icons/fc';
+import { AXIOS_INSTANCE } from '../../../redux/constants';
+import toast from 'react-hot-toast';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -37,6 +40,15 @@ const SignInForm = () => {
     const newEmail = email.toLowerCase();
     dispatch(logIn({ email: newEmail, password }));
     reset();
+  };
+  const handleGoogleSignIn = async () => {
+    try {
+      const response = await AXIOS_INSTANCE.get('users/get-oauth-url');
+      const { url } = response.data.data;
+      window.location.href = url;
+    } catch (error) {
+      toast.error('Error getting Google OAuth URL');
+    }
   };
 
   return (
@@ -83,6 +95,10 @@ const SignInForm = () => {
             Sign in
           </button>
         </form>
+        <Button className={css.google_btn} onClick={handleGoogleSignIn}>
+          <FcGoogle className={css.icon_google} />
+          Sign Up with Google
+        </Button>
         <p className={css.signUpText}>
           Don't have an account?{' '}
           <NavLink to="/signup" className={css.signUpLink}>
