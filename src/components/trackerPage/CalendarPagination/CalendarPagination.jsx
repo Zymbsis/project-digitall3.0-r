@@ -93,16 +93,3 @@ const CalendarPagination = ({
 };
 
 export default CalendarPagination;
-
-// const user = {
-//   email: 'test@example.com',
-//   password: '12345678',
-//   name: 'Kate',
-//   gender: 'woman',
-//   avatar: 'image.png',
-//   dailyNorma: 1.8,
-//   weight: 0,
-//   activeHours: 0,
-//   createdAt: '2024-02-01T00:00:00.000Z',
-//   updatedAt: '2024-07-01T00:00:00.000Z'
-// };
