@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { countUsers, getUser, updateUser } from './operations';
 import { INITIAL_STATE } from '../constants';
-import { register } from '../auth/operations';
 
 const handlePending = state => {
   state.isError = false;
