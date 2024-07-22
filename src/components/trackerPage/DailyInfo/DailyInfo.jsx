@@ -1,12 +1,12 @@
 import ChooseDate from '../ChooseDate/ChooseDate';
 import AddWaterBtn from '../AddWaterBtn/AddWaterBtn';
 import WaterList from '../WaterList/WaterList';
-import css from './DailyInfo.module.css';
-import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { selectSelectedDate } from '../../../redux/water/selectors';
-import { parseDayForFetch } from '../../../helpers';
+import { parseDayForFetch } from 'helpers';
 
+import css from './DailyInfo.module.css';
+import clsx from 'clsx';
 
 const DailyInfo = () => {
   const selectedDate = useSelector(selectSelectedDate);
