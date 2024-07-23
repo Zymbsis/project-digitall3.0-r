@@ -19,6 +19,7 @@ const authSlice = createSlice({
     },
     setTokenRegister: (state, action) => {
       state.token = action.payload;
+      state.showOnboardingTour = true;
     },
   },
   extraReducers: builder =>
