@@ -1,7 +1,7 @@
 import CalendarPagination from '../CalendarPagination/CalendarPagination';
 import Calendar from '../Calendar/Calendar';
 import { useState } from 'react';
-import WeekDiagram from '../WeekDiagramm/WeekDiagram';
+import WeekDiagram from '../WeekDiagram/WeekDiagram';
 // import css from './MonthInfo.module.css';
 
 const MonthInfo = () => {

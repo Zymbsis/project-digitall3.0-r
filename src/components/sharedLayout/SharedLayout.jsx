@@ -27,7 +27,7 @@ const SharedLayout = ({ children }) => {
     if (showTour) {
       const timer = setTimeout(() => {
         notify();
-        dispatch(showOnboarding());
+        dispatch(showOnboarding(false));
       }, 1500);
       return () => clearTimeout(timer);
     }
