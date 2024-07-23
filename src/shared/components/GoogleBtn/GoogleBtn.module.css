@@ -14,18 +14,14 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all var(--transition-duration) var(--transition-timing-function);
-
-  @media (min-width: 768px) {
-    height: 60px;
-  }
-}
-
-.google_btn {
   background: linear-gradient(135deg, #323f47, #486f97, #32678a, #5f5291);
   background-size: 300% auto;
   transition: var(--transition-duration) var(--transition-timing-function);
   &:hover {
     background-position: 100% 0;
+  }
+
+  @media (min-width: 768px) {
+    height: 60px;
   }
 }
