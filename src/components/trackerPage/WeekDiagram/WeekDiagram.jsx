@@ -4,7 +4,7 @@ import { AreaChart, XAxis, YAxis, Tooltip, Area } from 'recharts';
 import { selectInfoByMonth } from '../../../redux/water/selectors.js';
 import getWaterDataForLast7Days from 'helpers/getWaterDataForLast7Days';
 import CustomTooltip from 'components/trackerPage/CustomTooltip/CustomTooltip';
-import css from './WeekDiagram.module.css';
+
 
 // const transformedData = [
 //   { name: '12', uv: 1200 },
@@ -84,7 +84,7 @@ const WeekDiagram = () => {
   };
 
   return (
-    <div className={css.wrapper}>
+    <div>
       <AreaChart
         width={chartSize.width}
         height={chartSize.height}

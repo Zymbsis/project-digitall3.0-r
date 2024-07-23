@@ -14,7 +14,7 @@ const WaterItem = ({ item: { _id, volume, time } }) => {
     openModal(<DeleteWaterModal id={_id} />);
   };
   const handleEdit = () => {
-    openModal(<WaterModal type="edit" id={time} time={time} volume={volume} />);
+    openModal(<WaterModal type="edit" id={_id} time={time} volume={volume} />);
   };
 
   return (
