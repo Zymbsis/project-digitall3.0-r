@@ -30,7 +30,9 @@ export const ModalProvider = ({ children }) => {
       e.type === 'submit'
     ) {
       document.body.style.overflow = 'visible';
-      backdropRef.current.style.opacity = 0;
+      if (backdropRef.current !== null) {
+        backdropRef.current.style.opacity = 0;
+      }
       setTimeout(() => {
         setModalContent(null);
       }, 700);

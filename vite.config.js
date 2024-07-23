@@ -6,6 +6,11 @@ export default defineConfig({
   build: {
     sourcemap: true,
   },
+  server: {
+    headers: {
+      'Cache-Control': 'max-age=31536000',
+    },
+  },
   resolve: {
     alias: {
       components: '/src/components',
