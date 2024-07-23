@@ -8,6 +8,7 @@ import css from './WaterDailyNorma.module.css';
 
 const WaterDailyNorma = () => {
   const { dailyNorma } = useSelector(selectCurrentUser);
+
   const dayNorma = dailyNorma ? Math.round((dailyNorma / 1000) * 100) / 100 : 0;
   const dispatch = useDispatch();
   const currentDay = parseDayForFetch(new Date());

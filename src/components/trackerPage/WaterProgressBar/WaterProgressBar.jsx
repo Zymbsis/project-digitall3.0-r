@@ -5,7 +5,6 @@ import { selectCompletionRate } from '../../../redux/water/selectors.js';
 
 const WaterProgressBar = () => {
   const completionRate = useSelector(selectCompletionRate);
-
   const percentOfWater = completionRate ? Math.round(completionRate * 100) : 0;
 
   const invisibleMarkWater = [0, 50, 100];
