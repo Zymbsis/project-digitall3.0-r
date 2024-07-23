@@ -5,11 +5,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/auth/operations';
 import { signInFormSchema } from 'validationSchemas';
-import { AuthFormLayout, Button, Icon } from 'shared';
+import { AuthFormLayout, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignInForm.module.css';
-import { FcGoogle } from 'react-icons/fc';
 import { handleGoogleSignUp } from 'helpers/handleGoogleSignUp';
 import GoogleBtn from 'shared/components/GoogleBtn/GoogleBtn';
 
