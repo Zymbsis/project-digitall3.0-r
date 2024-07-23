@@ -1,10 +1,17 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { selectCountUser } from '../../../../redux/user/selectors.js';
 import { images } from 'image';
 import css from './CustomersCount.module.css';
+import { useEffect } from 'react';
+import { countUsers } from '../../../../redux/user/operations.js';
 
 const CustomersCounter = () => {
   const countedUsers = useSelector(selectCountUser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(countUsers());
+  }, [dispatch]);
 
   return (
     <div className={css.customers}>
@@ -53,8 +60,8 @@ const CustomersCounter = () => {
         </li>
       </ul>
       <p className={css.customersText}>
-        {countedUsers} <span className={css.customersSpan}>happy</span>{' '}
-        customers
+        {countedUsers ? countedUsers : 'Our'}{' '}
+        <span className={css.customersSpan}>happy</span> customers
       </p>
     </div>
   );
