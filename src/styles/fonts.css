@@ -1,20 +1,26 @@
 @font-face {
   font-family: 'Poppins';
-  src: url(../../assets/fonts/Poppins-Regular.ttf);
+  /* src: url(../../assets/fonts/Poppins-Regular.ttf); */
+  src: url(../../assets/fonts/poppins-regular-webfont.woff) format('woff');
+  font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url(../../assets/fonts/Poppins-Bold.ttf);
+  /* src: url(../../assets/fonts/Poppins-Bold.ttf); */
+  src: url(../../assets/fonts/poppins-bold-webfont.woff) format('woff');
+  font-display: swap;
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  src: url(../../assets/fonts/Gilroy-Regular.ttf);
+  /* src: url(../../assets/fonts/Gilroy-Regular.ttf); */
+  src: url(../../assets/fonts/Gilroy-Regular.woff) format('woff');
+  font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
