@@ -16,7 +16,10 @@ const authSlice = createSlice({
   initialState: INITIAL_STATE.auth,
   reducers: {
     showOnboarding: (state, action) => {
-      state.showOnboardingTour = false;
+      state.showOnboardingTour = action.payload;
+    },
+    setTokenRegister: (state, action) => {
+      state.token = action.payload;
     },
   },
   extraReducers: builder =>
@@ -84,7 +87,7 @@ const authPersistConfig = {
 };
 
 const authReducer = authSlice.reducer;
-export const { showOnboarding } = authSlice.actions;
+export const { showOnboarding, setTokenRegister } = authSlice.actions;
 export const persistedAuthReducer = persistReducer(
   authPersistConfig,
   authReducer

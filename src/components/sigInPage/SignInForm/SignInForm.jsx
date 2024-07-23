@@ -5,10 +5,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useDispatch } from 'react-redux';
 import { logIn } from '../../../redux/auth/operations';
 import { signInFormSchema } from 'validationSchemas';
-import { AuthFormLayout, Icon } from 'shared';
+import { AuthFormLayout, Button, Icon } from 'shared';
 
 import clsx from 'clsx';
 import css from './SignInForm.module.css';
+import { FcGoogle } from 'react-icons/fc';
+import { handleGoogleSignUp } from 'helpers/handleGoogleSignUp';
+import GoogleBtn from 'shared/components/GoogleBtn/GoogleBtn';
 
 const SignInForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -83,6 +86,11 @@ const SignInForm = () => {
             Sign in
           </button>
         </form>
+
+        <GoogleBtn
+          context={'Sign In with Google'}
+          onClick={handleGoogleSignUp}
+        />
         <p className={css.signUpText}>
           Don't have an account?{' '}
           <NavLink to="/signup" className={css.signUpLink}>
