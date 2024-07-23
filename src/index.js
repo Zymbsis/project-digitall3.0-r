@@ -9,12 +9,11 @@ import App from './App';
 import './index.css';
 import { TourProvider } from '@reactour/tour';
 import { tourSteps, tourStyles } from 'helpers/tourSteps';
-// import './redux/auth/interceptor';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <BrowserRouter basename="/project-digitall3.0-r">
           <ModalProvider>
             <TourProvider steps={tourSteps} styles={tourStyles}>
