@@ -12,6 +12,7 @@ const CustomersCounter = () => {
         <li>
           <img
             className={css.customersPhotoOne}
+            loading="lazy"
             srcSet={`
       ${images.customers_1x_1_webp} 1x,
       ${images.customers_1x_1_png} 1x,
@@ -25,6 +26,7 @@ const CustomersCounter = () => {
         <li>
           <img
             className={css.customersPhotoTwo}
+            loading="lazy"
             srcSet={`
       ${images.customers_1x_2_webp} 1x,
       ${images.customers_1x_2_png} 1x,
@@ -38,6 +40,7 @@ const CustomersCounter = () => {
         <li>
           <img
             className={css.customersPhotoThree}
+            loading="lazy"
             srcSet={`
       ${images.customers_1x_3_webp} 1x,
       ${images.customers_1x_3_png} 1x,
