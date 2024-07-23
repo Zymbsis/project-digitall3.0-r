@@ -99,6 +99,7 @@
   height: 50px;
   background: var(--primary-green-color);
   transition: all var(--transition-duration) var(--transition-timing-function);
+  cursor: pointer;
 
   @media (min-width: 768px) {
     height: 60px;
