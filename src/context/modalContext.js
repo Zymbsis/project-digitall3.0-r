@@ -10,7 +10,9 @@ import { createPortal } from 'react-dom';
 import { Modal } from '../components';
 import css from './modal.module.css';
 import { useSelector } from 'react-redux';
-import { selectIsError } from '../redux/auth/selectors';
+import { selectIsError as selectIsAuthError } from '../redux/auth/selectors';
+import { selectIsError as selectIsWaterError } from '../redux/water/selectors';
+import { selectIsError as selectIsUserError } from '../redux/user/selectors';
 
 const modalContext = createContext();
 export const useModal = () => useContext(modalContext);
@@ -18,7 +20,9 @@ export const useModal = () => useContext(modalContext);
 export const ModalProvider = ({ children }) => {
   const [modalContent, setModalContent] = useState(null);
   const backdropRef = useRef(null);
-  const isError = useSelector(selectIsError);
+  const isAuthError = useSelector(selectIsAuthError);
+  const isWaterError = useSelector(selectIsWaterError);
+  const isUserError = useSelector(selectIsUserError);
   const closeModal = useCallback(e => {
     if (
       e.target === e.currentTarget ||
@@ -57,7 +61,9 @@ export const ModalProvider = ({ children }) => {
     <modalContext.Provider value={{ modalContent, openModal, closeModal }}>
       {children}
       {modalContent &&
-        !isError &&
+        !isAuthError &&
+        !isWaterError &&
+        !isUserError &&
         createPortal(
           <div className={css.modalBackdrop} ref={backdropRef}>
             <Modal>{modalContent}</Modal>
