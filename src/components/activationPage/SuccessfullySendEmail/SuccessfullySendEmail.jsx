@@ -4,7 +4,8 @@ import { useModal } from 'context';
 
 const SuccessfullySendEmail = ({ email }) => {
   const { closeModal } = useModal();
-  const handleClose = e => {
+
+  const handleClick = e => {
     closeModal(e);
   };
 
@@ -14,10 +15,10 @@ const SuccessfullySendEmail = ({ email }) => {
       <p className={css.text}>
         Please verify your email address by clicking the link sent to:{' '}
         <span>{email}</span>
-        <Button className={css.closeBtn} onClick={handleClose}>
-          Close
-        </Button>
       </p>
+      <Button className={css.closeBtn} onClick={handleClick}>
+        Close window
+      </Button>
     </div>
   );
 };

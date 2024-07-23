@@ -22,11 +22,11 @@
 
 .text {
   font-size: 20px;
+  margin-bottom: 45px;
 }
 
 .text span {
   margin-top: 15px;
-  margin-bottom: 45px;
   display: inline-block;
   width: 100%;
   overflow: hidden;
