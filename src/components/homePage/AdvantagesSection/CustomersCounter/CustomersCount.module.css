@@ -31,23 +31,6 @@
   left: 0;
   width: 26px;
   height: 28px;
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: image-set(
-    url('/public/img/homePage/customers/Customers@1x-1.webp')
-      1x,
-    url('/public/img/homePage/customers/Customers@1x-1.png') 1x
-  );
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 144dpi),
-    (min-resolution: 2dppx) {
-    background-image: image-set(
-      url('/public/img/homePage/customers/Customers@2x-1.webp') 2x,
-      url('/public/img/homePage/customers/Customers@2x-1.png') 2x
-    );
-  } */
 
   @media (min-width: 768px) {
     width: 47px;
@@ -61,22 +44,6 @@
   left: 18px;
   width: 26px;
   height: 28px;
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: image-set(
-    url('/public/img/homePage/customers/Customers@1x-2.webp') 1x,
-    url('/public/img/homePage/customers/Customers@1x-2.png') 1x
-  );
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 144dpi),
-    (min-resolution: 2dppx) {
-    background-image: image-set(
-      url('/public/img/homePage/customers/Customers@2x-2.webp') 2x,
-      url('/public/img/homePage/customers/Customers@2x-2.png') 2x
-    );
-  } */
 
   @media (min-width: 768px) {
     width: 47px;
@@ -91,22 +58,6 @@
   left: 36px;
   width: 26px;
   height: 28px;
-  /* background-position: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-image: image-set(
-    url('/public/img/homePage/customers/Customers@1x-3.webp') 1x,
-    url('/public/img/homePage/customers/Customers@1x-3.png') 1x
-  );
-
-  @media (min-device-pixel-ratio: 2),
-    (min-resolution: 144dpi),
-    (min-resolution: 2dppx) {
-    background-image: image-set(
-      url('/public/img/homePage/customers/Customers@2x-3.webp') 2x,
-      url('/public/img/homePage/customers/Customers@2x-3.png') 2x
-    );
-  } */
 
   @media (min-width: 768px) {
     width: 47px;
