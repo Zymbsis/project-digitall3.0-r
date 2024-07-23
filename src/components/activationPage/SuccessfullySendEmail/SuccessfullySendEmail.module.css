@@ -1,6 +1,5 @@
 .wrapper {
   padding-top: 20px;
-  padding-bottom: 20px;
   text-align: center;
 
   @media (min-width: 768px) {
@@ -8,14 +7,33 @@
   }
 }
 
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+
+  @media screen and (max-width: 767px) {
+    font-size: 24px;
+  }
+
+  @media (min-width: 768px) {
+    margin-bottom: 24px;
+  }
+}
+
 .text {
   font-size: 20px;
+  margin-bottom: 45px;
 }
 
 .text span {
+  margin-top: 15px;
   display: inline-block;
   width: 100%;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.closeBtn {
+  width: 100%;
 }

@@ -1,20 +1,16 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Button, Title } from 'shared';
 import { useModal } from 'context';
 import { deleteWaterIntake } from '../../../redux/water/operations';
 import css from './DeleteWaterModal.module.css';
-import { selectIsError } from '../../../redux/water/selectors';
 
 const DeleteWaterModal = ({ id }) => {
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const isError = useSelector(selectIsError);
 
   const handleDelete = e => {
     dispatch(deleteWaterIntake(id));
-    if (!isError) {
-      closeModal(e);
-    }
+    closeModal(e);
   };
   const handleCancel = e => {
     closeModal(e);
