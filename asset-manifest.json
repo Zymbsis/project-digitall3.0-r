@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/project-digitall3.0-r/static/css/main.799bcd69.css",
+    "main.css": "/project-digitall3.0-r/static/css/main.9598bc9f.css",
     "main.js": "/project-digitall3.0-r/static/js/main.17efb255.js",
     "static/js/983.489cddd7.chunk.js": "/project-digitall3.0-r/static/js/983.489cddd7.chunk.js",
     "static/css/877.391f64b0.chunk.css": "/project-digitall3.0-r/static/css/877.391f64b0.chunk.css",
@@ -20,11 +20,8 @@
     "static/media/bottle-mob-@2x.png": "/project-digitall3.0-r/static/media/bottle-mob-@2x.8eaf112a7c70627b5258.png",
     "static/media/background-mobile-@1x.png": "/project-digitall3.0-r/static/media/background-mobile-@1x.5fdb885c32b433a588e1.png",
     "static/media/background-desktop-@2x.webp": "/project-digitall3.0-r/static/media/background-desktop-@2x.072c15673b2c31762cd2.webp",
-    "static/media/Gilroy-Regular.woff": "/project-digitall3.0-r/static/media/Gilroy-Regular.31d54a4b841c0e438f13.woff",
     "static/media/bottle-mob-@1x.png": "/project-digitall3.0-r/static/media/bottle-mob-@1x.724c970c1acfdd85cd41.png",
     "static/media/background-tablet-@2x.webp": "/project-digitall3.0-r/static/media/background-tablet-@2x.ba57eb41533b11b2b33f.webp",
-    "static/media/poppins-regular-webfont.woff": "/project-digitall3.0-r/static/media/poppins-regular-webfont.5692f882d3c551f1fec0.woff",
-    "static/media/poppins-bold-webfont.woff": "/project-digitall3.0-r/static/media/poppins-bold-webfont.339457860e8b81227395.woff",
     "static/media/bottle-mob-@2x.webp": "/project-digitall3.0-r/static/media/bottle-mob-@2x.f74b16c51283dff5f16c.webp",
     "static/media/background-mobile-@2x.webp": "/project-digitall3.0-r/static/media/background-mobile-@2x.a0942e938ac9cb9ad95f.webp",
     "static/media/background-desktop-@1x.webp": "/project-digitall3.0-r/static/media/background-desktop-@1x.148a66e506e1baa23acf.webp",
@@ -39,7 +36,7 @@
     "index.html": "/project-digitall3.0-r/index.html",
     "static/media/customers@1x-1.webp": "/project-digitall3.0-r/static/media/customers@1x-1.2c78b04f41461e916d05.webp",
     "static/media/customers@1x-2.webp": "/project-digitall3.0-r/static/media/customers@1x-2.2f191ce0c5922b3b76d1.webp",
-    "main.799bcd69.css.map": "/project-digitall3.0-r/static/css/main.799bcd69.css.map",
+    "main.9598bc9f.css.map": "/project-digitall3.0-r/static/css/main.9598bc9f.css.map",
     "main.17efb255.js.map": "/project-digitall3.0-r/static/js/main.17efb255.js.map",
     "983.489cddd7.chunk.js.map": "/project-digitall3.0-r/static/js/983.489cddd7.chunk.js.map",
     "877.391f64b0.chunk.css.map": "/project-digitall3.0-r/static/css/877.391f64b0.chunk.css.map",
@@ -50,7 +47,7 @@
     "617.4b0538f6.chunk.js.map": "/project-digitall3.0-r/static/js/617.4b0538f6.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.799bcd69.css",
+    "static/css/main.9598bc9f.css",
     "static/js/main.17efb255.js"
   ]
 }
