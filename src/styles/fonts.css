@@ -1,29 +1,28 @@
 @font-face {
   font-family: 'Poppins';
-  /* src: url(../../assets/fonts/Poppins-Regular.ttf); */
-  src: url(../../assets/fonts/poppins-regular-webfont.woff) format('woff'),
-    url(../../assets/fonts/Poppins-Regular.ttf) format('ttf');
+  src: url(../../assets/fonts/Poppins-Regular.ttf);
+  /* src: url(../../assets/fonts/poppins-regular-webfont.woff) format('woff'),
+    url(../../assets/fonts/Poppins-Regular.ttf) format('ttf'); */
   font-display: swap;
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'Poppins';
-  src: url(../../assets/fonts/poppins-bold-webfont.woff) format('woff'),
-    url(../../assets/fonts/Poppins-Bold.ttf) format('ttf');
+  src: url(../../assets/fonts/Poppins-Bold.ttf);
+  /* src: url(../../assets/fonts/poppins-bold-webfont.woff) format('woff'),
+    url(../../assets/fonts/Poppins-Bold.ttf) format('ttf'); */
   font-display: swap;
   font-weight: bold;
   font-style: normal;
-  font-display: swap;
 }
 
 @font-face {
   font-family: 'Gilroy';
-  /* src: url(../../assets/fonts/Gilroy-Regular.ttf); */
-  src: url(../../assets/fonts/Gilroy-Regular.woff) format('woff'),
-    url(../../assets/fonts/Gilroy-Regular.ttf) format('ttf');
+  src: url(../../assets/fonts/Gilroy-Regular.ttf);
+  /* src: url(../../assets/fonts/Gilroy-Regular.woff) format('woff'),
+    url(../../assets/fonts/Gilroy-Regular.ttf) format('ttf'); */
   font-display: swap;
   font-weight: normal;
   font-style: normal;
