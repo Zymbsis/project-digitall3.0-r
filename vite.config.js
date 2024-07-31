@@ -20,7 +20,7 @@ export default defineConfig({
       icons: '/src/icons',
       image: '/src/image',
       pages: '/src/pages',
-      redux: '/src/redux',
+      '@redux': '/src/redux',
       services: '/src/services',
       shared: '/src/shared',
       modules: '/src/modules',

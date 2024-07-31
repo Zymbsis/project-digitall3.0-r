@@ -1,0 +1,33 @@
+.customerItem {
+  position: absolute;
+  width: 26.5px;
+  height: 28px;
+
+  @media (min-width: 768px) {
+    width: 47px;
+    height: 47px;
+  }
+}
+
+.customerItem:nth-child(1) {
+  left: 0;
+  z-index: 3;
+}
+
+.customerItem:nth-child(2) {
+  left: 18px;
+  z-index: 2;
+
+  @media (min-width: 768px) {
+    left: 28px;
+  }
+}
+
+.customerItem:nth-child(3) {
+  right: 0;
+  z-index: 1;
+}
+
+.customerItem > img {
+  height: 100%;
+}
